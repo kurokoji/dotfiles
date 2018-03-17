@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ ! -e $XDG_CONFIG_HOME ]; then
   echo please set $XDG_CONFIG_HOME
   exit 1
