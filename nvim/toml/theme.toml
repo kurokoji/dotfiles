@@ -15,3 +15,6 @@ repo = 'cocopon/lightline-hybrid.vim'
 
 [[plugins]]
 repo = 'chriskempson/tomorrow-theme'
+
+[[plugins]]
+repo = 'challenger-deep-theme/vim'
