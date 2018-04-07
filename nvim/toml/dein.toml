@@ -22,7 +22,7 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-  \ 'colorscheme': 'hybrid',
+  \ 'colorscheme': 'challenger_deep',
   \ 'mode_map': {'c': 'NORMAL'},
   \ 'active': {
   \   'left': [
