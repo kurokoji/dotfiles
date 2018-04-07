@@ -40,9 +40,9 @@ endif
 
 set backspace=indent,eol,start
 
-inoremap <C-j> <esc>
-noremap <C-j> <esc>
-tnoremap <C-j> <C-\><C-n>
+" inoremap <C-j> <esc>
+" noremap <C-j> <esc>
+tnoremap <C-[> <C-\><C-n>
 
 set writebackup
 set infercase
@@ -78,11 +78,14 @@ set incsearch
 "set relativenumber
 
 
-"set termguicolors
+if has('nvim') || has('termguicolors')
+  set termguicolors
+endif
+
 set background=dark
 " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-colorscheme hybrid
+colorscheme challenger_deep
 "colorscheme Neosolarized
 
 set tabstop=2
@@ -100,5 +103,5 @@ autocmd FileType python set tabstop=4 shiftwidth=4
 autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType c,cpp set cindent cinoptions+=:0,g0
 autocmd FileType go set tabstop=4 shiftwidth=4 noexpandtab
-autocmd FileType d set softtabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
+autocmd FileType d set softtabstop=4 shiftwidth=4 cindent cinoptions+=:0,g0
 autocmd Filetype html setlocal indentexpr=""
