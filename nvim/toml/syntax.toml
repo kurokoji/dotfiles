@@ -13,3 +13,7 @@ on_ft = 'fish'
 [[plugins]]
 repo = 'HerringtonDarkholme/yats.vim'
 on_ft = 'typescript'
+
+[[plugins]]
+repo = 'qnighy/satysfi.vim'
+on_ft = 'saty'

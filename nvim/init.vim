@@ -51,12 +51,11 @@ set nowrap
 
 set foldmethod=marker
 
+set fileformat=unix
 set encoding=utf-8
 scriptencoding utf-8
-set fileencoding=utf-8
-"set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
-"set fencs=utf-8,iso-2022-jp,enc-jp,cp932
-set fileformat=unix
+set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
+set fencs=utf-8,iso-2022-jp,enc-jp,cp932
 
 syntax enable
 set title
@@ -77,16 +76,14 @@ set noshowmode
 set incsearch
 "set relativenumber
 
-
-if has('nvim') || has('termguicolors')
-  set termguicolors
-endif
-
-set background=dark
+set termguicolors
 " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-colorscheme challenger_deep
-"colorscheme Neosolarized
+set background=dark
+colorscheme NeoSolarized
+" colorscheme monokai_pro
+"let g:molokai_original = 1
+"set t_Co=256
 
 set tabstop=2
 set softtabstop=2

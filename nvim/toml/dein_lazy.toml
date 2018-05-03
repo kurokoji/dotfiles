@@ -38,9 +38,9 @@ let g:neoinclude#patterns = {
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-depends = ['neoinclude.vim', 'neosnippet.vim']
-# hook_add {{{
-hook_add = ''' 
+depends = ['neoinclude.vim']
+# hook_source {{{
+hook_source = ''' 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_at_smartcase = 1
 let g:deoplete#enable_camel_case = 1
@@ -50,10 +50,10 @@ let g:deoplete#auto_complete_start_length = 2
 " imap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " imap <expr><cr>  pumvisible() ? deoplete#close_popup() : "\<plug>(smartinput_cr)"
 " imap <expr><c-h> deoplete#smart_close_popup()
-"imap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-imap <expr><cr>  pumvisible() ? deoplete#close_popup() : <cr>
-imap <expr><c-h> deoplete#smart_close_popup()
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : neosnippet#expandable_or_jumpable() ? "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
+" imap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" imap <expr><cr>  pumvisible() ? deoplete#close_popup() : <cr>
+" imap <expr><c-h> deoplete#smart_close_popup()
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : neosnippet#expandable_or_jumpable() ? "\<plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 # }}}
 
@@ -61,6 +61,7 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : neosnippet#expandable_or_jumpable
 repo = 'mhartington/nvim-typescript'
 on_i = 1
 on_ft = ['typescript']
+depends = ['deoplete.nvim']
 # hook_add {{{
 hook_add = '''
 
@@ -146,7 +147,7 @@ let g:vim_json_syntax_conceal = 0
 repo = 'rust-lang/rust.vim'
 on_ft = ['rust']
 # hook_add {{{
-hook_add = '''
+hook_source = '''
 let g:rustfmt_autosave = 1
 '''
 # }}}
@@ -154,9 +155,30 @@ let g:rustfmt_autosave = 1
 [[plugins]]
 repo = 'racer-rust/vim-racer'
 on_ft = ['rust']
-# hook_add {{{
-hook_add = '''
+depends = ['deoplete.nvim']
+# hook_source {{{
+hook_source = '''
 set hidden
 let g:racer_cmd = '$HOME/.cargo/bin/racer'
 '''
 # }}}
+
+[[plugins]]
+repo = 'artur-shaik/vim-javacomplete2'
+on_ft = ['java']
+depends = ['deoplete.nvim']
+# hook_add {{{
+hook_add = '''
+
+'''
+# }}}
+# hook_source {{{
+hook_source = '''
+set omnifunc=javacomplete#Complete
+'''
+# }}}
+
+[[plugins]]
+repo = 'carlitux/deoplete-ternjs'
+on_ft = ['javascript']
+depends = ['deoplete.nvim']

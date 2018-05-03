@@ -22,48 +22,66 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-  \ 'colorscheme': 'challenger_deep',
-  \ 'mode_map': {'c': 'NORMAL'},
-  \ 'active': {
-  \   'left': [
-  \     ['mode', 'paste'],
-  \     ['fugitive', 'gitgutter', 'filename', 'ale'],
-  \   ],
-  \   'right': [
-  \     ['lineinfo', 'syntastic'],
-  \     ['percent'],
-  \     ['charcode', 'fileformat', 'fileencoding', 'filetype'],
-  \   ]
-  \ },
-  \ 'component_function': {
-  \   'modified': 'MyModified',
-  \   'readonly': 'MyReadonly',
-  \   'fugitive': 'MyFugitive',
-  \   'filename': 'MyFilename',
-  \   'fileformat': 'MyFileformat',
-  \   'filetype': 'MyFiletype',
-  \   'fileencoding': 'MyFileencoding',
-  \   'mode': 'MyMode',
-  \   'syntastic': 'SyntasticStatuslineFlag',
-  \   'charcode': 'MyCharCode',
-  \   'gitgutter': 'MyGitGutter',
-  \   'ale': 'ALEGetStatusLine'
-  \ },
+      \ 'colorscheme': 'solarized',
+      \ 'mode_map': {'c': 'NORMAL'},
+      \ 'active': {
+      \   'left': [
+      \     ['mode', 'paste'],
+      \     ['fugitive', 'gitgutter', 'filename', 'ale'],
+      \   ],
+      \   'right': [
+      \     ['lineinfo', 'syntastic'],
+      \     ['percent'],
+      \     ['charcode', 'fileformat', 'fileencoding', 'filetype'],
+      \   ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'charcode': 'MyCharCode',
+      \   'gitgutter': 'MyGitGutter',
+"      \   'ale': 'ALEGetStatusLine'
+      \   'ale': 'MyGetALEStatus',
+      \ },
 "  \  vim-powerline
 "  \ 'separator': {'left': "\u2b80", 'right': "\u2b82"},
 "  \ 'subseparator': {'left': "\u2b81", 'right': "\u2b83"}
 "  \  Powerline
-  \ 'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
-  \ 'subseparator': {'left': "\ue0b1", 'right': "\ue0b3"}
+      \ 'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
+      \ 'subseparator': {'left': "\ue0b1", 'right': "\ue0b3"}
 "  \  Cica
-"  \ 'separator': {'left': '', 'right': ''},
-"  \ 'subseparator': {'left': '', 'right': ''}
-  \ }
+"      \ 'separator': {'left': '', 'right': ''},
+"      \ 'subseparator': {'left': '', 'right': ''}
+      \ }
 
-let g:lightline.component = { 'lineinfo': ' %3l:%3v ' }
+" let g:lightline.component = { 'lineinfo': " %3l:%3v " }
+" let g:lightline.component = { 'lineinfo': "\ue0a1 %3l:%3v \ue0a3" }
+let g:lightline.component = { 'lineinfo': '%{MyGetLineInfo()}' }
+
+function! MyGetLineInfo()
+  if winwidth(0) <= 60
+    return ""
+  endif
+  return printf("\ue0a1 %3d:%-3d \ue0a3", line('.'), col('.'))
+endfunction
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyGetALEStatus()
+  if winwidth(0) <= 60
+    return ""
+  endif
+
+  return ALEGetStatusLine()
 endfunction
 
 function! MyReadonly()
@@ -187,6 +205,9 @@ repo = 'scrooloose/nerdtree'
 hook_add = '''
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeDirArrows = 1
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
+
 nnoremap <silent><C-b> :NERDTreeToggle<CR>
 if !has("gui_vimr")
 " Here goes some VimR specific settings like
@@ -234,13 +255,25 @@ repo = "Shougo/vinarise.vim"
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+# hook_add {{{
+hook_add = '''
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+noremap <C-p> :Denite buffer<CR>
+noremap <C-n> :Denite -buffer-name=file file<CR>
+'''
+# }}}
 
 [[plugins]]
 repo = 'w0rp/ale'
 # hook_add {{{
 hook_add = '''
 let g:ale_open_list = 0
+let g:ale_lint_on_enter = 0
+" let g:ale_lint_on_text_changed = 0
+" let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_column_always = 1
+
 let g:ale_statusline_format = ['✖︎ %d', '⚠ %d', '⬥ ok']
 let g:ale_sign_error = '✖︎'
 let g:ale_sign_warning = '⚠'
@@ -253,5 +286,18 @@ let g:ale_cpp_clang_options = '-std=c++1z'
 #}}}
 # hook_post_source {{{
 hook_post_source = '''
+'''
+# }}}
+
+[[plugins]]
+repo = 'thinca/vim-zenspace'
+
+[[plugins]]
+repo = 'twitvim/twitvim'
+# hook_source {{{
+hook_source = '''
+let twitvim_browser_cmd = 'open'
+let twitvim_force_ssl = 1 
+let twitvim_count = 40
 '''
 # }}}

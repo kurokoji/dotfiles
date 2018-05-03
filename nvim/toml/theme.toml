@@ -14,7 +14,19 @@ repo = 'w0ng/vim-hybrid'
 repo = 'cocopon/lightline-hybrid.vim'
 
 [[plugins]]
-repo = 'chriskempson/tomorrow-theme'
+repo = 'squarefrog/tomorrow-night.vim'
 
 [[plugins]]
 repo = 'challenger-deep-theme/vim'
+
+[[plugins]]
+repo = 'sickill/vim-monokai'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'Erichain/vim-monokai-pro'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
