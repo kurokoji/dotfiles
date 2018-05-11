@@ -1,13 +1,14 @@
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
 # on_i = 1
-# hook_add {{{
-hook_add = '''
+# hook_source {{{
+hook_source = '''
+"\ 'cpp': '.,/usr/include/c++/v1,/applications/xcode.app/contents/developer/toolchains/xcodedefault.xctoolchain/usr/include/c++/v1,/usr/local/include,/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,/applications/xcode.app/contents/developer/toolchains/xcodedefault.xctoolchain/usr/lib/clang/9.0.0/include,/usr/include,/System/Library/Frameworks,/Library/Frameworks,/usr/local/cellar/boost/1.63.0/include',
 let g:neoinclude#paths = {
-  \ 'cpp': '.,/usr/include/c++/v1,/applications/xcode.app/contents/developer/toolchains/xcodedefault.xctoolchain/usr/include/c++/v1,/usr/local/include,/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,/applications/xcode.app/contents/developer/toolchains/xcodedefault.xctoolchain/usr/lib/clang/9.0.0/include,/usr/include,/System/Library/Frameworks,/Library/Frameworks,/usr/local/cellar/boost/1.63.0/include',
   \ 'd': '.,/usr/local/opt/dmd/include/dlang/dmd'
   \ }
-" let g:neoinclude#paths = {'cpp': '/usr/local/opt/llvm/lib/clang/5.0.0/include'}
+"let g:neoinclude#paths = {'cpp': '/usr/local/opt/llvm/lib/clang/5.0.0/include'}
+let g:neoinclude#paths = {'cpp': '/usr/local/opt/llvm/include/c++/v1'}
 
 
 "if !exists('g:neoinclude#delimiters')
@@ -45,7 +46,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_at_smartcase = 1
 let g:deoplete#enable_camel_case = 1
 " let g:deoplete#auto_complete_delay = 1
-let g:deoplete#auto_complete_start_length = 2
+" let g:deoplete#auto_complete_start_length = 2
 
 " imap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " imap <expr><cr>  pumvisible() ? deoplete#close_popup() : "\<plug>(smartinput_cr)"
@@ -152,16 +153,6 @@ let g:rustfmt_autosave = 1
 '''
 # }}}
 
-[[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = ['rust']
-depends = ['deoplete.nvim']
-# hook_source {{{
-hook_source = '''
-set hidden
-let g:racer_cmd = '$HOME/.cargo/bin/racer'
-'''
-# }}}
 
 [[plugins]]
 repo = 'artur-shaik/vim-javacomplete2'
@@ -182,3 +173,4 @@ set omnifunc=javacomplete#Complete
 repo = 'carlitux/deoplete-ternjs'
 on_ft = ['javascript']
 depends = ['deoplete.nvim']
+

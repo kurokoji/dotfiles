@@ -63,7 +63,8 @@ set number
 set cursorline
 " set cursorcolumn
 set list
-set listchars=tab:»-,eol:⇣,extends:»,precedes:«,nbsp:%
+" set listchars=tab:»-,eol:⇣,extends:»,precedes:«,nbsp:%
+set listchars=tab:>-,eol:↓,nbsp:%
 set showmatch
 set matchtime=1
 set matchpairs& matchpairs+=<:>
@@ -75,15 +76,15 @@ set noshowmode
 " set ambiwidth=double
 set incsearch
 "set relativenumber
-
-set termguicolors
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
-colorscheme NeoSolarized
+let g:deus_termcolors=256
+set t_Co=256
+colorscheme deus
 " colorscheme monokai_pro
 "let g:molokai_original = 1
-"set t_Co=256
 
 set tabstop=2
 set softtabstop=2

@@ -22,7 +22,7 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'seoul256',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
@@ -299,5 +299,20 @@ hook_source = '''
 let twitvim_browser_cmd = 'open'
 let twitvim_force_ssl = 1 
 let twitvim_count = 40
+'''
+# }}}
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = './install.sh'
+on_ft = ['rust']
+# hook_source {{{
+hook_source = '''
+set hidden
+let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls']
+      \ }
+let g:LanguageClient_autoStart = 1
 '''
 # }}}

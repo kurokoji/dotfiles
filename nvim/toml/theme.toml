@@ -30,3 +30,6 @@ repo = 'Erichain/vim-monokai-pro'
 
 [[plugins]]
 repo = 'joshdick/onedark.vim'
+
+[[plugins]]
+repo = 'ajmwagar/vim-deus'
