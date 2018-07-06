@@ -1,18 +1,10 @@
-[[plugins]] # toml syntax
+[[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
-repo = 'kchmck/vim-coffee-script'
-on_ft = 'coffee'
-
-[[plugins]]
 repo = 'dag/vim-fish'
 on_ft = 'fish'
-
-[[plugins]]
-repo = 'HerringtonDarkholme/yats.vim'
-on_ft = 'typescript'
 
 [[plugins]]
 repo = 'qnighy/satysfi.vim'

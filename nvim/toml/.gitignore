@@ -1,0 +1,14 @@
+.dub
+docs.json
+__dummy.html
+docs/
+toml.so
+toml.dylib
+toml.dll
+toml.a
+toml.lib
+toml-test-*
+*.exe
+*.o
+*.obj
+*.lst
