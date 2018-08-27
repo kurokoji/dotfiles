@@ -1,2 +1,20 @@
 [[plugins]]
 repo = 'ajmwagar/vim-deus'
+
+[[plugins]]
+repo = 'Ardakilic/vim-tomorrow-night-theme'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
+
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'icymind/NeoSolarized'

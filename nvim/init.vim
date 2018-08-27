@@ -33,12 +33,25 @@ if has('vim_starting') && dein#check_install()
 endif
 
 " }}}
-
-set backspace=indent,eol,start
-
+" mapping {{{
 tnoremap <C-[> <C-\><C-n>
 nnoremap ; :
 nnoremap x "_x
+
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+
+nnoremap sn gt
+nnoremap sp gT
+nnoremap st :<C-u>tabnew<CR>
+
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+" }}}
+
+set backspace=indent,eol,start
 
 set writebackup
 set infercase
@@ -51,7 +64,6 @@ set fileformat=unix
 set encoding=utf-8
 scriptencoding utf-8
 set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
-set fencs=utf-8,iso-2022-jp,cp932,sjis,enc-jp
 
 syntax enable
 set title
@@ -68,12 +80,13 @@ set completeopt=menuone,noinsert,noselect
 set wildmenu
 set noshowmode
 set incsearch
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
-let g:deus_termcolors=256
+set termguicolors
+" let g:deus_termcolors=256
 set t_Co=256
-colorscheme deus
+colorscheme NeoSolarized
 
 set tabstop=2
 set shiftwidth=2

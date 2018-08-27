@@ -9,3 +9,16 @@ on_ft = 'fish'
 [[plugins]]
 repo = 'qnighy/satysfi.vim'
 on_ft = 'saty'
+
+[[plugins]]
+repo = 'sulami/diet.vim'
+on_ft = 'diet'
+
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+# hook_add {{{
+hook_add = '''
+let g:vim_json_syntax_conceal = 0
+'''
+# }}}
