@@ -103,7 +103,7 @@ function! MyFilename()
 endfunction
 
 function! MyFugitive()
-  if winwidth(0) <= 40
+  if winwidth(0) <= 120
     return ""
   endif
 
@@ -138,7 +138,7 @@ endfunction
 function! MyGitGutter()
   if ! exists('*GitGutterGetHunkSummary')
         \ || ! get(g:, 'gitgutter_enabled', 0)
-        \ || winwidth(0) <= 90
+        \ || winwidth(0) <= 120
     return ''
   endif
   let symbols = [
@@ -158,7 +158,7 @@ endfunction
 
 " https://github.com/Lokaltog/vim-powerline/blob/develop/autoload/Powerline/Functions.vim
 function! MyCharCode()
-  if winwidth(0) <= 90
+  if winwidth(0) <= 120
     return ''
   endif
 
@@ -255,35 +255,6 @@ let g:deoplete#enable_at_startup = 1
 # }}}
 
 [[plugins]]
-repo = 'Shougo/neoinclude.vim'
-on_ft = ['c', 'cpp', 'd']
-# hook_add {{{
-hook_add = '''
-let g:neoinclude#paths = {
-      \ 'd': '.,/usr/local/opt/dmd/include/dlang/dmd',
-      \ 'cpp': '.,/usr/local/opt/llvm/include/c++/v1,/usr/local/opt/opencv/include,/usr/local/opt/boost/include,/usr/local/opt/zbar/include/zbar,/usr/local/opt/zbar/include'
-      \ }
-
-if !exists('g:neoinclude#reverse_exprs')
-  let g:neoinclude#reverse_exprs = {}
-endif
-
-" let g:neoinclude#reverse_exprs.d = 'substitute(substitute(v:fname, "\\.", "/", "g"), "$", ".d", "")'
-let g:neoinclude#reverse_exprs.d = 'fnamemodify(substitute(substitute(v:fname, "/", "\\.", "g"), "\\.\d", "", "g"), "r")'
-
-if !exists('g:neoinclude#exts')
-  let g:neoinclude#exts = {}
-endif
-
-"let g:neoinclude#exts.d = ['', 'd']
-
-"let g:neoinclude#patterns = {
-"      \ 'd': '^\s*\%(\%(public\|static\)\s\+\)\?\<import'
-"      \ }
-'''
-# }}}
-
-[[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
 rev = 'next'
 depends = ['deoplete.nvim']
@@ -292,6 +263,7 @@ build = 'bash install.sh'
 hook_add = '''
 set hidden
 let g:LanguageClient_serverCommands = {
+      \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'd': ['~/.dub/packages/.bin/dls'],
@@ -363,47 +335,22 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 repo = 'kurokoji/neosnippet-snippets'
 
 [[plugins]]
-repo = 'Shougo/defx.nvim'
+repo = 'Shougo/neoinclude.vim'
+on_i = 1
+on_ft = ['c', 'cpp']
+on_source = ['deoplete.nvim']
 # hook_add {{{
 hook_add = '''
-nnoremap <silent> df :<C-u>Defx<CR>
-'''
-# }}}
-# hook_source {{{
-hook_source = '''
-autocmd MyAutoCmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-  " Define mappings
-  nnoremap <silent><buffer><expr> <CR>
-        \ defx#do_action('open')
-  nnoremap <silent><buffer><expr> l
-        \ defx#do_action('open')
-  nnoremap <silent><buffer><expr> E
-        \ defx#do_action('open', 'vsplit')
-  nnoremap <silent><buffer><expr> K
-        \ defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N
-        \ defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> d
-        \ defx#do_action('remove')
-  nnoremap <silent><buffer><expr> r
-        \ defx#do_action('rename')
-  nnoremap <silent><buffer><expr> h
-        \ defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> ~
-        \ defx#do_action('cd')
-  nnoremap <silent><buffer><expr> q
-        \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space>
-        \ defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> j
-        \ line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k
-        \ line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-l>
-        \ defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> <C-g>
-        \ defx#do_action('print')
-endfunction
+let g:neoinclude#paths = {
+      \ 'cpp': '.,/usr/local/opt/llvm/include/c++/v1,/usr/local/opt/opencv/include,/usr/local/opt/boost/include,/usr/local/opt/zbar/include/zbar,/usr/local/opt/zbar/include'
+      \ }
+
+if !exists('g:neoinclude#reverse_exprs')
+  let g:neoinclude#reverse_exprs = {}
+endif
+
+if !exists('g:neoinclude#exts')
+  let g:neoinclude#exts = {}
+endif
 '''
 # }}}
