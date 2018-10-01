@@ -26,7 +26,7 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'Dracula',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
@@ -52,7 +52,7 @@ let g:lightline = {
       \   'charcode': 'MyCharCode',
       \   'gitgutter': 'MyGitGutter',
 "      \   'ale': 'ALEGetStatusLine'
-"      \   'ale': 'MyGetALEStatus',
+      \   'ale': 'MyGetALEStatus'
       \ },
 "  \  Powerline
       \ 'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
@@ -74,11 +74,41 @@ function! MyModified()
 endfunction
 
 function! MyGetALEStatus()
-  if winwidth(0) <= 60
+  if !has('nvim') || winwidth(0) <= 60
     return ""
   endif
 
-  return ALEGetStatusLine()
+
+  let w = LC_warning_count()
+  let e = LC_error_count()
+
+  if w == '' && e == ''
+    return "\uf00c" . " OK"
+  elseif w == ''
+    return e
+  elseif e == ''
+    return w
+  else
+    return printf("%s %s", w, e)
+  endif
+
+  "return ALEGetStatusLine()
+endfunction
+
+function! LC_warning_count()
+  let current_buf_number = bufnr('%')
+  let qflist = getqflist()
+  let current_buf_diagnostics = filter(qflist, {index, dict -> dict['bufnr'] == current_buf_number && dict['type'] == 'W'})
+  let count = len(current_buf_diagnostics)
+  return count > 0 && g:LanguageClient_loaded ? "\uf071 " . count : ''
+endfunction
+
+function! LC_error_count()
+  let current_buf_number = bufnr('%')
+  let qflist = getqflist()
+  let current_buf_diagnostics = filter(qflist, {index, dict -> dict['bufnr'] == current_buf_number && dict['type'] == 'E'})
+  let count = len(current_buf_diagnostics)
+  return count > 0 && g:LanguageClient_loaded ? "\uf05e " . count : ''
 endfunction
 
 function! MyReadonly()
@@ -110,7 +140,7 @@ function! MyFugitive()
   try
     if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
       let _ = fugitive#head()
-      return strlen(_) ? "\u2b60 "._ : ''
+      return strlen(_) ? "\ue0a0 "._ : ''
     endif
   catch
   endtry
@@ -132,6 +162,7 @@ endfunction
 function! MyMode()
   return &ft == 'unite' ? 'Unite' :
         \ &ft == 'nerdtree' ? 'NERDTree' :
+        \ &ft == 'defx' ? 'Defx' :
         \ lightline#mode()
 endfunction
 
@@ -203,7 +234,7 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-nnoremap <silent><C-b> :NERDTreeToggle<CR>
+" nnoremap <silent><C-b> :NERDTreeToggle<CR>
 " if !has("gui_vimr") && !exists("g:gui_oni")
   " Here goes some VimR specific settings like
 "  autocmd StdinReadPre * let s:std_in=1
@@ -240,37 +271,30 @@ let g:sonictemplate_vim_template_dir = [
 repo = 'simeji/winresizer'
 
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-depends = ['context_filetype.vim']
-# hook_add {{{
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-'''
-# }}}
-
-[[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
 rev = 'next'
+# on_event = 'InsertEnter'
 depends = ['deoplete.nvim']
 build = 'bash install.sh'
+# hook_source {{{
+hook_source = '''
+set completefunc=LanguageClient#complete
+'''
+# }}}
 # hook_add {{{
 hook_add = '''
 set hidden
+let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
 let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'd': ['~/.dub/packages/.bin/dls'],
+      \ 'd': ['dls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'python': ['pyls'],
       \ 'ruby': ['solargraph'],
       \ }
+
 let g:LanguageClient_loadSettings = 1
 
 nnoremap K :call LanguageClient#textDocument_hover()<CR>
@@ -278,47 +302,15 @@ nnoremap gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap F :call LanguageClient#textDocument_formatting()<CR>
 '''
 # }}}
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+depends = ['context_filetype.vim']
 # hook_source {{{
-hook_source = '''
-set completefunc=LanguageClient#complete
-'''
-# }}}
-
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-# hook_add {{{
 hook_add = '''
-nmap <silent> <C-u><C-n> :<C-u>Denite buffer<CR>
-nmap <silent> <C-u><C-p> :<C-u>Denite -resume -buffer-name=files file_rec<CR>
-nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
-nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>
-
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('_', '<C-h>', '<denite:do_action:split>')
-call denite#custom#map('insert', '<C-h>', '<denite:do_action:split>')
-call denite#custom#map('_', '<C-v>', '<denite:do_action:vsplit>')
-call denite#custom#map('insert', '<C-v>', '<denite:do_action:vsplit>')
-
-call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
-call denite#custom#var('grep', 'command', ['rg', '--threads', '3'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+call deoplete#enable()
 '''
 # }}}
-# hook_post_source {{{
-hook_post_source = '''
-'''
-
-# }}}
-
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
-
-[[plugins]]
-repo = 'Shougo/neco-syntax'
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
@@ -335,22 +327,15 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 repo = 'kurokoji/neosnippet-snippets'
 
 [[plugins]]
-repo = 'Shougo/neoinclude.vim'
-on_i = 1
-on_ft = ['c', 'cpp']
-on_source = ['deoplete.nvim']
-# hook_add {{{
-hook_add = '''
-let g:neoinclude#paths = {
-      \ 'cpp': '.,/usr/local/opt/llvm/include/c++/v1,/usr/local/opt/opencv/include,/usr/local/opt/boost/include,/usr/local/opt/zbar/include/zbar,/usr/local/opt/zbar/include'
-      \ }
+repo = 'Shougo/neco-syntax'
 
-if !exists('g:neoinclude#reverse_exprs')
-  let g:neoinclude#reverse_exprs = {}
-endif
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = 'vim'
 
-if !exists('g:neoinclude#exts')
-  let g:neoinclude#exts = {}
-endif
-'''
-# }}}
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+

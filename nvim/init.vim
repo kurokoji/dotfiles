@@ -51,7 +51,7 @@ nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 " }}}
 
-set backspace=indent,eol,start
+" set backspace=indent,eol,start
 
 set writebackup
 set infercase
@@ -70,7 +70,8 @@ set title
 set number
 set cursorline
 set list
-set listchars=tab:>-,eol:↓,nbsp:%
+" set ambiwidth=double
+set listchars=tab:>-,eol:¬,nbsp:%
 set showmatch
 set matchtime=1
 set matchpairs& matchpairs+=<:>
@@ -86,8 +87,10 @@ set background=dark
 set termguicolors
 " let g:deus_termcolors=256
 set t_Co=256
-colorscheme NeoSolarized
+" colorscheme NeoSolarized
+colorscheme dracula
 
+set softtabstop=2
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -103,5 +106,5 @@ autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,d
 autocmd FileType java set softtabstop=4 tabstop=4 shiftwidth=4
 autocmd FileType c,cpp set cindent cinoptions+=:0,g0
 autocmd FileType go set tabstop=4 shiftwidth=4 noexpandtab
-autocmd FileType d set tabstop=4 shiftwidth=4 cindent cinoptions+=:0,g0
+autocmd FileType d set softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
 autocmd Filetype html setlocal indentexpr=""

@@ -18,3 +18,6 @@ repo = 'morhetz/gruvbox'
 
 [[plugins]]
 repo = 'icymind/NeoSolarized'
+
+[[plugins]]
+repo = 'dracula/vim'
