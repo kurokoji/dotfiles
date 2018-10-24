@@ -29,8 +29,8 @@ on_ft = ['Denite']
 # hook_add {{{
 hook_add = '''
 nmap <silent> <C-u><C-n> :<C-u>Denite buffer<CR>
-" nmap <silent> <C-u><C-p> :<C-u>Denite -resume -buffer-name=files file_rec<CR>
-nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
+nmap <silent> <C-u><C-p> :<C-u>Denite -resume -buffer-name=files file_rec<CR>
+" nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
 nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
 nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>
 '''

@@ -81,14 +81,19 @@ set completeopt=menuone,noinsert,noselect
 set wildmenu
 set noshowmode
 set incsearch
+set background=dark
+" set t_Co=256
+set termguicolors
 " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set background=dark
-set termguicolors
+" colorscheme deus
 " let g:deus_termcolors=256
-set t_Co=256
+" colorscheme gruvbox
+" let g:gruvbox_termcolors=16
 " colorscheme NeoSolarized
-colorscheme dracula
+colorscheme perun
+" 改行の色を指定
+hi NonText guibg=NONE guifg=Gray
 
 set softtabstop=2
 set tabstop=2

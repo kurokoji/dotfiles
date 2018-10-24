@@ -2,6 +2,10 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
@@ -26,7 +30,7 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'Dracula',
+      \ 'colorscheme': 'seoul256',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
@@ -226,24 +230,6 @@ endfunction
 # }}}
 
 [[plugins]]
-repo = 'scrooloose/nerdtree'
-# hook_add {{{
-hook_add = '''
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-" nnoremap <silent><C-b> :NERDTreeToggle<CR>
-" if !has("gui_vimr") && !exists("g:gui_oni")
-  " Here goes some VimR specific settings like
-"  autocmd StdinReadPre * let s:std_in=1
-"  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"endif
-'''
-# }}}
-
-[[plugins]]
 repo = 'Yggdroot/indentLine'
 # hook_add {{{
 hook_add = '''
@@ -284,7 +270,6 @@ set completefunc=LanguageClient#complete
 # hook_add {{{
 hook_add = '''
 set hidden
-let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
 let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
@@ -294,8 +279,9 @@ let g:LanguageClient_serverCommands = {
       \ 'python': ['pyls'],
       \ 'ruby': ['solargraph'],
       \ }
+" let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
 
-let g:LanguageClient_loadSettings = 1
 
 nnoremap K :call LanguageClient#textDocument_hover()<CR>
 nnoremap gd :call LanguageClient#textDocument_definition()<CR>
@@ -309,6 +295,7 @@ depends = ['context_filetype.vim']
 # hook_source {{{
 hook_add = '''
 call deoplete#enable()
+call deoplete#custom#source('LanguageClient', 'min_pattern_length', 1)
 '''
 # }}}
 
@@ -339,3 +326,11 @@ repo = 'Shougo/context_filetype.vim'
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+# {{{
+# hook_add
+hook_add = '''
+let g:extra_whitespace_ignored_filetypes = ['denite', 'defx']
+'''
+# }}}

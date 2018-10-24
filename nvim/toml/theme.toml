@@ -17,7 +17,11 @@ repo = 'jacoborus/tender.vim'
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
+if = "has('nvim')"
 repo = 'icymind/NeoSolarized'
 
 [[plugins]]
 repo = 'dracula/vim'
+
+[[plugins]]
+repo = 'aradunovic/perun.vim'
