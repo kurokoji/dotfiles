@@ -279,7 +279,8 @@ let g:LanguageClient_serverCommands = {
       \ 'python': ['pyls'],
       \ 'ruby': ['solargraph'],
       \ }
-" let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
 
 
