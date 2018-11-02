@@ -3,7 +3,8 @@
 ``` sh
 git clone https://github.com/kurokoji/dotfiles
 cd dotfiles
-./link.sh
+./deploy.sh
+./init.sh
 ```
 
 # License
