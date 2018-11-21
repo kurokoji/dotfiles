@@ -88,12 +88,13 @@ set termguicolors
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " colorscheme deus
 " let g:deus_termcolors=256
-" colorscheme gruvbox
+autocmd ColorScheme * hi NonText guibg=NONE guifg=Gray
+autocmd ColorScheme * hi dOperator guifg=#fb4934
+colorscheme gruvbox
 " let g:gruvbox_termcolors=16
 " colorscheme NeoSolarized
-colorscheme perun
+" colorscheme perun
 " 改行の色を指定
-hi NonText guibg=NONE guifg=Gray
 
 set softtabstop=2
 set tabstop=2
