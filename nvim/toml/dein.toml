@@ -20,7 +20,7 @@ if = "!has('nvim')"
 repo = 'ryanoasis/vim-devicons'
 # hook_add {{{
 hook_add = """
-let g:WebDevIconsOS = 'Darwin'
+" let g:WebDevIconsOS = 'Darwin'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 """
 # }}}
@@ -30,7 +30,7 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'gruvbox_dark',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
@@ -116,7 +116,7 @@ function! LC_error_count()
 endfunction
 
 function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? "\u2b64" : ''
+  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? "\ue0a2" : ''
 endfunction
 
 function! MyFilename()
@@ -264,7 +264,6 @@ depends = ['deoplete.nvim']
 build = 'bash install.sh'
 # hook_source {{{
 hook_source = '''
-set completefunc=LanguageClient#complete
 '''
 # }}}
 # hook_add {{{
@@ -274,14 +273,15 @@ let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'd': ['dls'],
       \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'd': ['dls'],
       \ 'python': ['pyls'],
       \ 'ruby': ['solargraph'],
       \ }
 let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
+set completefunc=LanguageClient#complete
 
 
 nnoremap K :call LanguageClient#textDocument_hover()<CR>
@@ -329,9 +329,23 @@ repo = 'osyo-manga/vim-precious'
 
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
-# {{{
-# hook_add
+# hook_add {{{
 hook_add = '''
 let g:extra_whitespace_ignored_filetypes = ['denite', 'defx']
+'''
+# }}}
+
+[[plugins]]
+repo = 'mhinz/vim-startify'
+
+[[plugins]]
+repo = 'previm/previm'
+# hook_add {{{
+hook_add = '''
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+augroup PrevimSettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
 '''
 # }}}

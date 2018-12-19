@@ -17,6 +17,9 @@ repo = 'jacoborus/tender.vim'
 repo = 'morhetz/gruvbox'
 
 [[plugins]]
+repo = 'deens/lightline_gruvbox_theme'
+
+[[plugins]]
 if = "has('nvim')"
 repo = 'icymind/NeoSolarized'
 

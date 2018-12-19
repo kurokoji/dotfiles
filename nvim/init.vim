@@ -51,7 +51,7 @@ nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 " }}}
 
-" set backspace=indent,eol,start
+set backspace=indent,eol,start
 
 set writebackup
 set infercase
@@ -70,7 +70,7 @@ set title
 set number
 set cursorline
 set list
-" set ambiwidth=double
+set ambiwidth=double
 set listchars=tab:>-,eol:¬,nbsp:%
 set showmatch
 set matchtime=1
