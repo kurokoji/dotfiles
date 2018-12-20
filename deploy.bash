@@ -34,4 +34,4 @@ done
 cp ./.env.fish $HOME
 
 echo $(tput setaf 1)✔︎ Complete!!$(tput sgr0)
-echo $(tput setaf 1)please set PROXY_ADDRESS and SSID_LIST in ${HOME}/.env.fish$(tput sgr0)
+echo $(tput setaf 1)please set _proxy_address and _dns in ${HOME}/.env.fish$(tput sgr0)
