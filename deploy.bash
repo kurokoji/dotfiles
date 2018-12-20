@@ -1,12 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 DOT_DIRECTORY=$(pwd)
 SPECIFY_FILES=''
 EXCLUDE_FILES="Brewfile .env.fish .git .gitignore .gitmodules .DS_Store README.md LICENSE init.sh $(basename ${0})"
 
+list=""
+
 for f in .??* *
 do
-  list+="${f} "
+  list=$list"${f} "
 done
 
 echo $list
