@@ -4,7 +4,7 @@
 git clone https://github.com/kurokoji/dotfiles
 cd dotfiles
 ./deploy.bash
-./init.sh
+./init.bash
 ```
 
 # License
