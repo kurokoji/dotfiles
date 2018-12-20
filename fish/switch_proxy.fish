@@ -1,5 +1,5 @@
 source $HOME/.env.fish
-set proxy $proxy_address
+set proxy $_proxy_address
 
 set -x http_proxy ''
 set -x https_proxy ''
@@ -31,14 +31,12 @@ function unset_proxy
   git config --global --unset url."https://".insteadOf
 end
 
-networksetup -getairportnetwork en0 | awk '{print $4}' | read ssid
-for switch_trigger in $ssid_list
-  if [ $ssid = $switch_trigger ]
-    echo -e '\e[31mSwitch to proxy for school network\e[m' 1>&2
-    set_proxy
-    exit
-  end
-end
+grep $_dns /etc/resolv.conf | read _dns_state
 
-echo -e '\e[36mUnset proxy settings\e[m' 1>&2
-unset_proxy
+if test -n "$_dns_state"
+  echo -e '\e[31mSet proxy settings\e[m' 1>&2
+  set_proxy
+else
+  echo -e '\e[36mUnset proxy settings\e[m' 1>&2
+  unset_proxy
+end

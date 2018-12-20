@@ -1,2 +1,2 @@
-set -x proxy_address
-set -x ssid_list
+set -x _proxy_address
+set -x _dns
