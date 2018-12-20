@@ -3,7 +3,7 @@
 ``` sh
 git clone https://github.com/kurokoji/dotfiles
 cd dotfiles
-./deploy.sh
+./deploy.bash
 ./init.sh
 ```
 
