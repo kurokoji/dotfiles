@@ -31,7 +31,9 @@ function unset_proxy
   git config --global --unset url."https://".insteadOf
 end
 
-grep $_dns /etc/resolv.conf | read _dns_state
+if test -e /etc/resolv.conf
+  grep $_dns /etc/resolv.conf | read _dns_state
+end
 
 if test -n "$_dns_state"
   echo -e '\e[31mSet proxy settings\e[m' 1>&2
