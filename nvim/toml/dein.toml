@@ -59,8 +59,8 @@ let g:lightline = {
       \   'ale': 'MyGetALEStatus'
       \ },
 "  \  Powerline
-      \ 'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
-      \ 'subseparator': {'left': "\ue0b1", 'right': "\ue0b3"}
+      \ 'separator': {'left': "\ue0b4", 'right': "\ue0b6"},
+      \ 'subseparator': {'left': "\ue0b5", 'right': "\ue0b7"}
       \ }
 
 " let g:lightline.component = { 'lineinfo': "\ue0a1 %3l:%3v \ue0a3" }
@@ -144,7 +144,8 @@ function! MyFugitive()
   try
     if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
       let _ = fugitive#head()
-      return strlen(_) ? "\ue0a0 "._ : ''
+      " return strlen(_) ? "\ue0a0 "._ : ''
+      return strlen(_) ? "\ue702 "._ : ''
     endif
   catch
   endtry
@@ -167,6 +168,7 @@ function! MyMode()
   return &ft == 'unite' ? 'Unite' :
         \ &ft == 'nerdtree' ? 'NERDTree' :
         \ &ft == 'defx' ? 'Defx' :
+        \ &ft == 'deol' ? 'Deol' :
         \ lightline#mode()
 endfunction
 
@@ -350,3 +352,6 @@ augroup PrevimSettings
 augroup END
 '''
 # }}}
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
