@@ -6,7 +6,7 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'cohama/lexima.vim'
+repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
