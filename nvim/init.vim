@@ -110,7 +110,8 @@ filetype plugin indent on
 autocmd FileType python set tabstop=4 shiftwidth=4
 autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType java set softtabstop=4 tabstop=4 shiftwidth=4
-autocmd FileType c,cpp set cindent cinoptions+=:0,g0
+autocmd FileType c,cpp set softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
+autocmd FileType json set tabstop=2 shiftwidth=2 noexpandtab
 autocmd FileType go set tabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType d set softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
 autocmd Filetype html setlocal indentexpr=""
