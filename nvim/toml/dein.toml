@@ -59,8 +59,8 @@ let g:lightline = {
       \   'ale': 'MyGetALEStatus'
       \ },
 "  \  Powerline
-      \ 'separator': {'left': "\ue0b4", 'right': "\ue0b6"},
-      \ 'subseparator': {'left': "\ue0b5", 'right': "\ue0b7"}
+      \ 'separator': {'left': "\ue0b0", 'right': "\ue0b2"},
+      \ 'subseparator': {'left': "\ue0b1", 'right': "\ue0b3"}
       \ }
 
 " let g:lightline.component = { 'lineinfo': "\ue0a1 %3l:%3v \ue0a3" }
@@ -275,16 +275,16 @@ let g:LanguageClient_serverCommands = {
       \ 'c': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'javascript': ['javascript-typescript-stdio'],
       \ 'd': ['dls'],
       \ 'python': ['pyls'],
       \ 'ruby': ['solargraph'],
+      \ 'javascript': ['javascript-typescript-langserver'],
+      \ 'typescript': ['javascript-typescript-langserver']
       \ }
-let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_hasSnippetSupport = 0
-let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
 set completefunc=LanguageClient#complete
-
+let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
 
 nnoremap K :call LanguageClient#textDocument_hover()<CR>
 nnoremap gd :call LanguageClient#textDocument_definition()<CR>
@@ -344,7 +344,7 @@ repo = 'mhinz/vim-startify'
 repo = 'previm/previm'
 # hook_add {{{
 hook_add = '''
-let g:previm_open_cmd = 'open -a Google\ Chrome'
+let g:previm_open_cmd = 'open -a Firefox\ Developer\ Edition'
 let g:previm_enable_realtime = 1
 augroup PrevimSettings
   autocmd!
