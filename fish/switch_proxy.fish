@@ -11,7 +11,7 @@ function set_proxy
   set -x http_proxy "http://$proxy"
   set -x https_proxy "http://$proxy"
   set -x ftp_proxy "http://$proxy"
-  set -x all_proxy $proxy
+  set -x all_proxy "http://$proxy"
   set -x no_proxy '127.0.0.1,localhost'
 
   git config --global http.proxy "http://$proxy"
