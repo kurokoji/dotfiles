@@ -355,3 +355,7 @@ augroup END
 
 [[plugins]]
 repo = 'Shougo/deol.nvim'
+
+[[plugins]]
+repo = 'tbodt/deoplete-tabnine'
+build = 'bash install.sh'
