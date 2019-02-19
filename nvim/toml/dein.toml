@@ -2,6 +2,9 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+
+[[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
@@ -285,12 +288,18 @@ let g:LanguageClient_hasSnippetSupport = 0
 set completefunc=LanguageClient#complete
 let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/LanguageClientSetting.json')
+let g:LanguageClient_useVirtualText = 0
 
 nnoremap K :call LanguageClient#textDocument_hover()<CR>
 nnoremap gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap F :call LanguageClient#textDocument_formatting()<CR>
+nnoremap T :call LanguageClient#textDocument_typeDefinition(<CR>
+nnoremap S :call LanguageClient#textDocument_signatureHelp(<CR>
 '''
 # }}}
+
+[[plugins]]
+repo = 'junegunn/fzf'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
@@ -358,4 +367,5 @@ repo = 'Shougo/deol.nvim'
 
 [[plugins]]
 repo = 'tbodt/deoplete-tabnine'
+if = '0'
 build = 'bash install.sh'
