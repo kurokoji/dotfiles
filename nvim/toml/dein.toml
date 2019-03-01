@@ -304,7 +304,7 @@ repo = 'junegunn/fzf'
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 depends = ['context_filetype.vim']
-# hook_source {{{
+# hook_add {{{
 hook_add = '''
 call deoplete#enable()
 call deoplete#custom#source('LanguageClient', 'min_pattern_length', 1)

@@ -1,10 +1,6 @@
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
 on_ft = ['c', 'cpp']
-# hook_add {{{
-hook_add = '''
-'''
-# }}}
 # hook_source {{{
 hook_source = '''
 let g:neoinclude#paths = {
@@ -28,15 +24,16 @@ repo = 'Shougo/denite.nvim'
 on_ft = ['Denite']
 # hook_add {{{
 hook_add = '''
+'''
+# }}}
+# hook_source {{{
+hook_source = '''
 nmap <silent> <C-u><C-n> :<C-u>Denite buffer<CR>
 nmap <silent> <C-u><C-p> :<C-u>Denite -resume -buffer-name=files file_rec<CR>
 " nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
 nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
 nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>
-'''
-# }}}
-# hook_source {{{
-hook_source = '''
+
 call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#map('_', '<C-h>', '<denite:do_action:split>')
@@ -55,8 +52,8 @@ call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 on_ft = ['Defx']
-# hook_add {{{
-hook_add = '''
+# hook_source {{{
+hook_source = '''
 nnoremap <silent><C-b> :Defx -toggle -split=vertical -winwidth=30 -direction=topleft<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
