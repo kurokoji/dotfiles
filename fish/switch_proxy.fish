@@ -14,6 +14,12 @@ function set_proxy
   set -x all_proxy "http://$proxy"
   set -x no_proxy '127.0.0.1,localhost'
 
+  set -x HTTP_PROXY "http://$proxy"
+  set -x HTTPS_PROXY "http://$proxy"
+  set -x FTP_PROXY "http://$proxy"
+  set -x ALL_PROXY "http://$proxy"
+  set -x NO_PROXY '127.0.0.1,localhost'
+
   git config --global http.proxy "http://$proxy"
   git config --global https.proxy "https://$proxy"
   git config --global url."https://".insteadOf git://
@@ -25,6 +31,11 @@ function unset_proxy
   set -e ftp_proxy
   set -e all_proxy
   set -e no_proxy
+  set -e HTTP_PROXY
+  set -e HTTPS_PROXY
+  set -e FTP_PROXY
+  set -e ALL_PROXY
+  set -e NO_PROXY
 
   git config --global --unset http.proxy
   git config --global --unset https.proxy
