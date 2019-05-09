@@ -72,14 +72,15 @@ set title
 set number
 set cursorline
 set list
-set ambiwidth=double
+" set ambiwidth=double
 set listchars=tab:>-,eol:¬,nbsp:%
 set showmatch
 set matchtime=1
 set matchpairs& matchpairs+=<:>
 set laststatus=2
 set showtabline=2
-set completeopt=menuone,noinsert,noselect
+" set completeopt=preview
+set completeopt=menuone,noinsert,noselect,preview
 set wildmenu
 set noshowmode
 set incsearch
@@ -90,7 +91,7 @@ set termguicolors
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " colorscheme deus
 " let g:deus_termcolors=256
-autocmd ColorScheme * hi NonText guibg=NONE guifg=Gray
+" autocmd ColorScheme * hi NonText guibg=NONE guifg=Gray
 autocmd ColorScheme * hi dOperator guifg=#fb4934
 colorscheme gruvbox
 " let g:gruvbox_termcolors=16

@@ -19,7 +19,7 @@ else if [ "$os_name" = "Linux" ]
 end
 
 
-set -x fish_ambiguous_width 2
+# set -x fish_ambiguous_width 2
 
 # }}}
 # source {{{

@@ -26,3 +26,7 @@ let g:vim_json_syntax_conceal = 0
 [[plugins]]
 repo = 'itchyny/vim-haskell-indent'
 on_ft = 'haskell'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = 'vue'

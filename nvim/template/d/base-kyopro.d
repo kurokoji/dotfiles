@@ -1,6 +1,6 @@
 // import chie template :) {{{
 import std.stdio, std.algorithm, std.array, std.string, std.math, std.conv,
-  std.range, std.container, std.bigint, std.ascii, std.typecons;
+  std.range, std.container, std.bigint, std.ascii, std.typecons, std.format;
 
 // }}}
 // nep.scanner {{{
