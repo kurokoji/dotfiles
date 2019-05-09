@@ -1,11 +1,15 @@
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
+if = "&ft != 'python'"
 on_ft = ['c', 'cpp']
 # hook_source {{{
 hook_source = '''
-let g:neoinclude#paths = {
-      \ 'cpp': '.,/usr/local/opt/llvm/include/c++/v1,/usr/local/opt/opencv/include,/usr/local/opt/boost/include,/usr/local/opt/zbar/include/zbar,/usr/local/opt/zbar/include'
-      \ }
+
+if has('mac')
+  let g:neoinclude#paths = {
+        \ 'cpp': '.,/usr/local/opt/llvm/include/c++/v1,/usr/local/opt/opencv/include/opencv4,/usr/local/opt/boost/include,/usr/local/opt/zbar/include/zbar,/usr/local/opt/zbar/include,/Users/nazuna/.local/include'
+        \ }
+endif
 
 if !exists('g:neoinclude#reverse_exprs')
   let g:neoinclude#reverse_exprs = {}
