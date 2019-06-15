@@ -367,3 +367,14 @@ repo = 'Shougo/deol.nvim'
 repo = 'tbodt/deoplete-tabnine'
 if = '0'
 build = 'bash install.sh'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'ncm2/float-preview.nvim'
+# hook_add {{{
+hook_add = '''
+" let g:float_preview#docked = 1
+'''
+# }}}

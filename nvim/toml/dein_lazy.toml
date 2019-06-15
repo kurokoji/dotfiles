@@ -1,6 +1,5 @@
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
-if = "&ft != 'python'"
 on_ft = ['c', 'cpp']
 # hook_source {{{
 hook_source = '''
@@ -18,8 +17,8 @@ endif
 if !exists('g:neoinclude#exts')
   let g:neoinclude#exts = {}
 endif
-" call neoinclude#util#set_default_dictionary('g:neoinclude#paths', 'python', '')
-" call neoinclude#util#set_default_dictionary('g:neoinclude#paths', 'python3', '')
+call neoinclude#util#set_default_dictionary('g:neoinclude#paths', 'python', '')
+call neoinclude#util#set_default_dictionary('g:neoinclude#paths', 'python3', '')
 '''
 # }}}
 
@@ -33,7 +32,8 @@ hook_add = '''
 # hook_source {{{
 hook_source = '''
 nmap <silent> <C-u><C-n> :<C-u>Denite buffer<CR>
-nmap <silent> <C-u><C-p> :<C-u>Denite -resume -buffer-name=files file_rec<CR>
+"nmap <silent> <C-u><C-p> :<C-u>Denite -resume -buffer-name=files file/rec buffer<CR>
+nmap <silent> <C-u><C-p> :<C-u>Denite  file/rec<CR>
 " nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
 nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
 nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>

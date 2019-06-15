@@ -25,12 +25,15 @@ end
 # source {{{
 source $HOME/.config/fish/switch_proxy.fish
 eval (pyenv init - | source)
+eval (opam config env)
 # }}}
 # alias {{{
+alias lvim=/usr/local/bin/vim
 alias vim=nvim
 alias vi=nvim
 alias v=nvim
 alias rldc='ldc2 --run'
+alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
 # }}}
 # function {{{
 
@@ -56,4 +59,3 @@ end
 # set __fish_git_prompt_char_stashstate '↩'
 # set __fish_git_prompt_char_upstream_ahead '+'
 # set __fish_git_prompt_char_upstream_behind '-'
-

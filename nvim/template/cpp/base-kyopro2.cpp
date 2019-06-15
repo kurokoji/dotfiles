@@ -36,8 +36,7 @@
 #define rep2(i, n) rep3(i, 0, n)
 #define rep3(i, a, n) rep4(i, a, n, 1)
 #define rep4(i, a, n, s) for (i64 i = (a); i < (i64)(n); i += (s))
-#define rrep(...)                                                              \
-  GET_MACRO(__VA_ARGS__, rrep4, rrep3, rrep2, rrep1)(__VA_ARGS__)
+#define rrep(...) GET_MACRO(__VA_ARGS__, rrep4, rrep3, rrep2, rrep1)(__VA_ARGS__)
 #define rrep1(a) rrep2(_, a)
 #define rrep2(i, a) rrep3(i, a, 0)
 #define rrep3(i, a, n) rrep4(i, a, n, 1)
@@ -68,48 +67,58 @@ inline bool is_inside(i32 y, i32 x, i32 h, i32 w) {
   return y >= 0 && x >= 0 && y < h && x < w;
 }
 
-template <class T> inline void print(T const &x) { ::std::cout << x << '\n'; }
 template <class T>
-inline void print(::std::vector<T> const &v, ::std::string d = "\n") {
-  rep(i, v.size())::std::cout << v[i] << (i == (i64)(v.size() - 1) ? "\n" : d);
+inline void print(T const& x) { ::std::cout << x << '\n'; }
+
+template <class T>
+inline void print(::std::vector<T> const& v, ::std::string d = "\n") {
+  rep(i, v.size()) ::std::cout << v[i] << (i == (i64)(v.size() - 1) ? "\n" : d);
 }
+
 template <class T, class... Args>
-inline void print(T const &x, Args const &... trail) {
-  std::cout << x << " ";
+inline void print(T const& x, Args const&... trail) {
+  ::std::cout << x << " ";
   print(trail...);
 }
-template <class T = i32> inline T in() {
+
+template <class T = i32>
+inline T in() {
   T x;
-  std::cin >> x;
+  ::std::cin >> x;
   return x;
 }
-template <class T> inline void in(T &x) { std::cin >> x; }
-template <class T, class... Args> inline void in(T &x, Args &... trail) {
-  std::cin >> x;
+
+template <class T>
+inline void in(T& x) { ::std::cin >> x; }
+
+template <class T, class... Args>
+inline void in(T& x, Args&... trail) {
+  ::std::cin >> x;
   in(trail...);
 }
+
 template <class T = ::std::string>
-::std::vector<T> split(::std::string const &s, char d = ',') {
+::std::vector<T> split(::std::string const& s, char d = ',') {
   ::std::vector<T> v;
-  std::stringstream ss(s);
-  for (std::string b; getline(ss, b, d);) {
-    std::stringstream conv(b);
+  ::std::stringstream ss(s);
+  for (::std::string b; ::std::getline(ss, b, d);) {
+    ::std::stringstream conv(b);
     T t;
     conv >> t;
-    v.eb(t);
+    v.emplace_back(t);
   }
   return v;
 }
 
 struct pre_ {
   pre_() {
-    std::cin.tie(nullptr);
-    std::ios::sync_with_stdio(false);
-    std::cout << std::fixed << std::setprecision(12);
+    ::std::cin.tie(nullptr);
+    ::std::ios::sync_with_stdio(false);
+    ::std::cout << ::std::fixed << ::std::setprecision(12);
   }
 } pre__;
 /* }}} */
 
 signed main() {
-  {{ _cursor_ }}
+  {{_cursor_}}
 }

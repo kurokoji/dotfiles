@@ -80,7 +80,7 @@ set matchpairs& matchpairs+=<:>
 set laststatus=2
 set showtabline=2
 " set completeopt=preview
-set completeopt=menuone,noinsert,noselect,preview
+set completeopt=menuone,noinsert,noselect
 set wildmenu
 set noshowmode
 set incsearch
