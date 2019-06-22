@@ -93,7 +93,7 @@ set termguicolors
 " let g:deus_termcolors=256
 " autocmd ColorScheme * hi NonText guibg=NONE guifg=Gray
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-colorscheme gruvbox
+colorscheme gruvbox9
 " let g:gruvbox_termcolors=16
 " colorscheme NeoSolarized
 " colorscheme perun

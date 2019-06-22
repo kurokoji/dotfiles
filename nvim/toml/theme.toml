@@ -28,3 +28,6 @@ repo = 'dracula/vim'
 
 [[plugins]]
 repo = 'aradunovic/perun.vim'
+
+[[plugins]]
+repo = 'taigacute/gruvbox9'
