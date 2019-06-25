@@ -1,4 +1,4 @@
-brew 'neovim'
+brew 'neovim', args: ['--HEAD']
 brew 'diffutils'
 brew 'findutils', args: ['--with-default-names']
 brew 'ed', args: ['--with-default-names']
