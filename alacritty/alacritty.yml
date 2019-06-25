@@ -48,25 +48,24 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-  # family: BlexMono Nerd Font Mono
-    family: Cica
+    family: "SauceCodePro Nerd Font Mono"
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: Cica
-    # Style can be specified to pick a specific face.
+    family: "SauceCodePro Nerd Font Mono"
+  #    # Style can be specified to pick a specific face.
     style: Bold
-
-  # The italic font face
+  #
+  #  # The italic font face
   italic:
-    family: Cica
-    # Style can be specified to pick a specific face.
+    family: "SauceCodePro Nerd Font Mono"
+  #    # Style can be specified to pick a specific face.
     style: Italic
-
+  #
   # Point size of the font
-  size: 15.0
+  size: 13.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -87,7 +86,7 @@ font:
   use_thin_strokes: true
 
 # Should display the render timer
-render_timer: false
+debug.render_timer: false
 
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.
@@ -126,9 +125,7 @@ colors:
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
+# rung, the terminal background will be set to white and transition back to the default background color. You can control the rate of this transition by setting the `duration` property (represented in milliseconds). You can also
 # configure the transition function by setting the `animation` property.
 #
 # Possible values for `animation`
