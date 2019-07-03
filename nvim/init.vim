@@ -82,6 +82,9 @@ set showtabline=2
 " set completeopt=preview
 set completeopt=menuone,noinsert,noselect
 set wildmenu
+set wildmode=full
+set wildoptions=pum
+set pumblend=30
 set noshowmode
 set incsearch
 set background=dark

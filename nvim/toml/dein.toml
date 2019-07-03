@@ -191,7 +191,7 @@ function! MyFilename()
         \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
         \  &ft == 'unite' ? unite#get_status_string() :
         \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
-        \ '' != expand('%:t') ? printf('[%s] ', &ft) . WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : '[No Name]') .
+        \ '' != expand('%:t') ? printf('[%s %s]', WebDevIconsGetFileTypeSymbol(), &ft) . ' ' . expand('%:t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
@@ -377,13 +377,13 @@ repo = 'Shougo/deol.nvim'
 [[plugins]]
 repo = 'tpope/vim-surround'
 
-[[plugins]]
-repo = 'ncm2/float-preview.nvim'
-# hook_add {{{
-hook_add = '''
-" let g:float_preview#docked = 1
-'''
-# }}}
+#[[plugins]]
+#repo = 'ncm2/float-preview.nvim'
+## hook_add {{{
+#hook_add = '''
+#" let g:float_preview#docked = 1
+#'''
+## }}}
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -421,9 +421,6 @@ nnoremap <silent> F :call CocAction('format')<CR>
 
 '''
 # }}}
-
-[[plugins]]
-repo = 'jsfaint/coc-neoinclude'
 
 [[plugins]]
 repo = 'neoclide/coc-neco'

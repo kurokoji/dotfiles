@@ -1,0 +1,12 @@
+{
+	"languageserver": {
+		"clangd": {
+			"command": "clangd",
+			"filetypes": ["c", "cpp"]
+		},
+		"dls": {
+			"command": "dls",
+			"filetypes": ["d"]
+		}
+	}
+}

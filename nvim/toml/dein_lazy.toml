@@ -1,5 +1,6 @@
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
+if = '0'
 on_ft = ['c', 'cpp']
 # hook_source {{{
 hook_source = '''
