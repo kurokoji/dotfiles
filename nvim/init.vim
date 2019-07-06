@@ -121,3 +121,4 @@ autocmd FileType json set tabstop=2 shiftwidth=2 noexpandtab
 autocmd FileType go set tabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType d set softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
 autocmd Filetype html setlocal indentexpr=""
+autocmd FileType javascript set expandtab
