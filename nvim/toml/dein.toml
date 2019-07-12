@@ -34,7 +34,6 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
       \ 'colorscheme': 'gruvbox9',
-      \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
@@ -142,17 +141,17 @@ function! MyGetALEStatus()
   endif
 
 
-  let w = LC_warning_count()
-  let e = LC_error_count()
+  let w_c = LC_warning_count()
+  let e_c = LC_error_count()
 
-  if w == '' && e == ''
+  if w_c == '' && e_c == ''
     return "\uf00c" . " OK"
-  elseif w == ''
-    return e
-  elseif e == ''
-    return w
+  elseif w_c == ''
+    return e_c
+  elseif e_c == ''
+    return w_c
   else
-    return printf("%s %s", w, e)
+    return printf("%s %s", w_c, e_c)
   endif
 
   "return ALEGetStatusLine()
