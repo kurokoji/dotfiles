@@ -60,7 +60,6 @@ set infercase
 set autoread
 set nowrap
 set foldmethod=marker
-language en_US.UTF-8
 
 set fileformat=unix
 set encoding=utf-8
