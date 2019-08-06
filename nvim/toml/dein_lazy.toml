@@ -40,8 +40,8 @@ hook_source = '''
 nmap <silent> <C-u><C-p> :<C-u>Denite file<CR>
 " ""nmap <silent> <C-u><C-p> :<C-u>Denite  file/rec<CR>
 " " nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
-" nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
-" nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>
+nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
+nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>
 "
 " call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
 " call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
