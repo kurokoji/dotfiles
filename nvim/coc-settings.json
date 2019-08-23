@@ -24,21 +24,11 @@
 					"extraArgs": [
 						"-isystem",
 						"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
-            "-I",
+						"-I",
 						"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/"
 					]
 				}
 			}
-		},
-		"dls": {
-			"command": "dls",
-			"filetypes": [
-				"d"
-			],
-			"rootPatterns": [
-				"dub.json",
-				"dub.sdl"
-			]
 		}
 	}
 }
