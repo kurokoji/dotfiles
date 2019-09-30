@@ -36,3 +36,7 @@ repo = 'MaxMEllon/vim-jsx-pretty'
 
 [[plugins]]
 repo = 'othree/yajs.vim'
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+on_ft = ['vim']
