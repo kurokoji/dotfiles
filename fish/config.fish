@@ -43,6 +43,7 @@ if [ "$os_name" = "Darwin" ]
   set -x PKG_CONFIG_PATH /usr/local/opt/zlib/lib/pkgconfig $PKG_CONFIG_PATH
   set -x PKG_CONFIG_PATH /usr/local/opt/openblas/lib/pkgconfig $PKG_CONFIG_PATH
   set -x PKG_CONFIG_PATH $HOME/.local/lib/pkgconfig $PKG_CONFIG_PATH
+  set -x PKG_CONFIG_PATH /opt/X11/lib/pkgconfig $PKG_CONFIG_PATH
 
   set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 

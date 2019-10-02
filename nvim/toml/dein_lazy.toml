@@ -279,7 +279,3 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 [[plugins]]
 repo = 'kurokoji/neosnippet-snippets'
 on_i = 1
-
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
-on_i = 1

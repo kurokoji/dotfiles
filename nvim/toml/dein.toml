@@ -34,7 +34,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
-      \     ['fugitive', 'gitgutter', 'filename', 'cocstatus'],
+      \     ['filename', 'cocstatus', 'fugitive', 'gitgutter'],
       \   ],
       \   'right': [
       \     ['lineinfo', 'syntastic'],
@@ -93,6 +93,13 @@ let g:lightline = {
 " let g:lightline.component = { 'lineinfo': "\ue0a1 %3l:%3v \ue0a3" }
 let g:lightline.component = { 'lineinfo': '%{MyGetLineInfo()}' }
 
+function! s:trim(str)
+  if exists('*trim')
+    return trim(a:str)
+  endif
+  return substitute(a:str, '\s\+$', '', '')
+endfunction
+
 function! MyTabFileName(n) abort
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
@@ -105,15 +112,14 @@ endfunction
 
 function! MyCocStatus() abort
   let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return "" | endif
   let msgs = []
   if get(info, 'error', 0)
     call add(msgs, "\uf05e " . info['error'])
   endif
   if get(info, 'warning', 0)
-    call add(msgs, "\uf05e " . info['warning'])
+    call add(msgs, "\uf525 " . info['warning'])
   endif
-  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+  return s:trim(join(msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
 endfunction
 
 function! MyFileicon()
@@ -373,3 +379,6 @@ nnoremap <silent> F :call CocAction('format')<CR>
 
 '''
 # }}}
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'

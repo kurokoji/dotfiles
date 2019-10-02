@@ -29,6 +29,49 @@
 					]
 				}
 			}
+		},
+		"dls": {
+			"command": "dls",
+			"args": [
+				"--stdio"
+			],
+			"filetypes": [
+				"d"
+			],
+			"trace.server": "off",
+			"rootPatterns": [
+				"dub.json",
+				"dub.sdl"
+			],
+			"initializationOptions": {},
+			"settings": {
+				"d": {
+					"dls": {
+						"format": {
+							"dfmtBraceStyle": "otbs",
+							"dfmtSpaceAfterCast": false
+						},
+						"symbol": {
+							"importPaths": [
+								"/Users/nazuna/.dub/packages/nephele-0.0.3/nephele/source"
+							],
+							"autoImports": true
+						}
+					}
+				}
+			}
+		},
+		"bash": {
+			"command": "bash-language-server",
+			"args": [
+				"start"
+			],
+			"filetypes": [
+				"sh"
+			],
+			"ignoredRootPaths": [
+				"~"
+			]
 		}
 	}
 }
