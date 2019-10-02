@@ -44,6 +44,11 @@ if [ "$os_name" = "Darwin" ]
 
 else if [ "$os_name" = "Linux" ]
   set -x PATH $HOME/.pyenv/bin $PATH
+  set -x PATH $HOME/.local/bin $PATH
+  set -x CUDA_HOME /usr/local/cuda-10.1
+  set -x LD_LIBRARY_PATH $CUDA_HOME/lib64 $LD_LIBRARY_PATH
+  set -x PATH $CUDA_HOME/bin $PATH
+  set -x PATH $PATH /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin
 end
 
 
@@ -63,6 +68,7 @@ alias vi=nvim
 # alias v=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
+alias open='xdg-open'
 # }}}
 # function {{{
 
