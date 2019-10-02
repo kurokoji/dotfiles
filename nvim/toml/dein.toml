@@ -9,9 +9,6 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'jiangmiao/auto-pairs'
-
-[[plugins]]
 repo = 'roxma/nvim-yarp'
 if = "!has('nvim')"
 
@@ -37,7 +34,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
-      \     ['fugitive', 'gitgutter', 'filename', 'cocstatus'],
+      \     ['filename', 'cocstatus', 'fugitive', 'gitgutter'],
       \   ],
       \   'right': [
       \     ['lineinfo', 'syntastic'],
@@ -96,6 +93,13 @@ let g:lightline = {
 " let g:lightline.component = { 'lineinfo': "\ue0a1 %3l:%3v \ue0a3" }
 let g:lightline.component = { 'lineinfo': '%{MyGetLineInfo()}' }
 
+function! s:trim(str)
+  if exists('*trim')
+    return trim(a:str)
+  endif
+  return substitute(a:str, '\s\+$', '', '')
+endfunction
+
 function! MyTabFileName(n) abort
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
@@ -108,15 +112,14 @@ endfunction
 
 function! MyCocStatus() abort
   let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return "" | endif
   let msgs = []
   if get(info, 'error', 0)
     call add(msgs, "\uf05e " . info['error'])
   endif
   if get(info, 'warning', 0)
-    call add(msgs, "\uf05e " . info['warning'])
+    call add(msgs, "\uf525 " . info['warning'])
   endif
-  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+  return s:trim(join(msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
 endfunction
 
 function! MyFileicon()
@@ -128,7 +131,7 @@ function! MyGetLineInfo()
     return ""
   endif
   " return printf("\ue0a1 %3d:%-3d", line('.'), col('.'))
-  return printf("%3d:%-3d☰ %3d%%", line('.'), col('.'), 100 * line('.') / line('$'))
+  return printf("%3d:%-3d \uf77a %3d%%", line('.'), col('.'), 100 * line('.') / line('$'))
 endfunction
 
 function! MyModified()
@@ -320,27 +323,6 @@ repo = 'simeji/winresizer'
 repo = 'junegunn/fzf'
 
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-# hook_add {{{
-hook_add = '''
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-'''
-# }}}
-
-[[plugins]]
-repo = 'kurokoji/neosnippet-snippets'
-
-[[plugins]]
-repo = 'Shougo/neco-syntax'
-
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
-
-[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
@@ -358,35 +340,12 @@ let g:extra_whitespace_ignored_filetypes = ['denite', 'defx']
 repo = 'mhinz/vim-startify'
 
 [[plugins]]
-repo = 'previm/previm'
-# hook_add {{{
-hook_add = '''
-let g:previm_open_cmd = 'open -a Firefox\ Developer\ Edition'
-let g:previm_enable_realtime = 1
-augroup PrevimSettings
-  autocmd!
-  autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
-'''
-# }}}
-
-[[plugins]]
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
-repo = 'tpope/vim-surround'
-
-#[[plugins]]
-#repo = 'ncm2/float-preview.nvim'
-## hook_add {{{
-#hook_add = '''
-#" let g:float_preview#docked = 1
-#'''
-## }}}
-
-[[plugins]]
 repo = 'neoclide/coc.nvim'
-merge = 0
+# merge = 0
+# on_i = 1
 rev = 'release'
 # hook_add {{{
 hook_add = '''
@@ -422,4 +381,4 @@ nnoremap <silent> F :call CocAction('format')<CR>
 # }}}
 
 [[plugins]]
-repo = 'neoclide/coc-neco'
+repo = 'jiangmiao/auto-pairs'

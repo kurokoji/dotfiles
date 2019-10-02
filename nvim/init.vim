@@ -43,8 +43,9 @@ nnoremap x "_x
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 
-nnoremap sn gt
-nnoremap sp gT
+" nnoremap sn gt
+" nnoremap sp gT
+nnoremap <Tab> gt
 nnoremap st :<C-u>tabnew<CR>
 
 nnoremap sh <C-w>h

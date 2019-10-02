@@ -10,6 +10,8 @@ set -x PATH $GOPATH/bin $PATH
 
 uname | read os_name
 if [ "$os_name" = "Darwin" ]
+  set -x SDKROOT /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk $SDKROOT
+
   #  set -x PATH $PYENV_ROOT/shims $PATH
   set -x PATH /usr/local/opt/llvm/bin $PATH
   set -x PATH /usr/local/opt/go/libexec/bin $PATH
@@ -18,7 +20,9 @@ if [ "$os_name" = "Darwin" ]
   set -x PATH $HOME/.chrome-avgle-helper $PATH
   set -x PATH $HOME/.cpan $PATH
   set -x PATH $HOME/.local/bin/bin $PATH
+  set -x PATH $HOME/.local/bin $PATH
   set -x PATH /usr/local/sbin $PATH
+  set -x PATH $HOME/.anyenv/bin $PATH
 
   set -x LDFLAGS -L/usr/local/opt/llvm/lib $LDFLAGS
   set -x LDFLAGS -L/usr/local/opt/zlib/lib $LDFLAGS
@@ -26,6 +30,8 @@ if [ "$os_name" = "Darwin" ]
   set -x LDFLAGS -L/usr/local/opt/openblas/lib $LDFLAGS
   set -x LDFLAGS -L/usr/local/opt/readline/lib $LDFLAGS
   set -x LDFLAGS -L/usr/local/opt/openssl/lib $LDFLAGS
+
+  set -x CFLAGS -I/usr/local/opt/openssl/include $CFLAGS
 
   set -x CPPFLAGS -I/usr/local/opt/llvm/include $CPPFLAGS
   set -x CPPFLAGS -I/usr/local/opt/zlib/include $CPPFLAGS
@@ -37,6 +43,7 @@ if [ "$os_name" = "Darwin" ]
   set -x PKG_CONFIG_PATH /usr/local/opt/zlib/lib/pkgconfig $PKG_CONFIG_PATH
   set -x PKG_CONFIG_PATH /usr/local/opt/openblas/lib/pkgconfig $PKG_CONFIG_PATH
   set -x PKG_CONFIG_PATH $HOME/.local/lib/pkgconfig $PKG_CONFIG_PATH
+  set -x PKG_CONFIG_PATH /opt/X11/lib/pkgconfig $PKG_CONFIG_PATH
 
   set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 
@@ -57,18 +64,17 @@ end
 # }}}
 # source {{{
 source $HOME/.config/fish/switch_proxy.fish
-eval (pyenv init - | source)
-eval (rbenv init - | source)
+anyenv init - fish | source
 eval (opam config env)
 # }}}
 # alias {{{
 alias lvim=/usr/local/bin/vim
 alias vim=nvim
 alias vi=nvim
-# alias v=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
 alias open='xdg-open'
+alias rm=mv2trash
 # }}}
 # function {{{
 
