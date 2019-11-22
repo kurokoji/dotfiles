@@ -73,7 +73,7 @@ set number
 set cursorline
 set list
 " set ambiwidth=double
-set listchars=tab:>-,eol:¬,nbsp:%
+set listchars=tab:>-,eol:¬,nbsp:%,nbsp:⍽
 set showmatch
 set matchtime=1
 set matchpairs& matchpairs+=<:>
@@ -83,8 +83,12 @@ set showtabline=2
 set completeopt=menuone,noinsert,noselect
 set wildmenu
 set wildmode=full
-set wildoptions=pum
-set pumblend=30
+
+if has('nvim')
+  set wildoptions=pum
+  set pumblend=30
+endif
+
 set noshowmode
 set incsearch
 set background=dark

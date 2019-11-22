@@ -15,14 +15,16 @@ if [ "$os_name" = "Darwin" ]
   #  set -x PATH $PYENV_ROOT/shims $PATH
   set -x PATH /usr/local/opt/llvm/bin $PATH
   set -x PATH /usr/local/opt/go/libexec/bin $PATH
-  set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
   set -x PATH /Applications/MEGAcmd.app/Contents/MacOS $PATH
-  set -x PATH $HOME/.chrome-avgle-helper $PATH
   set -x PATH $HOME/.cpan $PATH
   set -x PATH $HOME/.local/bin/bin $PATH
   set -x PATH $HOME/.local/bin $PATH
   set -x PATH /usr/local/sbin $PATH
   set -x PATH $HOME/.anyenv/bin $PATH
+  set -x PATH /usr/local/texlive/2019/bin/x86_64-darwin $PATH
+  set -x PATH $HOME/Library/Android/sdk/platform-tools $PATH
+  set -x DISPLAY :0.0
+  #  set -x DYLD_LIBRARY_PATH /opt/X11/lib/flat_namespace $DYLD_LIBRARY_PATH
 
   set -x LDFLAGS -L/usr/local/opt/llvm/lib $LDFLAGS
   set -x LDFLAGS -L/usr/local/opt/zlib/lib $LDFLAGS
@@ -46,8 +48,13 @@ if [ "$os_name" = "Darwin" ]
   set -x PKG_CONFIG_PATH /opt/X11/lib/pkgconfig $PKG_CONFIG_PATH
 
   set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
+  set -x MANPATH /usr/local/texlive/2019/texmf-dist/doc/man $MANPATH
+
+  set -x INFOPATH /usr/local/texlive/2019/texmf-dist/doc/info $INFOPATH
+
 
   set -x cc gcc-8
+
 
 else if [ "$os_name" = "Linux" ]
   set -x PATH $HOME/.pyenv/bin $PATH
@@ -61,6 +68,7 @@ end
 source $HOME/.config/fish/switch_proxy.fish
 anyenv init - fish | source
 eval (opam config env)
+source ~/.iterm2_shell_integration.(basename $SHELL)
 # }}}
 # alias {{{
 alias lvim=/usr/local/bin/vim
@@ -68,7 +76,13 @@ alias vim=nvim
 alias vi=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
-alias rm=mv2trash
+
+if [ "$os_name" = "Darwin" ]
+  alias rm=mv2trash
+else if [ "$os_name" = "Linux" ]
+  alias rm=rmtrash
+end
+
 # }}}
 # function {{{
 

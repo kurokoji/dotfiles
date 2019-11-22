@@ -40,3 +40,7 @@ repo = 'othree/yajs.vim'
 [[plugins]]
 repo = 'Shougo/neco-syntax'
 on_ft = ['vim']
+
+[[plugins]]
+repo = 'mityu/vim-applescript'
+on_ft = ['applescript']
