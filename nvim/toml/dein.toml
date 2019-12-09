@@ -337,9 +337,6 @@ let g:extra_whitespace_ignored_filetypes = ['denite', 'defx']
 # }}}
 
 [[plugins]]
-repo = 'mhinz/vim-startify'
-
-[[plugins]]
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]

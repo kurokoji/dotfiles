@@ -73,7 +73,12 @@ end
 source $HOME/.config/fish/switch_proxy.fish
 anyenv init - fish | source
 eval (opam config env)
-source ~/.iterm2_shell_integration.(basename $SHELL)
+
+if [ "$os_name" = "Darwin" ]
+  source ~/.iterm2_shell_integration.(basename $SHELL)
+else if [ "$os_name" = "Linux" ]
+end
+
 # }}}
 # alias {{{
 alias lvim=/usr/local/bin/vim
