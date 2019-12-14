@@ -57,12 +57,20 @@ if [ "$os_name" = "Darwin" ]
 
 
 else if [ "$os_name" = "Linux" ]
-  set -x PATH $HOME/.pyenv/bin $PATH
+  set -x PATH $HOME/.anyenv/bin $PATH
   set -x PATH $HOME/.local/bin $PATH
   set -x CUDA_HOME /usr/local/cuda-10.1
   set -x LD_LIBRARY_PATH $CUDA_HOME/lib64 $LD_LIBRARY_PATH
   set -x PATH $CUDA_HOME/bin $PATH
   set -x PATH $PATH /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin
+
+  set -x DefaultImModule fcitx
+  set -x GTK_IM_MODULE fcitx
+  set -x QT_IM_MODULE fcitx
+  set -x XMODIFIERS '@im=fcitx'
+
+  # set -x LC_ALL en_US.UTF-8
+  # set -x LC_ALL ja_JP.UTF-8
 end
 
 

@@ -8,9 +8,9 @@ XTerm*cursorBlink: True
 XTerm*utf8: True
 XTerm*local: True
 XTerm*utf8Title: True
-XTerm*faceName: xft:Cica:size=8
+XTerm*faceName: xft:Cica:size=15
 !XTerm*faceNameDoublesize: xft:M+ 1m
-XTerm*faceSize: 6
+XTerm*faceSize: 15
 XTerm*scaleHeight: 1.08
 !! }}}
 
@@ -29,8 +29,8 @@ URxvt.fading:               40
 URxvt.perl-ext-common: ...,tabbed,...
 
 !! Font list and Spacing
-!URxvt.font:                 xft:Dejavu Sans Mono-8
-URxvt.font:                 xft:SauceCodePro Nerd Font:size=9,xft:M+ 1m,xft:DejaVu Sans Mono-9
+URxvt.font:                 xft:Dejavu Sans Mono-12
+!URxvt.font:                 xft:SauceCodePro Nerd Font:size=9,xft:M+ 1m,xft:DejaVu Sans Mono-9
 URxvt.letterSpace:          -1
 !URxvt.lineSpace:            0
 

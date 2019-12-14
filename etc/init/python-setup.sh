@@ -11,4 +11,3 @@ pyenv rehash
 
 pip install --upgrade pip
 pip install neovim
-pip install python-language-server
