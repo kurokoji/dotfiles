@@ -2,7 +2,7 @@
 
 DOT_DIRECTORY=$(pwd)
 SPECIFY_FILES=''
-EXCLUDE_FILES="Brewfile .env.fish .git .gitignore .gitmodules .DS_Store README.md LICENSE init.bash $(basename ${0})"
+EXCLUDE_FILES="Brewfile .env.fish .git .gitignore .gitmodules .DS_Store README.md LICENSE init.bash picture $(basename ${0})"
 
 list=""
 

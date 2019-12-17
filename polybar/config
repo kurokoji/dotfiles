@@ -131,8 +131,8 @@ format-underline = ${colors.adapta-cyan}
 
 [module/explorer]
 type = custom/text
-content = 
-;content = 
+;content = 
+content = 
 content-padding = 1
 content-margin = 1
 content-foreground = ${colors.fg}
