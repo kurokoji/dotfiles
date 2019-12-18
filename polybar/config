@@ -38,7 +38,7 @@ fixed-center = true
 line-size = 2
 background = ${colors.bg}
 foreground = ${colors.fg}
-font-0 = "DejaVu Sans Mono:pixelsize=10;3"
+font-0 = "DejaVuSansMono Nerd Font:pixelsize=11;3"
 font-1 = "DejaVuSansMono Nerd Font:pixelsize=13;3"
 font-2 = "DejaVuSansMono Nerd Font:pixelsize=11;3"
 cursor-click = pointer
@@ -47,7 +47,7 @@ cursor-click = pointer
 
 
 ;====Module settings+======================================
-modules-left = powermenu explorer github
+modules-left = powermenu explorer github firefox
 modules-center = workspaces
 modules-right = pkg xbacklight volume cpu-graph memory battery date
 ;==========================================================
@@ -121,7 +121,7 @@ label-empty = 
 label-empty-padding = 1.0
 label-active-padding = 1.0
 label-urgent-padding = 1.0
-label-occupied-padding = 1.n
+label-occupied-padding = 1.0
 label-active-foreground = ${colors.adapta-red}
 label-empty-foreground = ${colors.adapta-red}
 format-underline = ${colors.adapta-cyan}
@@ -138,6 +138,15 @@ content-margin = 1
 content-foreground = ${colors.fg}
 content-underline = ${colors.adapta-cyan}
 click-left = nautilus
+
+[module/firefox]
+type = custom/text
+content = 
+content-padding = 1
+content-margin = 1
+content-foreground = ${colors.fg}
+content-underline = ${colors.adapta-cyan}
+click-left = firefox
 
 [module/google]
 type = custom/text
@@ -393,13 +402,13 @@ format-padding = 1
 
 format-underline = ${colors.adapta-cyan}
 
-menu-0-0 = " [Terminate WM]"
+menu-0-0 = " [Terminate WM] "
 menu-0-0-foreground = ${colors.adapta-lightgreen}
 menu-0-0-exec = i3-msg exit
-menu-0-1 = "  [Reboot]"
+menu-0-1 = " [Reboot] "
 menu-0-1-foreground = ${colors.adapta-lightgreen}
 menu-0-1-exec = reboot
-menu-0-2 = "  [Power off]"
+menu-0-2 = " [Power off] "
 menu-0-2-foreground = ${colors.adapta-lightgreen}
 menu-0-2-exec = shutdown now
 
