@@ -1,4 +1,7 @@
 " dein {{{
+let g:dein#auto_recache = 1
+let g:dein#enable_notification = 1
+let g:dein#install_progress_type = 'title'
 
 let s:dein_dir = expand('~/.config/nvim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -28,9 +31,9 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
-call dein#remote_plugins()
+" call dein#remote_plugins()
 
- if has('vim_starting') && dein#check_install()
+if !has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 

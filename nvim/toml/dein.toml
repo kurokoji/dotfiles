@@ -329,10 +329,10 @@ repo = 'Shougo/context_filetype.vim'
 repo = 'osyo-manga/vim-precious'
 
 [[plugins]]
-repo = 'bronson/vim-trailing-whitespace'
+repo = 'ntpeters/vim-better-whitespace'
 # hook_add {{{
 hook_add = '''
-let g:extra_whitespace_ignored_filetypes = ['denite', 'defx']
+let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'denite', 'defx', 'help']
 '''
 # }}}
 
