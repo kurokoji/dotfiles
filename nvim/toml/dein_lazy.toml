@@ -89,9 +89,6 @@ endif
 
 " CONVERTERS
 " Default is none
-call denite#custom#source(
-      \ 'buffer,file_mru,file/old,file/rec,directory/rec,directory_mru',
-      \ 'converters', ['devicons_denite_converter','converter_relative_word'])
 
 " FIND and GREP COMMANDS
 if executable('ag')

@@ -21,7 +21,9 @@ repo = 'ryanoasis/vim-devicons'
 # hook_add {{{
 hook_add = """
 " let g:WebDevIconsOS = 'Darwin'
+let g:webdevicons_enable = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:webdevicons_enable_denite = 1
 """
 # }}}
 
