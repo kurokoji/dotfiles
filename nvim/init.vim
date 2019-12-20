@@ -32,7 +32,7 @@ endif
 
 " call dein#remote_plugins()
 
-if !has('vim_starting') && dein#check_install()
+if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 
@@ -107,6 +107,9 @@ colorscheme gruvbox9
 " colorscheme NeoSolarized
 " colorscheme perun
 " 改行の色を指定
+
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
 
 set softtabstop=2
 set tabstop=2
