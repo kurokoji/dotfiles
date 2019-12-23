@@ -179,7 +179,7 @@ content-padding = 1
 content-margin = 1
 content-foreground = ${colors.fg}
 content-underline = ${colors.adapta-orange}
-click-left = nautilus
+click-left = nautilus &
 
 [module/firefox]
 type = custom/text
@@ -188,7 +188,7 @@ content-padding = 1
 content-margin = 1
 content-foreground = ${colors.fg}
 content-underline = ${colors.adapta-orange}
-click-left = firefox
+click-left = firefox &
 
 [module/touchpad]
 type = custom/text
