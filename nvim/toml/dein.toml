@@ -381,3 +381,19 @@ nnoremap <silent> F :call CocAction('format')<CR>
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'RRethy/vim-hexokinase'
+build = 'make hexokinase'
+# hook_add
+hook_add = '''
+let g:Hexokinase_highlighters = ['virtual']
+'''
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+# hook_add {{{
+hook_add = '''
+let g:rainbow_active = 1
+'''
+# }}}
