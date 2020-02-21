@@ -31,7 +31,7 @@
 			}
 		},
 		"dls": {
-			"command": "dls",
+			"command": "~/.dub/packages/.bin/dls-latest/dls",
 			"args": [
 				"--stdio"
 			],
@@ -43,23 +43,7 @@
 				"dub.json",
 				"dub.sdl"
 			],
-			"initializationOptions": {},
-			"settings": {
-				"d": {
-					"dls": {
-						"format": {
-							"dfmtBraceStyle": "otbs",
-							"dfmtSpaceAfterCast": false
-						},
-						"symbol": {
-							"importPaths": [
-								"/Users/nazuna/.dub/packages/nephele-0.0.3/nephele/source"
-							],
-							"autoImports": true
-						}
-					}
-				}
-			}
+			"initializationOptions": {}
 		},
 		"bash": {
 			"command": "bash-language-server",
