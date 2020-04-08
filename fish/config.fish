@@ -20,6 +20,7 @@ if [ "$os_name" = "Darwin" ]
   set -x PATH $HOME/.local/bin/bin $PATH
   set -x PATH $HOME/.local/bin $PATH
   set -x PATH /usr/local/sbin $PATH
+  set -x PATH $HOME/.bin/ $PATH
   set -x PATH $HOME/.anyenv/bin $PATH
   set -x PATH /usr/local/texlive/2019/bin/x86_64-darwin $PATH
   set -x PATH $HOME/Library/Android/sdk/platform-tools $PATH
@@ -27,9 +28,6 @@ if [ "$os_name" = "Darwin" ]
   #  set -x DYLD_LIBRARY_PATH /opt/X11/lib/flat_namespace $DYLD_LIBRARY_PATH
 
   set -x LDFLAGS -L/usr/local/opt/llvm/lib $LDFLAGS
-  set -x LDFLAGS -L/usr/local/opt/zlib/lib $LDFLAGS
-  set -x LDFLAGS -L/Users/nazuna/.local/lib/ $LDFLAGS
-  set -x LDFLAGS -L/usr/local/opt/openblas/lib $LDFLAGS
   set -x LDFLAGS -L/usr/local/opt/readline/lib $LDFLAGS
   set -x LDFLAGS -L/usr/local/opt/openssl/lib $LDFLAGS
 
@@ -51,7 +49,6 @@ if [ "$os_name" = "Darwin" ]
   set -x MANPATH /usr/local/texlive/2019/texmf-dist/doc/man $MANPATH
 
   set -x INFOPATH /usr/local/texlive/2019/texmf-dist/doc/info $INFOPATH
-
 
   set -x cc gcc-8
 
@@ -94,6 +91,9 @@ alias vim=nvim
 alias vi=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
+alias ls='exa'
+alias grep='rg'
+alias cat='bat'
 
 if [ "$os_name" = "Darwin" ]
   alias rm=mv2trash

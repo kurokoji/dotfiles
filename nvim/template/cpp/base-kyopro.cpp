@@ -1,34 +1,35 @@
-/* include {{{ */
+/* template.cpp {{{ */
 #include <cctype>
+#include <cinttypes>
 #include <climits>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <cinttypes>
-#include <cfloat>
 
-#include <iostream>
 #include <algorithm>
-#include <string>
-#include <list>
-#include <numeric>
 #include <bitset>
 #include <complex>
 #include <deque>
 #include <functional>
 #include <iomanip>
+#include <iostream>
+#include <limits>
+#include <list>
+#include <map>
+#include <numeric>
+#include <ostream>
 #include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <tuple>
+#include <unordered_map>
+#include <unordered_set>
 #include <utility>
 #include <vector>
-#include <tuple>
-#include <set>
-#include <map>
-#include <unordered_set>
-#include <unordered_map>
-/* }}} */
-/* macro {{{ */
-// clang-format off
+
 #define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 #define rep(...) GET_MACRO(__VA_ARGS__, rep4, rep3, rep2, rep1)(__VA_ARGS__)
 #define rep1(n) rep2(_, n)
@@ -42,44 +43,88 @@
 #define rrep4(i, a, n, s) for (i64 i = (a); i >= (i64)(n); i -= (s))
 #define each(i, ctn) for (auto &&i : (ctn))
 
-#define all(v) begin(v), end(v)
-#define debug(x) cerr << (x) << " (L:" << __LINE__ << ")" << '\n'
-/* }}} */
-/* using {{{ */
-using i32 = std::int_fast32_t;
-using i64 = std::int_fast64_t;
-using ui32 = std::uint_fast32_t;
-using ui64 = std::uint_fast64_t;
-using f32 = std::float_t;
-using f64 = std::double_t;
-template <class T> using vec = std::vector<T>;
-template <class T> using heap = std::priority_queue<T>;
-template <class T> using minheap = std::priority_queue<T, vec<T>, std::greater<T>>;
-using vi = vec<i32>;
-using vvi = vec<vi>;
-using vvvi = vec<vvi>;
-using pii = std::pair<i32, i32>;
-/* }}} */
-/* constexpr {{{ */
+using i8 = ::std::int_least8_t;
+using i32 = ::std::int_least32_t;
+using i64 = ::std::int_least64_t;
+using u32 = ::std::uint_least32_t;
+using u64 = ::std::uint_least64_t;
+using usize = ::std::size_t;
+
+template <class T>
+using heap = ::std::priority_queue<T>;
+template <class T>
+using min_heap = ::std::priority_queue<T, ::std::vector<T>, ::std::greater<T>>;
+
 i32 constexpr INF = 1001001001;
 i64 constexpr LINF = 1001001001001001001ll;
-i32 constexpr MOD = (i32)1e9 + 7;
-f64 constexpr EPS = 1e-9;
-f64 constexpr PI = M_PI;
-i32 constexpr dx[] = {0, 1, 0, -1, 1, -1, 1, -1}, dy[] = {1, 0, -1, 0, 1, -1, -1, 1};
-/* }}} */
-/* function {{{ */
-inline bool inside(i32 y, i32 x, i32 h, i32 w) { return y >= 0 && x >= 0 && y < h && x < w; }
-template <class T> inline void pr(T const& x) { std::cout << x << '\n'; }
-template <class T> inline void pr(vec<T> const& v, std::string d = "\n") { rep(i, v.size()) std::cout << v[i] << (i == (i64)(v.size() - 1) ? "\n" : d); }
-template <class T, class... Args> inline void pr(T const& x, Args const&... trail) {
-  std::cout << x << " ";
+i32 constexpr MOD = static_cast<i32>(1e9) + 7;
+double constexpr EPS = 1e-9;
+double constexpr PI = M_PI;
+i32 constexpr dx[] = {0, 1, 0, -1, 1, -1, 1, -1},
+              dy[] = {1, 0, -1, 0, 1, -1, -1, 1};
+
+inline bool is_inside(i32 y, i32 x, i32 h, i32 w) {
+  return y >= 0 && x >= 0 && y < h && x < w;
+}
+
+template <class T>
+inline void print(T const& x) { ::std::cout << x << '\n'; }
+
+template <class T, class... Args>
+inline void print(T const& x, Args const&... trail) {
+  ::std::cout << x << " ";
   print(trail...);
 }
-struct IO_PRE_ { IO_PRE_() { std::cin.tie(nullptr); std::ios::sync_with_stdio(false); std::cout << std::fixed << std::setprecision(12); } } pre__;
-// clang-format on
+
+template <class T = i32>
+inline T next() {
+  T x;
+  ::std::cin >> x;
+  return x;
+}
+
+template <class T>
+inline void scan(T& x) { ::std::cin >> x; }
+
+template <class T, class... Args>
+inline void scan(T& x, Args&... trail) {
+  ::std::cin >> x;
+  scan(trail...);
+}
+
+template <class T = ::std::string>
+::std::vector<T> split(::std::string const& s, char d = ',') {
+  ::std::vector<T> v;
+  ::std::stringstream ss(s);
+  for (::std::string b; ::std::getline(ss, b, d);) {
+    ::std::stringstream conv(b);
+    T t;
+    conv >> t;
+    v.emplace_back(t);
+  }
+  return v;
+}
+
+template <class T, class U>
+::std::vector<U> make_vector(T&& n, U&& value) {
+  return ::std::vector<U>(::std::forward<T>(n), ::std::forward<U>(value));
+}
+
+template <class T, class... Args>
+decltype(auto) make_vector(T&& n, Args&&... args) {
+  return ::std::vector<decltype(make_vector(::std::forward<Args>(args)...))>(::std::forward<T>(n), make_vector(std::forward<Args>(args)...));
+}
+
+struct pre_ {
+  pre_() {
+    ::std::cin.tie(nullptr);
+    ::std::ios::sync_with_stdio(false);
+    ::std::cout << ::std::fixed << ::std::setprecision(12);
+  }
+} pre__;
 /* }}} */
 
-int main() {
+i32 main() {
   {{_cursor_}}
 }
+

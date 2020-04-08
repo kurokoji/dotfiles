@@ -4,8 +4,6 @@ autoload -U compinit promptinit
 compinit
 promptinit
 
-zstyle ':completion:*:default' menu select=1
-
 ### Added by Zinit's installer {{{
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
@@ -19,15 +17,22 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit installer's chunk }}}
 
+setopt auto_cd
+setopt auto_list
+setopt auto_menu
+
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light denysdovhan/spaceship-prompt
 
-zinit ice pick"async.zsh" src"pure.zsh"
-zinit light sindresorhus/pure
-
+zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 alias vim=nvim
 alias ls='ls -G'
+alias la='ls -la'
+alias pbc='(){ cat $1 | pbcopy }'
 
 # PATH
 export PATH=$HOME/.anyenv/bin:$PATH

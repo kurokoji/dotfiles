@@ -2,7 +2,7 @@
 
 DOT_DIRECTORY=$(pwd)
 SPECIFY_FILES=''
-EXCLUDE_FILES="Brewfile .env.fish .git .gitignore .gitmodules .DS_Store README.md LICENSE init.bash picture $(basename ${0})"
+EXCLUDE_FILES="Brewfile .env.fish .git .gitignore .gitmodules .DS_Store README.md LICENSE init.bash picture bin $(basename ${0})"
 
 list=""
 
@@ -30,6 +30,8 @@ do
     ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
   fi
 done
+
+ln -snfv ${DOT_DIRECTORY}/bin ${HOME}/.bin
 
 cp ./.env.fish $HOME
 
