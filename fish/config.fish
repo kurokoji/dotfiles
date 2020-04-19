@@ -108,6 +108,10 @@ function pbc
   cat $argv[1] | pbcopy
 end
 
+function d-rldc2
+  docker run --rm -ti -v (pwd):/src dlanguage/ldc:0.17.0 ldc2 -run $argv[1]
+end
+
 # }}}
 
 if not functions -q fisher
