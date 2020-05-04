@@ -385,15 +385,47 @@ repo = 'jiangmiao/auto-pairs'
 [[plugins]]
 repo = 'RRethy/vim-hexokinase'
 build = 'make hexokinase'
-# hook_add
+# hook_add {{{
 hook_add = '''
 let g:Hexokinase_highlighters = ['virtual']
 '''
+# }}}
 
 [[plugins]]
 repo = 'luochen1990/rainbow'
 # hook_add {{{
 hook_add = '''
 let g:rainbow_active = 1
+'''
+# }}}
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+# hook_add {{{
+hook_add = '''
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+
+let g:quickrun_config._ = {
+      \ 'runner': 'nvimterm',
+      \ 'runner/nvimterm/into': 1
+      \ }
+
+let g:quickrun_config.d = {
+      \ 'command': 'ldc2',
+      \ 'cmdopt': '-run'
+      \ }
+
+nnoremap <silent> <C-b> :<C-u>QuickRun<CR> i
+'''
+# }}}
+
+[[plugins]]
+repo = 'statiolake/vim-quickrun-runner-nvimterm'
+
+[[plugins]]
+repo = 'kana/vim-fakeclip'
+# hook_add {{{
+hook_add = '''
+vnoremap <silent> <C-y> "*Y
 '''
 # }}}

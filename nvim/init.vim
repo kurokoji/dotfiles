@@ -86,6 +86,9 @@ set completeopt=menuone,noinsert,noselect
 set wildmenu
 set wildmode=full
 
+" 新しいウィンドウを下に開く
+set splitbelow
+
 if has('nvim')
   set wildoptions=pum
   set pumblend=30

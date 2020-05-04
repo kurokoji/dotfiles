@@ -91,6 +91,7 @@ alias vim=nvim
 alias vi=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
+
 alias ls='exa'
 alias grep='rg'
 alias cat='bat'

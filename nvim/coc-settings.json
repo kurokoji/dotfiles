@@ -25,7 +25,8 @@
 						"-isystem",
 						"/Library/Developer/CommandLineTools/usr/include/c++/v1",
 						"-I",
-						"/Library/Developer/CommandLineTools/usr/include/"
+						"/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+						"-std=c++20"
 					]
 				}
 			}
