@@ -1,12 +1,12 @@
 # variable {{{
-set -x PATH $HOME/.cargo/bin $PATH
-set -x PATH $HOME/.dub/packages/.bin/dls-latest $PATH
-set -x PATH $HOME/.dub/packages/serve-d-0.4.1/serve-d $PATH
+# set -x PATH $HOME/.cargo/bin $PATH
+# set -x PATH $HOME/.dub/packages/.bin/dls-latest $PATH
+# set -x PATH $HOME/.dub/packages/serve-d-0.4.1/serve-d $PATH
 
-set -x GOPATH $HOME/.go $GOPATH
-set -x PYENV_ROOT $HOME/.pyenv $PYENV_ROOT
+# set -x GOPATH $HOME/.go $GOPATH
+# set -x PYENV_ROOT $HOME/.pyenv $PYENV_ROOT
 
-set -x PATH $GOPATH/bin $PATH
+# set -x PATH $GOPATH/bin $PATH
 
 uname | read os_name
 if [ "$os_name" = "Darwin" ]
@@ -56,15 +56,15 @@ if [ "$os_name" = "Darwin" ]
 else if [ "$os_name" = "Linux" ]
   set -x PATH $HOME/.anyenv/bin $PATH
   set -x PATH $HOME/.local/bin $PATH
-  set -x CUDA_HOME /usr/local/cuda-10.1
-  set -x LD_LIBRARY_PATH $CUDA_HOME/lib64 $LD_LIBRARY_PATH
-  set -x PATH $CUDA_HOME/bin $PATH
-  set -x PATH $PATH /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin
+  # set -x CUDA_HOME /usr/local/cuda-10.1
+  # set -x LD_LIBRARY_PATH $CUDA_HOME/lib64 $LD_LIBRARY_PATH
+  # set -x PATH $CUDA_HOME/bin $PATH
+  # set -x PATH $PATH /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin
 
-  set -x DefaultImModule fcitx
-  set -x GTK_IM_MODULE fcitx
-  set -x QT_IM_MODULE fcitx
-  set -x XMODIFIERS '@im=fcitx'
+  # set -x DefaultImModule fcitx
+  # set -x GTK_IM_MODULE fcitx
+  # set -x QT_IM_MODULE fcitx
+  # set -x XMODIFIERS '@im=fcitx'
 
   # set -x LC_ALL en_US.UTF-8
   # set -x LC_ALL ja_JP.UTF-8
@@ -92,14 +92,14 @@ alias vi=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
 
-alias ls='exa'
-alias grep='rg'
-alias cat='bat'
+# alias ls='exa'
+# alias grep='rg'
+# alias cat='bat'
 
 if [ "$os_name" = "Darwin" ]
   alias rm=mv2trash
 else if [ "$os_name" = "Linux" ]
-  alias rm=rmtrash
+  # alias rm=rmtrash
   alias open='xdg-open'
 end
 # }}}
@@ -137,3 +137,5 @@ end
 # set __fish_git_prompt_char_stashstate '↩'
 # set __fish_git_prompt_char_upstream_ahead '+'
 # set __fish_git_prompt_char_upstream_behind '-'
+#
+set -g theme_display_node yes

@@ -423,9 +423,9 @@ nnoremap <silent> <C-b> :<C-u>QuickRun<CR> i
 repo = 'statiolake/vim-quickrun-runner-nvimterm'
 
 [[plugins]]
-repo = 'kana/vim-fakeclip'
+repo = 'kurokoji/vim-fakeclip'
 # hook_add {{{
 hook_add = '''
-vnoremap <silent> <C-y> "*Y
+vnoremap <silent> <C-y> "+Y
 '''
 # }}}

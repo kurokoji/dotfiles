@@ -47,9 +47,9 @@ if test -e /etc/resolv.conf
 end
 
 if test -n "$_dns_state"
-  echo -e '\e[31mSet proxy settings\e[m' 1>&2
+  echo -e '\e[31mSet proxy settings\e[m' >&2
   set_proxy
 else
-  echo -e '\e[36mUnset proxy settings\e[m' 1>&2
+  echo -e '\e[36mUnset proxy settings\e[m' >&2
   unset_proxy
 end
