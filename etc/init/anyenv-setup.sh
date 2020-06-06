@@ -8,3 +8,4 @@ anyenv install --init
 anyenv install pyenv
 anyenv install rbenv
 anyenv install nodenv
+anyenv install goenv

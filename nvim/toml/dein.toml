@@ -17,10 +17,10 @@ repo = 'roxma/vim-hug-neovim-rpc'
 if = "!has('nvim')"
 
 [[plugins]]
-repo = 'ryanoasis/vim-devicons'
+repo = 'kurokoji/vim-devicons'
 # hook_add {{{
 hook_add = """
-" let g:WebDevIconsOS = 'Darwin'
+let g:WebDevIconsOS = 'Ubuntu'
 let g:webdevicons_enable = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:webdevicons_enable_denite = 1

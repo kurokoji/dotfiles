@@ -123,6 +123,8 @@ set autoindent
 set smartindent
 set ttyfast
 
+set guifont=FiraMono\ Nerd\ Font:h10
+
 let g:tex_conceal = ""
 
 filetype on
