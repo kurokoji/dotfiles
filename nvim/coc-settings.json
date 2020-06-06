@@ -62,9 +62,6 @@
 			}
 		}
 	},
-	"python": {
-		"jediEnabled": false
-	},
 	"suggest.noselect": true,
 	"suggest.preferCompleteThanJumpPlaceholder": true
 }
