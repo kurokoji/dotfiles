@@ -44,3 +44,6 @@ on_ft = ['vim']
 [[plugins]]
 repo = 'mityu/vim-applescript'
 on_ft = ['applescript']
+
+[[plugins]]
+repo = 'PProvost/vim-ps1'
