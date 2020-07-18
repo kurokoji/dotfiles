@@ -45,11 +45,14 @@ if [ "$os_name" = "Darwin" ]
 else if [ "$os_name" = "Linux" ]
   set -x PATH $HOME/.anyenv/bin $PATH
   set -x PATH $HOME/.local/bin $PATH
+  set -x PATH $HOME/.bin $PATH
 
   set -x PATH $HOME/.cargo/bin $PATH
 
 
-  set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+  set -x WSL_HOST (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+  set -x ADB_SERVER_SOCKET tcp:$WSL_HOST:5037
+  set -x DISPLAY $WSL_HOST:0.0
   set -x GDK_SCALE 0.5
   set -x GDK_DPI_SCALE 2
   # set -x LIBGL_ALWAYS_INDIRECT 1
@@ -122,6 +125,12 @@ if [ "$os_name" = "Darwin" ]
 else if [ "$os_name" = "Linux" ]
   # alias rm=rmtrash
   alias open='xdg-open'
+  alias emulator='emulator.exe'
+
+  if executable xclip
+    alias pbcopy='xclip -selection c'
+    alias pbpaste='xclip -selection c -o'
+  end
 end
 # }}}
 

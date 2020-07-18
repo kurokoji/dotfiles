@@ -1,3 +1,23 @@
+" mapping {{{
+tnoremap <C-[> <C-\><C-n>
+nnoremap ; :
+nnoremap x "_x
+
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+
+" nnoremap sn gt
+" nnoremap sp gT
+nnoremap <Tab> gt
+nnoremap st :<C-u>tabnew<CR>
+
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+let mapleader = "\<Space>"
+" }}}
+
 " dein {{{
 let g:dein#enable_notification = 1
 let g:dein#install_progress_type = 'title'
@@ -37,24 +57,6 @@ if has('vim_starting') && dein#check_install()
 endif
 
 " }}}
-" mapping {{{
-tnoremap <C-[> <C-\><C-n>
-nnoremap ; :
-nnoremap x "_x
-
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
-
-" nnoremap sn gt
-" nnoremap sp gT
-nnoremap <Tab> gt
-nnoremap st :<C-u>tabnew<CR>
-
-nnoremap sh <C-w>h
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-" }}}
 
 set backspace=indent,eol,start
 
@@ -93,6 +95,7 @@ if has('nvim')
   set wildoptions=pum
   set pumblend=30
 endif
+
 
 set noshowmode
 set incsearch
