@@ -6,6 +6,7 @@ Set-Theme Avit
 
 Set-Alias vim nvim
 Set-Alias vi nvim
+Set-Alias open explorer.exe
 
 # }}}
 

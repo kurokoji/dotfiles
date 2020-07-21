@@ -96,6 +96,10 @@ if has('nvim')
   set pumblend=30
 endif
 
+if has('win32') || has ('win64')
+  set shell=pwsh
+endif
+
 
 set noshowmode
 set incsearch
