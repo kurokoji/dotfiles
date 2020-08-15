@@ -2,11 +2,14 @@ Import-Module posh-git
 Import-Module oh-my-posh
 Set-Theme Avit
 
+Set-Item ENV:Path "$ENV:HOME\.cargo\bin;$ENV:Path"
+
 # Alias {{{
 
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias open explorer.exe
+Set-Alias ls exa
 
 # }}}
 

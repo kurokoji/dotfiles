@@ -349,6 +349,8 @@ rev = 'release'
 # hook_add {{{
 hook_add = '''
 
+let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-json', 'coc-neosnippet']
+
 set updatetime=100
 set signcolumn=yes
 
