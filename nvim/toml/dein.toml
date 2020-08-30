@@ -349,7 +349,7 @@ rev = 'release'
 # hook_add {{{
 hook_add = '''
 
-let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-json', 'coc-neosnippet']
+let g:coc_global_extensions=['coc-powershell', 'coc-python', 'coc-json', 'coc-neosnippet', 'coc-go']
 
 set updatetime=100
 set signcolumn=yes
@@ -378,6 +378,8 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_docmentation()<CR>
 nnoremap <silent> F :call CocAction('format')<CR>
 
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 '''
 # }}}
 
