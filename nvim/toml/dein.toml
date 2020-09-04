@@ -329,6 +329,15 @@ repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
+# hook_add {{{
+hook_add = '''
+let g:precious_enable_switchers = {
+      \ 'javascript': {
+      \   'setfiletype': 0
+      \ }
+      \ }
+'''
+# }}}
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
