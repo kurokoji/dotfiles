@@ -62,6 +62,9 @@
 			}
 		}
 	},
+	"go.goplsOptions": {
+		"completeUnimported": true
+	},
 	"suggest.noselect": true,
 	"suggest.preferCompleteThanJumpPlaceholder": true
 }
