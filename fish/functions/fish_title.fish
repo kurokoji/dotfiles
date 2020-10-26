@@ -1,16 +1,16 @@
-# name: scorphish
+function fish_title \
+    --description "Set title to current folder and shell name" \
+    --argument-names last_command
 
-# This file is part of theme-scorphish
+    set --local basename (string replace -r '^.*/' '' -- $PWD)
+    set --local current_folder (_pure_parse_directory)
+    set --local current_command (status current-command 2>/dev/null; or echo $_)
 
-# Licensed under the MIT license:
-# https://opensource.org/licenses/MIT
-# Copyright (c) 2014, Pablo S. Blum de Aguiar <scorphus@gmail.com>
+    set --local prompt "$basename: $last_command $pure_symbol_title_bar_separator $current_command"
 
+    if test -z "$last_command"
+        set prompt "$current_folder $pure_symbol_title_bar_separator $current_command"
+    end
 
-function fish_title
-  if [ "$theme_display_virtualenv" = 'no' -o -z "$VIRTUAL_ENV" ]
-    printf '(%s) %s' $_ (prompt_pwd)
-  else
-    printf '(%s) %s' (basename "$VIRTUAL_ENV") (prompt_pwd)
-  end
+    echo $prompt
 end
