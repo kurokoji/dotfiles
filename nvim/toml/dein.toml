@@ -32,7 +32,7 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox9',
+      \ 'colorscheme': 'gruvbox_material',
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
@@ -83,11 +83,9 @@ let g:lightline = {
       \   'syntastic': 'SyntasticStatuslineFlag',
       \   'charcode': 'MyCharCode',
       \   'gitgutter': 'MyGitGutter',
-"      \   'ale': 'ALEGetStatusLine'
       \   'ale': 'MyGetALEStatus',
       \   'cocstatus': 'MyCocStatus'
       \ },
-"  \  Powerline
       \ 'separator': {'left': "\ue0b4", 'right': "\ue0b6"},
       \ 'subseparator': {'left': "\ue0b5", 'right': "\ue0b7"}
       \ }

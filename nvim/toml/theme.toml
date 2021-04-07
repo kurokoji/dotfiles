@@ -26,8 +26,11 @@ repo = 'icymind/NeoSolarized'
 [[plugins]]
 repo = 'dracula/vim'
 
-[[plugins]]
-repo = 'aradunovic/perun.vim'
+# [[plugins]]
+# repo = 'aradunovic/perun.vim'
 
 [[plugins]]
-repo = 'taigacute/gruvbox9'
+repo = 'sainnhe/gruvbox-material'
+
+# [[plugins]]
+# repo = 'taigacute/gruvbox9'
