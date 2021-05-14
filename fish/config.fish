@@ -53,8 +53,8 @@ else if [ "$os_name" = "Linux" ]
   set -x WSL_HOST (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
   set -x ADB_SERVER_SOCKET tcp:$WSL_HOST:5037
   set -x DISPLAY $WSL_HOST:0.0
-  set -x GDK_SCALE 0.5
-  set -x GDK_DPI_SCALE 2
+  # set -x GDK_SCALE 0.5
+  # set -x GDK_DPI_SCALE 2
   # set -x LIBGL_ALWAYS_INDIRECT 1
 
   # set -x CUDA_HOME /usr/local/cuda-10.1

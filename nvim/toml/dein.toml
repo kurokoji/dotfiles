@@ -427,6 +427,17 @@ let g:quickrun_config.d = {
       \ 'cmdopt': '-run'
       \ }
 
+let g:quickrun_config.cpp = {
+      \ 'command': 'g++',
+      \ 'cmdopt': '-std=c++2a -O3'
+      \ }
+
+let g:quickrun_config.scheme = {
+      \ 'command': 'scheme',
+      \ 'exec': '%c %o < %s',
+      \ 'cmdopt': '--quiet'
+      \ }
+
 nnoremap <silent> <C-b> :<C-u>QuickRun<CR> i
 '''
 # }}}
