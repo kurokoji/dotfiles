@@ -49,10 +49,12 @@ else if [ "$os_name" = "Linux" ]
 
   set -x PATH $HOME/.cargo/bin $PATH
 
+  if [ (uname -r | grep 'microsoft') ]
+    set -x WSL_HOST (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+    set -x ADB_SERVER_SOCKET tcp:$WSL_HOST:5037
+    set -x DISPLAY $WSL_HOST:0.0
+  end
 
-  set -x WSL_HOST (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
-  set -x ADB_SERVER_SOCKET tcp:$WSL_HOST:5037
-  set -x DISPLAY $WSL_HOST:0.0
   # set -x GDK_SCALE 0.5
   # set -x GDK_DPI_SCALE 2
   # set -x LIBGL_ALWAYS_INDIRECT 1
@@ -106,6 +108,11 @@ alias vim=nvim
 alias vi=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
+
+function em
+  env TERM=xterm-24bit emacs -nw .emacs.d/init.el $argv
+end
+alias emacs=em
 
 if executable exa
   alias ls='exa'

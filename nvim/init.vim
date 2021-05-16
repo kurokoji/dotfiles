@@ -31,8 +31,6 @@ if !isdirectory(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
-set runtimepath^=s:dein_repo_dir
-
 let &runtimepath = s:dein_repo_dir . ',' . &runtimepath
 
 let s:toml_file = s:toml_dir . '/dein.toml'

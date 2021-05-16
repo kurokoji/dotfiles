@@ -27,9 +27,12 @@ URxvt.urgentOnBell: false
 URxvt.saveLines:            3000
 URxvt.fading:               40
 URxvt.perl-ext-common: ...,tabbed,...
+URxvt.perl-ext-common:      xim-onthespot
+URxvt.inputMethod:          ibus
+URxvt*preeditType:          OnTheSpot
 
 !! Font list and Spacing
-URxvt.font:                 xft:Dejavu Sans Mono-12
+URxvt.font:                 xft:FiraMono Nerd Font:size=12,xft:DejaVu Sans Mono-12,xft:M+ 1m:size=12
 !URxvt.font:                 xft:SauceCodePro Nerd Font:size=9,xft:M+ 1m,xft:DejaVu Sans Mono-9
 URxvt.letterSpace:          -1
 !URxvt.lineSpace:            0
