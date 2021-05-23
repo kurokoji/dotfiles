@@ -79,7 +79,7 @@ end
 # }}}
 # source {{{
 source $HOME/.config/fish/switch_proxy.fish
-anyenv init - fish | source
+source $HOME/.asdf/asdf.fish
 eval (opam config env)
 
 if [ "$os_name" = "Darwin" ]

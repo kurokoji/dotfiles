@@ -231,7 +231,10 @@ repo = 'previm/previm'
 on_ft = ['markdown']
 # hook_add {{{
 hook_add = '''
-let g:previm_open_cmd = 'open -a Firefox\ Developer\ Edition'
+if has('unix')
+  let g:previm_open_cmd = 'chromium'
+end
+
 let g:previm_enable_realtime = 1
 augroup PrevimSettings
   autocmd!

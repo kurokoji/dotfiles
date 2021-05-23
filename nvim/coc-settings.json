@@ -26,20 +26,16 @@
 				}
 			}
 		},
-		"dls": {
-			"command": "~/.dub/packages/.bin/dls-latest/dls",
-			"args": [
-				"--stdio"
-			],
+		"d": {
+			"command": "serve-d",
+			"trace.server": "verbose",
 			"filetypes": [
 				"d"
 			],
-			"trace.server": "off",
 			"rootPatterns": [
 				"dub.json",
 				"dub.sdl"
-			],
-			"initializationOptions": {}
+			]
 		},
 		"bash": {
 			"command": "bash-language-server",
@@ -55,10 +51,9 @@
 		}
 	},
 	"d": {
-		"dls": {
-			"format": {
-				"braceStyle": "otbs",
-				"spaceAfterCasts": false
+		"config": {
+			"dfmt": {
+				"braceStyle": "otbs"
 			}
 		}
 	},
