@@ -80,7 +80,6 @@ end
 # source {{{
 source $HOME/.config/fish/switch_proxy.fish
 source $HOME/.asdf/asdf.fish
-eval (opam config env)
 
 if [ "$os_name" = "Darwin" ]
   source ~/.iterm2_shell_integration.(basename $SHELL)
