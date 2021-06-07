@@ -77,16 +77,6 @@ end
 # set -x fish_ambiguous_width 2
 
 # }}}
-# source {{{
-source $HOME/.config/fish/switch_proxy.fish
-source $HOME/.asdf/asdf.fish
-
-if [ "$os_name" = "Darwin" ]
-  source ~/.iterm2_shell_integration.(basename $SHELL)
-else if [ "$os_name" = "Linux" ]
-end
-
-# }}}
 # function {{{
 function executable
   type $argv[1] >/dev/null 2>&1
@@ -100,6 +90,20 @@ function d-rldc2
   docker run --rm -ti -v (pwd):/src dlanguage/ldc:0.17.0 ldc2 -run $argv[1]
 end
 
+# }}}
+# source {{{
+source $HOME/.config/fish/switch_proxy.fish
+source $HOME/.asdf/asdf.fish
+
+if [ "$os_name" = "Darwin" ]
+  source ~/.iterm2_shell_integration.(basename $SHELL)
+else if [ "$os_name" = "Linux" ]
+end
+
+if executable opam
+  eval (opam config env)
+  eval (opam env)
+end
 # }}}
 # alias {{{
 alias lvim=(which vim)
