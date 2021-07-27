@@ -69,6 +69,30 @@ set encoding=utf-8
 scriptencoding utf-8
 set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
+if has('nvim')
+  set wildoptions=pum
+  set pumblend=30
+endif
+
+if has('win32') || has ('win64')
+  set shell=pwsh
+endif
+
+
+set noshowmode
+set incsearch
+set background=dark
+set termguicolors
+autocmd ColorScheme * hi dOperator guifg=#fb4934
+colorscheme gruvbox
+" let g:gruvbox_termcolors=16
+" colorscheme NeoSolarized
+" colorscheme perun
+" 改行の色を指定
+
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+
 syntax enable
 set title
 set number
@@ -88,38 +112,6 @@ set wildmode=full
 
 " 新しいウィンドウを下に開く
 set splitbelow
-
-if has('nvim')
-  set wildoptions=pum
-  set pumblend=30
-endif
-
-if has('win32') || has ('win64')
-  set shell=pwsh
-endif
-
-
-set noshowmode
-set incsearch
-set background=dark
-" set t_Co=256
-set termguicolors
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" colorscheme deus
-" let g:deus_termcolors=256
-" autocmd ColorScheme * hi NonText guibg=NONE guifg=Gray
-autocmd ColorScheme * hi dOperator guifg=#fb4934
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_palette = 'mix'
-colorscheme gruvbox-material
-" let g:gruvbox_termcolors=16
-" colorscheme NeoSolarized
-" colorscheme perun
-" 改行の色を指定
-
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
 
 set softtabstop=2
 set tabstop=2
