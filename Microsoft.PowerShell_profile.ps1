@@ -1,6 +1,6 @@
-Set-PoshPrompt -Theme powerlevel10k_modern
+Set-PoshPrompt -Theme pure
 
-Set-Item ENV:Path "$ENV:HOME\.cargo\bin;$ENV:Path"
+Set-Item ENV:Path "$ENV:HOMEPATH\.cargo\bin;$ENV:Path"
 
 Set-PSReadLineOption -PredictionSource History
 
