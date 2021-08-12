@@ -1,6 +1,4 @@
-Import-Module posh-git
-Import-Module oh-my-posh
-Set-Theme Avit
+Set-PoshPrompt -Theme powerlevel10k_modern
 
 Set-Item ENV:Path "$ENV:HOME\.cargo\bin;$ENV:Path"
 
