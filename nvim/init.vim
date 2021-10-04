@@ -78,18 +78,6 @@ if has('win32') || has ('win64')
   set shell=pwsh
 endif
 
-
-set noshowmode
-set incsearch
-set background=dark
-set termguicolors
-autocmd ColorScheme * hi dOperator guifg=#fb4934
-colorscheme gruvbox
-" let g:gruvbox_termcolors=16
-" colorscheme NeoSolarized
-" colorscheme perun
-" 改行の色を指定
-
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 
@@ -109,6 +97,18 @@ set showtabline=2
 set completeopt=menuone,noinsert,noselect
 set wildmenu
 set wildmode=full
+
+
+set noshowmode
+set incsearch
+set background=dark
+set termguicolors
+autocmd ColorScheme * hi dOperator guifg=#fb4934
+colorscheme gruvbox
+" let g:gruvbox_termcolors=16
+" colorscheme NeoSolarized
+" colorscheme perun
+" 改行の色を指定
 
 " 新しいウィンドウを下に開く
 set splitbelow

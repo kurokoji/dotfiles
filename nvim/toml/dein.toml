@@ -451,6 +451,7 @@ nnoremap <silent> <C-b> :<C-u>QuickRun<CR> i
 [[plugins]]
 repo = 'statiolake/vim-quickrun-runner-nvimterm'
 
+# vim-fakeclipはxclip無いとneovimが死ぬ
 [[plugins]]
 repo = 'kurokoji/vim-fakeclip'
 # hook_add {{{
