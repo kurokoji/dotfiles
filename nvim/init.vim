@@ -104,7 +104,7 @@ set incsearch
 set background=dark
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-colorscheme gruvbox
+colorscheme dracula
 " let g:gruvbox_termcolors=16
 " colorscheme NeoSolarized
 " colorscheme perun

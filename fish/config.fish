@@ -55,9 +55,9 @@ else if [ "$os_name" = "Linux" ]
     set -x DISPLAY $WSL_HOST:0.0
   end
 
-  set -x PATH $HOME/caramel/bin $PATH
-  set -x CARAMEL_STDLIB_PATH $HOME/caramel/lib/caramel/stdlib $CARAMEL_STDLIB_PATH
-  set -x ERL_LIBS $HOME/caramel/lib/caramel/stdlib $ERL_LIBS
+  # set -x PATH $HOME/caramel/bin $PATH
+  # set -x CARAMEL_STDLIB_PATH $HOME/caramel/lib/caramel/stdlib $CARAMEL_STDLIB_PATH
+  # set -x ERL_LIBS $HOME/caramel/lib/caramel/stdlib $ERL_LIBS
   # set -x GDK_SCALE 0.5
   # set -x GDK_DPI_SCALE 2
   # set -x LIBGL_ALWAYS_INDIRECT 1

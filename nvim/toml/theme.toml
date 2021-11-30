@@ -32,5 +32,8 @@ repo = 'dracula/vim'
 [[plugins]]
 repo = 'sainnhe/gruvbox-material'
 
+[[plugins]]
+repo = 'wadackel/vim-dogrun'
+
 # [[plugins]]
 # repo = 'taigacute/gruvbox9'
