@@ -101,10 +101,10 @@ set wildmode=full
 
 set noshowmode
 set incsearch
-set background=dark
+set background=light
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-colorscheme dracula
+colorscheme PaperColor
 " let g:gruvbox_termcolors=16
 " colorscheme NeoSolarized
 " colorscheme perun
