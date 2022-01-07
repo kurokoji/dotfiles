@@ -47,3 +47,6 @@ on_ft = ['applescript']
 
 [[plugins]]
 repo = 'PProvost/vim-ps1'
+
+[[plugins]]
+repo = 'reasonml-editor/vim-reason-plus'

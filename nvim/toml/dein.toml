@@ -356,7 +356,7 @@ rev = 'release'
 # hook_add {{{
 hook_add = '''
 
-let g:coc_global_extensions=['coc-powershell', 'coc-pyright', 'coc-json', 'coc-neosnippet', 'coc-go', 'coc-dlang', 'coc-clangd']
+let g:coc_global_extensions=['coc-powershell', 'coc-pyright', 'coc-json', 'coc-neosnippet', 'coc-go', 'coc-dlang', 'coc-clangd', 'coc-explorer']
 
 set updatetime=100
 set signcolumn=yes
@@ -384,6 +384,8 @@ nmap <silent> gr <Plug>(coc-references)
 " "nnoremap <silent> K :call CocAction('doHover')<CR>
 nnoremap <silent> K :call <SID>show_docmentation()<CR>
 nnoremap <silent> F :call CocAction('format')<CR>
+
+nmap <C-u><C-t> <Cmd>CocCommand explorer<CR>
 
 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
@@ -462,3 +464,19 @@ vnoremap <silent> <C-y> "+Y
 
 [[plugins]]
 repo = 'skanehira/preview-markdown.vim'
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_update = 'TSUpdate'
+hook_add = '''
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {
+    }
+  },
+  ensure_installed = 'all',
+}
+EOF
+'''
