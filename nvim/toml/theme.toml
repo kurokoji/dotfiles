@@ -35,5 +35,8 @@ repo = 'sainnhe/gruvbox-material'
 [[plugins]]
 repo = 'wadackel/vim-dogrun'
 
+[[plugins]]
+repo = 'lifepillar/vim-solarized8'
+
 # [[plugins]]
 # repo = 'taigacute/gruvbox9'

@@ -104,7 +104,9 @@ set incsearch
 set background=light
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-colorscheme PaperColor
+let g:solarized_italics=0
+let g:solarized_extra_hi_groups=1
+colorscheme solarized8
 " let g:gruvbox_termcolors=16
 " colorscheme NeoSolarized
 " colorscheme perun

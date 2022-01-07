@@ -32,7 +32,7 @@ repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
