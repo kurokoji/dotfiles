@@ -104,13 +104,7 @@ set incsearch
 set background=light
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-let g:solarized_italics=0
-let g:solarized_extra_hi_groups=1
-colorscheme solarized8
-" let g:gruvbox_termcolors=16
-" colorscheme NeoSolarized
-" colorscheme perun
-" 改行の色を指定
+colorscheme iceberg
 
 " 新しいウィンドウを下に開く
 set splitbelow
