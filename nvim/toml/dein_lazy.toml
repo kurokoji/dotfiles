@@ -247,22 +247,26 @@ augroup END
 repo = 'tpope/vim-surround'
 on_i = 1
 
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-on_i = 1
-# hook_add {{{
-hook_add = '''
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-'''
-# }}}
 
 [[plugins]]
 repo = 'kurokoji/neosnippet-snippets'
 on_i = 1
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_update = 'TSUpdate'
+# hook_post_source {{{
+hook_post_source = '''
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = 'maintained',
+  sync_install = false,
+  highlight = {
+    enable = true,
+    disable = {
+    }
+  },
+}
+EOF
+'''
+# }}}

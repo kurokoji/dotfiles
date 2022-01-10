@@ -356,10 +356,25 @@ rev = 'release'
 # hook_add {{{
 hook_add = '''
 
-let g:coc_global_extensions=['coc-powershell', 'coc-pyright', 'coc-json', 'coc-neosnippet', 'coc-go', 'coc-dlang', 'coc-clangd', 'coc-explorer']
+let g:coc_global_extensions=['coc-powershell', 'coc-pyright', 'coc-json', 'coc-go', 'coc-dlang', 'coc-clangd', 'coc-explorer', 'coc-snippets']
 
 set updatetime=100
 set signcolumn=yes
+
+imap <C-k> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-k> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-k>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-j>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-k> <Plug>(coc-snippets-expand-jump)
+
 
 function! s:show_docmentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -466,17 +481,4 @@ vnoremap <silent> <C-y> "+Y
 repo = 'skanehira/preview-markdown.vim'
 
 [[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-hook_post_update = 'TSUpdate'
-hook_add = '''
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    disable = {
-    }
-  },
-  ensure_installed = 'all',
-}
-EOF
-'''
+repo = 'honza/vim-snippets'
