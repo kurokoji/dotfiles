@@ -22,6 +22,12 @@
 				"ocaml",
 				"reason"
 			]
+		},
+		"erlang": {
+			"command": "erlang_ls",
+			"filetypes": [
+				"erlang"
+			]
 		}
 	},
 	"d": {
