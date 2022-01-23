@@ -378,6 +378,53 @@ endfunction
 
 let g:coc_snippet_next = '<c-k>'
 " }}}
+" coc-explorer {{{
+
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'cocConfig': {
+\      'root-uri': '~/.config/coc',
+\   },
+\   'tab': {
+\     'position': 'tab',
+\     'quit-on-open': v:true,
+\   },
+\   'tab:$': {
+\     'position': 'tab:$',
+\     'quit-on-open': v:true,
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   },
+\   'buffer': {
+\     'sources': [{'name': 'buffer', 'expand': v:true}]
+\   },
+\ }
+nmap <C-m> <Cmd>CocCommand explorer --preset floating<CR>
+" }}}
 
 function! s:show_docmentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -403,7 +450,6 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_docmentation()<CR>
 nnoremap <silent> F :call CocAction('format')<CR>
 
-nmap <C-u><C-t> <Cmd>CocCommand explorer<CR>
 
 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
