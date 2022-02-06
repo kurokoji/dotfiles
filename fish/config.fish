@@ -121,7 +121,7 @@ end
 alias emacs=em
 
 if executable exa
-  alias ls='exa'
+  alias ls='exa --icons'
 end
 
 if executable rg
