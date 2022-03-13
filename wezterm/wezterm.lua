@@ -5,7 +5,7 @@ local launch_menu = {}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   table.insert(launch_menu, {
     label = "PowerShell 7",
-    args = {"C:/Users/nazuna/AppData/Local/Microsoft/WindowsApps/pwsh.exe", "-nologo"},
+    args = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"},
   })
 
   table.insert(launch_menu, {
@@ -22,7 +22,7 @@ local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
 local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
 return {
-  default_prog = {"C:/Users/nazuna/AppData/Local/Microsoft/WindowsApps/pwsh.exe", "-nologo"},
+  default_prog = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"},
   window_padding = {
     left = 0,
     right = 0,
