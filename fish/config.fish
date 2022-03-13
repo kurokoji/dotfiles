@@ -149,7 +149,7 @@ end
 
 if not functions -q fisher
   echo 'not installed fisher'
-  echo 'please type this: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
+  echo 'please type this: fish $HOME/dotfiles/etc/init/linux/fisher.fish'
   set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
 end
 
