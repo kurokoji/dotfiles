@@ -148,9 +148,9 @@ end
 # }}}
 
 if not functions -q fisher
+  echo 'not installed fisher'
+  echo 'please type this: curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
   set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-  curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
-  fish -c fisher
 end
 
 # Fish git prompt
