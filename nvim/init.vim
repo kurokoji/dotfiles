@@ -104,13 +104,14 @@ set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
 colorscheme iceberg
 
-" hi! Normal ctermbg=NONE guibg=NONE
-" hi! NonText ctermbg=NONE guibg=NONE
-" hi! LineNr ctermbg=NONE guibg=NONE
-" hi! Folded ctermbg=NONE guibg=NONE
-" hi! EndOfBuffer ctermbg=NONE guibg=NONE
-" hi! CursorLine ctermbg=NONE guibg=NONE
-" hi! SpecialKey ctermbg=NONE guibg=NONE
+" 透過関連
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+hi! LineNr ctermbg=NONE guibg=NONE
+hi! Folded ctermbg=NONE guibg=NONE
+hi! EndOfBuffer ctermbg=NONE guibg=NONE
+hi! CursorLine ctermbg=NONE guibg=NONE
+hi! SpecialKey ctermbg=NONE guibg=NONE
 
 " 新しいウィンドウを下に開く
 set splitbelow
