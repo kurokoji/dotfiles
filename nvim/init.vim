@@ -1,5 +1,5 @@
 " mapping {{{
-tnoremap <C-[> <C-\><C-n>
+tnoremap <ESC> <C-\><C-n>
 nnoremap ; :
 nnoremap x "_x
 
