@@ -89,4 +89,3 @@ alias pbc='(){ cat $1 | pbcopy }'
 
 autoload -U compinit promptinit && compinit
 promptinit
-prompt pure

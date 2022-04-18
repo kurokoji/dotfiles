@@ -129,8 +129,9 @@ if executable rg
 end
 
 if executable bat
-  alias cat='bat'
+  alias cat='bat --theme=gruvbox-light'
 end
+
 
 
 if [ "$os_name" = "Darwin" ]
