@@ -84,6 +84,10 @@ if executable nvim; then
   alias vim=nvim
 fi
 
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
+
 alias pbc='(){ cat $1 | pbcopy }'
 # }}}
 

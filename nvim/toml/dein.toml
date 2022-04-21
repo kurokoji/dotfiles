@@ -356,7 +356,7 @@ rev = 'release'
 # hook_add {{{
 hook_add = '''
 
-let g:coc_global_extensions=['coc-powershell', 'coc-pyright', 'coc-json', 'coc-go', 'coc-dlang', 'coc-clangd', 'coc-explorer', 'coc-snippets']
+let g:coc_global_extensions=['coc-powershell', '@yaegassy/coc-pylsp', 'coc-json', 'coc-go', 'coc-dlang', 'coc-clangd', 'coc-explorer', 'coc-snippets']
 
 set updatetime=100
 set signcolumn=yes

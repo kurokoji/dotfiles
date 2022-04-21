@@ -1,6 +1,8 @@
 # variable {{{
 uname | read os_name
 if [ "$os_name" = "Darwin" ]
+  eval (/opt/homebrew/bin/brew shellenv)
+
   set -x SDKROOT /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk $SDKROOT
 
   #  set -x PATH $PYENV_ROOT/shims $PATH
