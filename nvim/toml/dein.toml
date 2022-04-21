@@ -423,7 +423,7 @@ let g:coc_explorer_global_presets = {
 \     'sources': [{'name': 'buffer', 'expand': v:true}]
 \   },
 \ }
-nmap <C-m> <Cmd>CocCommand explorer --toggle --preset floating<CR>
+nmap <silent> <Leader>e <Cmd>CocCommand explorer --toggle --preset floating<CR>
 
 " }}}
 
