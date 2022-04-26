@@ -37,9 +37,11 @@ case ${OSTYPE} in
   darwin*)
     eval $(/opt/homebrew/bin/brew shellenv)
     source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-    export PATH=$HOME/.bin:$PATH
-    export PATH=$HOME/local/bin:$PATH
 esac
+
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$HOME/.bin:$PATH
+export PATH=$HOME/local/bin:$PATH
 
 # }}}
 # function {{{
