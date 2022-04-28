@@ -125,7 +125,7 @@ set autoindent
 set smartindent
 set ttyfast
 
-set guifont=PlemolJP\ Console\ NF:h12
+set guifont=PlemolJP\ Console\ NF:h16
 
 let g:tex_conceal = ""
 

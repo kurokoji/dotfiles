@@ -532,3 +532,9 @@ repo = 'skanehira/preview-markdown.vim'
 
 [[plugins]]
 repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'

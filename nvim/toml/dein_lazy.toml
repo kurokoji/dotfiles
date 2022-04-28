@@ -10,6 +10,7 @@ on_source = ['denite.nvim']
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
+if = '0'
 # hook_add {{{
 hook_add = '''
 nnoremap <silent> <C-u><C-p> :<C-u>Denite file<CR>
@@ -231,10 +232,6 @@ repo = 'previm/previm'
 on_ft = ['markdown']
 # hook_add {{{
 hook_add = '''
-if has('unix')
-  let g:previm_open_cmd = 'chromium'
-end
-
 let g:previm_enable_realtime = 1
 augroup PrevimSettings
   autocmd!
@@ -268,5 +265,80 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+'''
+# }}}
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+depends = ['ddu-ui-ff', 'ddu-ui-filer', 'ddu-kind-file', 'ddu-filter-matcher_substring', 'ddu-source-file', 'ddu-source-file_rec']
+
+# hook_add {{{
+hook_add = '''
+nnoremap <silent> <C-u><C-p> :call ddu#start({})<CR>
+
+'''
+# }}}
+# hook_source {{{
+hook_source = '''
+call ddu#custom#patch_global({
+    \   'ui': 'ff',
+    \   'sources': [{'name': 'file_rec', 'params': {}}],
+    \   'sourceOptions': {
+    \     '_': {
+    \       'matchers': ['matcher_substring'],
+    \     },
+    \   },
+    \   'kindOptions': {
+    \     'file': {
+    \       'defaultAction': 'open',
+    \     },
+    \   },
+    \   'uiParams': {
+    \     'ff': {
+    \       'split': 'floating',
+    \       'startFilter': v:true,
+    \     },
+    \   },
+    \ })
+
+autocmd FileType ddu-ff call s:ddu_my_settings()
+function! s:ddu_my_settings() abort
+  nnoremap <buffer><silent> <CR>
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+  nnoremap <buffer><silent> <Space>
+        \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer><silent> i
+        \ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+  nnoremap <buffer><silent> q
+        \ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+endfunction
+
+autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+function! s:ddu_filter_my_settings() abort
+  inoremap <buffer><silent> <CR>
+  \ <Esc><Cmd>close<CR>
+  nnoremap <buffer><silent> <CR>
+  \ <Cmd>close<CR>
+  nnoremap <buffer><silent> q
+  \ <Cmd>close<CR>
+endfunction
 '''
 # }}}
