@@ -41,7 +41,7 @@ esac
 
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$HOME/.bin:$PATH
-export PATH=$HOME/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # }}}
 # function {{{

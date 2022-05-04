@@ -292,7 +292,7 @@ depends = ['ddu-ui-ff', 'ddu-ui-filer', 'ddu-kind-file', 'ddu-filter-matcher_sub
 
 # hook_add {{{
 hook_add = '''
-nnoremap <silent> <C-u><C-p> :call ddu#start({})<CR>
+"nnoremap <silent> <C-u><C-p> :call ddu#start({})<CR>
 
 '''
 # }}}
@@ -327,7 +327,7 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
   nnoremap <buffer><silent> i
         \ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-  nnoremap <buffer><silent> q
+  nnoremap <buffer><silent> <ESC>
         \ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
 endfunction
 
@@ -337,7 +337,7 @@ function! s:ddu_filter_my_settings() abort
   \ <Esc><Cmd>close<CR>
   nnoremap <buffer><silent> <CR>
   \ <Cmd>close<CR>
-  nnoremap <buffer><silent> q
+  nnoremap <buffer><silent> <ESC>
   \ <Cmd>close<CR>
 endfunction
 '''
