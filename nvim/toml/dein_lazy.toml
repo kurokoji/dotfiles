@@ -250,25 +250,6 @@ repo = 'kurokoji/neosnippet-snippets'
 on_i = 1
 
 [[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-hook_post_update = 'TSUpdate'
-# hook_post_source {{{
-hook_post_source = '''
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = 'maintained',
-  sync_install = false,
-  highlight = {
-    enable = true,
-    disable = {
-    }
-  },
-}
-EOF
-'''
-# }}}
-
-[[plugins]]
 repo = 'Shougo/ddu-ui-ff'
 
 [[plugins]]

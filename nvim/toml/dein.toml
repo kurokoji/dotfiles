@@ -540,13 +540,35 @@ repo = 'tyru/open-browser.vim'
 repo = 'vim-denops/denops.vim'
 
 [[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_update = 'TSUpdate'
+# hook_post_source {{{
+hook_post_source = '''
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = 'maintained',
+  sync_install = false,
+  highlight = {
+    enable = true,
+    disable = {
+    }
+  },
+}
+EOF
+'''
+# }}}
+
+[[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 # hook_add {{{
 hook_add = '''
-nnoremap <silent> <C-u><C-p> <CMD>Telescope find_files<CR>
+nnoremap <silent> <C-u><C-p> <Cmd>Telescope find_files<CR>
+nnoremap <silent> <C-u><C-g> <Cmd>Telescope live_grep<CR>
+nnoremap <silent> <C-u><C-]> <Cmd>Telescope grep_string<CR>
+nnoremap <silent> <C-u><C-t> <Cmd>Telescope treesitter<CR>
 '''
 # }}}
 
@@ -556,7 +578,7 @@ repo = 'kyazdani42/nvim-web-devicons'
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
 if = '0'
-# hook_add
+# hook_add {{{
 hook_add = '''
 lua << EOF
 require('lualine').setup {
@@ -590,3 +612,4 @@ require('lualine').setup {
 }
 EOF
 '''
+# }}}
