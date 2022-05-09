@@ -81,6 +81,7 @@ if executable bat; then
 fi
 
 
+alias lvim=$(which -p vim)
 if executable nvim; then
   alias vi=vim
   alias vim=nvim
@@ -91,6 +92,11 @@ alias ll='ls -l'
 alias lla='ls -la'
 
 alias pbc='(){ cat $1 | pbcopy }'
+
+case ${OSTYPE} in
+  darwin*)
+    alias rm='mv2trash'
+esac
 # }}}
 
 autoload -U compinit promptinit && compinit

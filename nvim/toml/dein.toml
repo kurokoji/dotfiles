@@ -29,6 +29,7 @@ let g:webdevicons_enable_denite = 1
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+if = '0'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
@@ -511,7 +512,7 @@ let g:quickrun_config.scheme = {
       \ 'cmdopt': '--quiet'
       \ }
 
-nnoremap <silent> <C-b> :<C-u>QuickRun<CR> i
+nnoremap <silent> <C-b> <Cmd>QuickRun<CR> i
 '''
 # }}}
 
@@ -577,7 +578,6 @@ repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
-if = '0'
 # hook_add {{{
 hook_add = '''
 lua << EOF
@@ -585,19 +585,19 @@ require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
     disabled_filetypes = {},
     always_divide_middle = true,
     globalstatus = false,
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_b = {'filetype', 'filename'},
+    lualine_c = {'branch', 'diff', 'diagnostics'},
+    lualine_x = {'encoding', 'fileformat'},
+    lualine_y = {'location'},
+    lualine_z = {'progress'}
   },
   inactive_sections = {
     lualine_a = {},
@@ -607,7 +607,14 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
+  tabline = {
+    lualine_a = {'tabs', 'filename'},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
   extensions = {}
 }
 EOF

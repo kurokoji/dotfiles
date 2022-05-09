@@ -3,13 +3,13 @@ tnoremap <ESC> <C-\><C-n>
 nnoremap ; :
 nnoremap x "_x
 
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
+nnoremap ss <Cmd>sp<CR>
+nnoremap sv <Cmd>vs<CR>
 
 " nnoremap sn gt
 " nnoremap sp gT
 nnoremap <Tab> gt
-nnoremap st :<C-u>tabnew<CR>
+nnoremap st <Cmd>tabnew<CR>
 
 nnoremap sh <C-w>h
 nnoremap sj <C-w>j
@@ -20,7 +20,7 @@ let mapleader = "\<Space>"
 
 " dein {{{
 let g:dein#enable_notification = 1
-let g:dein#install_progress_type = 'title'
+let g:dein#install_progress_type = 'floating'
 
 let s:dein_dir = expand('~/.config/nvim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
