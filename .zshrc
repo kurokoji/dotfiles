@@ -50,6 +50,10 @@ executable() {
   type $1 >/dev/null 2>&1
 }
 
+pbc() {
+  cat $1 | pbcopy
+}
+
 
 case ${OSTYPE} in
   linux*)
@@ -91,7 +95,6 @@ alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
 
-alias pbc='(){ cat $1 | pbcopy }'
 
 case ${OSTYPE} in
   darwin*)

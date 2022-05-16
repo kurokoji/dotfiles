@@ -620,3 +620,6 @@ require('lualine').setup {
 EOF
 '''
 # }}}
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
