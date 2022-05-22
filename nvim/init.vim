@@ -6,6 +6,11 @@ nnoremap x "_x
 nnoremap ss <Cmd>sp<CR>
 nnoremap sv <Cmd>vs<CR>
 
+nnoremap > >>
+nnoremap < <<
+xnoremap > >gv
+xnoremap < <gv
+
 " nnoremap sn gt
 " nnoremap sp gT
 nnoremap <Tab> gt
@@ -16,6 +21,16 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 let mapleader = "\<Space>"
+
+cnoremap <C-a> <Home>
+cnoremap <C-h> <Left>
+cnoremap <C-d> <Del>
+cnoremap <C-e> <End>
+cnoremap <C-l> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <C-y> <C-r>*
+cnoremap <C-g> <C-c>
 " }}}
 
 " dein {{{
@@ -35,6 +50,7 @@ let &runtimepath = s:dein_repo_dir . ',' . &runtimepath
 
 let s:toml_file = s:toml_dir . '/dein.toml'
 let s:lazy_file = s:toml_dir . '/dein_lazy.toml'
+let s:ddu_file = s:toml_dir . '/dein_ddu.toml'
 let s:theme_file = s:toml_dir . '/theme.toml'
 let s:syntax_file = s:toml_dir . '/syntax.toml'
 
@@ -44,6 +60,7 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:toml_file, {'lazy': 0})
   call dein#load_toml(s:syntax_file, {'lazy': 0})
   call dein#load_toml(s:lazy_file, {'lazy': 1})
+  call dein#load_toml(s:ddu_file, {'lazy': 1})
   call dein#end()
   call dein#save_state()
 endif

@@ -29,7 +29,6 @@ let g:webdevicons_enable_denite = 1
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-if = '0'
 # hook_add {{{
 hook_add = '''
 let g:lightline = {
@@ -87,8 +86,6 @@ let g:lightline = {
       \   'ale': 'MyGetALEStatus',
       \   'cocstatus': 'MyCocStatus'
       \ },
-      \ 'separator': {'left': "\ue0b4", 'right': "\ue0b6"},
-      \ 'subseparator': {'left': "\ue0b5", 'right': "\ue0b7"}
       \ }
 
 " let g:lightline.component = { 'lineinfo': "\ue0a1 %3l:%3v \ue0a3" }
@@ -321,9 +318,6 @@ let g:sonictemplate_vim_template_dir = [
 repo = 'simeji/winresizer'
 
 [[plugins]]
-repo = 'junegunn/fzf'
-
-[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
@@ -538,46 +532,14 @@ repo = 'honza/vim-snippets'
 repo = 'tyru/open-browser.vim'
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter'
-hook_post_update = 'TSUpdate'
-# hook_post_source {{{
-hook_post_source = '''
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = 'maintained',
-  sync_install = false,
-  highlight = {
-    enable = true,
-    disable = {
-    }
-  },
-}
-EOF
-'''
-# }}}
-
-[[plugins]]
 repo = 'nvim-lua/plenary.nvim'
-
-[[plugins]]
-repo = 'nvim-telescope/telescope.nvim'
-# hook_add {{{
-hook_add = '''
-nnoremap <silent> <C-u><C-p> <Cmd>Telescope find_files<CR>
-nnoremap <silent> <C-u><C-g> <Cmd>Telescope live_grep<CR>
-nnoremap <silent> <C-u><C-]> <Cmd>Telescope grep_string<CR>
-nnoremap <silent> <C-u><C-t> <Cmd>Telescope treesitter<CR>
-'''
-# }}}
 
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
+if = '0'
 # hook_add {{{
 hook_add = '''
 lua << EOF
