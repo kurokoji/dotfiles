@@ -31,7 +31,7 @@ zinit light sindresorhus/pure
 zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-HISTFILE=$HOME/.zsh-history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000
 SAVEHIST=100000
 

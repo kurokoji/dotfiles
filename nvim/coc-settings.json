@@ -29,6 +29,23 @@
 			"filetypes": [
 				"erlang"
 			]
+		},
+		"bigquery": {
+			"command": "bq-language-server",
+			"args": [
+				"--stdio"
+			],
+			"filetypes": [
+				"sql",
+				"bigquery"
+			],
+			"settings": {
+				"bqExtensionVSCode": {
+					"diagnostic": {
+						"forVSCode": false
+					}
+				}
+			}
 		}
 	},
 	"d": {

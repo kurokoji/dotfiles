@@ -143,6 +143,8 @@ function! s:ddu_filer_my_settings() abort
         \ ddu#ui#filer#is_directory() ?
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
+  nnoremap <buffer><silent> <ESC>
+        \ <Cmd>quit<CR>
 endfunction
 '''
 # }}}
