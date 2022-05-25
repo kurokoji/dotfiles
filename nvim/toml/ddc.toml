@@ -1,0 +1,74 @@
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
+on_event = ['InsertEnter', 'CursorHold']
+# hook_add {{{
+hook_add = '''
+'''
+# }}}
+# hook_source {{{
+hook_source = '''
+call ddc#custom#patch_global({
+      \   'sources': ['around', 'vim-lsp', 'neosnippet'],
+      \   'sourceOptions': {
+      \     '_': {
+      \       'matchers': ['matcher_head'],
+      \       'sorters': ['sorter_rank']
+      \     },
+      \     'around': {
+      \       'mark': 'A',
+      \     },
+      \     'vim-lsp': {
+      \       'matchers': ['matcher_head'],
+      \       'mark': 'LSP',
+      \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+      \     },
+      \     'neosnippet': {
+      \       'mark': 'NSnip'
+      \     }
+      \   },
+      \   'sourceParams': {
+      \     'around': {
+      \       'maxSize': 500,
+      \     }
+      \   }
+      \ })
+
+call ddc#enable()
+'''
+# }}}
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'shun/ddc-vim-lsp'
+on_source = 'ddc.vim'
+depends = ['vim-lsp']
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+on_source = 'ddc.vim'
+depends = ['neosnippet-snippets']
+# hook_add {{{
+hook_add = '''
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+'''
+# }}}
+
+[[plugins]]
+repo = 'kurokoji/neosnippet-snippets'

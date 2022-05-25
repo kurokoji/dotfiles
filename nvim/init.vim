@@ -49,8 +49,9 @@ endif
 let &runtimepath = s:dein_repo_dir . ',' . &runtimepath
 
 let s:toml_file = s:toml_dir . '/dein.toml'
-let s:lazy_file = s:toml_dir . '/dein_lazy.toml'
-let s:ddu_file = s:toml_dir . '/dein_ddu.toml'
+let s:lazy_file = s:toml_dir . '/lazy.toml'
+let s:ddu_file = s:toml_dir . '/ddu.toml'
+let s:ddc_file = s:toml_dir . '/ddc.toml'
 let s:theme_file = s:toml_dir . '/theme.toml'
 let s:syntax_file = s:toml_dir . '/syntax.toml'
 
@@ -61,6 +62,7 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:syntax_file, {'lazy': 0})
   call dein#load_toml(s:lazy_file, {'lazy': 1})
   call dein#load_toml(s:ddu_file, {'lazy': 1})
+  call dein#load_toml(s:ddc_file, {'lazy': 1})
   call dein#end()
   call dein#save_state()
 endif

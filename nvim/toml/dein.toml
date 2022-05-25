@@ -345,6 +345,7 @@ repo = 'Shougo/deol.nvim'
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
+if = '0'
 # merge = 0
 # on_i = 1
 rev = 'release'
@@ -587,10 +588,28 @@ EOF
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
-repo = 'Chiel92/vim-autoformat'
+repo = 'prabirshrestha/vim-lsp'
+depends = ['vim-lsp-settings']
 # hook_add {{{
 hook_add = '''
-let g:formatdef_dfmt = '"dub run -q dfmt -- -t space --indent_size 2 --brace_style otbs"'
-let g:formataters_d = ['dfmt']
+function! s:on_lsp_buffer_enabled() abort
+  setlocal signcolumn=yes
+
+  nmap <silent> <Leader>rn <Plug>(lsp-rename)
+  nmap <silent> gd <Plug>(lsp-definition)
+  nmap <silent> gy <Plug>(lsp-type-definition)
+  nmap <silent> gi <Plug>(lsp-implementation)
+  nmap <silent> gr <Plug>(lsp-references)
+
+  nmap <silent> F <Cmd>LspDocumentFormat<CR>
+endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 '''
 # }}}
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'

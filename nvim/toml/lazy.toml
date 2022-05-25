@@ -198,10 +198,6 @@ repo = 'tpope/vim-surround'
 on_i = 1
 
 [[plugins]]
-repo = 'kurokoji/neosnippet-snippets'
-on_i = 1
-
-[[plugins]]
 repo = 'vim-denops/denops.vim'
 on_event = 'CursorHold'
 
