@@ -1,10 +1,8 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
-# hook_add {{{
-hook_add = '''
-command DeinUpdate call dein#update()
-'''
-# }}}
+
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
