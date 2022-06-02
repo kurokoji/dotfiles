@@ -1,8 +1,10 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
-
-[[plugins]]
-repo = 'wsdjeg/dein-ui.vim'
+# hook_add {{{
+hook_add = '''
+command DeinUpdate call dein#update()
+'''
+# }}}
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -291,15 +293,6 @@ endfunction
 # }}}
 
 [[plugins]]
-repo = 'Yggdroot/indentLine'
-if = '0'
-# hook_add {{{
-hook_add = '''
-let g:indentLine_color_term = 239
-'''
-# }}}
-
-[[plugins]]
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
@@ -340,9 +333,6 @@ hook_add = '''
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'denite', 'defx', 'help']
 '''
 # }}}
-
-[[plugins]]
-repo = 'Shougo/deol.nvim'
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -525,12 +515,6 @@ vnoremap <silent> <C-y> "+Y
 # }}}
 
 [[plugins]]
-repo = 'skanehira/preview-markdown.vim'
-
-[[plugins]]
-repo = 'honza/vim-snippets'
-
-[[plugins]]
 repo = 'tyru/open-browser.vim'
 
 [[plugins]]
@@ -587,45 +571,3 @@ EOF
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
-
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-depends = ['vim-lsp-settings']
-# hook_add {{{
-hook_add = '''
-if executable('bq-language-server')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'bq-language-server',
-        \ 'cmd': {server_info->['bq-language-server', '--stdio']},
-        \ 'config': {
-        \   "bqExtensionVSCode": {
-        \     "diagnostic": {
-        \       "forVSCode": v:false,
-        \     }
-        \   }
-        \ },
-        \ 'allowlist': ['sql', 'bigquery'],
-        \ })
-endif
-
-function! s:on_lsp_buffer_enabled() abort
-  setlocal signcolumn=yes
-
-  nmap <silent> <Leader>rn <Plug>(lsp-rename)
-  nmap <silent> gd <Plug>(lsp-definition)
-  nmap <silent> gy <Plug>(lsp-type-definition)
-  nmap <silent> gi <Plug>(lsp-implementation)
-  nmap <silent> gr <Plug>(lsp-references)
-
-  nmap <silent> F <Cmd>LspDocumentFormat<CR>
-endfunction
-
-augroup lsp_install
-  au!
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-'''
-# }}}
-
-[[plugins]]
-repo = 'mattn/vim-lsp-settings'
