@@ -292,6 +292,7 @@ endfunction
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
+if = '0'
 # hook_add {{{
 hook_add = '''
 let g:indentLine_color_term = 239
@@ -592,6 +593,21 @@ repo = 'prabirshrestha/vim-lsp'
 depends = ['vim-lsp-settings']
 # hook_add {{{
 hook_add = '''
+if executable('bq-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'bq-language-server',
+        \ 'cmd': {server_info->['bq-language-server', '--stdio']},
+        \ 'config': {
+        \   "bqExtensionVSCode": {
+        \     "diagnostic": {
+        \       "forVSCode": v:false,
+        \     }
+        \   }
+        \ },
+        \ 'allowlist': ['sql', 'bigquery'],
+        \ })
+endif
+
 function! s:on_lsp_buffer_enabled() abort
   setlocal signcolumn=yes
 

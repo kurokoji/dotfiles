@@ -221,3 +221,16 @@ require'nvim-treesitter.configs'.setup {
 EOF
 '''
 # }}}
+
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+if = 'has("nvim")'
+on_event = 'BufRead'
+hook_source = '''
+lua <<EOF
+require('indent_blankline').setup {
+  show_end_of_line = true,
+  space_char_blankline = ' ',
+}
+EOF
+'''
