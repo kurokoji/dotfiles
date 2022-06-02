@@ -3,71 +3,12 @@ uname | read os_name
 if [ "$os_name" = "Darwin" ]
   eval (/opt/homebrew/bin/brew shellenv)
 
-  set -x SDKROOT /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk $SDKROOT
-
-  #  set -x PATH $PYENV_ROOT/shims $PATH
-  set -x PATH /usr/local/opt/llvm/bin $PATH
-  set -x PATH /usr/local/opt/go/libexec/bin $PATH
-  set -x PATH /Applications/MEGAcmd.app/Contents/MacOS $PATH
-  set -x PATH $HOME/.cpan $PATH
-  set -x PATH $HOME/.local/bin/bin $PATH
-  set -x PATH $HOME/.local/bin $PATH
-  set -x PATH /usr/local/sbin $PATH
-  set -x PATH $HOME/.bin/ $PATH
-  set -x PATH $HOME/.anyenv/bin $PATH
-  set -x PATH /usr/local/texlive/2019/bin/x86_64-darwin $PATH
-  set -x PATH $HOME/Library/Android/sdk/platform-tools $PATH
-
-  set -x LDFLAGS -L/usr/local/opt/llvm/lib $LDFLAGS
-  set -x LDFLAGS -L/usr/local/opt/readline/lib $LDFLAGS
-  set -x LDFLAGS -L/usr/local/opt/openssl/lib $LDFLAGS
-
-  set -x CFLAGS -I/usr/local/opt/openssl/include $CFLAGS
-
-  set -x CPPFLAGS -I/usr/local/opt/llvm/include $CPPFLAGS
-  set -x CPPFLAGS -I/usr/local/opt/zlib/include $CPPFLAGS
-  set -x CPPFLAGS -I/usr/local/opt/openblas/include $CPPFLAGS
-  set -x CPPFLAGS -I/Users/nazuna/.local/include/rpc $CPPFLAGS
-  set -x CPPFLAGS -I/usr/local/opt/openssl/include $CPPFLAGS
-  set -x CPPFLAGS -I/usr/local/opt/readline/include $CPPFLAGS
-
-  set -x PKG_CONFIG_PATH /usr/local/opt/zlib/lib/pkgconfig $PKG_CONFIG_PATH
-  set -x PKG_CONFIG_PATH /usr/local/opt/openblas/lib/pkgconfig $PKG_CONFIG_PATH
-  set -x PKG_CONFIG_PATH $HOME/.local/lib/pkgconfig $PKG_CONFIG_PATH
-  set -x PKG_CONFIG_PATH /opt/X11/lib/pkgconfig $PKG_CONFIG_PATH
-
-  set -x MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
-  set -x MANPATH /usr/local/texlive/2019/texmf-dist/doc/man $MANPATH
-
-  set -x INFOPATH /usr/local/texlive/2019/texmf-dist/doc/info $INFOPATH
-
-  set -x cc gcc-8
-
-
 else if [ "$os_name" = "Linux" ]
-  set -x PATH $HOME/.anyenv/bin $PATH
-  set -x PATH $HOME/.local/bin $PATH
-  set -x PATH $HOME/.bin $PATH
-
-  set -x PATH $HOME/.cargo/bin $PATH
-
   if [ (uname -r | grep 'microsoft') ]
     set -x WSL_HOST (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
     set -x ADB_SERVER_SOCKET tcp:$WSL_HOST:5037
     set -x DISPLAY $WSL_HOST:0.0
   end
-
-  # set -x PATH $HOME/caramel/bin $PATH
-  # set -x CARAMEL_STDLIB_PATH $HOME/caramel/lib/caramel/stdlib $CARAMEL_STDLIB_PATH
-  # set -x ERL_LIBS $HOME/caramel/lib/caramel/stdlib $ERL_LIBS
-  # set -x GDK_SCALE 0.5
-  # set -x GDK_DPI_SCALE 2
-  # set -x LIBGL_ALWAYS_INDIRECT 1
-
-  # set -x CUDA_HOME /usr/local/cuda-10.1
-  # set -x LD_LIBRARY_PATH $CUDA_HOME/lib64 $LD_LIBRARY_PATH
-  # set -x PATH $CUDA_HOME/bin $PATH
-  # set -x PATH $PATH /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin
 
   # set -x DefaultImModule fcitx
   # set -x GTK_IM_MODULE fcitx
@@ -80,6 +21,12 @@ end
 
 
 # set -x fish_ambiguous_width 2
+
+set -x PATH $HOME/.local/bin $PATH
+set -x PATH $HOME/.bin $PATH
+set -x PATH $HOME/.cargo/bin $PATH
+set -x PATH $HOME/.deno/bin $PATH
+
 
 # }}}
 # function {{{
@@ -97,11 +44,10 @@ end
 
 # }}}
 # source {{{
-source $HOME/.config/fish/switch_proxy.fish
 source $HOME/.asdf/asdf.fish
 
 if [ "$os_name" = "Darwin" ]
-  source ~/.iterm2_shell_integration.(basename $SHELL)
+  # source ~/.iterm2_shell_integration.(basename $SHELL)
 else if [ "$os_name" = "Linux" ]
 end
 
