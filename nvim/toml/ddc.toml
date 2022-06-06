@@ -9,7 +9,7 @@ hook_add = '''
 # hook_source {{{
 hook_source = '''
 call ddc#custom#patch_global({
-      \   'sources': ['around', 'vim-lsp', 'neosnippet', 'file'],
+      \   'sources': ['neosnippet', 'vim-lsp', 'around', 'file'],
       \   'sourceOptions': {
       \     '_': {
       \       'matchers': ['matcher_head'],
@@ -61,49 +61,6 @@ on_source = 'ddc.vim'
 depends = ['vim-lsp']
 
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-on_func = 'lsp#enable'
-# hook_add {{{
-hook_add = '''
-if executable('bq-language-server')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'bq-language-server',
-        \ 'cmd': {server_info->['bq-language-server', '--stdio']},
-        \ 'config': {
-        \   "bqExtensionVSCode": {
-        \     "diagnostic": {
-        \       "forVSCode": v:false,
-        \     }
-        \   }
-        \ },
-        \ 'allowlist': ['sql', 'bigquery'],
-        \ })
-endif
-
-function! s:on_lsp_buffer_enabled() abort
-  setlocal signcolumn=yes
-
-  nmap <silent> <Leader>rn <Plug>(lsp-rename)
-  nmap <silent> gd <Plug>(lsp-definition)
-  nmap <silent> gy <Plug>(lsp-type-definition)
-  nmap <silent> gi <Plug>(lsp-implementation)
-  nmap <silent> gr <Plug>(lsp-references)
-
-  nmap <silent> F <Cmd>LspDocumentFormat<CR>
-endfunction
-
-augroup lsp_install
-  au!
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-'''
-# }}}
-
-[[plugins]]
-repo = 'mattn/vim-lsp-settings'
-on_source = 'vim-lsp'
-
-[[plugins]]
 repo = 'Shougo/pum.vim'
 
 [[plugins]]
@@ -125,3 +82,14 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 [[plugins]]
 repo = 'kurokoji/neosnippet-snippets'
 
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = ['vim', 'toml', 'markdown']
+depends = 'ddc.vim'
+# hook_source {{{
+hook_source = '''
+call ddc#custom#patch_filetype(
+      \ ['vim'], 'sources', ['neosnippet', 'necovim', 'around', 'file']
+      \ )
+'''
+# }}}

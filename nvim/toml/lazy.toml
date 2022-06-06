@@ -10,11 +10,6 @@ command DeolFloating :Deol -split=floating
 # }}}
 
 [[plugins]]
-repo = 'Shougo/neco-vim'
-on_i = 1
-on_ft = ['vim']
-
-[[plugins]]
 repo = 'previm/previm'
 on_ft = ['markdown']
 # hook_add {{{
