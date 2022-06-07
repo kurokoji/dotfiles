@@ -91,6 +91,7 @@ set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 if has('nvim')
   set wildoptions=pum
   set pumblend=30
+"  set winblend=40
 endif
 
 if has('win32') || has ('win64')
@@ -131,8 +132,11 @@ hi! SignColumn ctermbg=NONE guibg=NONE
 hi! VertSplit ctermbg=NONE guibg=NONE
 hi! Folded ctermbg=NONE guibg=NONE
 hi! EndOfBuffer ctermbg=NONE guibg=NONE
-hi! CursorLine ctermbg=NONE guibg=NONE
+"hi! CursorLine ctermbg=NONE guibg=NONE
 hi! SpecialKey ctermbg=NONE guibg=NONE
+
+" FloatingWindowの透過
+hi! NormalFloat ctermbg=NONE guibg=NONE gui=NONE
 
 " 新しいウィンドウを下に開く
 set splitbelow
