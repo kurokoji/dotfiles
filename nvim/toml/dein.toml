@@ -28,6 +28,9 @@ let g:webdevicons_enable_denite = 1
 # }}}
 
 [[plugins]]
+repo = 'halkn/lightline-lsp'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
@@ -36,7 +39,8 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
-      \     ['filename', 'cocstatus', 'fugitive', 'gitgutter'],
+      \     ['filename', 'fugitive', 'gitgutter'],
+      \     ['lsp_errors', 'lsp_warnings'],
       \   ],
       \   'right': [
       \     ['lineinfo', 'syntastic'],
@@ -84,7 +88,9 @@ let g:lightline = {
       \   'charcode': 'MyCharCode',
       \   'gitgutter': 'MyGitGutter',
       \   'ale': 'MyGetALEStatus',
-      \   'cocstatus': 'MyCocStatus'
+      \   'cocstatus': 'MyCocStatus',
+      \   'lsp_errors': 'lightline_lsp#errors',
+      \   'lsp_warnings': 'lightilne_lsp#warnings'
       \ },
       \ }
 
@@ -540,7 +546,10 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'filetype', 'filename'},
-    lualine_c = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'branch', 'diff', {
+      'diagnostics',
+      sources = { 'vim_lsp' }
+    }},
     lualine_x = {'encoding', 'fileformat'},
     lualine_y = {'location'},
     lualine_z = {'progress'}
@@ -575,6 +584,9 @@ repo = 'prabirshrestha/vim-lsp'
 depends = ['vim-lsp-settings']
 # hook_add {{{
 hook_add = '''
+let g:lsp_diagnostics_signs_warning = { 'text': "\uf525" }
+let g:lsp_diagnostics_signs_error = { 'text': "\uf05e" }
+
 if executable('bq-language-server')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'bq-language-server',
