@@ -3,9 +3,31 @@ repo = 'Shougo/deol.nvim'
 on_cmd = 'Deol'
 # hook_add {{{
 hook_add = '''
-command DeolSplit :Deol -split
-command DeolVertical :Deol -split=vertical
-command DeolFloating :Deol -split=floating
+
+function s:floating_deol() abort
+  let width_per = 0.8
+  let height_per = 0.6
+
+  let winwidth = float2nr(&columns * width_per)
+  let wincol = float2nr((&columns - (&columns * width_per)) / 2)
+  let winheight = float2nr(&lines * height_per)
+  let winrow = float2nr((&lines - (&lines * height_per)) / 2)
+
+  execute 'Deol -toggle -split=floating -winwidth=' . winwidth . ' -winheight=' . winheight . ' -wincol=' . wincol . '-winrow' . winrow
+endfunction
+
+function! s:open_deol() abort
+  let winheight = &lines / 2
+  execute 'Deol -split=horizontal -toggle -winheight=' . winheight
+endfunction
+
+command DeolSplit :Deol -split -toggle
+command DeolVertical :Deol -split=vertical -toggle
+command DeolFloating :call <SID>floating_deol()
+
+nnoremap <Leader>s <Cmd>DeolSplit<CR>
+nnoremap <Leader>v <Cmd>DeolVertical<CR>
+nnoremap <Leader>t <Cmd>DeolFloating<CR>
 '''
 # }}}
 

@@ -594,12 +594,13 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal signcolumn=yes
 
   nmap <silent> <Leader>rn <Plug>(lsp-rename)
+  nmap <silent> <Leader>h <Plug>(lsp-hover)
   nmap <silent> gd <Plug>(lsp-definition)
   nmap <silent> gy <Plug>(lsp-type-definition)
   nmap <silent> gi <Plug>(lsp-implementation)
   nmap <silent> gr <Plug>(lsp-references)
-
-  nmap <silent> F <Cmd>LspDocumentFormat<CR>
+  nmap <silent> F <Plug>(lsp-document-format)
+  vmap <silent> F <Plug>(lsp-document-range-format)
 endfunction
 
 augroup lsp_install
