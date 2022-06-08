@@ -132,7 +132,7 @@ hi! SignColumn ctermbg=NONE guibg=NONE
 " hi! VertSplit ctermbg=NONE guibg=NONE
 hi! Folded ctermbg=NONE guibg=NONE
 hi! EndOfBuffer ctermbg=NONE guibg=NONE
-"hi! CursorLine ctermbg=NONE guibg=NONE
+hi! CursorLine ctermbg=NONE guibg=NONE
 hi! SpecialKey ctermbg=NONE guibg=NONE
 
 " FloatingWindowの透過

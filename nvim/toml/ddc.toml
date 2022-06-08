@@ -28,9 +28,15 @@ call ddc#custom#patch_global({
       \       'isVolatile': v:true,
       \       'forceCompletionPattern': '\S/\S*',
       \     },
+      \     'skkeleton': {
+      \       'mark': 'skkeleton',
+      \       'matchers': ['skkeleton'],
+      \       'sorters': [],
+      \       'minAutoCompleteLength': 2,
+      \     },
       \     'neosnippet': {
       \       'mark': 'NSnip'
-      \     }
+      \     },
       \   },
       \   'sourceParams': {
       \     'around': {
@@ -91,5 +97,42 @@ hook_source = '''
 call ddc#custom#patch_filetype(
       \ ['vim'], 'sources', ['neosnippet', 'necovim', 'around', 'file']
       \ )
+'''
+# }}}
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_source = 'ddc.vim'
+# hook_add {{{
+hook_add = '''
+function! s:skkeleton_init() abort
+  call skkeleton#config({
+        \ 'eggLikeNewline': v:true,
+        \ 'globalJisyo': '~/.skk/SKK-JISYO.L',
+        \ })
+endfunction
+
+function! s:skkeleton_pre() abort
+  " Overwrite sources
+  let s:prev_buffer_config = ddc#custom#get_buffer()
+  call ddc#custom#patch_buffer('sources', ['skkeleton'])
+endfunction
+
+function! s:skkeleton_post() abort
+  " Restore sources
+  call ddc#custom#set_buffer(s:prev_buffer_config)
+endfunction
+
+
+autocmd User skkeleton-initialize-pre call s:skkeleton_init()
+autocmd User skkeleton-enable-pre call s:skkeleton_pre()
+autocmd User skkeleton-disable-pre call s:skkeleton_post()
+
+imap <C-j> <Plug>(skkeleton-toggle)
+cmap <C-j> <Plug>(skkeleton-toggle)
+'''
+# }}}
+# hook_source {{{
+hook_source = '''
 '''
 # }}}

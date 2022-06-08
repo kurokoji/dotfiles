@@ -31,6 +31,9 @@ let g:webdevicons_enable_denite = 1
 repo = 'halkn/lightline-lsp'
 
 [[plugins]]
+repo = 'yasunori-kirin0418/lightline_skk.vim'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 # hook_add {{{
 hook_add = '''
@@ -38,7 +41,7 @@ let g:lightline = {
       \ 'colorscheme': 'iceberg',
       \ 'active': {
       \   'left': [
-      \     ['mode', 'paste'],
+      \     ['mode', 'paste', 'skk_mode'],
       \     ['filename', 'fugitive', 'gitgutter'],
       \     ['lsp_errors', 'lsp_warnings'],
       \   ],
@@ -90,7 +93,8 @@ let g:lightline = {
       \   'ale': 'MyGetALEStatus',
       \   'cocstatus': 'MyCocStatus',
       \   'lsp_errors': 'lightline_lsp#errors',
-      \   'lsp_warnings': 'lightilne_lsp#warnings'
+      \   'lsp_warnings': 'lightilne_lsp#warnings',
+      \   'skk_mode': 'g:lightline_skk#mode',
       \ },
       \ }
 
@@ -339,116 +343,6 @@ let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'denite', 'def
 # }}}
 
 [[plugins]]
-repo = 'neoclide/coc.nvim'
-if = '0'
-# merge = 0
-# on_i = 1
-rev = 'release'
-# hook_add {{{
-hook_add = '''
-
-let g:coc_global_extensions=['coc-powershell', '@yaegassy/coc-pylsp', 'coc-json', 'coc-go', 'coc-dlang', 'coc-clangd', 'coc-explorer', 'coc-snippets', 'coc-tsserver']
-
-set updatetime=100
-set signcolumn=yes
-
-" coc-snippets {{{
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-j>'
-
-inoremap <silent><expr> <C-k>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<c-k>'
-" }}}
-" coc-explorer {{{
-
-let g:coc_explorer_global_presets = {
-\   '.vim': {
-\     'root-uri': '~/.vim',
-\   },
-\   'cocConfig': {
-\      'root-uri': '~/.config/coc',
-\   },
-\   'tab': {
-\     'position': 'tab',
-\     'quit-on-open': v:true,
-\   },
-\   'tab:$': {
-\     'position': 'tab:$',
-\     'quit-on-open': v:true,
-\   },
-\   'floating': {
-\     'position': 'floating',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingTop': {
-\     'position': 'floating',
-\     'floating-position': 'center-top',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingLeftside': {
-\     'position': 'floating',
-\     'floating-position': 'left-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingRightside': {
-\     'position': 'floating',
-\     'floating-position': 'right-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'simplify': {
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   },
-\   'buffer': {
-\     'sources': [{'name': 'buffer', 'expand': v:true}]
-\   },
-\ }
-nmap <silent> <Leader>e <Cmd>CocCommand explorer --toggle --preset floating<CR>
-
-" }}}
-
-function! s:show_docmentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-nmap <silent> <Leader>rn <Plug>(coc-rename)
-
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" "nnoremap <silent> K :call CocAction('doHover')<CR>
-nnoremap <silent> K :call <SID>show_docmentation()<CR>
-nnoremap <silent> F :call CocAction('format')<CR>
-
-
-
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-'''
-# }}}
-
-[[plugins]]
 repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
@@ -508,6 +402,7 @@ nnoremap <silent> <C-b> <Cmd>QuickRun<CR> i
 
 [[plugins]]
 repo = 'statiolake/vim-quickrun-runner-nvimterm'
+if = 'has("nvim")'
 
 # vim-fakeclipはxclip無いとneovimが死ぬ
 [[plugins]]
@@ -523,9 +418,11 @@ repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
