@@ -607,6 +607,7 @@ function! s:on_lsp_buffer_enabled() abort
 
   nmap <silent> <Leader>rn <Plug>(lsp-rename)
   nmap <silent> <Leader>h <Plug>(lsp-hover)
+  nmap <silent> <Leader>ca <Plug>(lsp-code-action)
   nmap <silent> gd <Plug>(lsp-definition)
   nmap <silent> gy <Plug>(lsp-type-definition)
   nmap <silent> gi <Plug>(lsp-implementation)
