@@ -3,6 +3,7 @@ repo = 'Shougo/deol.nvim'
 on_cmd = 'Deol'
 # hook_add {{{
 hook_add = '''
+let g:deol#enable_ddc_completion = v:true
 
 function s:floating_deol() abort
   let width_per = 0.8
@@ -28,6 +29,8 @@ command DeolFloating :call <SID>floating_deol()
 nnoremap <Leader>s <Cmd>DeolSplit<CR>
 nnoremap <Leader>v <Cmd>DeolVertical<CR>
 nnoremap <Leader>t <Cmd>DeolFloating<CR>
+
+tnoremap <C-j> <Plug>(skkeleton-toggle)
 '''
 # }}}
 
