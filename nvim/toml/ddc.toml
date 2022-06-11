@@ -4,88 +4,7 @@ depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
 on_event = ['InsertEnter', 'CursorHold']
 # hook_add {{{
 hook_add = '''
-'''
-# }}}
-# hook_source {{{
-hook_source = '''
-call ddc#custom#patch_global({
-      \   'sources': ['neosnippet', 'vim-lsp', 'around', 'file'],
-      \   'sourceOptions': {
-      \     '_': {
-      \       'matchers': ['matcher_head'],
-      \       'sorters': ['sorter_rank']
-      \     },
-      \     'around': {
-      \       'mark': 'A',
-      \     },
-      \     'vim-lsp': {
-      \       'matchers': ['matcher_head'],
-      \       'mark': 'LSP',
-      \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
-      \     },
-      \     'file': {
-      \       'mark': 'F',
-      \       'isVolatile': v:true,
-      \       'forceCompletionPattern': '\S/\S*',
-      \     },
-      \     'skkeleton': {
-      \       'mark': 'skkeleton',
-      \       'matchers': ['skkeleton'],
-      \       'sorters': [],
-      \       'minAutoCompleteLength': 2,
-      \     },
-      \     'neosnippet': {
-      \       'mark': 'NSnip'
-      \     },
-      \     'shell-histroy': {
-      \       'mark': 'shell'
-      \     },
-      \   },
-      \   'sourceParams': {
-      \     'around': {
-      \       'maxSize': 500,
-      \     }
-      \   }
-      \ })
-
-
-call ddc#custom#patch_filetype(['FineCmdlinePrompt'], {
-    \ 'keywordPattern': '[0-9a-zA-Z_:#]*',
-    \ 'sources': ['cmdline-history', 'cmdline', 'around'],
-    \ 'specialBufferCompletion': v:true,
-    \ })
-
-call ddc#custom#patch_global('autoCompleteEvents', [
-    \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
-    \ 'CmdlineEnter', 'CmdlineChanged',
-    \ ])
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
-
-" For insert mode completion
-inoremap <silent><expr> <C-n>
-      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-      \ '<C-n>' : ddc#manual_complete()
-inoremap <silent><expr> <C-p>
-      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' :
-      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-      \ '<C-p>' : ddc#manual_complete()
-" inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-" inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-inoremap <silent><expr> <C-l>   ddc#map#extend()
-inoremap <silent><expr> <C-x><C-f> ddc#manual_complete('path')
-
-"call ddc#custom#patch_filetype(['deol'], {
-"      \   'keywordPattern': '[0-9a-zA-Z_./-]',
-"      \   'sources': ['skkeleton', 'shell-history'],
-"      \ })
-
-call ddc#enable()
-'''
-# }}}
-# hook_add {{{
-hook_add = '''
-nnoremap :       <Cmd>call CommandlinePre()<CR>:
+nnoremap : <Cmd>call CommandlinePre()<CR>:
 function! CommandlinePre() abort
   cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1)<CR>
   cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
@@ -120,6 +39,49 @@ function! CommandlinePost() abort
 endfunction
 '''
 # }}}
+# hook_source {{{
+hook_source = '''
+call ddc#custom#patch_global({
+      \   'sources': ['neosnippet', 'vim-lsp', 'around', 'file'],
+      \   'sourceOptions': {
+      \     '_': {
+      \       'matchers': ['matcher_head'],
+      \       'sorters': ['sorter_rank']
+      \     },
+      \     'around': {
+      \       'mark': 'A',
+      \     },
+      \     'vim-lsp': {
+      \       'matchers': ['matcher_head'],
+      \       'mark': 'LSP',
+      \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+      \     },
+      \     'file': {
+      \       'mark': 'F',
+      \       'isVolatile': v:true,
+      \       'forceCompletionPattern': '\S/\S*',
+      \     },
+      \     'skkeleton': {
+      \       'mark': 'Skkeleton',
+      \       'matchers': ['skkeleton'],
+      \       'sorters': [],
+      \       'minAutoCompleteLength': 2,
+      \     },
+      \     'neosnippet': {
+      \       'mark': 'NSnip'
+      \     },
+      \   },
+      \   'sourceParams': {
+      \     'around': {
+      \       'maxSize': 500,
+      \     }
+      \   }
+      \ })
+
+
+call ddc#enable()
+'''
+# }}}
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
@@ -140,6 +102,13 @@ depends = ['vim-lsp']
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
+# hook_source {{{
+hook_source = '''
+call pum#set_option('max_width', 80)
+call pum#set_option('padding', v:true)
+" call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
+'''
+# }}}
 
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
@@ -166,9 +135,6 @@ on_ft = ['vim', 'toml', 'markdown']
 depends = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
-call ddc#custom#patch_filetype(
-      \ ['vim'], 'sources', ['neosnippet', 'necovim', 'around', 'file']
-      \ )
 '''
 # }}}
 
