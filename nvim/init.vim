@@ -105,7 +105,8 @@ set number
 set cursorline
 set list
 " set ambiwidth=double
-set listchars=tab:>-,eol:¬,nbsp:%,nbsp:⍽
+" set listchars=tab:>-,eol:¬,nbsp:%,nbsp:⍽
+set listchars=tab:>-,eol:↵,nbsp:%,nbsp:⍽
 set showmatch
 set matchtime=1
 set matchpairs& matchpairs+=<:>

@@ -17,13 +17,10 @@ repo = 'roxma/vim-hug-neovim-rpc'
 if = "!has('nvim')"
 
 [[plugins]]
-repo = 'kurokoji/vim-devicons'
+repo = 'ryanoasis/vim-devicons'
 # hook_add {{{
 hook_add = """
-let g:WebDevIconsOS = 'Ubuntu'
-let g:webdevicons_enable = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:webdevicons_enable_denite = 1
+let g:DevIconsEnableDistro = v:false
 """
 # }}}
 
@@ -82,6 +79,7 @@ let g:lightline = {
       \   'modified': 'MyModified',
       \   'readonly': 'MyReadonly',
       \   'fugitive': 'MyFugitive',
+      \   'fileicon': 'WebDevIconsGetFileTypeSymbol',
       \   'filename': 'MyFilename',
       \   'fileformat': 'MyFileformat',
       \   'filetype': 'MyFiletype',
@@ -90,7 +88,6 @@ let g:lightline = {
       \   'syntastic': 'SyntasticStatuslineFlag',
       \   'charcode': 'MyCharCode',
       \   'gitgutter': 'MyGitGutter',
-      \   'ale': 'MyGetALEStatus',
       \   'cocstatus': 'MyCocStatus',
       \   'lsp_errors': 'lightline_lsp#errors',
       \   'lsp_warnings': 'lightilne_lsp#warnings',
@@ -146,54 +143,12 @@ function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
-function! MyGetALEStatus()
-  if !has('nvim') || winwidth(0) <= 60
-    return ""
-  endif
-
-
-  let w_c = LC_warning_count()
-  let e_c = LC_error_count()
-
-  if w_c == '' && e_c == ''
-    return "\uf00c" . " OK"
-  elseif w_c == ''
-    return e_c
-  elseif e_c == ''
-    return w_c
-  else
-    return printf("%s %s", w_c, e_c)
-  endif
-
-  "return ALEGetStatusLine()
-endfunction
-
-function! LC_warning_count()
-  let current_buf_number = bufnr('%')
-  let qflist = getqflist()
-  let current_buf_diagnostics = filter(qflist, {index, dict -> dict['bufnr'] == current_buf_number && dict['type'] == 'W'})
-  let count = len(current_buf_diagnostics)
-  return count > 0 && g:LanguageClient_loaded ? "\uf071 " . count : ''
-endfunction
-
-function! LC_error_count()
-  let current_buf_number = bufnr('%')
-  let qflist = getqflist()
-  let current_buf_diagnostics = filter(qflist, {index, dict -> dict['bufnr'] == current_buf_number && dict['type'] == 'E'})
-  let count = len(current_buf_diagnostics)
-  return count > 0 && g:LanguageClient_loaded ? "\uf05e " . count : ''
-endfunction
-
 function! MyReadonly()
   return &ft !~? 'help\|vimfiler\|gundo' && &ro ? "\ue0a2" : ''
 endfunction
 
 function! MyFilename()
   if winwidth(0) <= 45
-    return ""
-  endif
-
-  if &ft == 'nerdtree'
     return ""
   endif
 
@@ -350,7 +305,7 @@ repo = 'RRethy/vim-hexokinase'
 build = 'make hexokinase'
 # hook_add {{{
 hook_add = '''
-let g:Hexokinase_highlighters = ['virtual']
+let g:Hexokinase_highlighters = ['backgroundfull']
 '''
 # }}}
 
