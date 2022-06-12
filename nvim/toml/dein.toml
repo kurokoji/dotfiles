@@ -39,13 +39,13 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste', 'skk_mode'],
-      \     ['filename', 'fugitive', 'gitgutter'],
+      \     ['filetype', 'filename', 'fugitive', 'gitgutter'],
       \     ['lsp_errors', 'lsp_warnings'],
       \   ],
       \   'right': [
-      \     ['lineinfo', 'syntastic'],
-      \     ['fileformat'],
-      \     ['charcode', 'fileencoding'],
+      \     ['percent'],
+      \     ['lineinfo'],
+      \     ['charcode', 'fileencoding', 'fileformaticon'],
       \   ]
       \ },
       \ 'inactive': {
@@ -53,34 +53,39 @@ let g:lightline = {
       \     ['filename']
       \   ],
       \   'right':[
-      \     ['fileformat'],
+      \     ['fileformaticon'],
       \     ['charcode', 'fileencoding'],
       \   ]
       \ },
       \ 'tabline': {
       \   'left': [
-      \     ['tabs']
+      \     ['tabs'],
       \   ],
       \   'right': [
-      \     ['close']
+      \     ['duck_icon']
       \   ]
       \ },
       \ 'tab': {
       \   'active': ['tabnum', 'filename', 'modified'],
-      \   'inactive': ['tabnum', 'filename', 'modified']
+      \   'inactive': ['tabnum']
       \ },
       \ 'tab_component_function': {
-      \   'filename': 'MyTabFileName',
       \   'modified': 'lightline#tab#modified',
       \   'readonly': 'lightline#tab#readonly',
       \   'tabnum': 'lightline#tab#tabnum',
+      \   'fileicon': 'WebDevIconsGetFileTypeSymbol'
+      \ },
+      \ 'component': {
+      \   'lambda_icon': 'ﬦ',
+      \   'duck_icon': '',
+      \   'vim_icon': '',
       \ },
       \ 'component_function': {
       \   'modified': 'MyModified',
       \   'readonly': 'MyReadonly',
       \   'fugitive': 'MyFugitive',
       \   'fileicon': 'WebDevIconsGetFileTypeSymbol',
-      \   'filename': 'MyFilename',
+      \   'fileformaticon': 'WebDevIconsGetFileFormatSymbol',
       \   'fileformat': 'MyFileformat',
       \   'filetype': 'MyFiletype',
       \   'fileencoding': 'MyFileencoding',
@@ -93,10 +98,10 @@ let g:lightline = {
       \   'lsp_warnings': 'lightilne_lsp#warnings',
       \   'skk_mode': 'g:lightline_skk#mode',
       \ },
+      \ 'separator': {'left': '', 'right': ''},
+      \ 'subseparator': {'left': '', 'right': ''}
       \ }
 
-" let g:lightline.component = { 'lineinfo': "\ue0a1 %3l:%3v \ue0a3" }
-let g:lightline.component = { 'lineinfo': '%{MyGetLineInfo()}' }
 
 function! s:trim(str)
   if exists('*trim')
@@ -181,7 +186,7 @@ function! MyFileformat()
 endfunction
 
 function! MyFiletype()
-  return winwidth(0) > 100 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  return winwidth(0) > 100 ? (strlen(&filetype) ?  WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
 endfunction
 
 function! MyFileencoding()
@@ -191,7 +196,7 @@ endfunction
 function! MyMode()
   return &ft == 'unite' ? 'Unite' :
         \ &ft == 'nerdtree' ? 'NERDTree' :
-        \ &ft == 'defx' ? 'Defx' :
+        \ &ft == 'ddu' ? 'Defx' :
         \ &ft == 'deol' ? 'Deol' :
         \ lightline#mode()
 endfunction
