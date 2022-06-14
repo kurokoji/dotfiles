@@ -3,6 +3,7 @@ local wezterm = require 'wezterm';
 local launch_menu = {}
 local default_prog = {}
 local environment_variables = {}
+local font_size = 0
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   table.insert(launch_menu, {
@@ -15,6 +16,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     args = {"powershell.exe", "-NoLogo"},
   })
 
+  font_size = 12.0
+
   default_prog = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"}
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
   table.insert(launch_menu, {
@@ -26,6 +29,7 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple 
     SHELL = "/opt/homebrew/bin/fish",
   }
 
+  font_size = 15.0
 --  default_prog = {"/opt/homebrew/bin/fish", "-l"}
 else
   table.insert(launch_menu, {
@@ -53,12 +57,12 @@ return {
   },
   window_frame = {
     font = wezterm.font({family="PlemolJP Console NF", weight="Bold", italic=true}),
-    font_size = 13.0,
+    font_size = font_size - 2.0,
     active_titlebar_bg = "#e8e9ec",
     inactive_titlebar_bg = "#e8e9ec",
   },
   font = wezterm.font("PlemolJP Console NF"),
-  font_size = 15.0,
+  font_size = font_size,
   color_scheme = "iceberg-light",
   -- colors {{{
   colors = {
