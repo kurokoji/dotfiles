@@ -2,6 +2,7 @@ local wezterm = require 'wezterm';
 
 local launch_menu = {}
 local default_prog = {}
+local environment_variables = {}
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   table.insert(launch_menu, {
@@ -15,6 +16,24 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   })
 
   default_prog = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"}
+elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
+  table.insert(launch_menu, {
+    label = "Fish",
+    args = {"/opt/homebrew/bin/fish", "-l"}
+  })
+
+  environment_variables = {
+    SHELL = "/opt/homebrew/bin/fish",
+  }
+
+--  default_prog = {"/opt/homebrew/bin/fish", "-l"}
+else
+  table.insert(launch_menu, {
+    label = "Fish",
+    args = {"/usr/bin/fish", "-l"}
+  })
+
+  default_prog = {"/usr/bin/fish", "-l"}
 end
 
 -- The filled in variant of the < symbol
@@ -25,6 +44,7 @@ local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
 return {
   default_prog = default_prog,
+  set_environment_variables = environment_variables,
   window_padding = {
     left = 0,
     right = 0,
@@ -32,12 +52,13 @@ return {
     bottom = 0,
   },
   window_frame = {
---    font = wezterm.font({family="Roboto", weight="Bold"}),
-    font_size = 10.0,
+    font = wezterm.font({family="PlemolJP Console NF", weight="Bold", italic=true}),
+    font_size = 13.0,
     active_titlebar_bg = "#e8e9ec",
     inactive_titlebar_bg = "#e8e9ec",
   },
   font = wezterm.font("PlemolJP Console NF"),
+  font_size = 15.0,
   color_scheme = "iceberg-light",
   -- colors {{{
   colors = {

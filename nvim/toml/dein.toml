@@ -84,6 +84,7 @@ let g:lightline = {
       \   'modified': 'MyModified',
       \   'readonly': 'MyReadonly',
       \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
       \   'fileicon': 'WebDevIconsGetFileTypeSymbol',
       \   'fileformaticon': 'WebDevIconsGetFileFormatSymbol',
       \   'fileformat': 'MyFileformat',
@@ -157,12 +158,7 @@ function! MyFilename()
     return ""
   endif
 
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
-        \ '' != expand('%:t') ? printf('[%s %s]', WebDevIconsGetFileTypeSymbol(), &ft) . ' ' . expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
+  return expand('%:t') != '' ? expand('%:t') : '[No Name]'
 endfunction
 
 function! MyFugitive()
@@ -186,7 +182,7 @@ function! MyFileformat()
 endfunction
 
 function! MyFiletype()
-  return winwidth(0) > 100 ? (strlen(&filetype) ?  WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
+  return winwidth(0) > 100 ? (strlen(&filetype) ?  WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : '') : ''
 endfunction
 
 function! MyFileencoding()
@@ -369,7 +365,7 @@ if = 'has("nvim")'
 repo = 'kurokoji/vim-fakeclip'
 # hook_add {{{
 hook_add = '''
-vnoremap <silent> <C-y> "+Y
+vnoremap <silent> <C-y> <Plug>(fakeclip-y)
 '''
 # }}}
 
