@@ -9,7 +9,7 @@ Set-PSReadLineOption -PredictionSource History
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias open explorer.exe
-Set-Alias ls exa
+Set-Alias ls "lsd"
 
 # }}}
 
@@ -27,7 +27,7 @@ function touch($file) {
 # }}}
 
 # PSfzf
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t'
-Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
-Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-$env:FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
+# Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t'
+# Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
+# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+# $env:FZF_DEFAULT_OPTS="--height 50% --layout=reverse"

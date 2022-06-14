@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm';
 
 local launch_menu = {}
+local default_prog = {}
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   table.insert(launch_menu, {
@@ -13,6 +14,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     args = {"powershell.exe", "-NoLogo"},
   })
 
+  default_prog = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"}
 end
 
 -- The filled in variant of the < symbol
@@ -22,7 +24,7 @@ local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
 local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
 
 return {
-  default_prog = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"},
+  default_prog = default_prog,
   window_padding = {
     left = 0,
     right = 0,
@@ -30,7 +32,7 @@ return {
     bottom = 0,
   },
   window_frame = {
-    font = wezterm.font({family="Roboto", weight="Bold"}),
+--    font = wezterm.font({family="Roboto", weight="Bold"}),
     font_size = 10.0,
     active_titlebar_bg = "#e8e9ec",
     inactive_titlebar_bg = "#e8e9ec",
@@ -111,4 +113,5 @@ return {
   keys = {
     {key="l", mods="ALT", action="ShowLauncher"},
   },
+  window_background_opacity = 0.95,
 }
