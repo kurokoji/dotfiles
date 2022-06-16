@@ -70,6 +70,7 @@ alias emacs=em
 
 if executable exa
   alias ls='exa --icons'
+  alias la='ls -a'
 end
 
 if executable rg
