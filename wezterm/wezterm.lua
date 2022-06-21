@@ -40,11 +40,18 @@ else
   default_prog = {"/usr/bin/fish", "-l"}
 end
 
--- The filled in variant of the < symbol
-local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+local keys = {
+  {key="l", mods="ALT", action="ShowLauncher"},
+  {key="t", mods="ALT", action="ShowTabNavigator"},
+}
 
--- The filled in variant of the > symbol
-local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
+for i = 1, 9 do
+  table.insert(keys, {
+    key=tostring(i),
+    mods="ALT",
+    action=wezterm.action{ActivateTab=i-1},
+  })
+end
 
 return {
   default_prog = default_prog,
@@ -56,7 +63,12 @@ return {
     bottom = 0,
   },
   window_frame = {
-    font = wezterm.font({family="PlemolJP Console NF", weight="Bold", italic=true}),
+    font = wezterm.font({
+      family="PlemolJP Console NF",
+      weight="Bold",
+      italic=false,
+      harfbuzz_features={"calt=0", "clig=0", "liga=0"}
+    }),
     font_size = font_size - 2.0,
     active_titlebar_bg = "#e8e9ec",
     inactive_titlebar_bg = "#e8e9ec",
@@ -76,7 +88,7 @@ return {
         -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
         -- label shown for this tab.
         -- The default is "Normal"
-        intensity = "Normal",
+        intensity = "Bold",
 
         -- Specify whether you want "None", "Single" or "Double" underline for
         -- label shown for this tab.
@@ -106,7 +118,6 @@ return {
       inactive_tab_hover = {
         bg_color = "#9c9fa7",
         fg_color = "#03071c",
-        italic = true,
 
         -- The same options that were listed under the `active_tab` section above
         -- can also be used for `inactive_tab_hover`.
@@ -114,7 +125,7 @@ return {
 
       -- The new tab button that let you create new tabs
       new_tab = {
-        bg_color = "#bcbfc7",
+        bg_color = "#e8e9ec",
         fg_color = "#13172c",
 
         -- The same options that were listed under the `active_tab` section above
@@ -126,17 +137,15 @@ return {
       new_tab_hover = {
         bg_color = "#9c9fa7",
         fg_color = "#03071c",
-        italic = true,
 
         -- The same options that were listed under the `active_tab` section above
         -- can also be used for `new_tab_hover`.
       }
-    }
+    },
   },
   -- }}}
   launch_menu = launch_menu,
-  keys = {
-    {key="l", mods="ALT", action="ShowLauncher"},
-  },
+  keys = keys,
   window_background_opacity = 0.95,
+  use_fancy_tab_bar = false,
 }
