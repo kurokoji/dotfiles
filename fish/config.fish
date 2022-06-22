@@ -2,6 +2,10 @@
 uname | read os_name
 if [ "$os_name" = "Darwin" ]
   eval (/opt/homebrew/bin/brew shellenv)
+  set -x PATH /opt/homebrew/opt/binutils/bin $PATH
+
+  set -x LDFLAGS "-L/opt/homebrew/opt/binutils/lib" $LDFLAGS
+  set -x CPPFLAGS "-I/opt/homebrew/opt/binutils/include" $CPPFLAGS
 
 else if [ "$os_name" = "Linux" ]
   if [ (uname -r | grep 'microsoft') ]

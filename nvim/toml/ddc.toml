@@ -9,7 +9,7 @@ hook_add = '''
 # hook_source {{{
 hook_source = '''
 call ddc#custom#patch_global({
-      \   'sources': ['neosnippet', 'vim-lsp', 'around', 'file'],
+      \   'sources': ['neosnippet', 'vim-lsp', 'around', 'tabnine', 'file'],
       \   'sourceOptions': {
       \     '_': {
       \       'matchers': ['matcher_head'],
@@ -36,6 +36,11 @@ call ddc#custom#patch_global({
       \     },
       \     'neosnippet': {
       \       'mark': 'NSnip'
+      \     },
+      \     'tabnine': {
+      \       'mark': 'TN',
+      \       'maxCandidates': 5,
+      \       'isVolatile': v:true,
       \     },
       \   },
       \   'sourceParams': {
@@ -148,4 +153,8 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-cmdline'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-tabnine'
 on_source = 'ddc.vim'
