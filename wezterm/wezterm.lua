@@ -16,6 +16,12 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     args = {"powershell.exe", "-NoLogo"},
   })
 
+  environment_variables = {
+    ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
+  }
+
+  default_prog = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"}
+
   font_size = 12.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
   table.insert(launch_menu, {
@@ -26,6 +32,8 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple 
   environment_variables = {
     SHELL = "/opt/homebrew/bin/fish",
   }
+
+  default_prog = {"/opt/homebrew/bin/fish", "-l"}
 
   font_size = 15.0
 --  default_prog = {"/opt/homebrew/bin/fish", "-l"}
@@ -50,6 +58,7 @@ for i = 1, 9 do
 end
 
 return {
+  default_prog = default_prog,
   set_environment_variables = environment_variables,
   window_padding = {
     left = 0,
@@ -62,7 +71,6 @@ return {
       family="PlemolJP Console NF",
       weight="Bold",
       italic=false,
-      harfbuzz_features={"calt=0", "clig=0", "liga=0"}
     }),
     font_size = font_size - 2.0,
     active_titlebar_bg = "#e8e9ec",

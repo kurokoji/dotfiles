@@ -157,4 +157,5 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
+if = '!has("win32")'
 on_source = 'ddc.vim'
