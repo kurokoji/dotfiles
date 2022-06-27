@@ -17,8 +17,6 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   })
 
   font_size = 12.0
-
-  default_prog = {"C:/Program Files/PowerShell/7/pwsh.exe", "-nologo"}
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
   table.insert(launch_menu, {
     label = "Fish",
@@ -36,8 +34,6 @@ else
     label = "Fish",
     args = {"/usr/bin/fish", "-l"}
   })
-
-  default_prog = {"/usr/bin/fish", "-l"}
 end
 
 local keys = {
@@ -54,7 +50,6 @@ for i = 1, 9 do
 end
 
 return {
-  default_prog = default_prog,
   set_environment_variables = environment_variables,
   window_padding = {
     left = 0,
