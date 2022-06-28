@@ -40,3 +40,7 @@ repo = 'lifepillar/vim-solarized8'
 
 # [[plugins]]
 # repo = 'taigacute/gruvbox9'
+
+[[plugins]]
+repo = 'EdenEast/nightfox.nvim'
+if = 'has("nvim")'

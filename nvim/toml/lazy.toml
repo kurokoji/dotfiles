@@ -60,16 +60,25 @@ repo = 'nvim-treesitter/nvim-treesitter'
 if = 'has("nvim") && !has("win32")'
 on_event = 'BufRead'
 hook_post_update = 'TSUpdate'
-# hook_post_source {{{
-hook_post_source = '''
+# hook_source {{{
+hook_source = '''
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = 'maintained',
+  ensure_installed = {
+    'python', 'cpp', 'go', 'typescript',
+    'toml', 'rust', 'html', 'bash', 'javascript', 'lua'
+  },
   sync_install = false,
+  autotag = {
+    enable = true,
+  },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
+  indent = {
+    enable = true,
+  }
 }
 EOF
 '''
@@ -92,3 +101,8 @@ require('indent_blankline').setup {
 EOF
 '''
 # }}}
+
+[[plugins]]
+repo = 'windwp/nvim-ts-autotag'
+if = 'has("nvim")'
+on_source = 'nvim-treesitter'

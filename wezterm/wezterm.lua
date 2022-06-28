@@ -78,7 +78,8 @@ return {
   },
   font = wezterm.font("PlemolJP Console NF"),
   font_size = font_size,
-  color_scheme = "iceberg-light",
+  color_scheme_dirs = {"~/.config/wezterm/colors"},
+  color_scheme = "dayfox_wezterm",
   -- colors {{{
   colors = {
     tab_bar = {

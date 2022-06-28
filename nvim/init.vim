@@ -123,24 +123,30 @@ set incsearch
 set background=light
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-colorscheme iceberg
+colorscheme dayfox
 
 let g:use_gui = exists('g:neovide') || has('gui_running')
 
-if !g:use_gui
-  " 透過関連
-  hi! Normal ctermbg=NONE guibg=NONE
-  hi! NonText ctermbg=NONE guibg=NONE
-  hi! LineNr ctermbg=NONE guibg=NONE
-  hi! SignColumn ctermbg=NONE guibg=NONE
-  " hi! VertSplit ctermbg=NONE guibg=NONE
-  hi! Folded ctermbg=NONE guibg=NONE
-  hi! EndOfBuffer ctermbg=NONE guibg=NONE
-  hi! CursorLine ctermbg=NONE guibg=NONE
-  hi! SpecialKey ctermbg=NONE guibg=NONE
-elseif exists('g:neovide')
-  let g:neovide_transparency=0.95
-endif
+function! s:enable_transparent() abort
+  if !g:use_gui
+    " 透過関連
+    hi! Normal ctermbg=NONE guibg=NONE
+    hi! NormalNC ctermbg=NONE guibg=NONE
+    hi! WinBar ctermbg=NONE guibg=NONE
+    hi! WinBarNC ctermbg=NONE guibg=NONE
+    "hi! NonText ctermbg=NONE guibg=NONE
+    "hi! LineNr ctermbg=NONE guibg=NONE
+    "hi! SignColumn ctermbg=NONE guibg=NONE
+    " hi! VertSplit ctermbg=NONE guibg=NONE
+    "hi! Folded ctermbg=NONE guibg=NONE
+    "hi! EndOfBuffer ctermbg=NONE guibg=NONE
+    "hi! CursorLine ctermbg=NONE guibg=NONE
+    "hi! SpecialKey ctermbg=NONE guibg=NONE
+  elseif exists('g:neovide')
+    let g:neovide_transparency=0.95
+  endif
+endfunction
+call s:enable_transparent()
 
 " FloatingWindowの透過
 "hi! NormalFloat ctermbg=NONE guibg=NONE gui=NONE

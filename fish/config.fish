@@ -100,6 +100,9 @@ else if [ "$os_name" = "Linux" ]
   end
 end
 # }}}
+# color {{{
+source $HOME/.config/fish/colors/dayfox_fish.fish
+# }}}
 
 if not functions -q fisher
   echo 'not installed fisher'
