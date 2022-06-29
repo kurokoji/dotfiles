@@ -57,6 +57,81 @@ for i = 1, 9 do
   })
 end
 
+-- The filled in variant of the < symbol
+local SOLID_LEFT_ARROW = ''
+
+-- The filled in variant of the > symbol
+local SOLID_RIGHT_ARROW = ''
+
+wezterm.on("update-right-status", function(window, pane)
+  local background = "#ced5de"
+  local foreground = "#1d344f"
+  local edge_background = "#eaeaea"
+  local edge_foreground = background
+
+  -- "Wed Mar 3 08:14"
+  local date = "  " ..  wezterm.strftime("%a %b %-d %H:%M ");
+
+  local bat = ""
+  for _, b in ipairs(wezterm.battery_info()) do
+    bat = " " .. string.format("%.0f%%", b.state_of_charge * 100)
+  end
+
+  window:set_right_status(wezterm.format({
+    {Background={Color=edge_background}},
+    {Foreground={Color=edge_foreground}},
+    {Text=SOLID_LEFT_ARROW},
+    {Background={Color=background}},
+    {Foreground={Color=foreground}},
+    {Text=bat},
+    {Background={Color=edge_background}},
+    {Foreground={Color=edge_foreground}},
+    {Text=SOLID_RIGHT_ARROW},
+    {Background={Color=edge_background}},
+    {Foreground={Color=edge_foreground}},
+    {Text=SOLID_LEFT_ARROW},
+    {Background={Color=background}},
+    {Foreground={Color=foreground}},
+    {Text=date},
+    {Background={Color=edge_background}},
+    {Foreground={Color=edge_foreground}},
+    {Text=SOLID_RIGHT_ARROW},
+  }));
+end)
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+
+  local edge_background = "#eaeaea"
+  local background = "#eaeaea"
+  local foreground = "#1d344f"
+
+  if tab.is_active then
+    background = "#ced5de"
+    foreground = "#1d344f"
+  elseif hover then
+    background = "#ced5de"
+    foreground = "#1d344f"
+  end
+
+  local edge_foreground = background
+
+  -- ensure that the titles fit in the available space,
+  -- and that we have room for the edges.
+  local title = wezterm.truncate_right(tab.active_pane.title, max_width-2)
+
+  return {
+    {Background={Color=edge_background}},
+    {Foreground={Color=edge_foreground}},
+    {Text=SOLID_LEFT_ARROW},
+    {Background={Color=background}},
+    {Foreground={Color=foreground}},
+    {Text=title},
+    {Background={Color=edge_background}},
+    {Foreground={Color=edge_foreground}},
+    {Text=SOLID_RIGHT_ARROW},
+  }
+end)
+
 return {
   default_prog = default_prog,
   set_environment_variables = environment_variables,
@@ -84,10 +159,11 @@ return {
   colors = {
     tab_bar = {
       background = "#e8e9ec",
+      foreground = "#1d344f",
 
       active_tab = {
-        bg_color = "#dcdfe7",
-        fg_color = "#33374c",
+        bg_color = "#ced5de",
+        fg_color = "#1d344f",
 
         -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
         -- label shown for this tab.
@@ -150,6 +226,5 @@ return {
   -- }}}
   launch_menu = launch_menu,
   keys = keys,
-  window_background_opacity = 0.95,
   use_fancy_tab_bar = false,
 }
