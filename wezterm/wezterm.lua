@@ -57,6 +57,8 @@ for i = 1, 9 do
   })
 end
 
+-- Tab Bar Config {{{
+
 -- The filled in variant of the < symbol
 local SOLID_LEFT_ARROW = ''
 
@@ -117,7 +119,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 
   -- ensure that the titles fit in the available space,
   -- and that we have room for the edges.
-  local title = wezterm.truncate_right(tab.active_pane.title, max_width-2)
+  local title = (tonumber(tab.tab_index) + 1) .. " " .. wezterm.truncate_right(tab.active_pane.title, max_width-4)
 
   return {
     {Background={Color=edge_background}},
@@ -131,6 +133,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     {Text=SOLID_RIGHT_ARROW},
   }
 end)
+-- }}}
 
 return {
   default_prog = default_prog,
@@ -140,16 +143,6 @@ return {
     right = 0,
     top = 0,
     bottom = 0,
-  },
-  window_frame = {
-    font = wezterm.font({
-      family="PlemolJP Console NF",
-      weight="Bold",
-      italic=false,
-    }),
-    font_size = font_size - 2.0,
-    active_titlebar_bg = "#e8e9ec",
-    inactive_titlebar_bg = "#e8e9ec",
   },
   font = wezterm.font("PlemolJP Console NF"),
   font_size = font_size,
