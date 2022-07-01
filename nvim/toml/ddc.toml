@@ -23,6 +23,11 @@ call ddc#custom#patch_global({
       \       'mark': 'LSP',
       \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
       \     },
+      \     'nvim-lsp': {
+      \       'matchers': ['matcher_head'],
+      \       'mark': 'LSP',
+      \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+      \     },
       \     'file': {
       \       'mark': 'F',
       \       'isVolatile': v:true,
@@ -112,6 +117,7 @@ hook_source = '''
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'
+if = '0'
 on_source = 'ddc.vim'
 # hook_add {{{
 hook_add = '''
@@ -158,4 +164,8 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'LumaKernel/ddc-tabnine'
 if = '!has("win32")'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
 on_source = 'ddc.vim'

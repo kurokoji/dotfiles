@@ -38,9 +38,8 @@ let g:lightline = {
       \ 'colorscheme': 'dayfox',
       \ 'active': {
       \   'left': [
-      \     ['mode', 'paste', 'skk_mode'],
+      \     ['mode', 'paste'],
       \     ['filetype', 'filename', 'fugitive', 'gitgutter'],
-      \     ['lsp_errors', 'lsp_warnings'],
       \   ],
       \   'right': [
       \     ['lineinfo', 'percent'],
@@ -438,12 +437,14 @@ depends = ['vim-lsp-settings']
 hook_add = '''
 let g:lsp_diagnostics_signs_warning = { 'text': "\uf525" }
 let g:lsp_diagnostics_signs_error = { 'text': "\uf05e" }
+let g:lsp_completion_resolve_timeout = 1000
 
 if executable('bq-language-server')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'bq-language-server',
         \ 'cmd': {server_info->['bq-language-server', '--stdio']},
-        \ 'config': {
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(expand('%:h'))},
+        \ 'workspace_config': {
         \   "bqExtensionVSCode": {
         \     "diagnostic": {
         \       "forVSCode": v:false,
@@ -451,10 +452,12 @@ if executable('bq-language-server')
         \   }
         \ },
         \ 'allowlist': ['sql', 'bigquery'],
+        \ 'refresh_patter': '\\( \\zs\\k*\\|[a-zA-Z0-9_-]\\+\\)$',
         \ })
 endif
 
 function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
 
   nmap <silent> <Leader>rn <Plug>(lsp-rename)
