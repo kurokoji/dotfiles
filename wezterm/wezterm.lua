@@ -76,7 +76,19 @@ wezterm.on("update-right-status", function(window, pane)
 
   local bat = ""
   for _, b in ipairs(wezterm.battery_info()) do
-    bat = " " .. string.format("%.0f%%", b.state_of_charge * 100)
+    local battery_icon = '';
+    if b.state_of_charge == 0.0 then
+      battery_icon = ''
+    elseif b.state_of_charge < 0.3 then
+      battery_icon = '';
+    elseif b.state_of_charge < 0.6 then
+      battery_icon = '';
+    elseif b.state_of_charge < 0.9 then
+      battery_icon = '';
+    elseif b.state_of_charge == 1.0 then
+      battery_icon = '';
+    end
+    bat = battery_icon .. "  " .. string.format("%.0f%%", b.state_of_charge * 100)
   end
 
   window:set_right_status(wezterm.format({
