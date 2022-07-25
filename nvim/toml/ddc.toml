@@ -17,11 +17,11 @@ call ddc#custom#patch_global({
       \       'sorters': ['sorter_rank']
       \     },
       \     'around': {
-      \       'mark': 'A',
+      \       'mark': '﬘',
       \     },
       \     'vim-lsp': {
       \       'matchers': ['matcher_head'],
-      \       'mark': 'LSP',
+      \       'mark': '',
       \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
       \     },
       \     'nvim-lsp': {
@@ -30,7 +30,7 @@ call ddc#custom#patch_global({
       \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
       \     },
       \     'file': {
-      \       'mark': 'F',
+      \       'mark': '',
       \       'isVolatile': v:true,
       \       'forceCompletionPattern': '\S/\S*',
       \     },
@@ -41,7 +41,7 @@ call ddc#custom#patch_global({
       \       'minAutoCompleteLength': 2,
       \     },
       \     'neosnippet': {
-      \       'mark': 'NSnip'
+      \       'mark': 'ﴨ',
       \     },
       \     'tabnine': {
       \       'mark': 'ﮧ',
