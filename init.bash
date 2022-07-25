@@ -12,6 +12,14 @@ elif [ "$(expr substr "$(uname -s)" 1 5)" = 'Linux' ]; then
   do
     sh ${f}
   done
+
+  # WSL2
+  if [[ "$(uname -r)" == *microsoft* ]]; then
+    for f in ./etc/init/wsl/*.sh
+    do
+      sh ${f}
+    done
+  fi
 fi
 
 for f in ./etc/init/*.sh

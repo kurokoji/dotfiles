@@ -77,7 +77,7 @@ function! CommandlinePre() abort
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
   call ddc#custom#patch_buffer('cmdlineSources',
-          \ ['cmdline', 'cmdline-history', 'around'])
+          \ ['cmdline', 'cmdline-history', 'around', 'file'])
 
   autocmd User DDCCmdlineLeave ++once call CommandlinePost()
   autocmd InsertEnter <buffer> ++once call CommandlinePost()
