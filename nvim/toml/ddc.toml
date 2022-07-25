@@ -9,6 +9,7 @@ hook_add = '''
 # hook_source {{{
 hook_source = '''
 call ddc#custom#patch_global({
+      \   'completionMenu': 'pum.vim',
       \   'sources': ['neosnippet', 'vim-lsp', 'around', 'tabnine', 'file'],
       \   'sourceOptions': {
       \     '_': {
@@ -43,7 +44,7 @@ call ddc#custom#patch_global({
       \       'mark': 'NSnip'
       \     },
       \     'tabnine': {
-      \       'mark': 'TN',
+      \       'mark': 'ﮧ',
       \       'maxCandidates': 5,
       \       'isVolatile': v:true,
       \     },
@@ -83,7 +84,14 @@ repo = 'Shougo/pum.vim'
 hook_source = '''
 call pum#set_option('max_width', 80)
 call pum#set_option('padding', v:true)
-" call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
+call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
+
+inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+inoremap <PageDown> <Cmd>call pum#map#insert_relative_page(+1)<CR>
+inoremap <PageUp>   <Cmd>call pum#map#insert_relative_page(-1)<CR>
 '''
 # }}}
 
