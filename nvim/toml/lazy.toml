@@ -29,8 +29,6 @@ command DeolFloating :call <SID>floating_deol()
 nnoremap <Leader>s <Cmd>DeolSplit<CR>
 nnoremap <Leader>v <Cmd>DeolVertical<CR>
 nnoremap <Leader>t <Cmd>DeolFloating<CR>
-
-tnoremap <C-j> <Plug>(skkeleton-toggle)
 '''
 # }}}
 

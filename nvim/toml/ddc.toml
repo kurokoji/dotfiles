@@ -19,6 +19,9 @@ call ddc#custom#patch_global({
       \     'around': {
       \       'mark': '﬘',
       \     },
+      \     'necovim': {
+      \       'mark': '',
+      \     },
       \     'vim-lsp': {
       \       'matchers': ['matcher_head'],
       \       'mark': '',
@@ -71,13 +74,16 @@ function! CommandlinePre() abort
   cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
   cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
   cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+  cnoremap <silent><expr> <Enter>
+        \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' :
+        \ '<Enter>'
 
   " Overwrite sources
   if !exists('b:prev_buffer_config')
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
   call ddc#custom#patch_buffer('cmdlineSources',
-          \ ['cmdline', 'cmdline-history', 'around', 'file'])
+          \ ['necovim', 'around', 'file'])
 
   autocmd User DDCCmdlineLeave ++once call CommandlinePost()
   autocmd InsertEnter <buffer> ++once call CommandlinePost()
@@ -94,6 +100,7 @@ function! CommandlinePost() abort
   silent! cunmap <C-p>
   silent! cunmap <C-y>
   silent! cunmap <C-e>
+  silent! cunmap <Enter>
 
   " Restore sources
   if exists('b:prev_buffer_config')
@@ -130,6 +137,7 @@ repo = 'Shougo/pum.vim'
 # hook_source {{{
 hook_source = '''
 call pum#set_option('max_width', 80)
+call pum#set_option('min_width', 20)
 call pum#set_option('padding', v:true)
 call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
 
@@ -167,6 +175,7 @@ repo = 'kurokoji/neosnippet-snippets'
 [[plugins]]
 repo = 'Shougo/neco-vim'
 on_ft = ['vim', 'toml', 'markdown']
+on_event = ['CmdlineChanged']
 depends = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
