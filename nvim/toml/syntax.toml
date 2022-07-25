@@ -50,3 +50,11 @@ repo = 'PProvost/vim-ps1'
 
 [[plugins]]
 repo = 'reasonml-editor/vim-reason-plus'
+
+[[plugins]]
+repo = 'ziglang/zig.vim'
+# hook_add {{{
+hook_add = '''
+let g:zig_fmt_autosave = 0
+'''
+# }}}
