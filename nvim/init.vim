@@ -90,8 +90,8 @@ set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
 if has('nvim')
   set wildoptions=pum
-  set pumblend=30
-"  set winblend=30
+  set pumblend=20
+  set winblend=20
 endif
 
 if has('win32') || has ('win64')
