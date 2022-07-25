@@ -116,6 +116,38 @@ call ddc#enable()
 # }}}
 
 [[plugins]]
+repo = 'matsui54/denops-popup-preview.vim'
+on_source = 'ddc.vim'
+# hook_source {{{
+hook_source = '''
+call popup_preview#enable()
+hi! PopupPreviewDocument ctermbg=NONE guibg=NONE gui=NONE
+hi! PopupPreviewBorder ctermbg=NONE guibg=NONE gui=NONE
+'''
+# }}}
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+# hook_source {{{
+hook_source = '''
+call pum#set_option('max_width', 80)
+call pum#set_option('padding', v:true)
+call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
+call pum#set_option('highlight_normal_menu', 'NONE')
+
+inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+inoremap <PageDown> <Cmd>call pum#map#insert_relative_page(+1)<CR>
+inoremap <PageUp>   <Cmd>call pum#map#insert_relative_page(-1)<CR>
+inoremap <silent><expr> <Enter>
+      \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' :
+      \ '<Enter>'
+'''
+# }}}
+
+[[plugins]]
 repo = 'Shougo/ddc-around'
 on_source = 'ddc.vim'
 
@@ -131,27 +163,6 @@ on_source = 'ddc.vim'
 repo = 'shun/ddc-vim-lsp'
 on_source = 'ddc.vim'
 depends = ['vim-lsp']
-
-[[plugins]]
-repo = 'Shougo/pum.vim'
-# hook_source {{{
-hook_source = '''
-call pum#set_option('max_width', 80)
-call pum#set_option('min_width', 20)
-call pum#set_option('padding', v:true)
-call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
-
-inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
-inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-inoremap <PageDown> <Cmd>call pum#map#insert_relative_page(+1)<CR>
-inoremap <PageUp>   <Cmd>call pum#map#insert_relative_page(-1)<CR>
-inoremap <silent><expr> <Enter>
-      \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' :
-      \ '<Enter>'
-'''
-# }}}
 
 [[plugins]]
 repo = 'LumaKernel/ddc-file'
