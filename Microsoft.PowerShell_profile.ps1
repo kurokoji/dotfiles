@@ -24,7 +24,13 @@ function touch($file) {
   }
 }
 
+function which($cmdname) {
+  Get-Command $cmdname | Select-Object -ExpandProperty Definition
+}
+
 # }}}
+
+Import-Module PSReadLine
 
 # PSfzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t'
