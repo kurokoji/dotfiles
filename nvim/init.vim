@@ -152,10 +152,10 @@ function! s:enable_transparent() abort
     let g:neovide_transparency=0.95
   endif
 endfunction
-call s:enable_transparent()
+" call s:enable_transparent()
 
 " FloatingWindowの透過
-"hi! NormalFloat ctermbg=NONE guibg=NONE gui=NONE
+" hi! NormalFloat ctermbg=NONE guibg=NONE gui=NONE
 
 " 新しいウィンドウを下に開く
 set splitbelow
