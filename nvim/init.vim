@@ -125,10 +125,16 @@ set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
 colorscheme dayfox
 
-let g:use_gui = exists('g:neovide') || has('gui_running')
+let s:use_neovide = exists('g:neovide')
+let s:use_gui = s:use_neovide || has('gui_running')
+
+if s:use_neovide
+  let g:neovide_floating_blur_amount_x = 2.0
+  let g:neovide_floating_blur_amount_y = 2.0
+endif
 
 function! s:enable_transparent() abort
-  if !g:use_gui
+  if !s:use_gui
     " 透過関連
     hi! Normal ctermbg=NONE guibg=NONE
     hi! NormalNC ctermbg=NONE guibg=NONE
@@ -142,11 +148,11 @@ function! s:enable_transparent() abort
     "hi! EndOfBuffer ctermbg=NONE guibg=NONE
     "hi! CursorLine ctermbg=NONE guibg=NONE
     "hi! SpecialKey ctermbg=NONE guibg=NONE
-  elseif exists('g:neovide')
+  elseif s:use_neovide
     let g:neovide_transparency=0.95
   endif
 endfunction
-" call s:enable_transparent()
+call s:enable_transparent()
 
 " FloatingWindowの透過
 "hi! NormalFloat ctermbg=NONE guibg=NONE gui=NONE
@@ -163,7 +169,11 @@ set autoindent
 set smartindent
 set ttyfast
 
-set guifont=PlemolJP\ Console\ NF:h16
+if has('win32') || has ('win64')
+  set guifont=PlemolJP\ Console\ NF:h12
+else
+  set guifont=PlemolJP\ Console\ NF:h15
+endif
 
 let g:tex_conceal = ""
 

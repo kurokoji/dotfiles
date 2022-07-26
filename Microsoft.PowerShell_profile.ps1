@@ -37,3 +37,5 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t'
 Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 $env:FZF_DEFAULT_OPTS="--height 30% --layout=reverse"
+
+Import-Module posh-git
