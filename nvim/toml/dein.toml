@@ -437,7 +437,7 @@ depends = ['vim-lsp-settings']
 hook_add = '''
 let g:lsp_diagnostics_signs_warning = { 'text': "\uf525" }
 let g:lsp_diagnostics_signs_error = { 'text': "\uf05e" }
-let g:lsp_completion_resolve_timeout = 1000
+" let g:lsp_completion_resolve_timeout = 1000
 
 if executable('bq-language-server')
   au User lsp_setup call lsp#register_server({
