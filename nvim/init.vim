@@ -156,7 +156,6 @@ endfunction
 
 " FloatingWindowの透過
 " hi! NormalFloat ctermbg=NONE guibg=NONE gui=NONE
-hi! NormalFloat ctermbg=NONE guibg=Normal gui=NONE
 
 " 新しいウィンドウを下に開く
 set splitbelow
