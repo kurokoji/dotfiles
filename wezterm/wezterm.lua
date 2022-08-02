@@ -20,7 +20,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
   }
 
-  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-nologo" }
+  -- default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-nologo" }
 
   font_size = 12.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
@@ -38,6 +38,10 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple 
   font_size = 15.0
   --  default_prog = {"/opt/homebrew/bin/fish", "-l"}
 else
+  environment_variables = {
+    SHELL = "/usr/bin/fish",
+  }
+
   table.insert(launch_menu, {
     label = "Fish",
     args = { "/usr/bin/fish", "-l" }
@@ -189,7 +193,6 @@ end)
 -- }}}
 
 return {
-  default_prog = default_prog,
   set_environment_variables = environment_variables,
   window_padding = {
     left = 0,
