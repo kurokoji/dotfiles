@@ -113,7 +113,7 @@ set matchpairs& matchpairs+=<:>
 set laststatus=2
 set showtabline=2
 " set completeopt=preview
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noselect
 set wildmenu
 set wildmode=full
 
