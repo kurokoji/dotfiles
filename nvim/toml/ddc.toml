@@ -148,6 +148,9 @@ inoremap <silent><expr> <Tab>
 inoremap <silent><expr> <S-Tab>
       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' :
       \ '<S-Tab>'
+
+tnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+tnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
 '''
 # }}}
 
