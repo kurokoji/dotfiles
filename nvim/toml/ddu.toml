@@ -18,7 +18,7 @@ call ddu#custom#patch_global({
     \   'ui': 'ff',
     \   'sourceOptions': {
     \     '_': {
-    \       'matchers': ['matcher_substring'],
+    \       'matchers': ['matcher_substring', 'matcher_hidden'],
     \     },
     \     'file_rec': {
     \       'matchers': [
@@ -70,7 +70,7 @@ call ddu#custom#patch_local('rg-file_rec', {
     \   ],
     \   'sourceParams': {
     \     'file_external': {
-    \       'cmd': ['rg', '--threads', '4', '--files', '--column', '--no-heading', '--color', 'never', '--glob', '!.git'],
+    \       'cmd': ['rg', '--threads', '4', '--files', '--column', '--no-heading', '--color', 'never', '--glob', '!.git', '--hidden'],
     \     },
     \   },
     \ })

@@ -203,76 +203,7 @@ return {
   font = wezterm.font("PlemolJP Console NF"),
   font_size = font_size,
   color_scheme_dirs = { "~/.config/wezterm/colors" },
-  color_scheme = "dayfox_wezterm",
-  -- colors {{{
-  colors = {
-    tab_bar = {
-      background = "#e8e9ec",
-      foreground = "#1d344f",
-
-      active_tab = {
-        bg_color = "#ced5de",
-        fg_color = "#1d344f",
-
-        -- Specify whether you want "Half", "Normal" or "Bold" intensity for the
-        -- label shown for this tab.
-        -- The default is "Normal"
-        intensity = "Bold",
-
-        -- Specify whether you want "None", "Single" or "Double" underline for
-        -- label shown for this tab.
-        -- The default is "None"
-        underline = "None",
-
-        -- Specify whether you want the text to be italic (true) or not (false)
-        -- for this tab.  The default is false.
-        italic = false,
-
-        -- Specify whether you want the text to be rendered with strikethrough (true)
-        -- or not for this tab.  The default is false.
-        strikethrough = false,
-      },
-
-      -- Inactive tabs are the tabs that do not have focus
-      inactive_tab = {
-        bg_color = "#bcbfc7",
-        fg_color = "#13172c",
-
-        -- The same options that were listed under the `active_tab` section above
-        -- can also be used for `inactive_tab`.
-      },
-
-      -- You can configure some alternate styling when the mouse pointer
-      -- moves over inactive tabs
-      inactive_tab_hover = {
-        bg_color = "#9c9fa7",
-        fg_color = "#03071c",
-
-        -- The same options that were listed under the `active_tab` section above
-        -- can also be used for `inactive_tab_hover`.
-      },
-
-      -- The new tab button that let you create new tabs
-      new_tab = {
-        bg_color = "#e8e9ec",
-        fg_color = "#13172c",
-
-        -- The same options that were listed under the `active_tab` section above
-        -- can also be used for `new_tab`.
-      },
-
-      -- You can configure some alternate styling when the mouse pointer
-      -- moves over the new tab button
-      new_tab_hover = {
-        bg_color = "#9c9fa7",
-        fg_color = "#03071c",
-
-        -- The same options that were listed under the `active_tab` section above
-        -- can also be used for `new_tab_hover`.
-      }
-    },
-  },
-  -- }}}
+  color_scheme = "dayfox",
   launch_menu = launch_menu,
   keys = keys,
   use_fancy_tab_bar = false,
