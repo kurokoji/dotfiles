@@ -90,8 +90,8 @@ set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
 if has('nvim')
   set wildoptions=pum
-  set pumblend=20
-  set winblend=20
+  " set pumblend=20
+  " set winblend=20
 endif
 
 if has('win32') || has ('win64')
@@ -138,8 +138,10 @@ function! s:enable_transparent() abort
     " 透過関連
     hi! Normal ctermbg=NONE guibg=NONE
     hi! NormalNC ctermbg=NONE guibg=NONE
+    hi! NormalFloat ctermbg=NONE guibg=NONE
     hi! WinBar ctermbg=NONE guibg=NONE
     hi! WinBarNC ctermbg=NONE guibg=NONE
+    hi! Special ctermbg=NONE guibg=NONE
     "hi! NonText ctermbg=NONE guibg=NONE
     "hi! LineNr ctermbg=NONE guibg=NONE
     "hi! SignColumn ctermbg=NONE guibg=NONE
@@ -152,7 +154,7 @@ function! s:enable_transparent() abort
     let g:neovide_transparency=0.95
   endif
 endfunction
-" call s:enable_transparent()
+call s:enable_transparent()
 
 " FloatingWindowの透過
 " hi! NormalFloat ctermbg=NONE guibg=NONE gui=NONE
