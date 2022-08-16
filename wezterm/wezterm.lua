@@ -194,6 +194,7 @@ end)
 
 return {
   set_environment_variables = environment_variables,
+  window_background_opacity = 0.95,
   window_padding = {
     left = 0,
     right = 0,
