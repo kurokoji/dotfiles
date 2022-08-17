@@ -51,6 +51,8 @@ end
 local keys = {
   { key = "l", mods = "ALT", action = "ShowLauncher" },
   { key = "t", mods = "ALT", action = "ShowTabNavigator" },
+  { key = "v", mods = "ALT", action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+  { key = "s", mods = "ALT", action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
 }
 
 for i = 1, 9 do
