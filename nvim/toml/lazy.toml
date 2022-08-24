@@ -65,7 +65,7 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'python', 'cpp', 'go', 'typescript',
-    'toml', 'rust', 'html', 'bash', 'javascript', 'lua', 'tsx'
+    'toml', 'rust', 'html', 'bash', 'javascript', 'lua', 'tsx', 'haskell'
   },
   sync_install = false,
   autotag = {
