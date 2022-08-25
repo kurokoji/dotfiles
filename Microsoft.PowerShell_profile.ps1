@@ -28,6 +28,15 @@ function which($cmdname) {
   Get-Command $cmdname | Select-Object -ExpandProperty Definition
 }
 
+function chill() {
+  if ((which "mpv") -and ((which "yt-dlp") -or (which "youtube-dl"))) {
+    Write-Output "Chill!!"
+    mpv --no-video https://www.youtube.com/watch?v=jfKfPfyJRdk
+  } else {
+    throw "mpvとyt-dlpもしくはyoutube-dlをインストールしてください"
+  }
+}
+
 # }}}
 
 Import-Module PSReadLine
