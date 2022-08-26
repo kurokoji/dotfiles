@@ -72,8 +72,8 @@ local SOLID_LEFT_ARROW = ''
 local SOLID_RIGHT_ARROW = ''
 
 wezterm.on("update-right-status", function(window, pane)
-  local background = "#2d81a3"
-  local foreground = "#e6ebf3"
+  local background = "#2e537d"
+  local foreground = "#eaeaea"
   local edge_background = "#dbdbdb"
   local edge_foreground = background
   local red_foreground = "#b95d76"
@@ -180,15 +180,15 @@ end)
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 
   local edge_background = "#dbdbdb"
-  local background = "#eaeaea"
+  local background = "#dbcece"
   local foreground = "#1d344f"
 
   if tab.is_active then
-    background = "#2d81a3"
-    foreground = "#e6ebf3"
+    background = "#2e537d"
+    foreground = "#eaeaea"
   elseif hover then
-    background = "#2d81a3"
-    foreground = "#e6ebf3"
+    background = "#ced6db"
+    foreground = "#1d344f"
   end
 
   local edge_foreground = background
