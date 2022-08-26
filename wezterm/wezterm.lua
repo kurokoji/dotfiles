@@ -76,8 +76,8 @@ wezterm.on("update-right-status", function(window, pane)
   local foreground = "#eaeaea"
   local edge_background = "#dbdbdb"
   local edge_foreground = background
-  local red_foreground = "#b95d76"
-  local green_foreground = "#618774"
+  local red_foreground = "#c76882"
+  local green_foreground = "#629f81"
 
   -- "Wed Mar 3 08:14"
   local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ");
