@@ -73,7 +73,7 @@ local SOLID_RIGHT_ARROW = ''
 
 wezterm.on("update-right-status", function(window, pane)
   local background = "#2d81a3"
-  local  foreground = "#e6ebf3"
+  local foreground = "#e6ebf3"
   local edge_background = "#dbdbdb"
   local edge_foreground = background
   local red_foreground = "#b95d76"
@@ -137,17 +137,26 @@ wezterm.on("update-right-status", function(window, pane)
     end
   end
 
+  local status = {}
 
-  window:set_right_status(wezterm.format({
-    { Background = { Color = edge_background } },
-    { Foreground = { Color = edge_foreground } },
-    { Text = SOLID_LEFT_ARROW },
-    { Background = { Color = background } },
-    { Foreground = { Color = battery_foreground } },
-    { Text = bat },
-    { Background = { Color = edge_background } },
-    { Foreground = { Color = edge_foreground } },
-    { Text = SOLID_RIGHT_ARROW },
+  if bat ~= '' then
+    local t = {
+      { Background = { Color = edge_background } },
+      { Foreground = { Color = edge_foreground } },
+      { Text = SOLID_LEFT_ARROW },
+      { Background = { Color = background } },
+      { Foreground = { Color = battery_foreground } },
+      { Text = bat },
+      { Background = { Color = edge_background } },
+      { Foreground = { Color = edge_foreground } },
+      { Text = SOLID_RIGHT_ARROW },
+    }
+    for _, v in ipairs(t) do
+      table.insert(status, v)
+    end
+  end
+
+  local t = {
     { Background = { Color = edge_background } },
     { Foreground = { Color = edge_foreground } },
     { Text = SOLID_LEFT_ARROW },
@@ -157,7 +166,15 @@ wezterm.on("update-right-status", function(window, pane)
     { Background = { Color = edge_background } },
     { Foreground = { Color = edge_foreground } },
     { Text = SOLID_RIGHT_ARROW },
-  }));
+  }
+
+
+  for _, v in ipairs(t) do
+    table.insert(status, v)
+  end
+
+
+  window:set_right_status(wezterm.format(status));
 end)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
