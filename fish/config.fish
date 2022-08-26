@@ -30,6 +30,7 @@ set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/.bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH
 set -x PATH $HOME/.deno/bin $PATH
+set -x PATH $HOME/.cabal/bin $HOME/.ghcup/bin $PATH
 
 
 # }}}
