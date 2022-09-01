@@ -16,11 +16,11 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     args = { "powershell.exe", "-NoLogo" },
   })
 
-  environment_variables = {
-    ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
-  }
+  -- environment_variables = {
+  --   ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
+  -- }
 
-  -- default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-nologo" }
+  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-nologo" }
 
   font_size = 12.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
@@ -212,6 +212,7 @@ end)
 -- }}}
 
 return {
+  default_prog = default_prog,
   set_environment_variables = environment_variables,
   window_background_opacity = 0.95,
   window_padding = {
