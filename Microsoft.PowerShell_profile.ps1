@@ -9,7 +9,10 @@ Set-PSReadLineOption -PredictionSource History
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias open explorer.exe
-Set-Alias ls "lsd"
+
+if (Test-Path Alias:ls) {
+  Remove-Item Alias:ls
+}
 
 # }}}
 
@@ -26,6 +29,22 @@ function touch($file) {
 
 function which($cmdname) {
   Get-Command $cmdname | Select-Object -ExpandProperty Definition
+}
+
+function ls() {
+  exa --icons $args
+}
+
+function la() {
+  exa --icons -a $args
+}
+
+function ll() {
+  exa --icons -l $args
+}
+
+function lla() {
+  exa --icons -l -a $args
 }
 
 function chill() {
