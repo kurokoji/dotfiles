@@ -40,6 +40,7 @@ let g:lightline = {
       \   'left': [
       \     ['mode', 'paste'],
       \     ['filetype', 'filename', 'fugitive', 'gitgutter'],
+      \     ['lsp_errors', 'lsp_warnings', 'lsp_ok'],
       \   ],
       \   'right': [
       \     ['lineinfo', 'percent'],
@@ -93,9 +94,17 @@ let g:lightline = {
       \   'charcode': 'MyCharCode',
       \   'gitgutter': 'MyGitGutter',
       \   'cocstatus': 'MyCocStatus',
+      \   'skk_mode': 'g:lightline_skk#mode',
+      \ },
+      \ 'component_expand': {
       \   'lsp_errors': 'lightline_lsp#errors',
       \   'lsp_warnings': 'lightilne_lsp#warnings',
-      \   'skk_mode': 'g:lightline_skk#mode',
+      \   'lsp_ok': 'lightline_lsp#ok',
+      \ },
+      \ 'component_type': {
+      \   'lsp_errors': 'error',
+      \   'lsp_warnings': 'warning',
+      \   'lsp_ok': 'middle',
       \ },
       \ 'separator': {'left': '', 'right': ''},
       \ 'subseparator': {'left': '', 'right': ''}
