@@ -49,10 +49,12 @@ else
 end
 
 local keys = {
-  { key = "l", mods = "ALT", action = "ShowLauncher" },
-  { key = "t", mods = "ALT", action = "ShowTabNavigator" },
+  { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
+  { key = "t", mods = "ALT", action = wezterm.action.ShowTabNavigator },
   { key = "v", mods = "ALT", action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = "s", mods = "ALT", action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+  { key = "h", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(-1) },
+  { key = "l", mods = "SHIFT|ALT", action = wezterm.action.MoveTabRelative(1) },
 }
 
 for i = 1, 9 do
