@@ -18,11 +18,6 @@ let g:DevIconsEnableDistro = v:false
 
 [[plugins]]
 repo = 'josa42/nvim-lightline-lsp'
-# hook_add {{{
-hook_add = '''
-call lightline#lsp#register()
-'''
-# }}}
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'

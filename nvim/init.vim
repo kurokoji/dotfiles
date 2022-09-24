@@ -55,7 +55,7 @@ let s:ddc_file = s:toml_dir . '/ddc.toml'
 let s:theme_file = s:toml_dir . '/theme.toml'
 let s:syntax_file = s:toml_dir . '/syntax.toml'
 
-if dein#load_state(s:dein_dir)
+if dein#min#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   call dein#load_toml(s:theme_file, {'lazy': 0})
   call dein#load_toml(s:toml_file, {'lazy': 0})
