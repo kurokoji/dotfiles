@@ -36,6 +36,8 @@ cnoremap <C-g> <C-c>
 " dein {{{
 let g:dein#enable_notification = 1
 let g:dein#install_progress_type = 'floating'
+let g:dein#install_process_timeout = 360
+let g:dein#install_max_processes = 8
 
 let s:dein_dir = expand('~/.config/nvim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
