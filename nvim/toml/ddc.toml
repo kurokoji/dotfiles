@@ -22,6 +22,11 @@ call ddc#custom#patch_global({
       \     'necovim': {
       \       'mark': '',
       \     },
+      \     'vim-lsp': {
+      \       'matchers': ['matcher_head'],
+      \       'mark': '',
+      \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+      \     },
       \     'nvim-lsp': {
       \       'matchers': ['matcher_head'],
       \       'mark': '',
@@ -154,8 +159,7 @@ repo = 'Shougo/ddc-around'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-on_source = 'ddc.vim'
+repo = 'Shougo/ddc-matcher_head' on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
@@ -244,3 +248,9 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
 on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'shun/ddc-vim-lsp'
+on_source = 'ddc.vim'
+depends = ['vim-lsp']
+if = "0"
