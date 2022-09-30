@@ -167,6 +167,7 @@ hook_source = '''
 lua << EOF
 require("mason").setup({
     ui = {
+        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
         icons = {
             package_installed = "✓",
             package_pending = "➜",
