@@ -27,13 +27,13 @@ let g:lightline = {
       \ 'colorscheme': 'dayfox',
       \ 'active': {
       \   'left': [
-      \     ['mode', 'paste', 'lsp_info', 'lsp_hints', 'lsp_errors', 'lsp_warnings', 'lsp_ok'],
-      \     ['fugitive', 'gitstatus', 'filetype', 'filename'],
-      \     ['lsp_status'],
+      \     ['mode', 'paste', 'lsp_info', 'lsp_hints', 'lsp_errors', 'lsp_warnings', 'lsp_ok', 'lsp_status'],
+      \     ['fugitive', 'gitstatus'],
+      \     ['filename'],
       \   ],
       \   'right': [
       \     ['lineinfo', 'percent'],
-      \     ['charcode', 'fileencoding', 'fileformaticon'],
+      \     ['charcode', 'filetype', 'fileencoding', 'fileformaticon'],
       \   ]
       \ },
       \ 'inactive': {
