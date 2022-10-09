@@ -187,7 +187,23 @@ hook_source = '''
 lua << EOF
 require("mason-lspconfig").setup_handlers({
   function(server)
-    require('lspconfig')[server].setup({})
+    if server == 'serve_d' then
+      -- local dmdPath = vim.fn.system('asdf where dmd')
+      local dmdPath = '~/.asdf/installs/dmd/2.100.2'
+      require('lspconfig')[server].setup({
+        -- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
+        settings = {
+          d = {
+            stdlibPath = dmdPath .. '/dmd2/src/phobos',
+          },
+          dfmt = {
+            braceStyle = 'otbs',
+          },
+        }
+      })
+    else
+      require('lspconfig')[server].setup({})
+    end
   end
 })
 EOF

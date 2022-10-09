@@ -1,8 +1,8 @@
 // import chie template :) {{{
 static if (__VERSION__ < 2090) {
   import std.stdio, std.algorithm, std.array, std.string, std.math, std.conv,
-    std.range, std.container, std.bigint, std.ascii, std.typecons, std.format,
-    std.bitmanip, std.numeric;
+  std.range, std.container, std.bigint, std.ascii, std.typecons, std.format,
+  std.bitmanip, std.numeric;
 } else {
   import std;
 }
@@ -168,6 +168,6 @@ alias MinHeap(T) = Heap!(T, "a > b");
 // }}}
 
 void main() {
-  auto cin = new Scanner;
+  auto cin = new Scanner();
   {{_cursor_}}
 }
