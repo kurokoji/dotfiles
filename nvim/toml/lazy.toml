@@ -194,7 +194,7 @@ require("mason-lspconfig").setup_handlers({
         -- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
         settings = {
           d = {
-            stdlibPath = dmdPath .. '/dmd2/src/phobos',
+            stdlibPath = {dmdPath .. '/dmd2/src/phobos', dmdPath .. '/dmd2/src/druntime', dmdPath .. '/dmd2/src/dmd'},
           },
           dfmt = {
             braceStyle = 'otbs',

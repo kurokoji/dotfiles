@@ -75,6 +75,8 @@ class Scanner {
 // alias {{{
 alias Heap(T, alias less = "a < b") = BinaryHeap!(Array!T, less);
 alias MinHeap(T) = Heap!(T, "a > b");
+alias Deque(T) = DList!T;
+alias Queue(T) = DList!T;
 
 // }}}
 // memo {{{

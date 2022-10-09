@@ -289,12 +289,14 @@ let g:quickrun_no_default_key_mappings=1
 
 let g:quickrun_config._ = {
       \ 'runner': 'nvimterm',
-      \ 'runner/nvimterm/into': 1
+      \ 'runner/nvimterm/into': 1,
+      \ 'runner/nvimterm/opener': 'auto',
+      \ 'runner/nvimterm/vsplit_width': 150,
       \ }
 
 let g:quickrun_config.d = {
       \ 'command': 'dmd',
-      \ 'cmdopt': '-run'
+      \ 'cmdopt': '-debug -run'
       \ }
 
 let g:quickrun_config.cpp = {
