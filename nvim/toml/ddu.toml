@@ -41,6 +41,7 @@ call ddu#custom#patch_global({
     \       'previewFloating': v:true,
     \       'prompt': '❯ ',
     \       'displaySourceName': 'none',
+    \       'previewFloatingBorder': ['╭', '─', '╮', '│', '╯', '─', '╰', '│'],
     \     },
     \   },
     \ })
