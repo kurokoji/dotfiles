@@ -211,6 +211,48 @@ EOF
 # }}}
 
 [[plugins]]
+repo = 'jose-elias-alvarez/null-ls.nvim'
+on_source = 'mason.nvim'
+
+[[plugins]]
+repo = 'jayp0521/mason-null-ls.nvim'
+on_source = ['mason.nvim', 'null-ls.nvim']
+# hook_source {{{
+
+hook_source = '''
+lua << EOF
+
+local null_ls = require('null-ls')
+
+require('mason-null-ls').setup({
+  ensure_installed = { 'prettier', 'eslint_d', 'vint', 'stylua' }
+})
+
+require('mason-null-ls').setup_handlers({
+  function(source_name)
+    print(source_name)
+  end,
+  prettier = function()
+    null_ls.register(null_ls.builtins.formatting.prettier)
+  end,
+  stylua = function()
+    null_ls.register(null_ls.builtins.formatting.stylua)
+  end,
+  eslint_d = function()
+    null_ls.register(null_ls.builtins.diagnostics.eslint_d)
+  end,
+  vint = function()
+    null_ls.register(null_ls.builtins.diagnostics.vint)
+  end,
+})
+
+null_ls.setup()
+
+EOF
+'''
+# }}}
+
+[[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # hook_source {{{
