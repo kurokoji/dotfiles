@@ -42,10 +42,14 @@ else
     SHELL = "/usr/bin/fish",
   }
 
+  default_prog = { "/usr/bin/fish", "-l" }
+
   table.insert(launch_menu, {
     label = "Fish",
     args = { "/usr/bin/fish", "-l" }
   })
+
+  font_size = 12.0
 end
 
 local keys = {

@@ -8,10 +8,10 @@ XTerm*cursorBlink: True
 XTerm*utf8: True
 XTerm*local: True
 XTerm*utf8Title: True
-XTerm*faceName: xft:Cica:size=15
+XTerm*faceName: PlemolJP Console NF
 !XTerm*faceNameDoublesize: xft:M+ 1m
-XTerm*faceSize: 15
-XTerm*scaleHeight: 1.08
+XTerm*faceSize: 12
+! XTerm*scaleHeight: 1.08
 !! }}}
 
 
