@@ -1,39 +1,39 @@
 #!/bin/bash
 
 DOT_DIRECTORY=$(pwd)
-SPECIFY_FILES=''
-EXCLUDE_FILES="Brewfile .env.fish .git .gitignore .gitmodules .DS_Store README.md LICENSE init.bash picture bin Microsoft.PowerShell_profile.ps1 deploy.ps1 $(basename ${0})"
 
-list=""
+config_list=""
+dot_list=""
 
-for f in .??* *
+# configディレクトリ群
+for f in config/*
 do
-  list=$list"${f} "
+  config_list=$config_list"${f} "
 done
 
-echo $list
-
-for f in ${EXCLUDE_FILES}
+# dots
+for f in dots/.??*
 do
-  list=${list/$f/}
+  dot_list=$dot_list"${f} "
 done
 
-for f in ${list} ${SPECIFY_FILES}
-do
-  # ディレクトリの場合，$HOME/.configに置く
-  if [ -d ${DOT_DIRECTORY}/${f} ]; then
-    ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/.config
-  fi
 
-  # dotfileの場合，$HOMEに置く
-  if [ -f ${DOT_DIRECTORY}/${f} ]; then
-    ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
-  fi
+for f in ${config_list}
+do
+  path=${DOT_DIRECTORY}/${f}
+
+  ln -snfv ${path} ${HOME}/.config
+done
+
+for f in ${dot_list}
+do
+  path=${DOT_DIRECTORY}/${f}
+  file_basename=$(basename ${f})
+
+  ln -snfv ${path} ${HOME}/${file_basename}
 done
 
 ln -snfv ${DOT_DIRECTORY}/bin ${HOME}/.bin
 
-cp ./.env.fish $HOME
-
 echo $(tput setaf 1)✔︎ Complete!!$(tput sgr0)
-echo $(tput setaf 1)please set _proxy_address and _dns in ${HOME}/.env.fish$(tput sgr0)
+# echo $(tput setaf 1)please set _proxy_address and _dns in ${HOME}/.env.fish$(tput sgr0)
