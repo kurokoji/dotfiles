@@ -230,7 +230,6 @@ require('mason-null-ls').setup({
 
 require('mason-null-ls').setup_handlers({
   function(source_name)
-    print(source_name)
   end,
   prettier = function()
     null_ls.register(null_ls.builtins.formatting.prettier)
