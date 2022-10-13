@@ -32,6 +32,11 @@ Start-ScriptAsAdmin -ScriptPath $PSCommandPath
 # dotfilesディレクトリの絶対パス取得
 $path = (Convert-Path $PSCommandPath)
 $parent = (Split-Path -Parent $path)
+$configPath = (Join-Path -Path $parent -ChildPath "config")
+$dotsPath = (Join-Path -Path $parent -ChildPath "dots")
+
+Write-Host "${configPath}" -ForegroundColor Red
+Write-Host "${dotsPath}" -ForegroundColor Red
 
 
 if (Test-Admin) {
@@ -45,22 +50,12 @@ if (Test-Admin) {
   )
 
   $directories = Get-ChildItem -name -Directory $parent
-  $files = Get-ChildItem -name -File $parent
+  $configs = Get-ChildItem -name $configPath
 
   # ディレクトリのシンボリックリンク
-  foreach ($dir in $directories) {
-    if (-not ($EXCLUDE_FILES -contains $dir)) {
-      $linkpath = (Join-Path -Resolve $parent $dir)
-      New-Item -Type SymbolicLink -Path ~\.config -Name $dir -Value $linkpath
-    }
-  }
-
-  # ファイルのシンボリックリンク
-  foreach ($file in $files) {
-    if (-not ($EXCLUDE_FILES -contains $file)) {
-      $linkpath = (Join-Path -Resolve $parent $file)
-      New-Item -Type SymbolicLink -Path ~ -Name $file -Value $linkpath
-    }
+  foreach ($dir in $configs) {
+    $linkpath = (Join-Path -Resolve $configPath $dir)
+    New-Item -Type SymbolicLink -Path ~\.config -Name $dir -Value $linkpath
   }
 
   $linkpath = (Join-Path -Resolve $parent "Microsoft.PowerShell_profile.ps1")
