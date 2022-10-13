@@ -16,12 +16,14 @@ window#waybar.hidden {
 
 #window {
   margin-top: 6px;
+  margin-left: 8px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-bottom: 0px;
   border-radius: 10px;
-  transition: none;
-  color: transparent;
-  background: transparent;
+  color: #ffffff;
+  background: #c7b658;
+  background: linear-gradient(to bottom right, #c7b658, #ef97a5);
 }
 
 #workspaces {
@@ -93,7 +95,9 @@ window#waybar.hidden {
   border-radius: 10px;
   transition: none;
   color: #1a1826;
-  background: #fae3b0;
+  /* Created with https://www.css-gradient.com */
+  background: #c7b658;
+  background: linear-gradient(to bottom right, #c7b658, #ef97a5);
 }
 
 #battery {
@@ -151,8 +155,9 @@ window#waybar.hidden {
   border-radius: 10px;
   transition: none;
   color: #161320;
-  background: #abe9b3;
-  /*background: #1A1826;*/
+  /* Created with https://www.css-gradient.com */
+  background: #19e184;
+  background: linear-gradient(to bottom right, #19e184, #91d0f4);
 }
 
 #memory {
@@ -164,7 +169,9 @@ window#waybar.hidden {
   border-radius: 10px;
   transition: none;
   color: #161320;
-  background: #ddb6f2;
+  /* Created with https://www.css-gradient.com */
+  background: #fd52a3;
+  background: linear-gradient(to bottom right, #fd52a3, #b6ce77);
 }
 #cpu {
   margin-top: 6px;
@@ -175,7 +182,9 @@ window#waybar.hidden {
   border-radius: 10px;
   transition: none;
   color: #161320;
-  background: #96cdfb;
+  /* Created with https://www.css-gradient.com */
+  background: #4ad9c4;
+  background: linear-gradient(to bottom right, #4ad9c4, #d231d8);
 }
 
 #tray {
@@ -187,7 +196,9 @@ window#waybar.hidden {
   border-radius: 10px;
   transition: none;
   color: #b5e8e0;
-  background: #161320;
+  /* Created with https://www.css-gradient.com */
+  background: #56edd4;
+  background: linear-gradient(to bottom right, #56edd4, #efd861);
 }
 
 #custom-launcher {

@@ -1,11 +1,7 @@
 {
   "layer": "top",
   "modules-left": [
-    "custom/launcher",
-    "cpu",
-    "memory",
-    "custom/media",
-    "tray"
+    "sway/window"
   ],
   "modules-center": [
     "sway/workspaces"
@@ -13,10 +9,14 @@
   "modules-right": [
     "custom/updates",
     "custom/wallpaper",
+    "custom/media",
+    "tray",
     "backlight",
     "pulseaudio",
     "clock",
     "battery",
+    "cpu",
+    "memory",
     "custom/power"
   ],
   "pulseaudio": {
@@ -80,6 +80,15 @@
     "interval": 30,
     "format": " {}%",
     "max-length": 10
+  },
+  "sway/window": {
+    "format": "{title}",
+    "max-length": 50,
+    "rewrite": {
+      // U+2014 (—)
+      "(.*) — Mozilla Firefox": "  $1",
+      "Mozilla Firefox": " "
+    }
   },
   "custom/media": {
     "interval": 30,
