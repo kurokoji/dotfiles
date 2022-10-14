@@ -22,6 +22,9 @@ set $term wezterm
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+
+font pango:PlemolJP Console NF 8
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -186,10 +189,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -220,10 +223,14 @@ bar {
 bindsym $alt+space exec "rofi -combi-modi window,drun -show combi -modi combi"
 
 # gaps {{{
-for_window [class=".*"] border pixel 2
-gaps outer 8
-gaps inner 8
+
+# for_window [class=".*"] border pixel 2
+default_border pixel
+default_floating_border pixel
+gaps outer 12
+gaps inner 12
 smart_borders on
+
 # }}}
 
 exec fcitx5
