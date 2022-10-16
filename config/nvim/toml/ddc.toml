@@ -179,11 +179,13 @@ hook_add = '''
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
+
+let g:neosnippet#snippets_directory = expand('$HOME/.config/nvim/snippets')
 '''
 # }}}
 
 [[plugins]]
-repo = 'kurokoji/neosnippet-snippets'
+repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
