@@ -120,9 +120,9 @@ repo = 'matsui54/denops-popup-preview.vim'
 on_source = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
-call popup_preview#enable()
 hi! PopupPreviewDocument ctermbg=NONE guibg=NONE gui=NONE
 hi! PopupPreviewBorder ctermbg=NONE guibg=NONE gui=NONE
+call popup_preview#enable()
 '''
 # }}}
 
