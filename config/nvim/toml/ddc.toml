@@ -9,7 +9,7 @@ hook_add = '''
 # hook_source {{{
 hook_source = '''
 call ddc#custom#patch_global({
-      \   'completionMenu': 'pum.vim',
+      \   'ui': 'pum',
       \   'sources': ['nvim-lsp', 'neosnippet', 'around', 'file'],
       \   'sourceOptions': {
       \     '_': {
@@ -35,7 +35,7 @@ call ddc#custom#patch_global({
       \     'file': {
       \       'mark': '',
       \       'isVolatile': v:true,
-      \       'forceCompletionPattern': '\S/\S*',
+      \       'forceCompletionPattern': '\S/\S*'
       \     },
       \     'skkeleton': {
       \       'mark': 'Skkeleton',
@@ -55,6 +55,9 @@ call ddc#custom#patch_global({
       \   'sourceParams': {
       \     'around': {
       \       'maxSize': 500,
+      \     },
+      \     'path': {
+      \       'cmd': ['find', '-maxdepth', '5']
       \     }
       \   }
       \ })
@@ -127,6 +130,10 @@ call popup_preview#enable()
 # }}}
 
 [[plugins]]
+repo = 'Shougo/ddc-ui-native'
+on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'Shougo/pum.vim'
 # hook_source {{{
 hook_source = '''
@@ -153,9 +160,14 @@ tnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
 tnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
 '''
 # }}}
+on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-around'
+repo = 'Shougo/ddc-ui-pum'
+on_source = 'pum.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -236,11 +248,11 @@ hook_source = '''
 # }}}
 
 [[plugins]]
-repo = 'Shougo/ddc-cmdline-history'
+repo = 'Shougo/ddc-source-cmdline-history'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-cmdline'
+repo = 'Shougo/ddc-source-cmdline'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -249,7 +261,7 @@ if = '!has("win32")'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
+repo = 'Shougo/ddc-source-nvim-lsp'
 on_source = 'ddc.vim'
 
 [[plugins]]
