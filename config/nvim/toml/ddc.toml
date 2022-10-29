@@ -263,9 +263,3 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-source-nvim-lsp'
 on_source = 'ddc.vim'
-
-[[plugins]]
-repo = 'shun/ddc-vim-lsp'
-on_source = 'ddc.vim'
-depends = ['vim-lsp']
-if = "0"
