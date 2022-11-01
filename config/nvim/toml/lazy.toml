@@ -225,7 +225,7 @@ lua << EOF
 local null_ls = require('null-ls')
 
 require('mason-null-ls').setup({
-  ensure_installed = { 'prettier', 'vint', 'stylua' }
+  ensure_installed = { 'prettier', 'vint', 'stylua', 'black', 'eslint_d' }
 })
 
 require('mason-null-ls').setup_handlers({
@@ -239,6 +239,12 @@ require('mason-null-ls').setup_handlers({
   end,
   vint = function()
     null_ls.register(null_ls.builtins.diagnostics.vint)
+  end,
+  black = function()
+    null_ls.register(null_ls.builtins.formatting.black)
+  end,
+  eslint_d = function()
+    null_ls.register(null_ls.builtins.diagnostics.eslint_d)
   end,
 })
 
