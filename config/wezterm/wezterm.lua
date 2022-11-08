@@ -227,7 +227,7 @@ return {
     top = 0,
     bottom = 0,
   },
-  font = wezterm.font("HackGen Console NFJ"),
+  font = wezterm.font("PlemolJP Console NF"),
   font_size = font_size,
   color_scheme_dirs = { "~/.config/wezterm/colors" },
   color_scheme = "dayfox",
