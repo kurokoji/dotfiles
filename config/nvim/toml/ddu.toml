@@ -23,6 +23,12 @@ call ddu#custom#patch_global({
     \     'file_rec': {
     \       'matchers': [
     \         'matcher_substring', 'matcher_hidden'
+    \       ],
+    \       'path': expand('~')
+    \     },
+    \     'file_external': {
+    \       'matchers': [
+    \         'matcher_substring', 'matcher_hidden'
     \       ]
     \     },
     \   },
