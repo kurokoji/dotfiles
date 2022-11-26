@@ -2,17 +2,15 @@ Set-PoshPrompt -Theme pure
 
 Set-Item ENV:Path "$ENV:HOMEPATH\.cargo\bin;$ENV:Path"
 
-Set-PSReadLineOption -PredictionSource History
-
 # Alias {{{
 
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias open explorer.exe
 
-if (Test-Path Alias:ls) {
-  Remove-Item Alias:ls
-}
+# if (Test-Path Alias:ls) {
+#   Remove-Item Alias:ls
+# }
 
 # }}}
 
@@ -27,43 +25,22 @@ function touch($file) {
   }
 }
 
-function which($cmdname) {
-  Get-Command $cmdname | Select-Object -ExpandProperty Definition
-}
-
-function ls() {
-  exa --icons $args
-}
-
-function la() {
-  exa --icons -a $args
-}
-
-function ll() {
-  exa --icons -l $args
-}
-
-function lla() {
-  exa --icons -l -a $args
-}
-
-function chill() {
-  if ((which "mpv") -and ((which "yt-dlp") -or (which "youtube-dl"))) {
-    Write-Output "Chill!!"
-    mpv --no-video https://www.youtube.com/watch?v=jfKfPfyJRdk
-  } else {
-    throw "mpvとyt-dlpもしくはyoutube-dlをインストールしてください"
-  }
+function which($command) {
+  Get-Command -Name $command -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
 # }}}
 
 Import-Module PSReadLine
+Import-Module posh-git
+Import-Module Terminal-Icons
+
+# PSReadLine
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -BellStyle None
 
 # PSfzf
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t'
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f'
 Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-$env:FZF_DEFAULT_OPTS="--height 30% --layout=reverse --border"
-
-Import-Module posh-git
+$env:FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
