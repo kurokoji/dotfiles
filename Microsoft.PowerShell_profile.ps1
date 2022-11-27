@@ -40,7 +40,7 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -BellStyle None
 
 # PSfzf
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f'
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t'
 Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-$env:FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+$env:FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
