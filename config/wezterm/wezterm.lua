@@ -8,7 +8,7 @@ local font_size = 0
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   table.insert(launch_menu, {
     label = "PowerShell 7",
-    args = { "C:/Program Files/WindowsApps/Microsoft.PowerShell_7.3.0.0_x64__8wekyb3d8bbwe/pwsh.exe", "-nologo" },
+    args = { "C:/Program Files/PowerShell/7/pwsh.exe", "-nologo" },
   })
 
   table.insert(launch_menu, {
@@ -17,10 +17,10 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   })
 
   environment_variables = {
-    ComSpec = "C:/Program Files/WindowsApps/Microsoft.PowerShell_7.3.0.0_x64__8wekyb3d8bbwe/pwsh.exe",
+    ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
   }
 
-  default_prog = { "C:/Program Files/WindowsApps/Microsoft.PowerShell_7.3.0.0_x64__8wekyb3d8bbwe/pwsh.exe", "-nologo" }
+  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-nologo" }
 
   font_size = 12.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
