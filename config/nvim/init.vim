@@ -37,18 +37,26 @@ cnoremap <C-g> <C-c>
 let g:dein#enable_notification = 1
 let g:dein#install_progress_type = 'floating'
 let g:dein#install_process_timeout = 360
-let g:dein#install_max_processes = 8
+" let g:dein#install_max_processes = 8
 
-let s:dein_dir = expand('~/.config/nvim/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-let s:toml_dir = s:dein_dir . '/../toml'
-
-if !isdirectory(s:dein_repo_dir)
-  echo 'install dein'
-  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+let $CACHE = expand('~/.cache')
+if !isdirectory($CACHE)
+  call mkdir($CACHE, 'p')
 endif
 
-let &runtimepath = s:dein_repo_dir . ',' . &runtimepath
+if &runtimepath !~# '/dein.vim'
+  let s:dein_dir = fnamemodify('dein.vim', ':p')
+  if !isdirectory(s:dein_dir)
+    let s:dein_dir = $CACHE . '/dein/repos/github.com/Shougo/dein.vim'
+    if !isdirectory(s:dein_dir)
+      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+    endif
+  endif
+  execute 'set runtimepath^=' . substitute(
+        \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
+endif
+
+let s:toml_dir = expand('~/.config/nvim/toml')
 
 let s:toml_file = s:toml_dir . '/dein.toml'
 let s:lazy_file = s:toml_dir . '/lazy.toml'
