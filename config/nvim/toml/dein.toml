@@ -322,13 +322,13 @@ repo = 'statiolake/vim-quickrun-runner-nvimterm'
 if = 'has("nvim")'
 
 # vim-fakeclipはxclip無いとneovimが死ぬ
-[[plugins]]
-repo = 'kurokoji/vim-fakeclip'
-# hook_add {{{
-hook_add = '''
-vnoremap <silent> <C-y> <Plug>(fakeclip-y)
-'''
-# }}}
+# [[plugins]]
+# repo = 'kurokoji/vim-fakeclip'
+# # hook_add {{{
+# hook_add = '''
+# vnoremap <silent> <C-y> <Plug>(fakeclip-y)
+# '''
+# # }}}
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'

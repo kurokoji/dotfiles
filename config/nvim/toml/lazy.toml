@@ -88,6 +88,7 @@ EOF
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
+on_source = ['nvim-treesitter']
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # hook_source {{{
 hook_source = '''
