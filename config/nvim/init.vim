@@ -79,9 +79,9 @@ endif
 
 " call dein#remote_plugins()
 
-" if has('vim_starting') && dein#check_install()
-"   call dein#install()
-" endif
+if has('vim_starting') && dein#check_install()
+  call dein#install()
+endif
 
 " }}}
 
