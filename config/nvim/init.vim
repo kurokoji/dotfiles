@@ -35,8 +35,8 @@ cnoremap <C-g> <C-c>
 
 " dein {{{
 let g:dein#enable_notification = 1
-let g:dein#install_progress_type = 'floating'
-let g:dein#install_process_timeout = 360
+" let g:dein#install_progress_type = 'floating'
+" let g:dein#install_process_timeout = 360
 " let g:dein#install_max_processes = 8
 
 let $CACHE = expand('~/.cache')
@@ -79,9 +79,9 @@ endif
 
 " call dein#remote_plugins()
 
-if has('vim_starting') && dein#check_install()
-  call dein#install()
-endif
+" if has('vim_starting') && dein#check_install()
+"   call dein#install()
+" endif
 
 " }}}
 

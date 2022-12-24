@@ -57,7 +57,7 @@ on_event = 'CursorHold'
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 if = 'has("nvim")'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter']
 hook_post_update = 'TSUpdate'
 # hook_source {{{
 hook_source = '''
@@ -80,7 +80,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-require 'nvim-treesitter.install'.compilers = { "gcc", "zig" }
+-- require 'nvim-treesitter.install'.compilers = { "gcc", "zig" }
 EOF
 '''
 # }}}
@@ -247,17 +247,6 @@ require('mason-null-ls').setup_handlers({
 
 null_ls.setup()
 
-EOF
-'''
-# }}}
-
-[[plugins]]
-repo = 'norcalli/nvim-colorizer.lua'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_source {{{
-hook_source = '''
-lua << EOF
-require('colorizer').setup()
 EOF
 '''
 # }}}
