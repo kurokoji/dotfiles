@@ -251,3 +251,13 @@ null_ls.setup()
 EOF
 '''
 # }}}
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+# hook_source {{{
+hook_source = '''
+lua << EOF
+require('colorizer').setup()
+EOF
+'''
