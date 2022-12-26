@@ -135,13 +135,14 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
+on_source = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
 call pum#set_option('max_width', 80)
 call pum#set_option('padding', v:true)
-call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
-call pum#set_option('highlight_normal_menu', '')
-call pum#set_option('scrollbar_char', '')
+" call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
+" call pum#set_option('highlight_normal_menu', '')
+call pum#set_option('scrollbar_char', '┃')
 
 inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
 inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
@@ -160,7 +161,6 @@ tnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
 tnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
 '''
 # }}}
-on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-ui-pum'
