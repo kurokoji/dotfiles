@@ -89,7 +89,7 @@ EOF
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
 on_source = ['nvim-treesitter']
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+# on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # hook_source {{{
 hook_source = '''
 lua <<EOF
@@ -135,7 +135,7 @@ EOF
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_source = 'mason-lspconfig.nvim'
 # hook_add {{{
 hook_add = '''
 nmap <silent> <Leader>rn <Cmd>lua vim.lsp.buf.rename()<CR>
@@ -162,18 +162,13 @@ EOF
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
-on_source = 'nvim-lspconfig'
+on_source = 'mason-lspconfig.nvim'
 # hook_source {{{
 hook_source = '''
 lua << EOF
 require("mason").setup({
     ui = {
         border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
     }
 })
 EOF
@@ -182,20 +177,30 @@ EOF
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
-on_source = 'mason.nvim'
+on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # hook_source {{{
 hook_source = '''
 lua << EOF
+
+require('mason-lspconfig').setup {}
+
 require("mason-lspconfig").setup_handlers({
   function(server)
     if server == 'serve_d' then
       -- local dmdPath = vim.fn.system('asdf where dmd')
-      local dmdPath = '~/.asdf/installs/dmd/2.100.2'
+      -- local dmdPath = '~/scoop/apps/dmd/2.101.0/src'
+      local dmdPath = ''
+      if vim.fn.has('win32') then
+        dmdPath = vim.fn.expand('~/scoop/apps/dmd/current/src')
+      else
+        dmdPath = vim.fn.expand('~/.asdf/installs/dmd/2.100.2/dmd2/src')
+      end
+
       require('lspconfig')[server].setup({
         -- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
         settings = {
           d = {
-            stdlibPath = {dmdPath .. '/dmd2/src/phobos', dmdPath .. '/dmd2/src/druntime', dmdPath .. '/dmd2/src/dmd'},
+            stdlibPath = {dmdPath .. '/phobos', dmdPath .. '/druntime', dmdPath .. '/dmd'},
           },
           dfmt = {
             braceStyle = 'otbs',
