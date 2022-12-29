@@ -1,16 +1,17 @@
 Set-PoshPrompt -Theme pure
 
 Set-Item ENV:Path "$ENV:HOMEPATH\.cargo\bin;$ENV:Path"
+Set-Item ENV:Path "$ENV:HOMEPATH\bin;$ENV:Path"
 
 # Alias {{{
-
-Set-Alias vim nvim
-Set-Alias vi nvim
-Set-Alias open explorer.exe
 
 # if (Test-Path Alias:ls) {
 #   Remove-Item Alias:ls
 # }
+
+Set-Alias vim nvim
+Set-Alias vi nvim
+Set-Alias open explorer.exe
 
 # }}}
 
