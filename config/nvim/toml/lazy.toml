@@ -4,7 +4,8 @@ on_cmd = 'Deol'
 # hook_add {{{
 hook_add = '''
 let g:deol#enable_ddc_completion = v:true
-let g:deol#floating_border = ['╭', '─', '╮', '│', '╯', '─', '╰', '│']
+" let g:deol#floating_border = ['╭', '─', '╮', '│', '╯', '─', '╰', '│']
+let g:deol#floating_border = ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃']
 
 function s:floating_deol() abort
   let width_per = 0.8

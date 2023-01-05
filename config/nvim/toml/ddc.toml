@@ -8,56 +8,59 @@ hook_add = '''
 # }}}
 # hook_source {{{
 hook_source = '''
-call ddc#custom#patch_global({
-      \   'ui': 'pum',
-      \   'sources': ['nvim-lsp', 'neosnippet', 'around', 'file'],
-      \   'sourceOptions': {
-      \     '_': {
-      \       'matchers': ['matcher_head'],
-      \       'sorters': ['sorter_rank']
+call ddc#custom#patch_global(#{
+      \   ui: 'pum',
+      \   sources: ['nvim-lsp', 'neosnippet', 'around', 'file'],
+      \   sourceOptions: #{
+      \     _: #{
+      \       matchers: ['matcher_head'],
+      \       sorters: ['sorter_rank']
       \     },
-      \     'around': {
-      \       'mark': '﬘',
+      \     around: #{
+      \       mark: '﬘',
       \     },
-      \     'necovim': {
-      \       'mark': '',
+      \     necovim: #{
+      \       mark: '',
       \     },
-      \     'vim-lsp': {
-      \       'matchers': ['matcher_head'],
-      \       'mark': '',
-      \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+      \     cmdline: #{
+      \       mark: '',
       \     },
-      \     'nvim-lsp': {
-      \       'matchers': ['matcher_head'],
-      \       'mark': '',
-      \       'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+      \     vim-lsp: #{
+      \       matchers: ['matcher_head'],
+      \       mark: '',
+      \       forceCompletionPattern: '\.\w*|:\w*|->\w*'
       \     },
-      \     'file': {
-      \       'mark': '',
-      \       'isVolatile': v:true,
-      \       'forceCompletionPattern': '\S/\S*'
+      \     nvim-lsp: #{
+      \       matchers: ['matcher_head'],
+      \       mark: '',
+      \       forceCompletionPattern: '\.\w*|:\w*|->\w*'
       \     },
-      \     'skkeleton': {
-      \       'mark': 'Skkeleton',
-      \       'matchers': ['skkeleton'],
-      \       'sorters': [],
-      \       'minAutoCompleteLength': 2,
+      \     file: #{
+      \       mark: '',
+      \       isVolatile: v:true,
+      \       forceCompletionPattern: '\S/\S*'
       \     },
-      \     'neosnippet': {
-      \       'mark': 'ﴨ',
+      \     skkeleton: #{
+      \       mark: 'Skkeleton',
+      \       matchers: ['skkeleton'],
+      \       sorters: [],
+      \       minAutoCompleteLength: 2,
       \     },
-      \     'tabnine': {
-      \       'mark': 'ﮧ',
-      \       'maxCandidates': 5,
-      \       'isVolatile': v:true,
+      \     neosnippet: #{
+      \       mark: 'ﴨ',
+      \     },
+      \     tabnine: #{
+      \       mark: 'ﮧ',
+      \       maxCandidates: 5,
+      \       isVolatile: v:true,
       \     },
       \   },
-      \   'sourceParams': {
-      \     'around': {
-      \       'maxSize': 500,
+      \   sourceParams: #{
+      \     around: #{
+      \       maxSize: 500,
       \     },
-      \     'path': {
-      \       'cmd': ['find', '-maxdepth', '5']
+      \     path: #{
+      \       cmd: ['find', '-maxdepth', '5']
       \     }
       \   }
       \ })
@@ -86,7 +89,9 @@ function! CommandlinePre() abort
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
   call ddc#custom#patch_buffer('cmdlineSources',
-          \ ['necovim', 'file'])
+          \ ['cmdline', 'file'])
+
+  " call ddc#custom#patch_global('ui', 'inline')
 
   autocmd User DDCCmdlineLeave ++once call CommandlinePost()
   autocmd InsertEnter <buffer> ++once call CommandlinePost()
@@ -123,8 +128,8 @@ repo = 'matsui54/denops-popup-preview.vim'
 on_source = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
-hi! PopupPreviewDocument ctermbg=NONE guibg=NONE gui=NONE
-hi! PopupPreviewBorder ctermbg=NONE guibg=NONE gui=NONE
+" hi! PopupPreviewDocument ctermbg=NONE guibg=NONE gui=NONE
+" hi! PopupPreviewBorder ctermbg=NONE guibg=NONE gui=NONE
 call popup_preview#enable()
 '''
 # }}}
@@ -141,8 +146,11 @@ hook_source = '''
 call pum#set_option('max_width', 80)
 call pum#set_option('padding', v:true)
 " call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
-" call pum#set_option('highlight_normal_menu', '')
-call pum#set_option('scrollbar_char', '┃')
+call pum#set_option('border', ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'])
+call pum#set_option('highlight_normal_menu', '')
+call pum#set_option('scrollbar_char', '')
+" call pum#set_option('scrollbar_char', '┃')
+" call pum#set_option('scrollbar_char', '█')
 
 inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
 inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
@@ -164,6 +172,10 @@ tnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
 
 [[plugins]]
 repo = 'Shougo/ddc-ui-pum'
+on_source = 'pum.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-inline'
 on_source = 'pum.vim'
 
 [[plugins]]

@@ -5,117 +5,117 @@ on_source = 'denops.vim'
 # hook_add {{{
 hook_add = '''
 "nnoremap <silent> <C-u><C-p> :call ddu#start()<CR>
-nnoremap <silent> <C-u><C-p> :call ddu#start({'name': 'rg-file_rec'})<CR>
-nnoremap <silent> <C-u><C-g> :call ddu#start({'name': 'grep'})<CR>
-nnoremap <silent> <C-u><C-]> :call ddu#start({'name': 'cursor-grep', 'sources': [{'name': 'rg', 'params': {'input': expand('<cword>')}}]})<CR>
-nnoremap <silent> <C-u><C-m> :call ddu#start({'name': 'filer'})<CR>
+nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'rg-file_rec' })<CR>
+nnoremap <silent> <C-u><C-g> :call ddu#start(#{ name: 'grep' })<CR>
+nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'cursor-grep', 'sources': [#{ name: 'rg', params: #{ input: expand('<cword>')} }] })<CR>
+nnoremap <silent> <C-u><C-m> :call ddu#start(#{ name: 'filer' })<CR>
 
 '''
 # }}}
 # hook_source {{{
 hook_source = '''
-call ddu#custom#patch_global({
-    \   'ui': 'ff',
-    \   'sourceOptions': {
-    \     '_': {
-    \       'matchers': ['matcher_substring', 'matcher_hidden'],
+call ddu#custom#patch_global(#{
+    \   ui: 'ff',
+    \   sourceOptions: #{
+    \     _: #{
+    \       matchers: ['matcher_substring', 'matcher_hidden'],
     \     },
-    \     'file_rec': {
-    \       'matchers': [
+    \     file_rec: #{
+    \       matchers: [
     \         'matcher_substring', 'matcher_hidden'
     \       ],
-    \       'path': expand('~')
+    \       path: expand('~')
     \     },
-    \     'file_external': {
-    \       'matchers': [
+    \     file_external: #{
+    \       matchers: [
     \         'matcher_substring', 'matcher_hidden'
     \       ]
     \     },
     \   },
-    \   'kindOptions': {
-    \     'file': {
-    \       'defaultAction': 'open',
+    \   kindOptions: #{
+    \     file: #{
+    \       defaultAction: 'open',
     \     },
     \   },
-    \   'uiParams': {
-    \     'ff': {
-    \       'startFilter': v:true,
-    \       'split': 'floating',
-    \       'filterSplitDirection': 'floating',
-    \       'filterFloatingPosition': 'bottom',
-    \       'floatingBorder': ['╭', '─', '╮', '│', '╯', '─', '╰', '│'],
-    \       'previewFloating': v:true,
-    \       'prompt': '❯ ',
-    \       'displaySourceName': 'none',
-    \       'previewFloatingBorder': ['╭', '─', '╮', '│', '╯', '─', '╰', '│'],
+    \   uiParams: #{
+    \     ff: #{
+    \       startFilter: v:true,
+    \       split: 'floating',
+    \       filterSplitDirection: 'floating',
+    \       filterFloatingPosition: 'bottom',
+    \       floatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
+    \       previewFloating: v:true,
+    \       prompt: '❯ ',
+    \       displaySourceName: 'none',
+    \       previewFloatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
     \     },
     \   },
     \ })
 
-call ddu#custom#patch_local('filer', {
-    \   'ui': 'filer',
-    \   'sources': [
-    \     {'name': 'file'}
+call ddu#custom#patch_local('filer', #{
+    \   ui: 'filer',
+    \   sources: [
+    \     #{ name: 'file' }
     \   ],
-    \   'uiParams': {
-    \     'filer': {
-    \       'split': 'floating',
-    \       'previewFloating': v:true,
+    \   uiParams: #{
+    \     filer: #{
+    \       split: 'floating',
+    \       previewFloating: v:true,
     \     },
     \   },
-    \   'actionOptions': {
-    \     'narrow': {
-    \       'quit': v:false,
+    \   actionOptions: #{
+    \     narrow: #{
+    \       quit: v:false,
     \     },
     \   },
     \ })
 
 " ripgrepでfile_rec
-call ddu#custom#patch_local('rg-file_rec', {
-    \   'sources': [
-    \     {'name': 'file_external'}
+call ddu#custom#patch_local('rg-file_rec', #{
+    \   sources: [
+    \     #{ name: 'file_external'}
     \   ],
-    \   'sourceParams': {
-    \     'file_external': {
-    \       'cmd': ['rg', '--threads', '4', '--files', '--column', '--no-heading', '--color', 'never', '--glob', '!.git', '--hidden'],
-    \       'updateItems': 100000000,
+    \   sourceParams: #{
+    \     file_external: #{
+    \       cmd: ['rg', '--threads', '4', '--files', '--column', '--no-heading', '--color', 'never', '--glob', '!.git', '--hidden'],
+    \       updateItems: 100000000,
     \     },
     \   },
     \ })
 
-call ddu#custom#patch_local('grep', {
-    \   'volatile': v:true,
-    \   'uiParams': {
-    \     'ff': {
-    \       'ignoreEmpty': v:false,
-    \       'autoResize': v:false,
+call ddu#custom#patch_local('grep', #{
+    \   volatile: v:true,
+    \   uiParams: #{
+    \     ff: #{
+    \       ignoreEmpty: v:false,
+    \       autoResize: v:false,
     \     },
     \   },
-    \   'sources': [{'name': 'rg'}],
-    \   'sourceParams': {
-    \     'rg': {
-    \       'args': ['--threads', '4', '--column', '--no-heading', '--color', 'never', '--json', '--hidden'],
+    \   sources: [#{ name: 'rg' }],
+    \   sourceParams: #{
+    \     rg: #{
+    \       args: ['--threads', '4', '--column', '--no-heading', '--color', 'never', '--json', '--hidden'],
     \     },
     \   },
-    \   'sourceOptions': {
-    \     '_': {
-    \       'matchers': [],
+    \   sourceOptions: #{
+    \     _: #{
+    \       matchers: [],
     \     },
     \   },
     \ })
 
-call ddu#custom#patch_local('cursor-grep', {
-    \   'uiParams': {
-    \     'ff': {
-    \       'startFilter': v:false,
-    \       'ignoreEmpty': v:false,
-    \       'autoResize': v:false,
+call ddu#custom#patch_local('cursor-grep', #{
+    \   uiParams: #{
+    \     ff: #{
+    \       startFilter: v:false,
+    \       ignoreEmpty: v:false,
+    \       autoResize: v:false,
     \     },
     \   },
-    \   'sources': [{'name': 'rg'}],
-    \   'sourceParams': {
-    \     'rg': {
-    \       'args': ['--threads', '4', '--column', '--no-heading', '--color', 'never', '--json', '--hidden'],
+    \   sources: [#{name: 'rg'}],
+    \   sourceParams: #{
+    \     rg: #{
+    \       args: ['--threads', '4', '--column', '--no-heading', '--color', 'never', '--json', '--hidden'],
     \     },
     \   },
     \ })
