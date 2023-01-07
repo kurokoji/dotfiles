@@ -5,9 +5,9 @@ Set-Item ENV:Path "$ENV:HOMEPATH\bin;$ENV:Path"
 
 # Alias {{{
 
-# if (Test-Path Alias:ls) {
-#   Remove-Item Alias:ls
-# }
+if (Test-Path Alias:ls) {
+  Remove-Item Alias:ls
+}
 
 Set-Alias vim nvim
 Set-Alias vi nvim
@@ -17,6 +17,22 @@ Set-Alias pbcopy clip.exe
 # }}}
 
 # Function {{{
+
+function ls($command) {
+  exa --icons $command
+}
+
+function ll($command) {
+  exa --icons -l  $command
+}
+
+function la($command) {
+  exa --icons --all  $command
+}
+
+function lla($command) {
+  exa --icons -l --all  $command
+}
 
 function touch($file) {
   if (Test-Path $file) {
