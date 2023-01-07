@@ -12,6 +12,7 @@ Set-Item ENV:Path "$ENV:HOMEPATH\bin;$ENV:Path"
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias open explorer.exe
+Set-Alias pbcopy clip.exe
 
 # }}}
 
@@ -28,6 +29,10 @@ function touch($file) {
 
 function which($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
+}
+
+function pbc($file) {
+  cat $file | clip
 }
 
 # }}}
