@@ -3,7 +3,7 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
-repo = 'dag/vim-fish'
+repo = 'khaveesh/vim-fish-syntax'
 on_ft = 'fish'
 
 [[plugins]]

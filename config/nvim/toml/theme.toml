@@ -1,42 +1,8 @@
 [[plugins]]
-repo = 'ajmwagar/vim-deus'
-
-[[plugins]]
-repo = 'Ardakilic/vim-tomorrow-night-theme'
-
-[[plugins]]
 repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
-repo = 'NLKNguyen/papercolor-theme'
-
-[[plugins]]
-repo = 'jacoborus/tender.vim'
-
-[[plugins]]
-repo = 'morhetz/gruvbox'
-
-[[plugins]]
-repo = 'deens/lightline_gruvbox_theme'
-
-[[plugins]]
-if = "has('nvim')"
-repo = 'icymind/NeoSolarized'
-
-[[plugins]]
-repo = 'dracula/vim'
-
-# [[plugins]]
-# repo = 'aradunovic/perun.vim'
-
-[[plugins]]
-repo = 'sainnhe/gruvbox-material'
-
-[[plugins]]
 repo = 'wadackel/vim-dogrun'
-
-[[plugins]]
-repo = 'lifepillar/vim-solarized8'
 
 # [[plugins]]
 # repo = 'taigacute/gruvbox9'
