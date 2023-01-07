@@ -60,9 +60,11 @@ Import-Module Terminal-Icons
 # PSReadLine
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -BellStyle None
+# Tab押したら候補がMenu形式で出てくる
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
 # PSfzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t'
 Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
-Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 $env:FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
