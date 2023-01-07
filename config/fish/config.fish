@@ -69,11 +69,6 @@ alias vi=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
 
-function em
-  env TERM=xterm-24bit emacs -nw .emacs.d/init.el $argv
-end
-alias emacs=em
-
 if executable exa
   alias ls='exa --icons'
   alias la='ls -a'
@@ -86,8 +81,6 @@ end
 if executable bat
   alias cat='bat --theme=gruvbox-light'
 end
-
-
 
 if [ "$os_name" = "Darwin" ]
   alias rm=mv2trash
