@@ -40,15 +40,6 @@ Write-Host "${dotsPath}" -ForegroundColor Red
 
 
 if (Test-Admin) {
-  $EXCLUDE_FILES = @(
-    "Brewfile", ".env.fish", ".git", ".gitignore", ".gitmodules",
-    ".DS_Store", "README.md", "LICENSE", ".zshrc",
-    "init.bash", "picture", "bin", "etc", "polybar", "tilix",
-    "termite", "kitty", "fish", "i3", ".xinitrc", ".xprofile",
-    ".Xresources", ".tmux.conf", "deploy.ps1", "deploy.bash", ".\Microsoft.PowerShell_profile.ps1",
-    "userChrome.css"
-  )
-
   $directories = Get-ChildItem -name -Directory $parent
   $configs = Get-ChildItem -name $configPath
 
