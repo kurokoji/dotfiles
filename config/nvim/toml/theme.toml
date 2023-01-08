@@ -10,3 +10,5 @@ repo = 'wadackel/vim-dogrun'
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
 if = 'has("nvim")'
+# dayfoxの色が変わりすぎているので古いバージョンで固定
+rev = 'v2.1.0'

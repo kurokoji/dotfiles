@@ -136,7 +136,7 @@ set noshowmode
 set incsearch
 set background=light
 set termguicolors
-" autocmd ColorScheme * hi dOperator guifg=#fb4934
+autocmd ColorScheme * hi dOperator guifg=#fb4934
 colorscheme dayfox
 
 let s:use_neovide = exists('g:neovide')
