@@ -136,7 +136,7 @@ set noshowmode
 set incsearch
 set background=light
 set termguicolors
-autocmd ColorScheme * hi dOperator guifg=#fb4934
+" autocmd ColorScheme * hi dOperator guifg=#fb4934
 colorscheme dayfox
 
 let s:use_neovide = exists('g:neovide')
@@ -191,16 +191,24 @@ else
   set guifont=PlemolJP\ Console\ NF:h15
 endif
 
-let g:tex_conceal = ""
+let g:tex_conceal = ''
 
 filetype on
 filetype plugin indent on
-autocmd FileType python set tabstop=4 shiftwidth=4
-autocmd FileType java set softtabstop=4 tabstop=4 shiftwidth=4
-autocmd FileType c,cpp set softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
-autocmd FileType json syntax match Comment +\/\/.\+$+
-autocmd FileType go set tabstop=4 shiftwidth=4 noexpandtab
-autocmd FileType d set softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
-autocmd Filetype html setlocal indentexpr=""
 
-autocmd BufNewFile,BufRead *.bigquery set filetype=sql
+augroup FileTypeConfig
+  autocmd!
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4
+  autocmd FileType java setlocal softtabstop=4 tabstop=4 shiftwidth=4
+  autocmd FileType c,cpp setlocal softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
+  autocmd FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
+  autocmd FileType d setlocal softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
+  autocmd Filetype html setlocal indentexpr=""
+
+  autocmd FileType json syntax match Comment +\/\/.\+$+
+augroup END
+
+augroup MyFileType
+  autocmd!
+  autocmd BufNewFile,BufRead *.bigquery set filetype=sql
+augroup END

@@ -169,7 +169,7 @@ hook_source = '''
 lua << EOF
 require("mason").setup({
     ui = {
-        border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+        border = {'┏', '━', '┓', '┃', '┛', '━', '┗', '┃'},
     }
 })
 EOF
@@ -225,14 +225,13 @@ on_source = 'mason.nvim'
 repo = 'jayp0521/mason-null-ls.nvim'
 on_source = ['mason.nvim', 'null-ls.nvim']
 # hook_source {{{
-
 hook_source = '''
 lua << EOF
 
 local null_ls = require('null-ls')
 
 require('mason-null-ls').setup({
-  ensure_installed = { 'prettier', 'vint', 'stylua', 'black' }
+  ensure_installed = { 'prettier', 'stylua', 'black' }
 })
 
 require('mason-null-ls').setup_handlers({
@@ -267,3 +266,4 @@ lua << EOF
 require('colorizer').setup()
 EOF
 '''
+# }}}
