@@ -89,6 +89,12 @@ endif
 
 set backspace=indent,eol,start
 
+" Search
+" 小文字の場合は大文字も検索対象となるが、大文字の場合は大文字のみにマッチする
+set ignorecase
+set smartcase
+set wrapscan
+
 " disable mouse
 set mouse=
 
