@@ -9,9 +9,9 @@ if [ "$os_name" = "Darwin" ]
 
 else if [ "$os_name" = "Linux" ]
   if [ (uname -r | grep 'microsoft') ]
-    set -x WSL_HOST (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
-    set -x ADB_SERVER_SOCKET tcp:$WSL_HOST:5037
-    set -x DISPLAY $WSL_HOST:0.0
+    # set -x WSL_HOST (cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+    # set -x ADB_SERVER_SOCKET tcp:$WSL_HOST:5037
+    # set -x DISPLAY $WSL_HOST:0.0
   end
 
   # set -x DefaultImModule fcitx

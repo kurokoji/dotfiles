@@ -60,9 +60,8 @@ repo = 'nvim-treesitter/nvim-treesitter'
 if = 'has("nvim")'
 on_event = ['BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter']
 hook_post_update = 'TSUpdate'
-# hook_source {{{
-hook_source = '''
-lua <<EOF
+# lua_source {{{
+lua_source = '''
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'python', 'cpp', 'go', 'typescript', 'vim',
@@ -82,7 +81,6 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- require 'nvim-treesitter.install'.compilers = { "gcc", "zig" }
-EOF
 '''
 # }}}
 
@@ -91,9 +89,8 @@ repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
 on_source = ['nvim-treesitter']
 # on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_source {{{
-hook_source = '''
-lua <<EOF
+# lua_source {{{
+lua_source = '''
 vim.opt.list = true
 -- vim.opt.listchars:append("eol:↵")
 
@@ -103,7 +100,6 @@ require('indent_blankline').setup {
   show_current_context = true,
   show_current_context_start = true,
 }
-EOF
 '''
 # }}}
 
@@ -115,22 +111,18 @@ on_source = 'nvim-treesitter'
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_source {{{
-hook_source = '''
-lua <<EOF
+# lua_source {{{
+lua_source = '''
 require('gitsigns').setup()
-EOF
 '''
 # }}}
 
 [[plugins]]
 repo = 'windwp/nvim-autopairs'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_source {{{
-hook_source = '''
-lua <<EOF
+# lua_source {{{
+lua_source = '''
 require("nvim-autopairs").setup {}
-EOF
 '''
 # }}}
 
@@ -149,39 +141,39 @@ nmap <silent> gr <Cmd>lua vim.lsp.buf.references()<CR>
 nmap <silent> F <Cmd>lua vim.lsp.buf.format { async = true }<CR>
 '''
 # }}}
-# hook_source {{{
-hook_source = '''
-lua << EOF
+# lua_source {{{
+lua_source = '''
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-EOF
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
 '''
 # }}}
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
 on_source = 'mason-lspconfig.nvim'
-# hook_source {{{
-hook_source = '''
-lua << EOF
+# lua_source {{{
+lua_source = '''
 require("mason").setup({
     ui = {
         border = {'┏', '━', '┓', '┃', '┛', '━', '┗', '┃'},
     }
 })
-EOF
 '''
 # }}}
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_source {{{
-hook_source = '''
-lua << EOF
+# lua_source {{{
+lua_source = '''
 
 require('mason-lspconfig').setup {}
 
@@ -213,7 +205,6 @@ require("mason-lspconfig").setup_handlers({
     end
   end
 })
-EOF
 '''
 # }}}
 
@@ -224,9 +215,8 @@ on_source = 'mason.nvim'
 [[plugins]]
 repo = 'jayp0521/mason-null-ls.nvim'
 on_source = ['mason.nvim', 'null-ls.nvim']
-# hook_source {{{
-hook_source = '''
-lua << EOF
+# lua_post_source {{{
+lua_post_source = '''
 
 local null_ls = require('null-ls')
 
@@ -253,17 +243,66 @@ require('mason-null-ls').setup_handlers({
 
 null_ls.setup()
 
-EOF
 '''
 # }}}
 
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_source {{{
-hook_source = '''
-lua << EOF
+# lua_source {{{
+lua_source = '''
 require('colorizer').setup()
-EOF
+'''
+# }}}
+
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+on_event = ['VimEnter']
+depends = ['nightfox.nvim']
+# lua_post_source {{{
+lua_post_source = '''
+local function duck()
+  return ''
+end
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'filename'},
+    lualine_c = {'diff', {
+      'diagnostics',
+      sources = { 'nvim_lsp' }
+    }},
+    lualine_x = {'filetype', 'encoding', 'fileformat'},
+    lualine_y = {'location'},
+    lualine_z = {'progress'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {
+    lualine_a = {'tabs', 'filename'},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { duck }
+  },
+  extensions = {}
+}
 '''
 # }}}

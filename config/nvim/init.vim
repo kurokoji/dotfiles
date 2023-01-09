@@ -63,6 +63,7 @@ let s:lazy_file = s:toml_dir . '/lazy.toml'
 let s:ddu_file = s:toml_dir . '/ddu.toml'
 let s:ddc_file = s:toml_dir . '/ddc.toml'
 let s:theme_file = s:toml_dir . '/theme.toml'
+let s:theme_lazy_file = s:toml_dir . '/theme_lazy.toml'
 let s:syntax_file = s:toml_dir . '/syntax.toml'
 
 if dein#min#load_state(s:dein_dir)
@@ -70,6 +71,7 @@ if dein#min#load_state(s:dein_dir)
   call dein#load_toml(s:theme_file, {'lazy': 0})
   call dein#load_toml(s:toml_file, {'lazy': 0})
   call dein#load_toml(s:syntax_file, {'lazy': 0})
+  call dein#load_toml(s:theme_lazy_file, {'lazy': 0})
   call dein#load_toml(s:lazy_file, {'lazy': 1})
   call dein#load_toml(s:ddu_file, {'lazy': 1})
   call dein#load_toml(s:ddc_file, {'lazy': 1})
