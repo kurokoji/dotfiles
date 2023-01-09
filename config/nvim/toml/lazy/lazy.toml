@@ -242,7 +242,7 @@ null_ls.setup()
 # }}}
 
 [[plugins]]
-repo = 'norcalli/nvim-colorizer.lua'
+repo = 'NvChad/nvim-colorizer.lua'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # lua_source {{{
 lua_source = '''
