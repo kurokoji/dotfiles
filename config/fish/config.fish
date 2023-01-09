@@ -93,6 +93,11 @@ else if [ "$os_name" = "Linux" ]
     alias pbcopy='xclip -selection c'
     alias pbpaste='xclip -selection c -o'
   end
+
+  if executable xsel
+    alias pbcopy='xsel -bi'
+    alias pbpaste='xsel -b'
+  end
 end
 # }}}
 # color {{{

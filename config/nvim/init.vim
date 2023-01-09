@@ -33,7 +33,8 @@ cnoremap <C-y> <C-r>*
 cnoremap <C-g> <C-c>
 
 " クリップボードにコピー
-vnoremap <C-y> "*y
+" Linuxの場合、xselをインストールすれば使えるようになるはず
+vnoremap <C-y> "+y
 " }}}
 
 " dein {{{
