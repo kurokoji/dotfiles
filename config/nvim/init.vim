@@ -56,26 +56,28 @@ if &runtimepath !~# '/dein.vim'
         \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
 endif
 
-let s:toml_dir = expand('~/.config/nvim/toml')
+let s:normal_toml_dir = expand('~/.config/nvim/toml')
+let s:lazy_toml_dir = expand('~/.config/nvim/toml/lazy')
 
-let s:toml_file = s:toml_dir . '/dein.toml'
-let s:lazy_file = s:toml_dir . '/lazy.toml'
-let s:ddu_file = s:toml_dir . '/ddu.toml'
-let s:ddc_file = s:toml_dir . '/ddc.toml'
-let s:theme_file = s:toml_dir . '/theme.toml'
-let s:theme_lazy_file = s:toml_dir . '/theme_lazy.toml'
-let s:syntax_file = s:toml_dir . '/syntax.toml'
+let s:normal_toml_list = split(glob(s:normal_toml_dir .. '/*.toml'), '\n')
+let s:lazy_toml_list = split(glob(s:lazy_toml_dir .. '/*.toml'), '\n')
 
 if dein#min#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-  call dein#load_toml(s:theme_file, {'lazy': 0})
-  call dein#load_toml(s:toml_file, {'lazy': 0})
-  call dein#load_toml(s:syntax_file, {'lazy': 0})
-  call dein#load_toml(s:theme_lazy_file, {'lazy': 0})
-  call dein#load_toml(s:lazy_file, {'lazy': 1})
-  call dein#load_toml(s:ddu_file, {'lazy': 1})
-  call dein#load_toml(s:ddc_file, {'lazy': 1})
+
+  for toml in s:normal_toml_list
+    call dein#load_toml(toml, #{ lazy: 0 })
+  endfor
+
+  for toml in s:lazy_toml_list
+    call dein#load_toml(toml, #{ lazy: 1 })
+  endfor
+
   call dein#end()
+  " デフォルトではnon lazyなプラグインではhook_source(lua_source)は呼び出されないので強制的にhook_sourceを呼び出している
+  " https://github.com/Shougo/dein.vim/blob/master/doc/dein.txt#L1096
+  call dein#call_hook('source')
+
   call dein#save_state()
 endif
 
@@ -94,6 +96,10 @@ set backspace=indent,eol,start
 set ignorecase
 set smartcase
 set wrapscan
+set incsearch
+
+" モードを表示しない(lualineがあるので)
+set noshowmode
 
 " disable mouse
 set mouse=
@@ -140,8 +146,6 @@ set wildmenu
 set wildmode=full
 
 
-set noshowmode
-set incsearch
 set background=light
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934

@@ -301,3 +301,12 @@ require('lualine').setup {
 }
 '''
 # }}}
+
+[[plugins]]
+repo = 'ErichDonGubler/lsp_lines.nvim'
+on_source = 'nvim-lspconfig'
+# lua_source {{{
+lua_source = '''
+require('lsp_lines').setup {}
+'''
+# }}}
