@@ -47,6 +47,10 @@ if (Test-Admin) {
   foreach ($dir in $configs) {
     $linkpath = (Join-Path -Resolve $configPath $dir)
     New-Item -Type SymbolicLink -Path ~\.config -Name $dir -Value $linkpath
+    # alacrittyを%APPDATA%にリンクつくる
+    if ($dir -eq "alacritty") {
+      New-Item -Type SymbolicLink -Path $env:APPDATA -Name $dir -Value $linkpath
+    }
   }
 
   $linkpath = (Join-Path -Resolve $parent "Microsoft.PowerShell_profile.ps1")

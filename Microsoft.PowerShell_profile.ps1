@@ -51,6 +51,10 @@ function pbc($file) {
   cat $file | clip
 }
 
+function rmrf($command) {
+  Remove-Item -Recurse -Force $command
+}
+
 # }}}
 
 Import-Module PSReadLine

@@ -88,6 +88,7 @@ font:
 # Should display the render timer
 debug.render_timer: false
 
+# theme {{{
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.
 # custom_cursor_colors: false
@@ -123,6 +124,7 @@ colors:
   indexed_colors:
     - { index: 16, color: '0xe3786c' }
     - { index: 17, color: '0xd685af' }
+# }}}
 
 # Visual Bell
 #
