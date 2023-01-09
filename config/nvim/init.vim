@@ -31,6 +31,9 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 cnoremap <C-y> <C-r>*
 cnoremap <C-g> <C-c>
+
+" クリップボードにコピー
+vnoremap <C-y> "*y
 " }}}
 
 " dein {{{
