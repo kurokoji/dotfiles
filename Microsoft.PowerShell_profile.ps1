@@ -1,4 +1,5 @@
-Set-PoshPrompt -Theme pure
+# Set-PoshPrompt -Theme pure
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/emodipt-extend.omp.json" | Invoke-Expression
 
 Set-Item ENV:Path "$ENV:HOMEPATH\.cargo\bin;$ENV:Path"
 Set-Item ENV:Path "$ENV:HOMEPATH\bin;$ENV:Path"
