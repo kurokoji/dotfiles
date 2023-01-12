@@ -209,9 +209,9 @@ on_source = 'mason.nvim'
 
 [[plugins]]
 repo = 'jayp0521/mason-null-ls.nvim'
-on_source = ['mason.nvim', 'null-ls.nvim']
-# lua_post_source {{{
-lua_post_source = '''
+on_source = 'null-ls.nvim'
+# lua_source {{{
+lua_source = '''
 
 local null_ls = require('null-ls')
 
@@ -304,6 +304,7 @@ require('lualine').setup {
 
 [[plugins]]
 repo = 'ErichDonGubler/lsp_lines.nvim'
+if = '0'
 on_source = 'nvim-lspconfig'
 # lua_source {{{
 lua_source = '''
