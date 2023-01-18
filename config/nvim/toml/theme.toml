@@ -10,7 +10,6 @@ repo = 'wadackel/vim-dogrun'
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
 if = 'has("nvim")'
-on_event = ['VimEnter']
 # lua_source = {{{
 lua_source = '''
 local S = require("nightfox.lib.shade")

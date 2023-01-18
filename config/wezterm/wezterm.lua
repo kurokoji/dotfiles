@@ -227,6 +227,8 @@ return {
     top = 0,
     bottom = 0,
   },
+  front_end = "WebGpu",
+  webgpu_power_preference = "HighPerformance",
   font = wezterm.font("PlemolJP Console NF"),
   font_size = font_size,
   color_scheme_dirs = { "~/.config/wezterm/colors" },
