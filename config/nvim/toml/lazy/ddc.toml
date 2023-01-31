@@ -10,7 +10,7 @@ hook_add = '''
 hook_source = '''
 call ddc#custom#patch_global(#{
       \   ui: 'pum',
-      \   sources: ['nvim-lsp', 'neosnippet', 'around', 'file'],
+      \   sources: ['nvim-lsp', 'neosnippet', 'around', 'buffer', 'file'],
       \   sourceOptions: #{
       \     _: #{
       \       matchers: ['matcher_head'],
@@ -53,6 +53,9 @@ call ddc#custom#patch_global(#{
       \       mark: 'ﮧ',
       \       isVolatile: v:true,
       \     },
+      \     buffer: #{
+      \       mark: '﬘',
+      \     }
       \   },
       \   sourceParams: #{
       \     around: #{
@@ -60,7 +63,13 @@ call ddc#custom#patch_global(#{
       \     },
       \     path: #{
       \       cmd: ['find', '-maxdepth', '5']
-      \     }
+      \     },
+      \     buffer: #{
+      \       requireSameFiletype: v:false,
+      \       limitBytes: 5000000,
+      \       fromAltBuf: v:true,
+      \       forceCollect: v:true,
+      \     },
       \   }
       \ })
 
@@ -273,4 +282,8 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-nvim-lsp'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'matsui54/ddc-buffer'
 on_source = 'ddc.vim'

@@ -6,6 +6,7 @@ on_source = 'denops.vim'
 hook_add = '''
 "nnoremap <silent> <C-u><C-p> :call ddu#start()<CR>
 nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'rg-file_rec' })<CR>
+"nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'file_rec' })<CR>
 nnoremap <silent> <C-u><C-g> :call ddu#start(#{ name: 'grep' })<CR>
 nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'cursor-grep', 'sources': [#{ name: 'rg', params: #{ input: expand('<cword>')} }] })<CR>
 nnoremap <silent> <C-u><C-m> :call ddu#start(#{ name: 'filer' })<CR>
@@ -21,16 +22,44 @@ call ddu#custom#patch_global(#{
     \       matchers: ['matcher_substring', 'matcher_hidden'],
     \     },
     \     file_rec: #{
-    \       matchers: [
-    \         'matcher_substring', 'matcher_hidden'
-    \       ],
-    \       path: expand('~')
+    \       matchers: ['matcher_substring', 'matcher_hidden'],
+    \       columns: ['icon_filename']
     \     },
     \     file_external: #{
-    \       matchers: [
-    \         'matcher_substring', 'matcher_hidden'
-    \       ]
+    \       matchers: ['matcher_substring', 'matcher_hidden'],
     \     },
+    \     file: #{
+    \       columns: ['icon_filename'],
+    \     }
+    \   },
+    \   sourceParams: #{
+    \     file_rec: #{
+    \       ignoredDirectories: ['.git', 'node_modules', '.cache', 'go']
+    \     },
+    \   },
+    \   columnParams: #{
+    \     icon_filename: #{
+    \       padding: 0,
+    \       span: 2,
+    \       colors: #{
+    \         default: 'Normal',
+    \         aqua: '#74b2c9',
+    \         beige: '#a36f3e',
+    \         blue: '#4e75aa',
+    \         brown: '#ba793e',
+    \         darkBlue: '#485e7d',
+    \         darkOrange: '#d76558',
+    \         green: '#629f81',
+    \         lightGreen: '#618774',
+    \         lightPurple: '#8e6f98',
+    \         orange: '#e8857a',
+    \         pink: '#de8db7',
+    \         purple: '#9f75ac',
+    \         red: '#c76882',
+    \         salmon: '#b95d76',
+    \         yellow: '#ca884a',
+    \       }
+    \     }
     \   },
     \   kindOptions: #{
     \     file: #{
@@ -48,6 +77,9 @@ call ddu#custom#patch_global(#{
     \       prompt: '❯ ',
     \       displaySourceName: 'none',
     \       previewFloatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
+    \       highlights: #{
+    \         floating: '',
+    \       }
     \     },
     \   },
     \ })
@@ -97,11 +129,6 @@ call ddu#custom#patch_local('grep', #{
     \       args: ['--threads', '4', '--column', '--no-heading', '--color', 'never', '--json', '--hidden'],
     \     },
     \   },
-    \   sourceOptions: #{
-    \     _: #{
-    \       matchers: [],
-    \     },
-    \   },
     \ })
 
 call ddu#custom#patch_local('cursor-grep', #{
@@ -118,6 +145,10 @@ call ddu#custom#patch_local('cursor-grep', #{
     \       args: ['--threads', '4', '--column', '--no-heading', '--color', 'never', '--json', '--hidden'],
     \     },
     \   },
+    \ })
+
+call ddu#custom#patch_local('file_rec', #{
+    \   sources: [#{ name: 'file_rec', params: {} }],
     \ })
 
 
@@ -162,21 +193,7 @@ repo = 'Shougo/ddu-commands.vim'
 on_source = 'ddu.vim'
 on_cmd = 'Ddu'
 
-[[plugins]]
-repo = 'Shougo/ddu-ui-ff'
-on_source = 'ddu.vim'
-
-[[plugins]]
-repo = 'Shougo/ddu-ui-filer'
-on_source = 'ddu.vim'
-
-[[plugins]]
-repo = 'Shougo/ddu-kind-file'
-on_source = 'ddu.vim'
-
-[[plugins]]
-repo = 'Shougo/ddu-filter-matcher_substring'
-on_source = 'ddu.vim'
+# source {{{
 
 [[plugins]]
 repo = 'Shougo/ddu-source-file'
@@ -186,12 +203,33 @@ on_source = 'ddu.vim'
 repo = 'Shougo/ddu-source-file_rec'
 on_source = 'ddu.vim'
 
-[[plugins]]
-repo = 'Shougo/ddu-filter-matcher_hidden'
-on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'shun/ddu-source-rg'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-file_external'
+on_source = 'ddu.vim'
+
+# }}}
+
+# ui {{{
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+on_source = 'ddu.vim'
+
+# }}}
+
+# filter {{{
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_hidden'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -199,5 +237,27 @@ repo = 'Shougo/ddu-filter-converter_display_word'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = 'matsui54/ddu-source-file_external'
+repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = 'ddu.vim'
+
+# }}}
+
+# kind {{{
+
+[[plugins]]
+repo = 'Shougo/ddu-kind-file'
+on_source = 'ddu.vim'
+
+# }}}
+
+# column {{{
+
+[[plugins]]
+repo = 'ryota2357/ddu-column-icon_filename'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
+on_source = 'ddu.vim'
+
+# }}}
