@@ -51,7 +51,6 @@ call ddc#custom#patch_global(#{
       \     },
       \     tabnine: #{
       \       mark: 'ﮧ',
-      \       maxCandidates: 5,
       \       isVolatile: v:true,
       \     },
       \   },

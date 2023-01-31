@@ -35,7 +35,7 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple 
 
   default_prog = { "/opt/homebrew/bin/fish", "-l" }
 
-  font_size = 15.0
+  font_size = 14.0
   --  default_prog = {"/opt/homebrew/bin/fish", "-l"}
 else
   environment_variables = {
@@ -230,7 +230,8 @@ return {
   front_end = "WebGpu",
   webgpu_power_preference = "HighPerformance",
 --  font = wezterm.font("PlemolJP Console NF"),
-  font = wezterm.font("Cica"),
+--  font = wezterm.font("Cica"),
+  font = wezterm.font("UDEV Gothic NF"),
   font_size = font_size,
   color_scheme_dirs = { "~/.config/wezterm/colors" },
   color_scheme = "dayfox",
