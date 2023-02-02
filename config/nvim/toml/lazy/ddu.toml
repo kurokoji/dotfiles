@@ -27,6 +27,7 @@ call ddu#custom#patch_global(#{
     \     },
     \     file_external: #{
     \       matchers: ['matcher_substring', 'matcher_hidden'],
+    \       columns: ['icon_filename']
     \     },
     \     file: #{
     \       columns: ['icon_filename'],
@@ -41,6 +42,7 @@ call ddu#custom#patch_global(#{
     \     icon_filename: #{
     \       padding: 0,
     \       span: 2,
+    \       pathDisplayOption: "relative",
     \       colors: #{
     \         default: 'Normal',
     \         aqua: '#74b2c9',
