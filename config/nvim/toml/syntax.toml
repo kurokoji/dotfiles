@@ -58,3 +58,6 @@ hook_add = '''
 let g:zig_fmt_autosave = 0
 '''
 # }}}
+
+[[plugins]]
+repo = 'prisma/vim-prisma'
