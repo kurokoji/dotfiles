@@ -101,7 +101,7 @@ else if [ "$os_name" = "Linux" ]
 end
 # }}}
 # color {{{
-source $HOME/.config/fish/colors/dayfox_fish.fish
+source $HOME/.config/fish/colors/dawnfox_fish.fish
 # }}}
 
 if not functions -q fisher
