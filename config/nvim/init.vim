@@ -153,7 +153,7 @@ set wildmode=full
 set background=light
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-colorscheme dayfox
+colorscheme dawnfox
 
 let s:use_neovide = exists('g:neovide')
 let s:use_gui = s:use_neovide || has('gui_running')

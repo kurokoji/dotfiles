@@ -1,5 +1,8 @@
 local wezterm = require 'wezterm';
 
+local colorscheme_name = 'dawnfox'
+
+local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
 local launch_menu = {}
 local default_prog = {}
 local environment_variables = {}
@@ -78,12 +81,12 @@ local SOLID_LEFT_ARROW = ''
 local SOLID_RIGHT_ARROW = ''
 
 wezterm.on("update-right-status", function(window, pane)
-  local background = "#2e537d"
-  local foreground = "#eaeaea"
-  local edge_background = "#dbdbdb"
+  local background = scheme.tab_bar.active_tab.bg_color
+  local foreground = scheme.tab_bar.active_tab.fg_color
+  local edge_background = scheme.tab_bar.background
   local edge_foreground = background
-  local red_foreground = "#c76882"
-  local green_foreground = "#629f81"
+  local red_foreground = scheme.ansi[2]
+  local green_foreground = scheme.ansi[3]
 
   -- "Wed Mar 3 08:14"
   local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ");
@@ -184,17 +187,16 @@ wezterm.on("update-right-status", function(window, pane)
 end)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-
-  local edge_background = "#dbdbdb"
-  local background = "#dbcece"
-  local foreground = "#1d344f"
+  local edge_background = scheme.tab_bar.background
+  local background = scheme.tab_bar.inactive_tab.bg_color
+  local foreground = scheme.tab_bar.inactive_tab.fg_color
 
   if tab.is_active then
-    background = "#2e537d"
-    foreground = "#eaeaea"
+    background = scheme.tab_bar.active_tab.bg_color
+    foreground = scheme.tab_bar.active_tab.fg_color
   elseif hover then
-    background = "#ced6db"
-    foreground = "#1d344f"
+    background = scheme.tab_bar.new_tab_hover.bg_color
+    foreground = scheme.tab_bar.new_tab_hover.fg_color
   end
 
   local edge_foreground = background
@@ -234,7 +236,7 @@ return {
   font = wezterm.font("UDEV Gothic NF"),
   font_size = font_size,
   color_scheme_dirs = { "~/.config/wezterm/colors" },
-  color_scheme = "dayfox",
+  color_scheme = colorscheme_name,
   launch_menu = launch_menu,
   keys = keys,
   use_fancy_tab_bar = false,
