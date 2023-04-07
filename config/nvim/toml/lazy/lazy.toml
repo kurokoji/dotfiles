@@ -186,3 +186,7 @@ require('lualine').setup {
 }
 '''
 # }}}
+
+[[plugins]]
+repo = 'github/copilot.vim'
+on_event = ['BufRead', 'BufNewFile', 'BufEnter']

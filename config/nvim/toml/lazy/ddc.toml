@@ -10,7 +10,7 @@ hook_add = '''
 hook_source = '''
 call ddc#custom#patch_global(#{
       \   ui: 'pum',
-      \   sources: ['nvim-lsp', 'neosnippet', 'around', 'buffer', 'file'],
+      \   sources: ['nvim-lsp', 'neosnippet', 'around', 'buffer', 'copilot', 'file'],
       \   sourceOptions: #{
       \     _: #{
       \       matchers: ['matcher_head'],
@@ -55,7 +55,12 @@ call ddc#custom#patch_global(#{
       \     },
       \     buffer: #{
       \       mark: '﬘',
-      \     }
+      \     },
+      \     copilot: #{
+      \       mark: 'ﮧ',
+      \       matchers: [],
+      \       minAutoCompleteLength: 0,
+      \     },
       \   },
       \   sourceParams: #{
       \     around: #{
@@ -286,4 +291,8 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-copilot'
 on_source = 'ddc.vim'
