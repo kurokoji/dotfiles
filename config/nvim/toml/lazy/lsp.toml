@@ -82,7 +82,8 @@ require("mason").setup({
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+# on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_source = 'mason-null-ls.nvim'
 # lua_source {{{
 lua_source = '''
 
@@ -160,7 +161,8 @@ require("mason-lspconfig").setup_handlers({
 
 [[plugins]]
 repo = 'jose-elias-alvarez/null-ls.nvim'
-on_source = 'mason.nvim'
+# on_source = 'mason.nvim'
+on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 
 [[plugins]]
 repo = 'jayp0521/mason-null-ls.nvim'
@@ -169,29 +171,14 @@ on_source = 'null-ls.nvim'
 lua_source = '''
 
 local null_ls = require('null-ls')
+null_ls.setup()
 
 require('mason-null-ls').setup({
-  ensure_installed = { 'prettier', 'stylua', 'black' }
+  ensure_installed = { 'prettier', 'stylua', 'black' },
+  automatic_setup = true,
+  handlers = {}
 })
 
-require('mason-null-ls').setup_handlers({
-  function(source_name)
-  end,
-  prettier = function()
-    null_ls.register(null_ls.builtins.formatting.prettier)
-  end,
-  stylua = function()
-    null_ls.register(null_ls.builtins.formatting.stylua)
-  end,
-  vint = function()
-    null_ls.register(null_ls.builtins.diagnostics.vint)
-  end,
-  black = function()
-    null_ls.register(null_ls.builtins.formatting.black)
-  end,
-})
-
-null_ls.setup()
 
 '''
 # }}}

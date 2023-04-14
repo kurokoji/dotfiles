@@ -190,3 +190,8 @@ require('lualine').setup {
 [[plugins]]
 repo = 'github/copilot.vim'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+# hook_add {{{
+hook_add = '''
+let g:copilot_no_tab_map = v:true
+'''
+# }}}
