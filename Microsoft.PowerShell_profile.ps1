@@ -16,6 +16,7 @@ Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias open explorer.exe
 Set-Alias pbcopy clip.exe
+Set-Alias unzip Expand-Archive
 
 # }}}
 
