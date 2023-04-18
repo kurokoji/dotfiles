@@ -195,3 +195,11 @@ hook_add = '''
 let g:copilot_no_tab_map = v:true
 '''
 # }}}
+
+[[plugins]]
+repo = 'petertriho/nvim-scrollbar'
+on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+# lua_source {{{
+lua_source = '''
+require('scrollbar').setup()
+'''
