@@ -53,12 +53,12 @@ if (Test-Admin) {
     }
   }
 
-  $linkpath = (Join-Path -Resolve $parent "Microsoft.PowerShell_profile.ps1")
+  $linkpath = (Join-Path -Resolve $parent "Profile.ps1")
 
   $profilepath = (Split-Path -Parent $PROFILE)
 
   # PROFILEのシンボリックリンク
-  New-Item -Force -Type SymbolicLink -Path $profilepath -Name "Microsoft.PowerShell_profile.ps1" -Value $linkpath
+  New-Item -Force -Type SymbolicLink -Path $profilepath -Name "Profile.ps1" -Value $linkpath
 
   Write-Host "Complete!!" -ForegroundColor Red
   Read-Host "Please press any key."
