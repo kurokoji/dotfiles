@@ -202,9 +202,9 @@ set smartindent
 set ttyfast
 
 if has('win32') || has ('win64')
-  set guifont=PlemolJP\ Console\ NF:h12
+  set guifont=UDEV\ Gothic\ NF:h12
 else
-  set guifont=PlemolJP\ Console\ NF:h15
+  set guifont=UDEV\ Gothic\ NF:h15
 endif
 
 let g:tex_conceal = ''
