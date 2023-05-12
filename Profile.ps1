@@ -1,9 +1,9 @@
 # Set-PoshPrompt -Theme pure
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/amro.omp.json" | Invoke-Expression
 
-Set-Item ENV:Path "$ENV:HOMEPATH\.cargo\bin;$ENV:Path"
+Set-Item env:Path "$env:UserProfile\.cargo\bin;$env:Path"
 # Set-Item ENV:Path "~\.cargo\bin;$ENV:Path"
-Set-Item ENV:Path "$ENV:HOMEPATH\bin;$ENV:Path"
+Set-Item env:Path "$env:UserProfile\bin;$env:Path"
 # Set-Item ENV:Path "~\bin;$ENV:Path"
 
 # Alias {{{
@@ -12,6 +12,7 @@ if (Test-Path Alias:ls) {
   Remove-Item Alias:ls
 }
 
+Set-Alias lvim vim.exe
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias open explorer.exe
