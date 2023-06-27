@@ -5,7 +5,7 @@ on_source = 'denops.vim'
 # hook_add {{{
 hook_add = '''
 "nnoremap <silent> <C-u><C-p> :call ddu#start()<CR>
-nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'rg-file_rec' })<CR>
+nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'fd-file_rec' })<CR>
 "nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'file_rec' })<CR>
 nnoremap <silent> <C-u><C-g> :call ddu#start(#{ name: 'grep' })<CR>
 nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'cursor-grep', 'sources': [#{ name: 'rg', params: #{ input: expand('<cword>')} }] })<CR>
@@ -26,10 +26,11 @@ call ddu#custom#patch_global(#{
     \       columns: ['icon_filename']
     \     },
     \     file_external: #{
-    \       matchers: ['matcher_substring', 'matcher_hidden'],
+    \       matchers: ['matcher_substring'],
     \       columns: ['icon_filename']
     \     },
     \     file: #{
+    \       matchers: ['matcher_substring'],
     \       columns: ['icon_filename'],
     \     }
     \   },
@@ -76,6 +77,7 @@ call ddu#custom#patch_global(#{
     \       filterFloatingPosition: 'bottom',
     \       floatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
     \       previewFloating: v:true,
+    \       previewSplit: 'vertical',
     \       prompt: '❯ ',
     \       displaySourceName: 'none',
     \       previewFloatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
@@ -95,6 +97,12 @@ call ddu#custom#patch_local('filer', #{
     \     filer: #{
     \       split: 'floating',
     \       previewFloating: v:true,
+    \       floatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
+    \       previewFloatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
+    \       previewSplit: 'vertical',
+    \       highlights: #{
+    \         floating: '',
+    \       }
     \     },
     \   },
     \   actionOptions: #{
@@ -104,15 +112,13 @@ call ddu#custom#patch_local('filer', #{
     \   },
     \ })
 
-" ripgrepでfile_rec
-call ddu#custom#patch_local('rg-file_rec', #{
+call ddu#custom#patch_local('fd-file_rec', #{
     \   sources: [
     \     #{ name: 'file_external'}
     \   ],
     \   sourceParams: #{
     \     file_external: #{
-    \       cmd: ['rg', '--threads', '4', '--files', '--column', '--no-heading', '--color', 'never', '--glob', '!.git', '--hidden'],
-    \       updateItems: 100000000,
+    \       cmd: ['fd', '.', '-H', '-E', 'node_modules', '-E', '.git', '-t', 'f'],
     \     },
     \   },
     \ })
@@ -156,14 +162,14 @@ call ddu#custom#patch_local('file_rec', #{
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
   nnoremap <buffer><silent> <CR>
-        \ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+        \ <Cmd>call ddu#ui#ff#do_action('itemAction', #{name: 'open'})<CR>
   nnoremap <buffer><silent> <Space>
         \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
   nnoremap <buffer><silent> i
         \ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
   nnoremap <buffer><silent> <ESC>
         \ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-  nnoremap <buffer><silent> p
+  nnoremap <buffer><silent> v
         \ <Cmd>call ddu#ui#ff#do_action('preview')<CR>
 endfunction
 
@@ -180,11 +186,28 @@ endfunction
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
   nnoremap <buffer><expr> <CR>
-        \ ddu#ui#filer#is_directory() ?
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
-        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
-  nnoremap <buffer><silent> <ESC>
-        \ <Cmd>quit<CR>
+        \ ddu#ui#get_item()->get('isTree', v:false) ?
+        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'narrow'})<CR>" :
+        \ "<Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'open'})<CR>"
+  nnoremap <buffer><silent> <ESC> <Cmd>quit<CR>
+  nnoremap <buffer><silent> v
+        \ <Cmd>call ddu#ui#filer#do_action('preview')<CR>
+  nnoremap <buffer><silent> <BS>
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'narrow', params: #{path: '..'}})<CR>
+  nnoremap <buffer><silent> nf
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'newFile'})<CR>
+  nnoremap <buffer><silent> nd
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'newDirectory'})<CR>
+  nnoremap <buffer><silent> rn
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'rename'})<CR>
+  nnoremap <buffer><silent> dd
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'trash'})<CR>
+  nnoremap <buffer><silent> u
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'undo'})<CR>
+  nnoremap <buffer><silent> y
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'copy'})<CR>
+  nnoremap <buffer><silent> p
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'paste'})<CR>
 endfunction
 '''
 # }}}
