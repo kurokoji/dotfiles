@@ -1,0 +1,15 @@
+.dub
+.opam
+.cargo
+.git
+.asdf
+.azure
+.aws
+.snap
+.esy
+.cache
+.docker
+.npm
+.local
+
+node_modules/

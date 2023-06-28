@@ -119,7 +119,8 @@ call ddu#custom#patch_local('fd-file_rec', #{
     \   ],
     \   sourceParams: #{
     \     file_external: #{
-    \       cmd: ['fd', '.', '-H', '-E', 'node_modules', '-E', '.git', '-t', 'f'],
+    \       cmd: ['fd', '.', '-H', '-t', 'f'],
+    \       updateItems: 1000,
     \     },
     \   },
     \ })
