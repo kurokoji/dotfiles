@@ -111,6 +111,11 @@ call ddu#custom#patch_local('filer', #{
     \       quit: v:false,
     \     },
     \   },
+    \   columnParams: #{
+    \     icon_filename: #{
+    \       pathDisplayOption: "basename",
+    \     }
+    \   },
     \ })
 
 call ddu#custom#patch_local('fd-file_rec', #{
