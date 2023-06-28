@@ -42,6 +42,7 @@ Write-Host "${dotsPath}" -ForegroundColor Red
 if (Test-Admin) {
   $directories = Get-ChildItem -name -Directory $parent
   $configs = Get-ChildItem -name $configPath
+  $dots = Get-ChildItem -name $dotsPath
 
   # ディレクトリのシンボリックリンク
   foreach ($dir in $configs) {
@@ -51,6 +52,11 @@ if (Test-Admin) {
     if ($dir -eq "alacritty") {
       New-Item -Type SymbolicLink -Path $env:APPDATA -Name $dir -Value $linkpath
     }
+  }
+
+  foreach ($dot in $dots) {
+    $linkpath = (Join-Path -Resolve $dotsPath $dot)
+    New-Item -Type SymbolicLink -Path ~ -Name $dot -Value $linkpath
   }
 
   $linkpath = (Join-Path -Resolve $parent "Profile.ps1")
