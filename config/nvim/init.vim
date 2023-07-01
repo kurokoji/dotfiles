@@ -79,7 +79,7 @@ if dein#min#load_state(s:dein_dir)
 
   call dein#end()
   " デフォルトではnon lazyなプラグインではhook_source(lua_source)は呼び出されないので強制的にhook_sourceを呼び出している
-  " https://github.com/Shougo/dein.vim/blob/master/doc/dein.txt#L1096
+  " https://github.com/Shougo/dein.vim/blob/13e1fe4afcac7816d9b4d925eba656d15693fdba/doc/dein.txt#L1804
   call dein#call_hook('source')
 
   call dein#save_state()
@@ -129,18 +129,23 @@ if has('win32') || has ('win64')
   set shell=pwsh
 endif
 
+if has('syntax')
+  syntax on
+endif
 
-syntax enable
 set title
 set number
 set cursorline
 set signcolumn=yes
 set list
 " set ambiwidth=double
-set listchars=tab:>-,eol:¬,nbsp:%,nbsp:⍽
-"set listchars=tab:>-,eol:↵,nbsp:%,nbsp:⍽
+" set listchars=tab:>-,eol:¬,nbsp:%,nbsp:⍽
+set listchars=tab:>-,eol:↵,nbsp:%,nbsp:⍽
+
+" 対応するカッコの表示
 set showmatch
 set matchtime=1
+
 set matchpairs& matchpairs+=<:>
 set laststatus=2
 set showtabline=2
@@ -148,7 +153,6 @@ set showtabline=2
 set completeopt=menuone,noselect
 set wildmenu
 set wildmode=full
-
 
 set background=light
 set termguicolors
