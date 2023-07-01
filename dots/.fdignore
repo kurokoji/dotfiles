@@ -11,6 +11,8 @@
 .docker
 .npm
 .local
+.gem
+.vscode
 
 .DS_Store
 
