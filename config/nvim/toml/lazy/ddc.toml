@@ -10,7 +10,7 @@ hook_add = '''
 hook_source = '''
 call ddc#custom#patch_global(#{
       \   ui: 'pum',
-      \   sources: ['copilot', 'nvim-lsp', 'neosnippet', 'around', 'buffer', 'file'],
+      \   sources: ['nvim-lsp', 'neosnippet', 'around', 'buffer', 'file'],
       \   sourceOptions: #{
       \     _: #{
       \       matchers: ['matcher_head'],

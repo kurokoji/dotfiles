@@ -112,7 +112,7 @@ set writebackup
 set infercase
 set autoread
 set nowrap
-set foldmethod=marker
+"set foldmethod=marker
 
 set fileformats=unix,dos,mac
 set encoding=utf-8

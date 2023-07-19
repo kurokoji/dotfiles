@@ -83,6 +83,13 @@ require'nvim-treesitter.configs'.setup {
 -- require 'nvim-treesitter.install'.compilers = { "gcc", "zig" }
 '''
 # }}}
+# hook_source {{{
+hook_source='''
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldnestmax=2
+'''
+# }}}
 
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
