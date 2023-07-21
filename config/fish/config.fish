@@ -52,6 +52,10 @@ end
 # source {{{
 source $HOME/.asdf/asdf.fish
 
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+
 if [ "$os_name" = "Darwin" ]
   # source ~/.iterm2_shell_integration.(basename $SHELL)
 else if [ "$os_name" = "Linux" ]
@@ -113,3 +117,4 @@ end
 set -U FZF_REVERSE_ISEARCH_OPTS "--reverse --height=100%"
 
 set -g theme_display_node yes
+
