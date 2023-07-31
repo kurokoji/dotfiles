@@ -27,7 +27,8 @@ call ddu#custom#patch_global(#{
     \       columns: ['icon_filename']
     \     },
     \     file_external: #{
-    \       matchers: ['matcher_substring'],
+    \       matchers: ['matcher_fzf'],
+    \       sorters: ['sorter_fzf'],
     \       columns: ['icon_filename']
     \     },
     \     file: #{
@@ -245,6 +246,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_hidden'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'yuki-yano/ddu-filter-fzf'
 on_source = 'ddu.vim'
 
 [[plugins]]
