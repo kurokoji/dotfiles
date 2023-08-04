@@ -118,3 +118,10 @@ set -U FZF_REVERSE_ISEARCH_OPTS "--reverse --height=100%"
 
 set -g theme_display_node yes
 
+
+# pnpm
+set -gx PNPM_HOME "/Users/s-kakiha/Library/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
