@@ -17,13 +17,13 @@ call ddc#custom#patch_global(#{
       \       sorters: ['sorter_rank']
       \     },
       \     around: #{
-      \       mark: '﬘',
+      \       mark: '[A]',
       \     },
       \     necovim: #{
-      \       mark: '',
+      \       mark: '[NECO]',
       \     },
       \     cmdline: #{
-      \       mark: '',
+      \       mark: '[CMD]',
       \     },
       \     vim-lsp: #{
       \       matchers: ['matcher_head'],
@@ -32,33 +32,25 @@ call ddc#custom#patch_global(#{
       \     },
       \     nvim-lsp: #{
       \       matchers: ['matcher_head'],
-      \       mark: '',
-      \       forceCompletionPattern: '\.\w*|:\w*|->\w*'
+      \       converters: ['converter_kind_labels'],
+      \       sorters: ['sorter_lsp-kind'],
+      \       mark: '[LSP]',
+      \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
       \     },
       \     file: #{
-      \       mark: '',
+      \       mark: '[FILE]',
       \       isVolatile: v:true,
       \       forceCompletionPattern: '\S/\S*'
       \     },
-      \     skkeleton: #{
-      \       mark: 'Skkeleton',
-      \       matchers: ['skkeleton'],
-      \       sorters: [],
-      \       minAutoCompleteLength: 2,
-      \     },
       \     neosnippet: #{
-      \       mark: 'ﴨ',
-      \     },
-      \     tabnine: #{
-      \       mark: 'ﮧ',
-      \       isVolatile: v:true,
+      \       mark: '[SNIP]',
       \     },
       \     buffer: #{
-      \       mark: '﬘',
+      \       mark: '[BUF]',
       \     },
       \     copilot: #{
-      \       mark: 'ﮧ',
-      \       matchers: [],
+      \       mark: '[AI]',
+      \       matchers: ['matcher_head'],
       \       minAutoCompleteLength: 0,
       \     },
       \   },
@@ -75,6 +67,46 @@ call ddc#custom#patch_global(#{
       \       fromAltBuf: v:true,
       \       forceCollect: v:true,
       \     },
+      \   },
+      \   filterParams: #{
+      \     converter_kind_labels: #{
+      \       kindLabels: #{
+      \         Text: "",
+      \         Method: "",
+      \         Function: "",
+      \         Constructor: "",
+      \         Field: "",
+      \         Variable: "",
+      \         Class: "",
+      \         Interface: "",
+      \         Module: "",
+      \         Property: "",
+      \         Unit: "",
+      \         Value: "",
+      \         Enum: "",
+      \         Keyword: "",
+      \         Snippet: "",
+      \         Color: "",
+      \         File: "",
+      \         Reference: "",
+      \         Folder: "",
+      \         EnumMember: "",
+      \         Constant: "",
+      \         Struct: "",
+      \         Event: "",
+      \         Operator: "",
+      \         TypeParameter: ""
+      \       },
+      \       kindHlGroups: #{
+      \         Method: "Function",
+      \         Function: "Function",
+      \         Constructor: "Function",
+      \         Field: "Identifier",
+      \         Variable: "Identifier",
+      \         Class: "Structure",
+      \         Interface: "Structure"
+      \       }
+      \     }
       \   }
       \ })
 
@@ -136,6 +168,7 @@ call ddc#enable()
 '''
 # }}}
 
+
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
 on_source = 'ddc.vim'
@@ -156,11 +189,11 @@ repo = 'Shougo/pum.vim'
 on_source = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
-call pum#set_option('max_width', 80)
+" call pum#set_option('max_width', 80)
 call pum#set_option('padding', v:true)
 " call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
-call pum#set_option('border', ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'])
-call pum#set_option('highlight_normal_menu', '')
+" call pum#set_option('border', ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'])
+" call pum#set_option('highlight_normal_menu', '')
 call pum#set_option('scrollbar_char', '')
 " call pum#set_option('scrollbar_char', '┃')
 " call pum#set_option('scrollbar_char', '█')
