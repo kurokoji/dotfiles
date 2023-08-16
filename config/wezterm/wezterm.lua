@@ -3,7 +3,6 @@ local wezterm = require 'wezterm';
 local colorscheme_name = 'Material Lighter'
 
 local home = os.getenv("HOME")
-local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
 -- local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
 local launch_menu = {}
 local default_prog = {}
@@ -24,6 +23,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   -- environment_variables = {
   --   ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
   -- }
+  --
+  home = os.getenv("USERPROFILE")
 
   default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoProfileLoadTime" }
 
@@ -55,6 +56,8 @@ else
 
   font_size = 12.0
 end
+
+local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
 
 local keys = {
   { key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
