@@ -2,7 +2,8 @@ local wezterm = require 'wezterm';
 
 local colorscheme_name = 'Material Lighter'
 
-local scheme, _ = wezterm.color.load_scheme(".config/wezterm/colors/material-lighter.toml")
+local home = os.getenv("HOME")
+local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
 -- local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
 local launch_menu = {}
 local default_prog = {}
