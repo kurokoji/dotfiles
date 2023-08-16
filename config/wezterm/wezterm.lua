@@ -1,8 +1,9 @@
 local wezterm = require 'wezterm';
 
-local colorscheme_name = 'dawnfox'
+local colorscheme_name = 'Material Lighter'
 
-local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
+local scheme, _ = wezterm.color.load_scheme(".config/wezterm/colors/material-lighter.toml")
+-- local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
 local launch_menu = {}
 local default_prog = {}
 local environment_variables = {}
@@ -39,7 +40,6 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple 
   default_prog = { "/opt/homebrew/bin/fish", "-l" }
 
   font_size = 14.0
-  --  default_prog = {"/opt/homebrew/bin/fish", "-l"}
 else
   environment_variables = {
     SHELL = "/usr/bin/fish",
@@ -80,7 +80,7 @@ local SOLID_LEFT_ARROW = ''
 -- The filled in variant of the > symbol
 local SOLID_RIGHT_ARROW = ''
 
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-status", function(window, pane)
   local background = scheme.tab_bar.active_tab.bg_color
   local foreground = scheme.tab_bar.active_tab.fg_color
   local edge_background = scheme.tab_bar.background
@@ -96,6 +96,7 @@ wezterm.on("update-right-status", function(window, pane)
   for _, b in ipairs(wezterm.battery_info()) do
     local battery_icon = '';
     wezterm.log_info(b.state);
+
     if b.state == 'Charging' or b.state == 'Full' then
       if b.state_of_charge < 0.3 then
         battery_icon = '';

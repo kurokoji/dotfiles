@@ -1,0 +1,93 @@
+[metadata]
+name = "Material Lighter"
+author = "kurokoji"
+# origin_url = "https://github.com/EdenEast/nightfox.nvim"
+
+[colors]
+foreground = "#80cbc4"
+background = "#fafafa"
+cursor_bg = "#80cbc4"
+cursor_border = "#80cbc4"
+# cursor_fg = "#272727"
+cursor_fg = "#fafafa"
+# compose_cursor = '#d7827e'
+selection_bg = "#80cbc4"
+selection_fg = "#fafafa"
+# scrollbar_thumb = "#a8a3b3"
+split = "#d3e1e8"
+# visual_bell = "#575279"
+
+ansi = [
+  "#fafafa",
+  "#ff5370",
+  "#91b859",
+  "#ffb62c",
+  "#6182b8",
+  "#7c4dff",
+  "#39adb5",
+  "#80cbc4",
+]
+
+brights = [
+  "#ccd7da",
+  "#ff5370",
+  "#91b859",
+  "#ffb62c",
+  "#6182b8",
+  "#7c4dff",
+  "#39adb5",
+  "#ffffff",
+]
+
+[colors.indexed]
+16 = "#f76d47"
+17 = "#e53935"
+18 = "#e7eaec"
+19 = "#cceae7"
+20 = "#8796b0"
+21 = "#80cbc4"
+
+[colors.tab_bar]
+background = "#80cbc4"
+inactive_tab_edge = "#80cbc4"
+inactive_tab_edge_hover = "#cceae7"
+
+[colors.tab_bar.active_tab]
+bg_color = "#00bcd4"
+fg_color = "#fafafa"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#fafafa"
+fg_color = "#cfd8dc"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#cceae7"
+fg_color = "#fafafa"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.new_tab]
+bg_color = "#e7eaec"
+fg_color = "#8796b0"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#cceae7"
+fg_color = "#fafafa"
+intensity = "Normal"
+italic = false
+strikethrough = false
+underline = "None"
