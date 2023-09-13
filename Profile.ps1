@@ -24,19 +24,19 @@ Set-Alias unzip Expand-Archive
 # Function {{{
 
 function ls($command) {
-  exa --icons $command
+  eza --icons $command
 }
 
 function ll($command) {
-  exa --icons -l  $command
+  eza --icons -l  $command
 }
 
 function la($command) {
-  exa --icons --all  $command
+  eza --icons --all  $command
 }
 
 function lla($command) {
-  exa --icons -l --all  $command
+  eza --icons -l --all  $command
 }
 
 function touch($file) {
