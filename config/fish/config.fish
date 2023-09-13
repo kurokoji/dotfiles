@@ -73,8 +73,8 @@ alias vi=nvim
 alias rldc='ldc2 --run'
 alias luajitlatex='luajittex --fmt=luajitlatex.fmt'
 
-if executable exa
-  alias ls='exa --icons'
+if executable eza
+  alias ls='eza --icons'
   alias la='ls -a'
 end
 
