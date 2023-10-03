@@ -160,7 +160,7 @@ require("mason-lspconfig").setup_handlers({
 # }}}
 
 [[plugins]]
-repo = 'jose-elias-alvarez/null-ls.nvim'
+repo = 'nvimtools/none-ls.nvim'
 # on_source = 'mason.nvim'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 
