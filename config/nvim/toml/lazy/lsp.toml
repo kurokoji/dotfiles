@@ -166,7 +166,7 @@ on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 
 [[plugins]]
 repo = 'jayp0521/mason-null-ls.nvim'
-on_source = 'null-ls.nvim'
+on_source = 'none-ls.nvim'
 # lua_source {{{
 lua_source = '''
 
