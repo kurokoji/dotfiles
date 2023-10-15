@@ -191,13 +191,15 @@ function! s:ddu_filer_my_settings() abort
         \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'newFile'})<CR>
   nnoremap <buffer><silent> nd
         \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'newDirectory'})<CR>
+  nnoremap <buffer><silent> dd
+        \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'move'})<CR>
   nnoremap <buffer><silent> rn
         \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'rename'})<CR>
-  nnoremap <buffer><silent> dd
+  nnoremap <buffer><silent> rm
         \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'trash'})<CR>
   nnoremap <buffer><silent> u
         \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'undo'})<CR>
-  nnoremap <buffer><silent> y
+  nnoremap <buffer><silent> yy
         \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'copy'})<CR>
   nnoremap <buffer><silent> p
         \ <Cmd>call ddu#ui#filer#do_action('itemAction', #{name: 'paste'})<CR>
