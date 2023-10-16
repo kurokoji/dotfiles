@@ -1,0 +1,13 @@
+nyagos.env.path = nyagos.env.UserProfile .. "\\.cargo\\bin;" .. nyagos.env.path
+nyagos.env.path = nyagos.env.UserProfile .. "\\bin;" .. nyagos.env.path
+
+-- alias {{{
+
+nyagos.alias.vim = 'nvim'
+nyagos.alias.vi = 'nvim'
+
+nyagos.alias.ls = 'eza --icons'
+
+-- }}}
+
+-- vim:ft=lua

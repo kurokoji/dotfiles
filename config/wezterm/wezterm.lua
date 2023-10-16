@@ -20,6 +20,11 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 		args = { "powershell.exe", "-NoLogo" },
 	})
 
+  table.insert(launch_menu, {
+    label = "Nihingo Yet Another GOing Shell",
+    args = { "nyagos.exe" }
+  })
+
 	-- environment_variables = {
 	--   ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
 	-- }
