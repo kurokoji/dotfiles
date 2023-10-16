@@ -4,12 +4,11 @@ author = "kurokoji"
 # origin_url = "https://github.com/EdenEast/nightfox.nvim"
 
 [colors]
-foreground = "#80cbc4"
+foreground = "#546e7a"
 background = "#fafafa"
+cursor_fg = "#272727"
 cursor_bg = "#80cbc4"
-cursor_border = "#80cbc4"
-# cursor_fg = "#272727"
-cursor_fg = "#fafafa"
+cursor_border = "#d3e1e8"
 # compose_cursor = '#d7827e'
 selection_bg = "#80cbc4"
 selection_fg = "#fafafa"

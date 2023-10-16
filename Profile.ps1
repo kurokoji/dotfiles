@@ -60,6 +60,12 @@ function rmrf($command) {
   Remove-Item -Recurse -Force $command
 }
 
+function scoop-update() {
+  scoop update *
+  scoop cache rm --all
+  scoop cleanup *
+}
+
 # }}}
 
 Import-Module PSReadLine
