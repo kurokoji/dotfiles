@@ -168,7 +168,6 @@ call ddc#enable()
 '''
 # }}}
 
-
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
 on_source = 'ddc.vim'

@@ -74,6 +74,12 @@ if dein#min#load_state(s:dein_dir)
   endfor
 
   for toml in s:lazy_toml_list
+    " if (toml =~ "ddc.toml") || (toml =~ "ddu.toml")
+    "   continue
+    " endif
+    if (toml =~ "completion.toml")
+      continue
+    endif
     call dein#load_toml(toml, #{ lazy: 1 })
   endfor
 
@@ -126,7 +132,12 @@ if has('nvim')
 endif
 
 if has('win32') || has ('win64')
-  set shell=pwsh
+  " :help shell-powershell
+  let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+  let &shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+  let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+  let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+  set shellquote= shellxquote=
 endif
 
 if has('syntax')

@@ -1,0 +1,86 @@
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+on_event = ['InsertEnter', 'BufRead', 'BufNewFile', 'BufEnter']
+lua_source = '''
+local cmp = require('cmp')
+
+cmp.setup({
+  sources = cmp.config.sources({
+    { name = 'copilot' },
+    { name = 'nvim_lsp' },
+    { name = 'neosnippet' }
+  }, {
+    { name = 'buffer' }
+  }),
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+  }),
+})
+
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+'''
+
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-cmdline'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'notomo/cmp-neosnippet'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-copilot'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+on_source = 'nvim-cmp'
+# hook_add {{{
+hook_add = '''
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+let g:neosnippet#snippets_directory = expand('$HOME/.config/nvim/snippets')
+'''
+# }}}
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_source = 'neosnippet.vim'

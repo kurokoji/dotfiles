@@ -52,10 +52,6 @@ repo = 'tpope/vim-surround'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-on_event = 'CursorHold'
-
-[[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 if = 'has("nvim")'
 on_event = ['BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter']
