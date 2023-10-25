@@ -183,7 +183,6 @@ call ddc#enable()
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
-if = '0'
 on_source = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
@@ -195,15 +194,16 @@ call popup_preview#enable()
 
 [[plugins]]
 repo = 'uga-rosa/ddc-previewer-floating'
+if = '0'
 on_source = 'ddc.vim'
 # lua_source {{{
 lua_source = '''
 local previewer_floating = require('ddc_previewer_floating')
 
-previewer_floating.enable()
 previewer_floating.setup({
   border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
 })
+previewer_floating.enable()
 '''
 # }}}
 
