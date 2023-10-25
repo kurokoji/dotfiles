@@ -15,7 +15,7 @@ if (Test-Path Alias:ls) {
 Set-Alias lvim vim.exe
 Set-Alias vim nvim
 Set-Alias vi nvim
-Set-Alias open explorer.exe
+Set-Alias open Invoke-Item
 Set-Alias pbcopy clip.exe
 Set-Alias unzip Expand-Archive
 

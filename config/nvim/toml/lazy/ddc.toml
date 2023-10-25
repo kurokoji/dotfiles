@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/ddc.vim'
 depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
-on_event = ['InsertEnter', 'CursorHold', 'BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['InsertEnter', 'BufRead', 'BufNewFile', 'BufEnter']
 # hook_add {{{
 hook_add = '''
 '''
@@ -67,8 +67,21 @@ call ddc#custom#patch_global(#{
       \       fromAltBuf: v:true,
       \       forceCollect: v:true,
       \     },
+      \     nvim-lsp: #{
+      \       enableResolveItem: v:true,
+      \       enableAdditionalTextEdit: v:true,
+      \       confirmBehavior: "replace",
+      \     }
       \   },
       \   filterParams: #{
+      \     sorter_lsp-kind: #{
+      \       priority: [
+      \         'Enum',
+      \         ['Method', 'Function'],
+      \         'Field',
+      \         'Variable',
+      \       ]
+      \     },
       \     converter_kind_labels: #{
       \       kindLabels: #{
       \         Text: "",
@@ -119,10 +132,10 @@ nnoremap ; <Cmd>call CommandlinePre()<CR>:
 
 function! CommandlinePre() abort
   " Note: It disables default command line completion!
-  cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1)<CR>
-  cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-  cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-  cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+  cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+  cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
+  cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+  cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
   cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
   cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
   " cnoremap <silent><expr> <Enter>
@@ -170,12 +183,22 @@ call ddc#enable()
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
+if = '0'
 on_source = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
 " hi! PopupPreviewDocument ctermbg=NONE guibg=NONE gui=NONE
 " hi! PopupPreviewBorder ctermbg=NONE guibg=NONE gui=NONE
 call popup_preview#enable()
+'''
+# }}}
+
+[[plugins]]
+repo = 'uga-rosa/ddc-previewer-floating'
+on_source = 'ddc.vim'
+# lua_source {{{
+lua_source = '''
+require('ddc_previewer_floating').enable()
 '''
 # }}}
 
@@ -197,8 +220,8 @@ call pum#set_option('scrollbar_char', '')
 " call pum#set_option('scrollbar_char', '┃')
 " call pum#set_option('scrollbar_char', '█')
 
-inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
 inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
 inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 inoremap <PageDown> <Cmd>call pum#map#insert_relative_page(+1)<CR>
@@ -210,8 +233,8 @@ inoremap <PageUp>   <Cmd>call pum#map#insert_relative_page(-1)<CR>
 "       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' :
 "       \ '<S-Tab>'
 
-tnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
-tnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+tnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+tnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
 '''
 # }}}
 
@@ -319,7 +342,12 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-nvim-lsp'
+rev = '981c896'
 on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'uga-rosa/ddc-nvim-lsp-setup'
+on_source = 'ddc.source-nvim-lsp'
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'
