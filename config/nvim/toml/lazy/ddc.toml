@@ -144,15 +144,21 @@ nnoremap : <Cmd>call CommandlinePre()<CR>:
 nnoremap ; <Cmd>call CommandlinePre()<CR>:
 nnoremap / <Cmd>call CommandlinePre()<CR>/
 
+cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
+cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
+cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 
 function! CommandlinePre() abort
   " Note: It disables default command line completion!
-  cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-  cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-  cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-  cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-  cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-  cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+  " cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+  " cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
+  " cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
+  " cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
+  " cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+  " cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
   " cnoremap <silent><expr> <Enter>
   "       \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' :
   "       \ '<Enter>'
@@ -174,13 +180,13 @@ function! CommandlinePre() abort
 endfunction
 
 function! CommandlinePost() abort
-  silent! cunmap <Tab>
-  silent! cunmap <S-Tab>
-  silent! cunmap <C-n>
-  silent! cunmap <C-p>
-  silent! cunmap <C-y>
-  silent! cunmap <C-e>
-  silent! cunmap <Enter>
+  " silent! cunmap <Tab>
+  " silent! cunmap <S-Tab>
+  " silent! cunmap <C-n>
+  " silent! cunmap <C-p>
+  " silent! cunmap <C-y>
+  " silent! cunmap <C-e>
+  " silent! cunmap <Enter>
 
   " Restore sources
   if exists('b:prev_buffer_config')
