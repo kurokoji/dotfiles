@@ -33,7 +33,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
 	default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoProfileLoadTime" }
 
-	font_size = 12.0
+	font_size = 11.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
 	table.insert(launch_menu, {
 		label = "Fish",

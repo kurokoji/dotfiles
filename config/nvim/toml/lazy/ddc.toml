@@ -74,6 +74,7 @@ call ddc#custom#patch_global(#{
       \       enableResolveItem: v:true,
       \       enableAdditionalTextEdit: v:true,
       \       confirmBehavior: "replace",
+      \       lspEngine: "nvim-lsp",
       \     }
       \   },
       \   filterParams: #{
@@ -143,6 +144,7 @@ call ddc#custom#patch_global('cmdlineSources', {
 nnoremap : <Cmd>call CommandlinePre()<CR>:
 nnoremap ; <Cmd>call CommandlinePre()<CR>:
 nnoremap / <Cmd>call CommandlinePre()<CR>/
+nnoremap ? <Cmd>call CommandlinePre()<CR>?
 
 cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
 cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
