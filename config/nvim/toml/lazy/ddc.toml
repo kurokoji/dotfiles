@@ -217,7 +217,6 @@ call popup_preview#enable()
 
 [[plugins]]
 repo = 'uga-rosa/ddc-previewer-floating'
-# if = '0'
 on_source = 'ddc.vim'
 # lua_source {{{
 lua_source = '''
@@ -240,14 +239,16 @@ on_source = 'ddc.vim'
 # hook_source {{{
 hook_source = '''
 " call pum#set_option('max_width', 80)
-call pum#set_option('padding', v:true)
+call pum#set_option('padding', v:false)
 call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
 " call pum#set_option('border', ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'])
 call pum#set_option('highlight_normal_menu', '')
-call pum#set_option('scrollbar_char', '')
+" call pum#set_option('scrollbar_char', '')
 call pum#set_option('max_height', '20')
 " call pum#set_option('scrollbar_char', '┃')
 " call pum#set_option('scrollbar_char', '█')
+call pum#set_option('scrollbar_char', '▌')
+call pum#set_option('highlight_scrollbar', '')
 
 inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
 inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
@@ -310,7 +311,8 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
-on_ft = ['vim', 'toml', 'markdown']
+# on_ft = ['vim', 'toml', 'markdown']
+on_ft = ['vim']
 on_event = ['CmdlineChanged']
 depends = 'ddc.vim'
 # hook_source {{{

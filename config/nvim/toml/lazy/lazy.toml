@@ -120,7 +120,7 @@ require('gitsigns').setup()
 
 [[plugins]]
 repo = 'windwp/nvim-autopairs'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['InsertEnter']
 # lua_source {{{
 lua_source = '''
 require("nvim-autopairs").setup {}
@@ -190,7 +190,7 @@ require('lualine').setup {
 
 [[plugins]]
 repo = 'github/copilot.vim'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['InsertEnter']
 # hook_add {{{
 hook_add = '''
 let g:copilot_no_tab_map = v:true
@@ -202,5 +202,7 @@ repo = 'petertriho/nvim-scrollbar'
 on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # lua_source {{{
 lua_source = '''
-require('scrollbar').setup()
+require('scrollbar').setup({
+  excluded_buftypes = { "terminal", "nofile" }
+})
 '''
