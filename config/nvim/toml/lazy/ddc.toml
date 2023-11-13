@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/ddc.vim'
 depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
-on_event = ['InsertEnter', 'BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # hook_add {{{
 hook_add = '''
 '''
