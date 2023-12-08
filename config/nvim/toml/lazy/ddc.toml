@@ -10,7 +10,7 @@ hook_add = '''
 hook_source = '''
 call ddc#custom#patch_global(#{
       \   ui: 'pum',
-      \   sources: ['copilot', 'nvim-lsp', 'neosnippet', 'around', 'buffer', 'file'],
+      \   sources: ['copilot', 'lsp', 'neosnippet', 'around', 'buffer', 'file'],
       \   sourceOptions: #{
       \     _: #{
       \       matchers: ['matcher_head'],
@@ -28,12 +28,7 @@ call ddc#custom#patch_global(#{
       \     cmdline-history: #{
       \       mark: '[CMD-H]',
       \     },
-      \     vim-lsp: #{
-      \       matchers: ['matcher_head'],
-      \       mark: '',
-      \       forceCompletionPattern: '\.\w*|:\w*|->\w*'
-      \     },
-      \     nvim-lsp: #{
+      \     lsp: #{
       \       matchers: ['matcher_head'],
       \       converters: ['converter_kind_labels'],
       \       sorters: ['sorter_lsp-kind'],
@@ -70,7 +65,7 @@ call ddc#custom#patch_global(#{
       \       fromAltBuf: v:true,
       \       forceCollect: v:true,
       \     },
-      \     nvim-lsp: #{
+      \     lsp: #{
       \       enableResolveItem: v:true,
       \       enableAdditionalTextEdit: v:true,
       \       confirmBehavior: "replace",
@@ -372,8 +367,7 @@ if = '!has("win32")'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-source-nvim-lsp'
-rev = '981c896'
+repo = 'Shougo/ddc-source-lsp'
 on_source = 'ddc.vim'
 
 [[plugins]]
