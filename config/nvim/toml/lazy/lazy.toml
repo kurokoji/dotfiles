@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'Shougo/deol.nvim'
-on_cmd = 'Deol'
+on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # hook_add {{{
 hook_add = '''
 let g:deol#enable_ddc_completion = v:true
@@ -16,17 +16,18 @@ function s:floating_deol() abort
   let winheight = float2nr(&lines * height_per)
   let winrow = float2nr((&lines - (&lines * height_per)) / 2)
 
-  execute 'Deol -toggle -split=floating -winwidth=' . winwidth . ' -winheight=' . winheight . ' -wincol=' . wincol . '-winrow' . winrow
+  call deol#start(#{split: 'floating', winwidth: winwidth, winheight: winheight, wincol: wincol, winrow: winrow, toggle: v:true})
 endfunction
 
 function! s:open_deol() abort
   let winheight = &lines / 2
-  execute 'Deol -split=horizontal -toggle -winheight=' . winheight
+
+  call deol#start(#{split: 'horizontal', winheight: winheight, toggle: v:true})
 endfunction
 
-command DeolSplit :Deol -split -toggle
-command DeolVertical :Deol -split=vertical -toggle
-command DeolFloating :call <SID>floating_deol()
+command DeolSplit :call deol#start(#{split: 'horizontal', toggle: v:true})
+command DeolVertical :call deol#start(#{split: 'vertical', toggle: v:true})
+command DeolFloating :call s:floating_deol()
 
 nnoremap <Leader>s <Cmd>DeolSplit<CR>
 nnoremap <Leader>v <Cmd>DeolVertical<CR>
