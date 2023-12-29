@@ -144,7 +144,7 @@ depends = ['nightfox.nvim']
 # lua_post_source {{{
 lua_post_source = '''
 local function duck()
-  return ''
+  return '󰇥'
 end
 
 require('lualine').setup {

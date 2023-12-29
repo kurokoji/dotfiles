@@ -20,10 +20,10 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 		args = { "powershell.exe", "-NoLogo" },
 	})
 
-  table.insert(launch_menu, {
-    label = "Nihingo Yet Another GOing Shell",
-    args = { "nyagos.exe" }
-  })
+	table.insert(launch_menu, {
+		label = "Nihingo Yet Another GOing Shell",
+		args = { "nyagos.exe" },
+	})
 
 	-- environment_variables = {
 	--   ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
@@ -98,7 +98,7 @@ wezterm.on("update-status", function(window, pane)
 	local green_foreground = scheme.ansi[4]
 
 	-- "Wed Mar 3 08:14"
-	local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ")
+	local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ")
 
 	local battery_foreground = foreground
 	local bat = ""
@@ -107,42 +107,48 @@ wezterm.on("update-status", function(window, pane)
 		-- wezterm.log_info(b.state);
 
 		if b.state == "Charging" or b.state == "Full" then
-			if b.state_of_charge < 0.3 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.4 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.5 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.7 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.9 then
-				battery_icon = ""
-			elseif b.state_of_charge < 1.0 then
-				battery_icon = ""
-			elseif b.state_of_charge == 1.0 then
-				battery_icon = ""
+			if b.state_of_charge <= 0.1 then
+				battery_icon = "󰁺"
+			elseif b.state_of_charge <= 0.2 then
+				battery_icon = "󰁻"
+			elseif b.state_of_charge <= 0.3 then
+				battery_icon = "󰁼"
+			elseif b.state_of_charge <= 0.4 then
+				battery_icon = "󰁽"
+			elseif b.state_of_charge <= 0.5 then
+				battery_icon = "󰁾"
+			elseif b.state_of_charge <= 0.6 then
+				battery_icon = "󰁿"
+			elseif b.state_of_charge <= 0.7 then
+				battery_icon = "󰂀"
+			elseif b.state_of_charge <= 0.8 then
+				battery_icon = "󰂁"
+			elseif b.state_of_charge <= 0.9 then
+				battery_icon = "󰂂"
+			elseif b.state_of_charge <= 1.0 then
+				battery_icon = "󰁹"
 			end
 		else
-			if b.state_of_charge < 0.2 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.3 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.4 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.5 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.6 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.7 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.8 then
-				battery_icon = ""
-			elseif b.state_of_charge < 0.9 then
-				battery_icon = ""
-			elseif b.state_of_charge < 1.0 then
-				battery_icon = ""
-			elseif b.state_of_charge == 1.0 then
-				battery_icon = ""
+			if b.state_of_charge <= 0.1 then
+				battery_icon = "󰢜"
+			elseif b.state_of_charge <= 0.2 then
+				battery_icon = "󰂆"
+			elseif b.state_of_charge <= 0.3 then
+				battery_icon = "󰂇"
+			elseif b.state_of_charge <= 0.4 then
+				battery_icon = "󰂈"
+			elseif b.state_of_charge <= 0.5 then
+				battery_icon = "󰢝"
+			elseif b.state_of_charge <= 0.6 then
+				battery_icon = "󰂉"
+			elseif b.state_of_charge <= 0.7 then
+				battery_icon = "󰢞"
+			elseif b.state_of_charge <= 0.8 then
+				battery_icon = "󰂊"
+			elseif b.state_of_charge <= 0.9 then
+				battery_icon = "󰂋"
+			elseif b.state_of_charge <= 1.0 then
+				battery_icon = "󰂅"
 			end
 		end
 		bat = battery_icon .. " " .. string.format("%.0f%%", b.state_of_charge * 100)
