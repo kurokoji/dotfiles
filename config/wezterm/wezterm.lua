@@ -108,28 +108,6 @@ wezterm.on("update-status", function(window, pane)
 
 		if b.state == "Charging" or b.state == "Full" then
 			if b.state_of_charge <= 0.1 then
-				battery_icon = "󰁺"
-			elseif b.state_of_charge <= 0.2 then
-				battery_icon = "󰁻"
-			elseif b.state_of_charge <= 0.3 then
-				battery_icon = "󰁼"
-			elseif b.state_of_charge <= 0.4 then
-				battery_icon = "󰁽"
-			elseif b.state_of_charge <= 0.5 then
-				battery_icon = "󰁾"
-			elseif b.state_of_charge <= 0.6 then
-				battery_icon = "󰁿"
-			elseif b.state_of_charge <= 0.7 then
-				battery_icon = "󰂀"
-			elseif b.state_of_charge <= 0.8 then
-				battery_icon = "󰂁"
-			elseif b.state_of_charge <= 0.9 then
-				battery_icon = "󰂂"
-			elseif b.state_of_charge <= 1.0 then
-				battery_icon = "󰁹"
-			end
-		else
-			if b.state_of_charge <= 0.1 then
 				battery_icon = "󰢜"
 			elseif b.state_of_charge <= 0.2 then
 				battery_icon = "󰂆"
@@ -149,6 +127,28 @@ wezterm.on("update-status", function(window, pane)
 				battery_icon = "󰂋"
 			elseif b.state_of_charge <= 1.0 then
 				battery_icon = "󰂅"
+			end
+		else
+			if b.state_of_charge <= 0.1 then
+				battery_icon = "󰁺"
+			elseif b.state_of_charge <= 0.2 then
+				battery_icon = "󰁻"
+			elseif b.state_of_charge <= 0.3 then
+				battery_icon = "󰁼"
+			elseif b.state_of_charge <= 0.4 then
+				battery_icon = "󰁽"
+			elseif b.state_of_charge <= 0.5 then
+				battery_icon = "󰁾"
+			elseif b.state_of_charge <= 0.6 then
+				battery_icon = "󰁿"
+			elseif b.state_of_charge <= 0.7 then
+				battery_icon = "󰂀"
+			elseif b.state_of_charge <= 0.8 then
+				battery_icon = "󰂁"
+			elseif b.state_of_charge <= 0.9 then
+				battery_icon = "󰂂"
+			elseif b.state_of_charge <= 1.0 then
+				battery_icon = "󰁹"
 			end
 		end
 		bat = battery_icon .. " " .. string.format("%.0f%%", b.state_of_charge * 100)
