@@ -12,10 +12,21 @@ nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'grep', sources: [#{ name:
 " nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'cursor-grep' })<CR>
 nnoremap <silent> <C-u><C-m> :call ddu#start(#{ name: 'filer' })<CR>
 
+nnoremap <silent> gd <Cmd>call ddu#start(#{ name: 'lsp:definition' })<CR>
+nnoremap <silent> gt <Cmd>call ddu#start(#{ name: 'lsp:type_definition' })<CR>
+nnoremap <silent> gi <Cmd>call ddu#start(#{ name: 'lsp:implementation' })<CR>
+nnoremap <silent> gr <Cmd>call ddu#start(#{ name: 'lsp:references' })<CR>
+nnoremap <silent> <Leader>ca <Cmd>call ddu#start(#{ name: 'lsp:code_action' })<CR>
+nnoremap <silent> <Leader>ds <Cmd>call ddu#start(#{ name: 'lsp:document_symbol' })<CR>
+nnoremap <silent> <Leader>ws <Cmd>call ddu#start(#{ name: 'lsp:workspace_symbol' })<CR>
+nnoremap <silent> <Leader>di <Cmd>call ddu#start(#{ name: 'lsp:diagnostic' })<CR>
+
 '''
 # }}}
 # hook_source {{{
 hook_source = '''
+let g:ddu_source_lsp_clientName = 'nvim-lsp'
+
 call ddu#custom#patch_global(#{
     \   ui: 'ff',
     \   sourceOptions: #{
@@ -35,7 +46,7 @@ call ddu#custom#patch_global(#{
     \     file: #{
     \       matchers: ['matcher_substring'],
     \       columns: ['icon_filename'],
-    \     }
+    \     },
     \   },
     \   sourceParams: #{
     \     file_rec: #{
@@ -72,54 +83,108 @@ call ddu#custom#patch_global(#{
     \     file: #{
     \       defaultAction: 'open',
     \     },
+    \     lsp: #{
+    \       defaultAction: 'open',
+    \     },
+    \     lsp_codeAction: #{
+    \       defaultAction: 'apply',
+    \     }
     \   },
     \   uiParams: #{
     \     ff: #{
     \       startFilter: v:true,
     \       split: 'floating',
-    \       filterSplitDirection: 'floating',
-    \       filterFloatingPosition: 'bottom',
-    \       floatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
-    \       previewFloating: v:true,
-    \       previewSplit: 'vertical',
+    \       floatingTitle: 'Result',
+    \       floatingTitlePos: 'center',
+    \       floatingBorder: 'rounded',
     \       prompt: '❯ ',
     \       displaySourceName: 'none',
-    \       previewFloatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
+    \       autoAction: #{
+    \         name: 'preview',
+    \       },
+    \       startAutoAction: v:true,
+    \       filterFloatingPosition: 'top',
+    \       filterSplitDirection: 'floating',
+    \       filterFloatingTitle: 'Search',
+    \       filterFloatingTitlePos: 'center',
+    \       previewFloating: v:true,
+    \       previewSplit: 'vertical',
+    \       previewWindowOptions: [
+    \         ["&signcolumn", "no"],
+    \         ["&foldcolumn", 0],
+    \         ["&foldenable", 0],
+    \         ["&number", 0],
+    \         ["&wrap", 0],
+    \         ["&scrolloff", 0],
+    \       ],
+    \       previewFloatingBorder: 'rounded',
+    \       previewFloatingTitle: 'Preview',
+    \       previewFloatingTitlePos: 'center',
     \       highlights: #{
-    \         floating: '',
-    \       }
+    \         floating: 'Normal',
+    \         floatingBorder: 'Normal',
+    \       },
+    \       ignoreEmpty: v:true
     \     },
     \   },
     \ })
 
-call ddu#custom#patch_local('filer', #{
-    \   ui: 'filer',
-    \   sources: [
-    \     #{ name: 'file' }
-    \   ],
+function s:resize_ddu_ff_window() abort
+  let filterHeight = 3
+  let space = 3
+
+  let height = float2nr(&lines * 0.8)
+  let row = float2nr(&lines * 0.1)
+
+  let width = float2nr(&columns * 0.8 / 2)
+  let col = float2nr(&columns * 0.1)
+
+  let previewWidth = float2nr(width / 2)
+
+  call ddu#custom#patch_global(#{
     \   uiParams: #{
-    \     filer: #{
-    \       split: 'floating',
-    \       previewFloating: v:true,
-    \       floatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
-    \       previewFloatingBorder: ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'],
-    \       previewSplit: 'vertical',
-    \       highlights: #{
-    \         floating: '',
-    \       }
-    \     },
-    \   },
-    \   actionOptions: #{
-    \     narrow: #{
-    \       quit: v:false,
-    \     },
-    \   },
-    \   columnParams: #{
-    \     icon_filename: #{
-    \       pathDisplayOption: "basename",
+    \     ff: #{
+    \       winHeight: height - filterHeight,
+    \       winRow: row + filterHeight,
+    \       winWidth: width - float2nr(space / 2),
+    \       winCol: col,
+    \       previewHeight: height,
+    \       previewRow: row,
+    \       previewWidth: width,
+    \       previewCol: col + width + float2nr(space / 2),
     \     }
-    \   },
+    \   }
     \ })
+
+endfunction
+
+call s:resize_ddu_ff_window()
+
+autocmd VimResized * call s:resize_ddu_ff_window()
+
+autocmd FileType ddu-ff call s:ddu_my_settings()
+function! s:ddu_my_settings() abort
+  nnoremap <buffer><silent> <CR>
+        \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
+  nnoremap <buffer><silent> <Space>
+        \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer><silent> i
+        \ <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
+  nnoremap <buffer><silent> <ESC>
+        \ <Cmd>call ddu#ui#do_action('quit')<CR>
+  nnoremap <buffer><silent> v
+        \ <Cmd>call ddu#ui#do_action('preview')<CR>
+endfunction
+
+autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+function! s:ddu_filter_my_settings() abort
+  inoremap <buffer><silent> <CR>
+        \ <Esc><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+  nnoremap <buffer><silent> <CR>
+        \ <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+  nnoremap <buffer><silent> <ESC>
+        \ <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
+endfunction
 
 call ddu#custom#patch_local('fd-file_rec', #{
     \   sources: [
@@ -152,30 +217,120 @@ call ddu#custom#patch_local('file_rec', #{
     \   sources: [#{ name: 'file_rec' }],
     \ })
 
+" ddu-source-lsp {{{
 
-autocmd FileType ddu-ff call s:ddu_my_settings()
-function! s:ddu_my_settings() abort
-  nnoremap <buffer><silent> <CR>
-        \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'open'})<CR>
-  nnoremap <buffer><silent> <Space>
-        \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-  nnoremap <buffer><silent> i
-        \ <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
-  nnoremap <buffer><silent> <ESC>
-        \ <Cmd>call ddu#ui#do_action('quit')<CR>
-  nnoremap <buffer><silent> v
-        \ <Cmd>call ddu#ui#do_action('preview')<CR>
-endfunction
+for [name, method] in [
+      \ ['lsp:definition', 'textDocument/definition'],
+      \ ['lsp:type_definition', 'textDocument/typeDefinition'],
+      \ ['lsp:declaration', 'textDocument/declaration'],
+      \ ['lsp:implementation', 'textDocument/implementation'],
+      \ ]
 
-autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
-function! s:ddu_filter_my_settings() abort
-  inoremap <buffer><silent> <CR>
-  \ <Esc><Cmd>close<CR>
-  nnoremap <buffer><silent> <CR>
-  \ <Cmd>close<CR>
-  nnoremap <buffer><silent> <ESC>
-  \ <Cmd>close<CR>
-endfunction
+  call ddu#custom#patch_local(name, #{
+        \   sources: [
+        \     #{ name: 'lsp_definition', params: #{ method: method } }
+        \   ],
+        \   sourceOptions: #{
+        \     lsp: #{
+        \       matchers: ['matcher_fzf'],
+        \     },
+        \   },
+        \   sync: v:true,
+        \ })
+endfor
+
+call ddu#custom#patch_local('lsp:code_action', #{
+    \   sources: [
+    \     #{ name: 'lsp_codeAction' }
+    \   ],
+    \ })
+
+call ddu#custom#patch_local('lsp:references', #{
+    \   sources: [
+    \     #{ name: 'lsp_references' }
+    \   ],
+    \ })
+
+call ddu#custom#patch_local('lsp:document_symbol', #{
+    \   sources: [
+    \     #{ name: 'lsp_documentSymbol' }
+    \   ],
+    \   sourceOptions: #{
+    \     lsp_documentSymbol: #{
+    \       matchers: ['matcher_fzf'],
+    \       converters: ['converter_lsp_symbol'],
+    \     },
+    \   }
+    \ })
+
+call ddu#custom#patch_local('lsp:workspace_symbol', #{
+    \   sources: [
+    \     #{ name: 'lsp_workspaceSymbol' }
+    \   ],
+    \   sourceOptions: #{
+    \     lsp: #{
+    \       volatile: v:true,
+    \     },
+    \     lsp_workspaceSymbol: #{
+    \       matchers: ['matcher_fzf'],
+    \       converters: ['converter_lsp_symbol'],
+    \     },
+    \   }
+    \ })
+
+call ddu#custom#patch_local('lsp:diagnostic', #{
+    \   sources: [
+    \     #{ name: 'lsp_diagnostic' }
+    \   ],
+    \   params: #{
+    \     buffer: 0,
+    \   },
+    \   sourceOptions: #{
+    \     lsp_diagnostic: #{
+    \       matchers: ['matcher_fzf'],
+    \       converters: ['converter_lsp_diagnostic'],
+    \     },
+    \   }
+    \ })
+
+" }}}
+
+" ddu-filer {{{
+call ddu#custom#patch_local('filer', #{
+    \   ui: 'filer',
+    \   sources: [
+    \     #{ name: 'file' }
+    \   ],
+    \   sourceOptions: #{
+    \     file: #{
+    \       sorters: ['sorter_alpha'],
+    \     },
+    \   },
+    \   uiParams: #{
+    \     filer: #{
+    \       split: 'floating',
+    \       previewFloating: v:true,
+    \       floatingBorder: 'rounded',
+    \       floatingTitle: 'Filer',
+    \       floatingTitlePos: 'center',
+    \       previewFloatingBorder: 'rounded',
+    \       previewSplit: 'vertical',
+    \       highlights: #{
+    \         floating: '',
+    \       }
+    \     },
+    \   },
+    \   actionOptions: #{
+    \     narrow: #{
+    \       quit: v:false,
+    \     },
+    \   },
+    \   columnParams: #{
+    \     icon_filename: #{
+    \       pathDisplayOption: "basename",
+    \     }
+    \   },
+    \ })
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
@@ -205,6 +360,8 @@ function! s:ddu_filer_my_settings() abort
   nnoremap <buffer><silent> p
         \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'paste'})<CR>
 endfunction
+" }}}
+
 '''
 # }}}
 
@@ -230,6 +387,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'matsui54/ddu-source-file_external'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'uga-rosa/ddu-source-lsp'
 on_source = 'ddu.vim'
 
 # }}}
@@ -262,6 +423,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-sorter_alpha'
 on_source = 'ddu.vim'
 
 # }}}
