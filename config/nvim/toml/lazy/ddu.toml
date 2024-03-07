@@ -282,9 +282,6 @@ call ddu#custom#patch_local('lsp:diagnostic', #{
     \   sources: [
     \     #{ name: 'lsp_diagnostic' }
     \   ],
-    \   params: #{
-    \     buffer: 0,
-    \   },
     \   sourceOptions: #{
     \     lsp_diagnostic: #{
     \       matchers: ['matcher_fzf'],
