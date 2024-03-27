@@ -97,7 +97,7 @@ call ddu#custom#patch_global(#{
     \       floatingTitle: 'Result',
     \       floatingTitlePos: 'center',
     \       floatingBorder: 'rounded',
-    \       prompt: '❯ ',
+    \       prompt: '',
     \       displaySourceName: 'none',
     \       autoAction: #{
     \         name: 'preview',
