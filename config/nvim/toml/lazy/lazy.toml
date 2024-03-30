@@ -63,7 +63,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'python', 'cpp', 'go', 'typescript', 'vim',
     'toml', 'rust', 'html', 'bash', 'javascript', 'lua', 'tsx', 'haskell',
-    'markdown'
+    'markdown', 'ruby', 'embedded_template'
   },
   sync_install = false,
   autotag = {
