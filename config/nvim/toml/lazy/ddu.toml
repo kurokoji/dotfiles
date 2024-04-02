@@ -92,7 +92,6 @@ call ddu#custom#patch_global(#{
     \   },
     \   uiParams: #{
     \     ff: #{
-    \       startFilter: v:true,
     \       split: 'floating',
     \       floatingTitle: 'Result',
     \       floatingTitlePos: 'center',
@@ -161,6 +160,12 @@ endfunction
 call s:resize_ddu_ff_window()
 
 autocmd VimResized * call s:resize_ddu_ff_window()
+
+" ddu-ui-ffを開いたときにフィルターを開く
+autocmd User Ddu:uiReady
+      \ : if &l:filetype ==# 'ddu-ff'
+      \ |   call ddu#ui#do_action('openFilterWindow')
+      \ | endif
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
