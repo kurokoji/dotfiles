@@ -2,10 +2,11 @@
 uname | read os_name
 if [ "$os_name" = "Darwin" ]
   eval (/opt/homebrew/bin/brew shellenv)
-  set -x PATH /opt/homebrew/opt/binutils/bin $PATH
+  # set -x PATH /opt/homebrew/opt/binutils/bin $PATH
 
-  set -x LDFLAGS "-L/opt/homebrew/opt/binutils/lib" $LDFLAGS
-  set -x CPPFLAGS "-I/opt/homebrew/opt/binutils/include" $CPPFLAGS
+  # set -x LDFLAGS "-L/opt/homebrew/opt/binutils/lib" $LDFLAGS
+  # set -x CPPFLAGS "-I/opt/homebrew/opt/binutils/include" $CPPFLAGS
+  set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/libpq/lib/pkgconfig"
 
 else if [ "$os_name" = "Linux" ]
   if [ (uname -r | grep 'microsoft') ]
@@ -87,7 +88,7 @@ if executable bat
 end
 
 if [ "$os_name" = "Darwin" ]
-  alias rm=mv2trash
+    # alias rm=mv2trash
 else if [ "$os_name" = "Linux" ]
   # alias rm=rmtrash
   alias open='xdg-open'
