@@ -38,10 +38,10 @@ vnoremap <C-y> "+y
 " }}}
 
 " dein {{{
-const g:dein#enable_notification = 1
+let g:dein#enable_notification = 1
 " let g:dein#install_progress_type = 'floating'
-const g:dein#install_process_timeout = 360
-const g:dein#install_max_processes = 8
+let g:dein#install_process_timeout = 360
+let g:dein#install_max_processes = 8
 " let g:dein#hooks_file_marker = '[[[,]]]'
 
 let $CACHE = expand('~/.cache')
@@ -77,8 +77,8 @@ let $BASE_DIR = fnamemodify(expand('<sfile>'), ':h')
 let $NORMAL_TOML_DIR = expand('$BASE_DIR/toml')
 let $LAZY_TOML_DIR = expand('$BASE_DIR/toml/lazy')
 
-const s:normal_toml_list = split(glob($NORMAL_TOML_DIR .. '/*.toml'), '\n')
-const s:lazy_toml_list = split(glob($LAZY_TOML_DIR .. '/*.toml'), '\n')
+let s:normal_toml_list = split(glob($NORMAL_TOML_DIR .. '/*.toml'), '\n')
+let s:lazy_toml_list = split(glob($LAZY_TOML_DIR .. '/*.toml'), '\n')
 
 if dein#min#load_state(s:dein_base_dir)
   call dein#begin(s:dein_base_dir)
@@ -184,7 +184,6 @@ set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
 let g:material_style = 'lighter'
 colorscheme material
-
 let s:use_neovide = exists('g:neovide')
 let s:use_gui = s:use_neovide || has('gui_running')
 
