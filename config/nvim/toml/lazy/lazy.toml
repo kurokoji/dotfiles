@@ -1,39 +1,7 @@
 [[plugins]]
 repo = 'Shougo/deol.nvim'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_add {{{
-hook_add = '''
-let g:deol#enable_ddc_completion = v:true
-" let g:deol#floating_border = ['╭', '─', '╮', '│', '╯', '─', '╰', '│']
-let g:deol#floating_border = ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃']
-
-function s:floating_deol() abort
-  let width_per = 0.8
-  let height_per = 0.6
-
-  let winwidth = float2nr(&columns * width_per)
-  let wincol = float2nr((&columns - (&columns * width_per)) / 2)
-  let winheight = float2nr(&lines * height_per)
-  let winrow = float2nr((&lines - (&lines * height_per)) / 2)
-
-  call deol#start(#{split: 'floating', winwidth: winwidth, winheight: winheight, wincol: wincol, winrow: winrow, toggle: v:true})
-endfunction
-
-function! s:open_deol() abort
-  let winheight = &lines / 2
-
-  call deol#start(#{split: 'horizontal', winheight: winheight, toggle: v:true})
-endfunction
-
-command DeolSplit :call deol#start(#{split: 'horizontal', toggle: v:true})
-command DeolVertical :call deol#start(#{split: 'vertical', toggle: v:true})
-command DeolFloating :call s:floating_deol()
-
-nnoremap <Leader>s <Cmd>DeolSplit<CR>
-nnoremap <Leader>v <Cmd>DeolVertical<CR>
-nnoremap <Leader>t <Cmd>DeolFloating<CR>
-'''
-# }}}
+on_event = ['BufRead', 'BufNewFile']
+hooks_file = '$LAZY_TOML_DIR/hooks_file/deol.vim'
 
 [[plugins]]
 repo = 'previm/previm'
@@ -50,52 +18,20 @@ augroup END
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile']
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-if = 'has("nvim")'
-on_event = ['BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter']
+if = 'has("nvim") && !has("win32")'
+on_event = ['BufRead', 'CusorHold']
+on_ft = ['help']
 hook_post_update = 'TSUpdate'
-# lua_source {{{
-lua_source = '''
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = {
-    'python', 'cpp', 'go', 'typescript', 'vim',
-    'toml', 'rust', 'html', 'bash', 'javascript', 'lua', 'tsx', 'haskell',
-    'markdown', 'ruby', 'embedded_template'
-  },
-  sync_install = false,
-  autotag = {
-    enable = true,
-  },
-  indent = {
-    enable = true
-  },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
-
--- require 'nvim-treesitter.install'.compilers = { "gcc", "zig" }
-'''
-# }}}
-# hook_source {{{
-hook_source='''
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
-" set nofoldenable
-" set foldnestmax=20
-" set foldminlines=10
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/nvim-treesitter.lua'
 
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
 on_source = ['nvim-treesitter']
-# on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 # lua_source {{{
 lua_source = '''
 vim.opt.list = true
@@ -112,7 +48,7 @@ on_source = 'nvim-treesitter'
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile']
 # lua_source {{{
 lua_source = '''
 require('gitsigns').setup()
@@ -121,7 +57,7 @@ require('gitsigns').setup()
 
 [[plugins]]
 repo = 'windwp/nvim-autopairs'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile']
 # lua_source {{{
 lua_source = '''
 require("nvim-autopairs").setup {}
@@ -130,7 +66,7 @@ require("nvim-autopairs").setup {}
 
 [[plugins]]
 repo = 'NvChad/nvim-colorizer.lua'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile']
 # lua_source {{{
 lua_source = '''
 require('colorizer').setup()
@@ -141,57 +77,11 @@ require('colorizer').setup()
 repo = 'nvim-lualine/lualine.nvim'
 on_event = ['VimEnter']
 depends = ['nightfox.nvim']
-# lua_post_source {{{
-lua_post_source = '''
-local function duck()
-  return '󰇥'
-end
-
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {},
-    always_divide_middle = true,
-    globalstatus = false,
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'filename'},
-    lualine_c = {'diff', {
-      'diagnostics',
-      sources = { 'nvim_lsp' }
-    }},
-    lualine_x = {'filetype', 'encoding', 'fileformat'},
-    lualine_y = {'location'},
-    lualine_z = {'progress'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {
-    lualine_a = {'tabs', 'filename'},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = { duck }
-  },
-  extensions = {}
-}
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/lualine.lua'
 
 [[plugins]]
 repo = 'github/copilot.vim'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile']
 # hook_add {{{
 hook_add = '''
 let g:copilot_no_tab_map = v:true
@@ -199,12 +89,13 @@ let g:copilot_filetypes = {
   \ 'ddu-ff': v:false,
   \ 'ddu-ff-filter': v:false,
   \ }
+let g:copilot_hide_during_completion = 0
 '''
 # }}}
 
 [[plugins]]
 repo = 'petertriho/nvim-scrollbar'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile']
 # lua_source {{{
 lua_source = '''
 require('scrollbar').setup({

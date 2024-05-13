@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'hrsh7th/nvim-cmp'
-on_event = ['InsertEnter', 'BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['InsertEnter', 'BufRead', 'BufNewFile']
 lua_source = '''
 local cmp = require('cmp')
 

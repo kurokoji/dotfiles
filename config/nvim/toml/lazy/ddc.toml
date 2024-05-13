@@ -1,214 +1,8 @@
 [[plugins]]
 repo = 'Shougo/ddc.vim'
-depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
-# hook_add {{{
-hook_add = '''
-'''
-# }}}
-# hook_source {{{
-hook_source = '''
-call ddc#custom#patch_global(#{
-      \   ui: 'pum',
-      \   sources: ['copilot', 'lsp', 'neosnippet', 'around', 'buffer', 'file'],
-      \   sourceOptions: #{
-      \     _: #{
-      \       matchers: ['matcher_head'],
-      \       sorters: ['sorter_rank']
-      \     },
-      \     around: #{
-      \       mark: '[A]',
-      \     },
-      \     necovim: #{
-      \       mark: '[NECO]',
-      \     },
-      \     cmdline: #{
-      \       mark: '[CMD]',
-      \     },
-      \     cmdline-history: #{
-      \       mark: '[CMD-H]',
-      \     },
-      \     lsp: #{
-      \       matchers: ['matcher_head'],
-      \       converters: ['converter_kind_labels'],
-      \       sorters: ['sorter_lsp-kind'],
-      \       mark: '[LSP]',
-      \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
-      \     },
-      \     file: #{
-      \       mark: '[FILE]',
-      \       isVolatile: v:true,
-      \       forceCompletionPattern: '\S/\S*'
-      \     },
-      \     neosnippet: #{
-      \       mark: '[SNIP]',
-      \     },
-      \     buffer: #{
-      \       mark: '[BUF]',
-      \     },
-      \     copilot: #{
-      \       mark: '[AI]',
-      \       matchers: ['matcher_head'],
-      \       minAutoCompleteLength: 0,
-      \     },
-      \   },
-      \   sourceParams: #{
-      \     around: #{
-      \       maxSize: 500,
-      \     },
-      \     path: #{
-      \       cmd: ['find', '-maxdepth', '5']
-      \     },
-      \     buffer: #{
-      \       requireSameFiletype: v:false,
-      \       limitBytes: 5000000,
-      \       fromAltBuf: v:true,
-      \       forceCollect: v:true,
-      \     },
-      \     lsp: #{
-      \       enableResolveItem: v:true,
-      \       enableAdditionalTextEdit: v:true,
-      \       confirmBehavior: "replace",
-      \       lspEngine: "nvim-lsp",
-      \     }
-      \   },
-      \   filterParams: #{
-      \     sorter_lsp-kind: #{
-      \       priority: [
-      \         'Enum',
-      \         ['Method', 'Function'],
-      \         'Field',
-      \         'Variable',
-      \       ]
-      \     },
-      \     converter_kind_labels: #{
-      \       kindLabels: #{
-      \         Text: "",
-      \         Method: "",
-      \         Function: "",
-      \         Constructor: "",
-      \         Field: "",
-      \         Variable: "",
-      \         Class: "",
-      \         Interface: "",
-      \         Module: "",
-      \         Property: "",
-      \         Unit: "",
-      \         Value: "",
-      \         Enum: "",
-      \         Keyword: "",
-      \         Snippet: "",
-      \         Color: "",
-      \         File: "",
-      \         Reference: "",
-      \         Folder: "",
-      \         EnumMember: "",
-      \         Constant: "",
-      \         Struct: "",
-      \         Event: "",
-      \         Operator: "",
-      \         TypeParameter: ""
-      \       },
-      \       kindHlGroups: #{
-      \         Method: "Function",
-      \         Function: "Function",
-      \         Constructor: "Function",
-      \         Field: "Identifier",
-      \         Variable: "Identifier",
-      \         Class: "Structure",
-      \         Interface: "Structure"
-      \       }
-      \     }
-      \   }
-      \ })
-
-call ddc#custom#patch_global('autoCompleteEvents', [
-    \ 'InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineChanged',
-    \ ])
-
-call ddc#custom#patch_global('cmdlineSources', {
-    \ ':': ['cmdline-history', 'cmdline', 'around'],
-    \ '@': ['cmdline-history', 'input', 'file', 'around'],
-    \ '>': ['cmdline-history', 'input', 'file', 'around'],
-    \ '/': ['around', 'line'],
-    \ '?': ['around', 'line'],
-    \ '-': ['around', 'line'],
-    \ '=': ['input'],
-    \ })
-
-nnoremap : <Cmd>call CommandlinePre()<CR>:
-nnoremap ; <Cmd>call CommandlinePre()<CR>:
-nnoremap / <Cmd>call CommandlinePre()<CR>/
-nnoremap ? <Cmd>call CommandlinePre()<CR>?
-
-cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-
-function! CommandlinePre() abort
-  " Note: It disables default command line completion!
-  " cnoremap <Tab>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-  " cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-  " cnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-  " cnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-  " cnoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-  " cnoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-  " cnoremap <silent><expr> <Enter>
-  "       \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' :
-  "       \ '<Enter>'
-
-  " Overwrite sources
-  if !exists('b:prev_buffer_config')
-    let b:prev_buffer_config = ddc#custom#get_buffer()
-  endif
-  " call ddc#custom#patch_buffer('cmdlineSources', ['cmdline', 'file'])
-
-  " call ddc#custom#patch_global('ui', 'inline')
-
-  autocmd User DDCCmdlineLeave ++once call CommandlinePost()
-  autocmd InsertEnter <buffer> ++once call CommandlinePost()
-
-  " Enable command line completion
-  call ddc#enable_cmdline_completion()
-  call ddc#enable()
-endfunction
-
-function! CommandlinePost() abort
-  " silent! cunmap <Tab>
-  " silent! cunmap <S-Tab>
-  " silent! cunmap <C-n>
-  " silent! cunmap <C-p>
-  " silent! cunmap <C-y>
-  " silent! cunmap <C-e>
-  " silent! cunmap <Enter>
-
-  " Restore sources
-  if exists('b:prev_buffer_config')
-    " call ddc#custom#set_buffer(b:prev_buffer_config)
-    unlet b:prev_buffer_config
-  else
-    call ddc#custom#set_buffer({})
-  endif
-endfunction
-
-call ddc#enable()
-'''
-# }}}
-
-[[plugins]]
-repo = 'matsui54/denops-popup-preview.vim'
-if = '0'
-on_source = 'ddc.vim'
-# hook_source {{{
-hook_source = '''
-" hi! PopupPreviewDocument ctermbg=NONE guibg=NONE gui=NONE
-" hi! PopupPreviewBorder ctermbg=NONE guibg=NONE gui=NONE
-call popup_preview#enable()
-'''
-# }}}
+depends = ['denops.vim']
+on_event = ['VimEnter']
+hooks_file = '$LAZY_TOML_DIR/hooks_file/ddc.vim'
 
 [[plugins]]
 repo = 'uga-rosa/ddc-previewer-floating'
@@ -231,45 +25,16 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/pum.vim'
 on_source = 'ddc.vim'
-# hook_source {{{
-hook_source = '''
-" call pum#set_option('max_width', 80)
-call pum#set_option('padding', v:false)
-call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', '│'])
-" call pum#set_option('border', ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'])
-call pum#set_option('highlight_normal_menu', '')
-" call pum#set_option('scrollbar_char', '')
-call pum#set_option('max_height', '20')
-" call pum#set_option('scrollbar_char', '┃')
-" call pum#set_option('scrollbar_char', '█')
-call pum#set_option('scrollbar_char', '▌')
-call pum#set_option('highlight_scrollbar', '')
-
-inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
-inoremap <PageDown> <Cmd>call pum#map#insert_relative_page(+1)<CR>
-inoremap <PageUp>   <Cmd>call pum#map#insert_relative_page(-1)<CR>
-" inoremap <silent><expr> <Tab>
-"       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-"       \ '<Tab>'
-" inoremap <silent><expr> <S-Tab>
-"       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' :
-"       \ '<S-Tab>'
-
-tnoremap <C-n>   <Cmd>call pum#map#insert_relative(+1, 'loop')<CR>
-tnoremap <C-p>   <Cmd>call pum#map#insert_relative(-1, 'loop')<CR>
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/pum.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-ui-pum'
-on_source = 'pum.vim'
+depends = 'pum.vim'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-ui-inline'
-on_source = 'pum.vim'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-around'
@@ -291,18 +56,11 @@ on_source = 'ddc.vim'
 repo = 'Shougo/neosnippet.vim'
 on_source = 'ddc.vim'
 depends = ['neosnippet-snippets']
-# hook_add {{{
-hook_add = '''
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-let g:neosnippet#snippets_directory = expand('$HOME/.config/nvim/snippets')
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/neosnippet.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
+on_source = 'neosnippet.vim'
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
@@ -310,48 +68,12 @@ repo = 'Shougo/neco-vim'
 on_ft = ['vim']
 on_event = ['CmdlineChanged']
 depends = 'ddc.vim'
-# hook_source {{{
-hook_source = '''
-'''
-# }}}
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'
 if = '0'
 on_source = 'ddc.vim'
-# hook_add {{{
-hook_add = '''
-function! s:skkeleton_init() abort
-  call skkeleton#config({
-        \ 'eggLikeNewline': v:true,
-        \ 'globalJisyo': '~/.skk/SKK-JISYO.L',
-        \ })
-endfunction
-
-function! s:skkeleton_pre() abort
-  " Overwrite sources
-  let s:prev_buffer_config = ddc#custom#get_buffer()
-  call ddc#custom#patch_buffer('sources', ['skkeleton'])
-endfunction
-
-function! s:skkeleton_post() abort
-  " Restore sources
-  call ddc#custom#set_buffer(s:prev_buffer_config)
-endfunction
-
-
-autocmd User skkeleton-initialize-pre call s:skkeleton_init()
-autocmd User skkeleton-enable-pre call s:skkeleton_pre()
-autocmd User skkeleton-disable-pre call s:skkeleton_post()
-
-imap <C-j> <Plug>(skkeleton-toggle)
-cmap <C-j> <Plug>(skkeleton-toggle)
-'''
-# }}}
-# hook_source {{{
-hook_source = '''
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/skkeleton.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-cmdline-history'
@@ -359,11 +81,6 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-cmdline'
-on_source = 'ddc.vim'
-
-[[plugins]]
-repo = 'LumaKernel/ddc-tabnine'
-if = '!has("win32")'
 on_source = 'ddc.vim'
 
 [[plugins]]

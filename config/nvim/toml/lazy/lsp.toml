@@ -82,7 +82,6 @@ require("mason").setup({
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
-# on_event = ['BufRead', 'BufNewFile', 'BufEnter']
 on_source = 'mason-null-ls.nvim'
 # lua_source {{{
 lua_source = '''
@@ -162,7 +161,7 @@ require("mason-lspconfig").setup_handlers({
 [[plugins]]
 repo = 'nvimtools/none-ls.nvim'
 # on_source = 'mason.nvim'
-on_event = ['BufRead', 'BufNewFile', 'BufEnter']
+on_event = ['BufRead', 'BufNewFile']
 
 [[plugins]]
 repo = 'jayp0521/mason-null-ls.nvim'
