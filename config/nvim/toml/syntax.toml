@@ -61,3 +61,7 @@ let g:zig_fmt_autosave = 0
 
 [[plugins]]
 repo = 'prisma/vim-prisma'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+on_ft = 'slim'
