@@ -42,24 +42,11 @@ let g:dein#enable_notification = 1
 " let g:dein#install_progress_type = 'floating'
 let g:dein#install_process_timeout = 360
 let g:dein#install_max_processes = 8
-" let g:dein#hooks_file_marker = '[[[,]]]'
 
 let $CACHE = expand('~/.cache')
 if !isdirectory($CACHE)
   call mkdir($CACHE, 'p')
 endif
-
-" if &runtimepath !~# '/dein.vim'
-"   let s:dein_dir = fnamemodify('dein.vim', ':p')
-"   if !isdirectory(s:dein_dir)
-"     let s:dein_dir = $CACHE .. '/dein/repos/github.com/Shougo/dein.vim'
-"     if !isdirectory(s:dein_dir)
-"       echo "install dein.vim"
-"       execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
-"     endif
-"   endif
-"   execute 'set runtimepath^=' . substitute(fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
-" endif
 
 let s:dein_base_dir = expand('$CACHE/dein')
 let s:dein_dir = expand(s:dein_base_dir .. '/repos/github.com/Shougo/dein.vim')
@@ -140,7 +127,6 @@ scriptencoding utf-8
 set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
 if has('nvim')
-  set wildoptions=pum
   " set pumblend=20
   " set winblend=20
 endif

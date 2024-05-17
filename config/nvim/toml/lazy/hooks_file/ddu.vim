@@ -1,11 +1,20 @@
 " hook_add {{{
 "nnoremap <silent> <C-u><C-p> :call ddu#start()<CR>
-nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'fd-file_rec' })<CR>
+nnoremap <silent> <C-u><C-p> <Cmd>call ddu#start(#{ name: 'fd-file_rec' })<CR>
 "nnoremap <silent> <C-u><C-p> :call ddu#start(#{ name: 'file_rec' })<CR>
-nnoremap <silent> <C-u><C-g> :call ddu#start(#{ name: 'grep' })<CR>
-nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'grep', sources: [#{ name: 'rg', params: #{ input: expand('<cword>')} }] })<CR>
+nnoremap <silent> <C-u><C-g> <Cmd>call ddu#start(#{ name: 'grep' })<CR>
+nnoremap <silent> <C-u><C-]>
+      \ <Cmd>call ddu#start(#{
+      \   name: 'grep',
+      \   sources: [#{
+      \     name: 'rg',
+      \     params: #{
+      \       input: expand('<cword>')
+      \     }
+      \   }]
+      \ })<CR>
 " nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'cursor-grep' })<CR>
-nnoremap <silent> <C-u><C-m> :call ddu#start(#{ name: 'filer' })<CR>
+nnoremap <silent> <C-u><C-m> <Cmd>call ddu#start(#{ name: 'filer' })<CR>
 
 nnoremap <silent> gd <Cmd>call ddu#start(#{ name: 'lsp:definition' })<CR>
 nnoremap <silent> gt <Cmd>call ddu#start(#{ name: 'lsp:type_definition' })<CR>
@@ -297,7 +306,7 @@ call ddu#custom#patch_local('filer', #{
     \   ],
     \   sourceOptions: #{
     \     file: #{
-    \       sorters: ['sorter_alpha'],
+    \       sorters: ['sorter_alpha', 'sorter_directory_file'],
     \     },
     \   },
     \   uiParams: #{

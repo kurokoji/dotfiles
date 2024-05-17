@@ -7,16 +7,7 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/ddc.vim'
 [[plugins]]
 repo = 'uga-rosa/ddc-previewer-floating'
 on_source = 'ddc.vim'
-# lua_source {{{
-lua_source = '''
-local previewer_floating = require('ddc_previewer_floating')
-
-previewer_floating.setup({
-  border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
-})
-previewer_floating.enable()
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/ddc-previewer-floating.lua'
 
 [[plugins]]
 repo = 'Shougo/ddc-ui-native'

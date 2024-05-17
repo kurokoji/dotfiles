@@ -131,10 +131,15 @@ call ddc#custom#patch_global('cmdlineSources', {
     \ '=': ['input'],
     \ })
 
-nnoremap : <Cmd>call CommandlinePre()<CR>:
-nnoremap ; <Cmd>call CommandlinePre()<CR>:
-nnoremap / <Cmd>call CommandlinePre()<CR>/
-nnoremap ? <Cmd>call CommandlinePre()<CR>?
+augroup ddc_cmdline
+  autocmd!
+  autocmd CmdlineEnter * call CommandlinePre()
+augroup END
+
+" nnoremap : <Cmd>call CommandlinePre()<CR>:
+" nnoremap ; <Cmd>call CommandlinePre()<CR>:
+" nnoremap / <Cmd>call CommandlinePre()<CR>/
+" nnoremap ? <Cmd>call CommandlinePre()<CR>?
 
 function! CommandlinePre() abort
   " Note: It disables default command line completion!

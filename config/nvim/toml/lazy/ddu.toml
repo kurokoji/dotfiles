@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/ddu.vim'
 depends = ['denops.vim']
-on_source = 'denops.vim'
+on_event = ['BufRead', 'BufNewFile']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/ddu.vim'
 
 [[plugins]]
@@ -66,6 +66,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-sorter_alpha'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'alpaca-tc/ddu-filter-sorter_directory_file'
 on_source = 'ddu.vim'
 
 # }}}

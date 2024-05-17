@@ -6,15 +6,7 @@ hooks_file = ['$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.lua', '$LAZY_TOML_DIR/ho
 [[plugins]]
 repo = 'williamboman/mason.nvim'
 on_source = 'mason-lspconfig.nvim'
-# lua_source {{{
-lua_source = '''
-require("mason").setup({
-    ui = {
-        border = {'┏', '━', '┓', '┃', '┛', '━', '┗', '┃'},
-    }
-})
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/mason.lua'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'

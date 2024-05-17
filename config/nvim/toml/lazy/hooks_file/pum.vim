@@ -1,3 +1,7 @@
+" hook_add {{{
+set wildoptions=pum
+" }}}
+
 " hook_source {{{
 
 " call pum#set_option('max_width', 80)

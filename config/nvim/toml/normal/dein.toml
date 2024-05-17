@@ -24,7 +24,7 @@ repo = 'mattn/vim-sonictemplate'
 # hook_add {{{
 hook_add = '''
 let g:sonictemplate_vim_template_dir = [
-      \ '~/.config/nvim/template'
+      \ expand('$BASE_DIR/templates')
       \]
 '''
 # }}}
