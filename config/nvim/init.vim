@@ -74,7 +74,7 @@ if &runtimepath !~# '/dein.vim'
 endif
 
 let $BASE_DIR = fnamemodify(expand('<sfile>'), ':h')
-let $NORMAL_TOML_DIR = expand('$BASE_DIR/toml')
+let $NORMAL_TOML_DIR = expand('$BASE_DIR/toml/normal')
 let $LAZY_TOML_DIR = expand('$BASE_DIR/toml/lazy')
 
 let s:normal_toml_list = split(glob($NORMAL_TOML_DIR .. '/*.toml'), '\n')
@@ -165,7 +165,7 @@ set signcolumn=yes
 set list
 " set ambiwidth=double
 " set listchars=tab:>-,eol:¬,nbsp:%,nbsp:⍽
-set listchars=tab:>-,eol:↵,nbsp:%,nbsp:⍽
+set listchars=tab:>-,eol:↵,nbsp:⍽,trail:·,extends:»,precedes:«
 
 " 対応するカッコの表示
 set showmatch
@@ -247,6 +247,7 @@ augroup FileTypeConfig
   autocmd FileType java setlocal softtabstop=4 tabstop=4 shiftwidth=4
   autocmd FileType c,cpp setlocal softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
   autocmd FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
+  autocmd FileType lua setlocal tabstop=2 shiftwidth=2 noexpandtab
   autocmd FileType d setlocal softtabstop=2 tabstop=2 shiftwidth=2 cindent cinoptions+=:0,g0
   autocmd Filetype html setlocal indentexpr=""
 

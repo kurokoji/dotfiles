@@ -2,59 +2,28 @@
 require("mason-lspconfig").setup({})
 local lspconfig = require("lspconfig")
 
-local function get_dmd_path(callback)
-	vim.fn.jobstart("asdf where dmd", {
-		stdout_buffered = true,
-		on_stdout = function(_, data)
-			local path = nil
-			for _, line in ipairs(data) do
-				if line ~= "" then
-					path = line
-				end
-			end
-			if path then
-				-- vim.notify("DMD path: " .. path, vim.log.levels.INFO, { title = "asdf where dmd" })
-				callback(path)
-			end
-		end,
-		on_stderr = function(_, data)
-			-- エラーがあれば表示
-			for _, line in ipairs(data) do
-				if line ~= "" then
-					vim.notify(line, vim.log.levels.ERROR, { title = "asdf where dmd" })
-				end
-			end
-		end,
-	})
-end
-
-local function setup_serve_d(dmdPath)
-	require("lspconfig")["serve_d"].setup({
-		-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
-		settings = {
-			d = {
-				stdlibPath = { dmdPath .. "/phobos", dmdPath .. "/druntime", dmdPath .. "/dmd" },
-			},
-			dfmt = {
-				braceStyle = "otbs",
-			},
-		},
-	})
-end
-
 require("mason-lspconfig").setup_handlers({
 	function(server)
 		if server == "serve_d" then
-			-- local dmdPath = vim.fn.system('asdf where dmd')
 			-- local dmdPath = '~/scoop/apps/dmd/2.101.0/src'
 			local dmd_path = ""
 			if vim.fn.has("win32") == 1 then
 				dmd_path = vim.fn.expand("~/scoop/apps/dmd/current/src")
-				setup_serve_d(dmd_path)
 			else
-				-- dmd_path = vim.fn.expand("~/.asdf/installs/dmd/2.101.1/dmd2/src")
-				get_dmd_path(setup_serve_d)
+				dmdPath = vim.fn.system("asdf where dmd")
 			end
+
+			require("lspconfig")["serve_d"].setup({
+				-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
+				settings = {
+					d = {
+						stdlibPath = { dmdPath .. "/phobos", dmdPath .. "/druntime", dmdPath .. "/dmd" },
+					},
+					dfmt = {
+						braceStyle = "otbs",
+					},
+				},
+			})
 		else
 			local opts = {}
 			local node_root_dir = lspconfig.util.root_pattern("package.json")
