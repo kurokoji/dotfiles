@@ -13,7 +13,7 @@ local function get_dmd_path(callback)
 				end
 			end
 			if path then
-				vim.notify("DMD path: " .. path, vim.log.levels.INFO, { title = "asdf where dmd" })
+				-- vim.notify("DMD path: " .. path, vim.log.levels.INFO, { title = "asdf where dmd" })
 				callback(path)
 			end
 		end,
@@ -47,12 +47,12 @@ require("mason-lspconfig").setup_handlers({
 		if server == "serve_d" then
 			-- local dmdPath = vim.fn.system('asdf where dmd')
 			-- local dmdPath = '~/scoop/apps/dmd/2.101.0/src'
-			local dmdPath = ""
+			local dmd_path = ""
 			if vim.fn.has("win32") == 1 then
-				dmdPath = vim.fn.expand("~/scoop/apps/dmd/current/src")
-				setup_serve_d(dmdPath)
+				dmd_path = vim.fn.expand("~/scoop/apps/dmd/current/src")
+				setup_serve_d(dmd_path)
 			else
-				dmdPath = vim.fn.expand("~/.asdf/installs/dmd/2.101.1/dmd2/src")
+				-- dmd_path = vim.fn.expand("~/.asdf/installs/dmd/2.101.1/dmd2/src")
 				get_dmd_path(setup_serve_d)
 			end
 		else

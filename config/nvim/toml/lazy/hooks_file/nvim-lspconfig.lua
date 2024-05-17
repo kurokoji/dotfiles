@@ -22,25 +22,4 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
-local nvim_lsp = require("lspconfig")
-
-local dmdPath = ""
-if vim.fn.has("win32") == 1 then
-	dmdPath = vim.fn.expand("~/scoop/apps/dmd/current/src")
-else
-	dmdPath = vim.fn.expand("~/.asdf/installs/dmd/2.101.1/dmd2/src")
-end
-
-nvim_lsp["serve_d"].setup({
-	-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
-	settings = {
-		d = {
-			stdlibPath = { dmdPath .. "/phobos", dmdPath .. "/druntime", dmdPath .. "/dmd" },
-		},
-		dfmt = {
-			braceStyle = "otbs",
-		},
-	},
-})
 -- }}}
