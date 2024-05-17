@@ -18,8 +18,20 @@ end
 
 -- lua_source {{{
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+
+-- :help dianostic-signs
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = signs["Error"],
+			[vim.diagnostic.severity.WARN] = signs["Warn"],
+			[vim.diagnostic.severity.INFO] = signs["Info"],
+			[vim.diagnostic.severity.HINT] = signs["Hint"],
+		},
+		numhl = {
+		},
+		linehl = {
+		},
+	},
+})
 -- }}}

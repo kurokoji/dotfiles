@@ -13,7 +13,7 @@ require("mason-lspconfig").setup_handlers({
 				dmdPath = vim.fn.system("asdf where dmd")
 			end
 
-			require("lspconfig")["serve_d"].setup({
+			lspconfig[server].setup({
 				-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
 				settings = {
 					d = {
@@ -63,7 +63,7 @@ require("mason-lspconfig").setup_handlers({
 
 			opts.on_attach = function(_, bufnr) end
 
-			require("lspconfig")[server].setup(opts)
+			lspconfig[server].setup(opts)
 		end
 	end,
 })
