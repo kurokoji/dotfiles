@@ -10,7 +10,8 @@ require("mason-lspconfig").setup_handlers({
 			if vim.fn.has("win32") == 1 then
 				dmdPath = vim.fn.expand("~/scoop/apps/dmd/current/src")
 			else
-				dmdPath = vim.fn.system("asdf where dmd")
+				-- dmdPath = vim.fn.system("asdf where dmd")
+				dmdPath = vim.fn.expand("~/.asdf/installs/dmd/2.102.0/src")
 			end
 
 			lspconfig[server].setup({
