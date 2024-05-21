@@ -243,4 +243,5 @@ augroup END
 augroup MyFileType
   autocmd!
   autocmd BufNewFile,BufRead *.bigquery set filetype=sql
+  autocmd BufNewFile,BufRead *.rbi set filetype=ruby
 augroup END
