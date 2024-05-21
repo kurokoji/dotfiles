@@ -33,7 +33,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
 	default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoProfileLoadTime" }
 
-	font_size = 11.0
+	font_size = 10.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
 	table.insert(launch_menu, {
 		label = "Fish",
@@ -249,8 +249,8 @@ return {
 	--font = wezterm.font("PlemolJP Console NF"),
 	--font = wezterm.font("Cica"),
 	--font = wezterm.font("UDEV Gothic NF"),
-	--font = wezterm.font("Moralerspace Xenon NF"),
-	font = wezterm.font("Moralerspace Xenon HWNF"),
+	font = wezterm.font("Moralerspace Xenon NF"),
+	-- font = wezterm.font("Moralerspace Xenon HWNF"),
 	font_size = font_size,
 	color_scheme_dirs = { "~/.config/wezterm/colors" },
 	color_scheme = colorscheme_name,
