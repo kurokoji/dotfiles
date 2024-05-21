@@ -46,7 +46,7 @@ elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple 
 
 	default_prog = { "/opt/homebrew/bin/fish", "-l" }
 
-	font_size = 14.0
+	font_size = 13.0
 else
 	environment_variables = {
 		SHELL = "/usr/bin/fish",
