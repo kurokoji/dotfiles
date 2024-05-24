@@ -94,3 +94,7 @@ if = 'has("nvim")'
 
 [[plugins]]
 repo = 'skanehira/denops-docker.vim'
+
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+hooks_file = '$NORMAL_TOML_DIR/hooks_file/nvim-notify.lua'

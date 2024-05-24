@@ -38,7 +38,7 @@ vnoremap <C-y> "+y
 " }}}
 
 " dein {{{
-let g:dein#enable_notification = 1
+let g:dein#enable_notification = v:true
 " let g:dein#install_progress_type = 'floating'
 let g:dein#install_process_timeout = 360
 let g:dein#install_max_processes = 8
@@ -71,7 +71,7 @@ if dein#min#load_state(s:dein_base_dir)
   call dein#begin(s:dein_base_dir)
 
   for toml in s:normal_toml_list
-    call dein#load_toml(toml, #{ lazy: 0 })
+    call dein#load_toml(toml, #{ lazy: v:false })
   endfor
 
   for toml in s:lazy_toml_list
@@ -81,7 +81,7 @@ if dein#min#load_state(s:dein_base_dir)
     if (toml =~ "completion.toml")
       continue
     endif
-    call dein#load_toml(toml, #{ lazy: 1 })
+    call dein#load_toml(toml, #{ lazy: v:true })
   endfor
 
   call dein#end()

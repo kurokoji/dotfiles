@@ -123,8 +123,6 @@ call ddu#custom#patch_global(#{
     \       previewFloatingTitle: 'Preview',
     \       previewFloatingTitlePos: 'center',
     \       highlights: #{
-    \         floating: 'Normal',
-    \         floatingBorder: 'Normal',
     \       },
     \       ignoreEmpty: v:true
     \     },
@@ -319,7 +317,6 @@ call ddu#custom#patch_local('filer', #{
     \       previewFloatingBorder: 'rounded',
     \       previewSplit: 'vertical',
     \       highlights: #{
-    \         floating: '',
     \       }
     \     },
     \   },
