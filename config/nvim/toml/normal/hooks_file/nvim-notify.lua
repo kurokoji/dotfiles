@@ -1,5 +1,11 @@
 -- lua_source {{{
-vim.notify = require("notify")
+local notify = require("notify")
+
+notify.setup({
+	top_down = false,
+})
+
+vim.notify = notify
 
 vim.g["dein#enable_notification"] = true
 -- }}}

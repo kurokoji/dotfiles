@@ -25,6 +25,21 @@ require("mason-lspconfig").setup_handlers({
 					},
 				},
 			})
+		elseif server == "lua_ls" then
+			lspconfig[server].setup({
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+						workspace = {
+							library = {
+								vim.env.VIMRUNTIME,
+							},
+						},
+					},
+				},
+			})
 		else
 			local opts = {}
 			local node_root_dir = lspconfig.util.root_pattern("package.json")
