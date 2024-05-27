@@ -142,7 +142,7 @@ function s:resize_ddu_ff_window() abort
 
   let previewWidth = float2nr(width / 2)
 
-  hi! Tofu guifg=#ffffff guibg=#272727
+  hi Tofu guifg=#ffffff guibg=#272727
 
   call cmdline#set_option(#{
         \   width: width - float2nr(space / 2),
@@ -180,7 +180,6 @@ autocmd VimResized * call s:resize_ddu_ff_window()
 "       \ | endif
 
 autocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
-autocmd User Ddu:ui:ff:leaveFilterWindow call cmdline#disable()
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort

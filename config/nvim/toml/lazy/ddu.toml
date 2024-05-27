@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'Shougo/ddu.vim'
-depends = ['denops.vim']
+depends = ['denops.vim', 'cmdline.vim']
 on_event = ['BufRead', 'BufNewFile']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/ddu.vim'
 
