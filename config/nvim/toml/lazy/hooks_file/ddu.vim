@@ -195,14 +195,6 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('preview')<CR>
 endfunction
 
-autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
-function! s:ddu_filter_my_settings() abort
-  inoremap <buffer><silent> <CR>
-        \ <Esc><Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
-  nnoremap <buffer><silent> <ESC>
-        \ <Cmd>call ddu#ui#do_action('leaveFilterWindow')<CR>
-endfunction
-
 call ddu#custom#patch_local('fd-file_rec', #{
     \   sources: [
     \     #{ name: 'file_external'}
