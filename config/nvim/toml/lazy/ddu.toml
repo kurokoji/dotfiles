@@ -5,6 +5,10 @@ on_event = ['BufRead', 'BufNewFile']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/ddu.vim'
 
 [[plugins]]
+repo = 'Shougo/cmdline.vim'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'Shougo/ddu-commands.vim'
 on_source = 'ddu.vim'
 on_cmd = 'Ddu'

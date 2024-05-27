@@ -136,20 +136,43 @@ function s:resize_ddu_ff_window() abort
   let height = float2nr(&lines * 0.8)
   let row = float2nr(&lines * 0.1)
 
-  let width = float2nr(&columns * 0.8 / 2)
+  let full_width = float2nr(&columns * 0.8)
+  let width = float2nr(full_width / 2)
   let col = float2nr(&columns * 0.1)
 
   let previewWidth = float2nr(width / 2)
 
+  call cmdline#set_option(#{
+        \   width: full_width + float2nr(space / 2),
+        \   col: col,
+        \   row: row,
+        \   border: 'rounded',
+        \ })
+
+  " call ddu#custom#patch_global(#{
+  "   \   uiParams: #{
+  "   \     ff: #{
+  "   \       winHeight: height - filterHeight,
+  "   \       winRow: row + filterHeight,
+  "   \       winWidth: width - float2nr(space / 2),
+  "   \       winCol: col,
+  "   \       previewHeight: height,
+  "   \       previewRow: row,
+  "   \       previewWidth: width,
+  "   \       previewCol: col + width + float2nr(space / 2),
+  "   \     }
+  "   \   }
+  "   \ })
+
   call ddu#custom#patch_global(#{
     \   uiParams: #{
     \     ff: #{
-    \       winHeight: height - filterHeight,
+    \       winHeight: height,
     \       winRow: row + filterHeight,
     \       winWidth: width - float2nr(space / 2),
     \       winCol: col,
     \       previewHeight: height,
-    \       previewRow: row,
+    \       previewRow: row + filterHeight,
     \       previewWidth: width,
     \       previewCol: col + width + float2nr(space / 2),
     \     }
@@ -163,10 +186,13 @@ call s:resize_ddu_ff_window()
 autocmd VimResized * call s:resize_ddu_ff_window()
 
 " ddu-ui-ffを開いたときにフィルターを開く
-autocmd User Ddu:uiReady
-      \ : if &l:filetype ==# 'ddu-ff'
-      \ |   call ddu#ui#do_action('openFilterWindow')
-      \ | endif
+" autocmd User Ddu:uiReady
+"       \ : if &l:filetype ==# 'ddu-ff'
+"       \ |   call ddu#ui#do_action('openFilterWindow')
+"       \ | endif
+
+autocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
+autocmd User Ddu:ui:ff:leaveFilterWindow call cmdline#disable()
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
