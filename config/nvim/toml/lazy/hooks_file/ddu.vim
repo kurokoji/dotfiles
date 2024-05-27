@@ -142,37 +142,25 @@ function s:resize_ddu_ff_window() abort
 
   let previewWidth = float2nr(width / 2)
 
+  hi! Tofu guifg=#ffffff guibg=#272727
+
   call cmdline#set_option(#{
-        \   width: full_width + float2nr(space / 2),
+        \   width: width - float2nr(space / 2),
         \   col: col,
         \   row: row,
         \   border: 'rounded',
+        \   highlight_cursor: 'Tofu',
         \ })
-
-  " call ddu#custom#patch_global(#{
-  "   \   uiParams: #{
-  "   \     ff: #{
-  "   \       winHeight: height - filterHeight,
-  "   \       winRow: row + filterHeight,
-  "   \       winWidth: width - float2nr(space / 2),
-  "   \       winCol: col,
-  "   \       previewHeight: height,
-  "   \       previewRow: row,
-  "   \       previewWidth: width,
-  "   \       previewCol: col + width + float2nr(space / 2),
-  "   \     }
-  "   \   }
-  "   \ })
 
   call ddu#custom#patch_global(#{
     \   uiParams: #{
     \     ff: #{
-    \       winHeight: height,
+    \       winHeight: height - filterHeight,
     \       winRow: row + filterHeight,
     \       winWidth: width - float2nr(space / 2),
     \       winCol: col,
     \       previewHeight: height,
-    \       previewRow: row + filterHeight,
+    \       previewRow: row,
     \       previewWidth: width,
     \       previewCol: col + width + float2nr(space / 2),
     \     }
