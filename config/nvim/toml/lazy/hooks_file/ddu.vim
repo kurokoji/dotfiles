@@ -105,10 +105,6 @@ call ddu#custom#patch_global(#{
     \         name: 'preview',
     \       },
     \       startAutoAction: v:true,
-    \       filterFloatingPosition: 'top',
-    \       filterSplitDirection: 'floating',
-    \       filterFloatingTitle: 'Search',
-    \       filterFloatingTitlePos: 'center',
     \       previewFloating: v:true,
     \       previewSplit: 'vertical',
     \       previewWindowOptions: [
