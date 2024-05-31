@@ -10,6 +10,7 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/mason.lua'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
+depends = ['mason.nvim', 'nvim-lspconfig']
 on_source = 'mason-null-ls.nvim'
 hooks_file = '$LAZY_TOML_DIR/hooks_file/mason-lspconfig.lua'
 

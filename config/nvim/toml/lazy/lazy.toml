@@ -23,7 +23,7 @@ on_event = ['BufRead', 'BufNewFile']
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 if = 'has("nvim") && !has("win32")'
-on_event = ['BufRead', 'CusorHold']
+on_event = ['BufRead', 'BufNewFile']
 on_ft = ['help']
 hook_post_update = 'TSUpdate'
 hooks_file = '$LAZY_TOML_DIR/hooks_file/nvim-treesitter.lua'
