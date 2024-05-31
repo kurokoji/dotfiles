@@ -1,9 +1,10 @@
 local wezterm = require("wezterm")
 
-local colorscheme_name = "Material Lighter"
+-- local colorscheme_name = "Material Lighter"
+local colorscheme_name = "tokyonight_day"
 
 local home = os.getenv("HOME")
--- local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
+local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
 local launch_menu = {}
 local default_prog = {}
 local environment_variables = {}
@@ -62,7 +63,7 @@ else
 	font_size = 12.0
 end
 
-local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
+-- local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
 
 local keys = {
 	{ key = "l", mods = "META", action = wezterm.action.ShowLauncher },
