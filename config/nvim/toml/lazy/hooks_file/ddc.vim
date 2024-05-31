@@ -10,6 +10,9 @@ call ddc#custom#patch_global(#{
       \     around: #{
       \       mark: '[A]',
       \     },
+      \     line: #{
+      \       mark: '[l]',
+      \     },
       \     necovim: #{
       \       mark: '[NECO]',
       \     },

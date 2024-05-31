@@ -138,7 +138,8 @@ function s:resize_ddu_ff_window() abort
 
   let previewWidth = float2nr(width / 2)
 
-  hi Tofu guifg=#ffffff guibg=#272727
+  let hl = nvim_get_hl_by_name('Cursor', v:true)
+  call nvim_set_hl(0, 'Tofu', hl)
 
   call cmdline#set_option(#{
         \   width: width - float2nr(space / 2),

@@ -168,8 +168,9 @@ set wildmode=full
 set background=light
 set termguicolors
 autocmd ColorScheme * hi dOperator guifg=#fb4934
-let g:material_style = 'lighter'
-colorscheme material
+" let g:material_style = 'lighter'
+" colorscheme material
+colorscheme tokyonight-day
 let s:use_neovide = exists('g:neovide')
 let s:use_gui = s:use_neovide || has('gui_running')
 

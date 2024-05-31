@@ -19,3 +19,6 @@ require("nightfox").setup()
 [[plugins]]
 repo = 'marko-cerovac/material.nvim'
 hooks_file = '$NORMAL_TOML_DIR/hooks_file/material.lua'
+
+[[plugins]]
+repo = 'folke/tokyonight.nvim'
