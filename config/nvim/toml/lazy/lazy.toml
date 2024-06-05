@@ -102,3 +102,9 @@ require('scrollbar').setup({
   excluded_buftypes = { "terminal", "nofile" }
 })
 '''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+if = '0'
+on_event = ['VimEnter']
+hooks_file = '$LAZY_TOML_DIR/hooks_file/lightline.lua'
