@@ -1,7 +1,11 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_source = 'mason-lspconfig.nvim'
-hooks_file = ['$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.lua', '$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.vim']
+on_event = ['BufRead', 'BufNewFile']
+hooks_file = [
+	'$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.lua',
+	'$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.vim'
+]
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
@@ -16,27 +20,13 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/mason-lspconfig.lua'
 
 [[plugins]]
 repo = 'nvimtools/none-ls.nvim'
-# on_source = 'mason.nvim'
 on_event = ['BufRead', 'BufNewFile']
 
 [[plugins]]
 repo = 'jayp0521/mason-null-ls.nvim'
+depends = ['mason.nvim', 'none-ls.nvim']
 on_source = 'none-ls.nvim'
-# lua_source {{{
-lua_source = '''
-
-local null_ls = require('null-ls')
-null_ls.setup()
-
-require('mason-null-ls').setup({
-  ensure_installed = { 'prettier', 'stylua', 'black' },
-  automatic_setup = true,
-  handlers = {}
-})
-
-
-'''
-# }}}
+hooks_file = '$LAZY_TOML_DIR/hooks_file/mason-null-ls.lua'
 
 [[plugins]]
 repo = 'ErichDonGubler/lsp_lines.nvim'
