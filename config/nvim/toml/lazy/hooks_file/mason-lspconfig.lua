@@ -83,4 +83,9 @@ require("mason-lspconfig").setup_handlers({
 		end
 	end,
 })
+
+
+lspconfig['rubocop'].setup{
+	cmd = { "bundle", "exec", "rubocop", "--lsp" },
+}
 -- }}}

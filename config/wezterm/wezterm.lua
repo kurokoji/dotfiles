@@ -1,14 +1,28 @@
 local wezterm = require("wezterm")
 
+function get_home_path()
+	local home = ""
+
+	if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+		home = os.getenv("USERPROFILE")
+	else
+		home = os.getenv("HOME")
+	end
+
+	return home
+end
+
 -- local colorscheme_name = "Material Lighter"
 local colorscheme_name = "tokyonight_day"
 
-local home = os.getenv("HOME")
+local home = get_home_path()
 local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
+-- local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
 local launch_menu = {}
 local default_prog = {}
 local environment_variables = {}
 local font_size = 0
+
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	table.insert(launch_menu, {
@@ -63,7 +77,6 @@ else
 	font_size = 12.0
 end
 
--- local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
 
 local keys = {
 	{ key = "l", mods = "META", action = wezterm.action.ShowLauncher },
@@ -95,8 +108,8 @@ wezterm.on("update-status", function(window, pane)
 	local foreground = scheme.tab_bar.active_tab.fg_color
 	local edge_background = scheme.tab_bar.background
 	local edge_foreground = background
-	local red_foreground = scheme.ansi[2]
-	local green_foreground = scheme.ansi[4]
+	local red_foreground = scheme.ansi[1]
+	local green_foreground = scheme.ansi[2]
 
 	-- "Wed Mar 3 08:14"
 	local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ")
