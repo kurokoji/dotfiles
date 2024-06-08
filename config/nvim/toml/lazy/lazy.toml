@@ -75,8 +75,7 @@ require('colorizer').setup()
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
-on_event = ['VimEnter']
-depends = ['nightfox.nvim']
+on_event = ['UiEnter']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/lualine.lua'
 
 [[plugins]]
@@ -106,5 +105,5 @@ require('scrollbar').setup({
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 if = '0'
-on_event = ['VimEnter']
+on_event = ['UiEnter']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/lightline.lua'
