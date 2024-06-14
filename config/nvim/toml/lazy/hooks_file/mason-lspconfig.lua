@@ -106,4 +106,8 @@ mason_lspconfig.setup_handlers({
 lspconfig["rubocop"].setup({
 	cmd = { "bundle", "exec", "rubocop", "--lsp" },
 })
+
+lspconfig["sorbet"].setup({
+	cmd = { "bundle", "exec", "srb", "tc", "--lsp" }
+})
 -- }}}
