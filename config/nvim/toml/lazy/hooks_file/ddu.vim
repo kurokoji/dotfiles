@@ -138,15 +138,16 @@ function s:resize_ddu_ff_window() abort
 
   let previewWidth = float2nr(width / 2)
 
-  let hl = nvim_get_hl_by_name('Cursor', v:true)
-  call nvim_set_hl(0, 'Tofu', hl)
+  let hl = nvim_get_hl(0, #{ name: 'Cursor', link: v:true })
+  call nvim_set_hl(0, 'CmdlineCursor', hl)
 
   call cmdline#set_option(#{
         \   width: width - float2nr(space / 2),
         \   col: col,
         \   row: row,
         \   border: 'rounded',
-        \   highlight_cursor: 'Tofu',
+        \   highlight_cursor: 'CmdlineCursor',
+        \   highlight_window: 'None'
         \ })
 
   call ddu#custom#patch_global(#{
