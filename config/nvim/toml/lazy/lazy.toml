@@ -45,6 +45,7 @@ require('ibl').setup()
 repo = 'windwp/nvim-ts-autotag'
 if = 'has("nvim")'
 on_source = 'nvim-treesitter'
+hooks_file = '$LAZY_TOML_DIR/hooks_file/nvim-ts-autotag.lua'
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'

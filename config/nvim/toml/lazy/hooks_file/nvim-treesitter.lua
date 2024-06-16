@@ -19,9 +19,6 @@ require("nvim-treesitter.configs").setup({
 		"embedded_template",
 	},
 	sync_install = false,
-	autotag = {
-		enable = true,
-	},
 	indent = {
 		enable = true,
 	},

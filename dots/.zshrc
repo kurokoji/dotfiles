@@ -77,8 +77,8 @@ fpath=(${ASDF_DIR}/completions $fpath)
 # }}}
 # alias {{{
 
-if executable exa ; then
-  alias ls='exa --icons'
+if executable eza ; then
+  alias ls='eza --icons'
 fi
 
 if executable rg; then
