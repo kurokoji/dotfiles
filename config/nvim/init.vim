@@ -75,12 +75,6 @@ if dein#min#load_state(s:dein_base_dir)
   endfor
 
   for toml in s:lazy_toml_list
-    " if (toml =~ "ddc.toml") || (toml =~ "ddu.toml")
-    "   continue
-    " endif
-    if (toml =~ "completion.toml")
-      continue
-    endif
     call dein#load_toml(toml, #{ lazy: v:true })
   endfor
 
