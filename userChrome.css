@@ -1,11 +1,8 @@
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]
-  #sidebar-header {
-  display: none;
+#main-window[titlepreface*="​"] #titlebar {
+  height: 2em !important;
 }
 
-#main-window[tabsintitlebar="true"]:not([extradragspace="true"])
-  #TabsToolbar
-  > .toolbar-items {
+#main-window[titlepreface*="​"] #TabsToolbar > .toolbar-items {
   opacity: 0;
   pointer-events: none;
 }
