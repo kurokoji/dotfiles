@@ -31,7 +31,8 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/nvim-treesitter.lua'
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = 'has("nvim")'
-on_source = ['nvim-treesitter']
+# on_source = ['nvim-treesitter']
+on_event = ['BufRead', 'BufNewFile']
 # lua_source {{{
 lua_source = '''
 vim.opt.list = true
