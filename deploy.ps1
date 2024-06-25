@@ -66,6 +66,10 @@ if (Test-Admin) {
   # PROFILEのシンボリックリンク
   New-Item -Force -Type SymbolicLink -Path $profilepath -Name "Profile.ps1" -Value $linkpath
 
+  $userChromeCssPath = (Join-Path -Resolve $parent "userChrome.css")
+  $firefoxProfilePath = (Join-Path -Path $env:UserProfile -ChildPath "scoop\persist\firefox\profile\chrome")
+  New-Item -Force -Type SymbolicLink -Path $firefoxProfilePath -Name "userChrome.css" -Value $userChromeCssPath
+
   Write-Host "Complete!!" -ForegroundColor Red
   Read-Host "Please press any key."
 }
