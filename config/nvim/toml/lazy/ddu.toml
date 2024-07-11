@@ -6,7 +6,7 @@ on_event = ['VimEnter']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/ddu.vim'
 
 [[plugins]]
-repo = 'Shougo/cmdline.vim'
+repo = 'kurokoji/cmdline.vim'
 on_source = 'ddu.vim'
 
 [[plugins]]

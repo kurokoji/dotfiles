@@ -147,7 +147,9 @@ function s:resize_ddu_ff_window() abort
         \   row: row,
         \   border: 'rounded',
         \   highlight_cursor: 'CmdlineCursor',
-        \   highlight_window: 'None'
+        \   highlight_window: 'None',
+        \   title: 'Filter',
+        \   title_pos: 'center',
         \ })
 
   call ddu#custom#patch_global(#{
@@ -177,7 +179,13 @@ autocmd VimResized * call s:resize_ddu_ff_window()
 "       \ |   call ddu#ui#do_action('openFilterWindow')
 "       \ | endif
 
-autocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
+" autocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
+
+function! s:open_filter(input = v:null) abort
+  autocmd CmdlineEnter @ ++once call cmdline#enable()
+  let params = a:input is v:null ? {} : #{ input: a:input }
+  call ddu#ui#do_action('openFilterWindow', params)
+endfunction
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
@@ -186,7 +194,7 @@ function! s:ddu_my_settings() abort
   nnoremap <buffer><silent> <Space>
         \ <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
   nnoremap <buffer><silent> i
-        \ <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
+        \ <Cmd>call <SID>open_filter()<CR>
   nnoremap <buffer><silent> <ESC>
         \ <Cmd>call ddu#ui#do_action('quit')<CR>
   nnoremap <buffer><silent> v
