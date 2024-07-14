@@ -22,3 +22,6 @@ hooks_file = '$NORMAL_TOML_DIR/hooks_file/material.lua'
 
 [[plugins]]
 repo = 'folke/tokyonight.nvim'
+
+[[plugins]]
+repo = 'savq/melange-nvim'
