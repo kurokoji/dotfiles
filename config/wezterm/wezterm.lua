@@ -17,7 +17,7 @@ local colorscheme_name = "tokyonight_day"
 
 local home = get_home_path()
 local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
--- local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/material-lighter.toml")
+-- local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/melange_light.toml")
 local launch_menu = {}
 local default_prog = {}
 local environment_variables = {}
@@ -224,8 +224,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		background = scheme.tab_bar.active_tab.bg_color
 		foreground = scheme.tab_bar.active_tab.fg_color
 	elseif hover then
-		background = scheme.tab_bar.new_tab_hover.bg_color
-		foreground = scheme.tab_bar.new_tab_hover.fg_color
+		background = scheme.tab_bar.inactive_tab_hover.bg_color
+		foreground = scheme.tab_bar.inactive_tab_hover.fg_color
 	end
 
 	local edge_foreground = background

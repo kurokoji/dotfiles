@@ -1,0 +1,62 @@
+[colors]
+foreground    = "#54433A"
+background    = "#F1F1F1"
+cursor_bg     = "#54433A"
+cursor_border = "#54433A"
+cursor_fg     = "#F1F1F1"
+selection_bg  = "#D9D3CE"
+selection_fg  = "#54433A"
+split = "#465AA4"
+compose_cursor = "#54433A"
+scrollbar_thumb = "#E9E1DB"
+
+ansi = [
+  "#E9E1DB",
+  "#C77B8B",
+  "#6E9B72",
+  "#BC5C00",
+  "#7892BD",
+  "#BE79BB",
+  "#739797",
+  "#7D6658"
+]
+brights = [
+  "#A98A78",
+  "#BF0021",
+  "#3A684A",
+  "#A06D00",
+  "#465AA4",
+  "#904180",
+  "#3D6568",
+  "#54433A"
+]
+
+[colors.tab_bar]
+background = "#F1F1F1"
+inactive_tab_edge = "#E9E1DB"
+
+[colors.tab_bar.active_tab]
+fg_color = "#E9E1DB"
+bg_color = "#7D6658"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#7D6658"
+bg_color = "#E9E1DB"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#E9E1DB"
+bg_color = "#A98A78"
+
+[colors.tab_bar.new_tab]
+fg_color = "#7D6658"
+bg_color = "#F1F1F1"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#E9E1DB"
+bg_color = "#A98A78"
+
+
+[metadata]
+aliases = []
+author = "savq"
+name = "melange_light"
