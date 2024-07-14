@@ -186,5 +186,9 @@ function! CommandlinePost() abort
   endif
 endfunction
 
-call ddc#enable()
+if has('win32') || has('win64')
+  call ddc#enable(['context_filetype'])
+else
+  call ddc#enable(['treesitter', 'context_filetype'])
+endif
 " }}}

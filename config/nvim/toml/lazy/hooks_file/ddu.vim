@@ -120,7 +120,8 @@ call ddu#custom#patch_global(#{
     \       previewFloatingTitlePos: 'center',
     \       highlights: #{
     \       },
-    \       ignoreEmpty: v:true
+    \       ignoreEmpty: v:true,
+    \       inputFunc: 'cmdline#input'
     \     },
     \   },
     \ })
@@ -138,16 +139,14 @@ function s:resize_ddu_ff_window() abort
 
   let previewWidth = float2nr(width / 2)
 
-  let hl = nvim_get_hl(0, #{ name: 'Cursor', link: v:true })
-  call nvim_set_hl(0, 'CmdlineCursor', hl)
+  " let hl = nvim_get_hl(0, #{ name: 'Cursor', link: v:true })
+  " call nvim_set_hl(0, 'CmdlineCursor', hl)
 
   call cmdline#set_option(#{
         \   width: width - float2nr(space / 2),
         \   col: col,
         \   row: row,
         \   border: 'rounded',
-        \   highlight_cursor: 'CmdlineCursor',
-        \   highlight_window: 'None',
         \   title: 'Filter',
         \   title_pos: 'center',
         \ })
@@ -169,9 +168,8 @@ function s:resize_ddu_ff_window() abort
 
 endfunction
 
-call s:resize_ddu_ff_window()
-
-autocmd VimResized * call s:resize_ddu_ff_window()
+autocmd VimEnter * ++once call s:resize_ddu_ff_window()
+autocmd VimResized * ++nested call s:resize_ddu_ff_window()
 
 " ddu-ui-ffを開いたときにフィルターを開く
 " autocmd User Ddu:uiReady
@@ -182,7 +180,7 @@ autocmd VimResized * call s:resize_ddu_ff_window()
 " autocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
 
 function! s:open_filter(input = v:null) abort
-  autocmd CmdlineEnter @ ++once call cmdline#enable()
+  " autocmd CmdlineEnter @ ++once call cmdline#enable()
   let params = a:input is v:null ? {} : #{ input: a:input }
   call ddu#ui#do_action('openFilterWindow', params)
 endfunction

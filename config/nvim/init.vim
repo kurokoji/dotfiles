@@ -240,3 +240,6 @@ augroup MyFileType
   autocmd BufNewFile,BufRead *.bigquery set filetype=sql
   autocmd BufNewFile,BufRead *.rbi,*.schema,Schemafile set filetype=ruby
 augroup END
+
+" autocmd VimLeavePre * ++nested set guicursor=n-v-c:block-Cursor
+set guicursor=n-v-c:block-Cursor
