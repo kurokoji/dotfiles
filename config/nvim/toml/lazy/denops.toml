@@ -6,6 +6,7 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/denops.vim'
 [[plugins]]
 repo = 'vim-denops/denops-shared-server.vim'
 on_source = 'denops.vim'
+if = 'has("win32") || has("win64")'
 hook_post_update = '''
 if has('win32') || has('win64')
   call denops_shared_server#restart()
