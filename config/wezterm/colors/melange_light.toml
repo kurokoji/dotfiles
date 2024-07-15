@@ -1,11 +1,11 @@
 [colors]
-foreground    = "#54433A"
-background    = "#F1F1F1"
-cursor_bg     = "#54433A"
+foreground = "#54433A"
+background = "#F1F1F1"
+cursor_bg = "#54433A"
 cursor_border = "#54433A"
-cursor_fg     = "#F1F1F1"
-selection_bg  = "#D9D3CE"
-selection_fg  = "#54433A"
+cursor_fg = "#F1F1F1"
+selection_bg = "#D9D3CE"
+selection_fg = "#54433A"
 split = "#465AA4"
 compose_cursor = "#54433A"
 scrollbar_thumb = "#E9E1DB"
@@ -18,7 +18,7 @@ ansi = [
   "#7892BD",
   "#BE79BB",
   "#739797",
-  "#7D6658"
+  "#7D6658",
 ]
 brights = [
   "#A98A78",
@@ -28,7 +28,7 @@ brights = [
   "#465AA4",
   "#904180",
   "#3D6568",
-  "#54433A"
+  "#54433A",
 ]
 
 [colors.tab_bar]
