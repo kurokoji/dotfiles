@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-function get_home_path()
+local function get_home_path()
 	local home = ""
 
 	if wezterm.target_triple == "x86_64-pc-windows-msvc" then
@@ -17,13 +17,23 @@ end
 local colorscheme_name = "melange_light"
 
 local home = get_home_path()
--- local scheme = wezterm.color.get_builtin_schemes()[colorscheme_name]
-local scheme, _ = wezterm.color.load_scheme(home .. "/.config/wezterm/colors/melange_light.toml")
+local colorscheme_table = {}
+
+for name, scheme in pairs(wezterm.color.get_builtin_schemes()) do
+	colorscheme_table[name] = scheme
+end
+
+for _, v in ipairs(wezterm.glob(home .. "/.config/wezterm/colors/*.toml")) do
+	local scheme, metadata = wezterm.color.load_scheme(v)
+	colorscheme_table[metadata.name] = scheme
+end
+
+local scheme = colorscheme_table[colorscheme_name]
+
 local launch_menu = {}
 local default_prog = {}
 local environment_variables = {}
 local font_size = 0
-
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	table.insert(launch_menu, {
@@ -77,7 +87,6 @@ else
 
 	font_size = 12.0
 end
-
 
 local keys = {
 	{ key = "l", mods = "META", action = wezterm.action.ShowLauncher },
@@ -216,7 +225,7 @@ wezterm.on("update-status", function(window, pane)
 end)
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	wezterm.log_info(config)
+	-- wezterm.log_info(config)
 	local edge_background = scheme.tab_bar.background
 	local background = scheme.tab_bar.inactive_tab.bg_color
 	local foreground = scheme.tab_bar.inactive_tab.fg_color

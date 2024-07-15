@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_source = 'mason-lspconfig.nvim'
-on_event = ['BufRead', 'BufNewFile']
+on_event = ['FileType']
 hooks_file = [
 	'$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.lua',
 	'$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.vim'
@@ -20,7 +20,7 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/mason-lspconfig.lua'
 
 [[plugins]]
 repo = 'nvimtools/none-ls.nvim'
-on_event = ['BufRead', 'BufNewFile']
+on_event = ['FileType']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/none-ls.lua'
 
 [[plugins]]
