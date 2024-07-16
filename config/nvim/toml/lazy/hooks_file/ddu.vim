@@ -171,6 +171,19 @@ endfunction
 autocmd VimEnter * ++once call s:resize_ddu_ff_window()
 autocmd VimResized * ++nested call s:resize_ddu_ff_window()
 
+function s:update_cursor()
+  call sign_unplace('*', #{
+    \   id: 100,
+    \ })
+
+  call sign_define('cursor', #{
+    \   text: '>>',
+    \   texthl: 'Search',
+    \ })
+
+  call sign_place(100, '', 'cursor', '%'->bufnr(), #{ lnum: '.'->line() })
+endfunction
+
 " ddu-ui-ffを開いたときにフィルターを開く
 " autocmd User Ddu:uiReady
 "       \ : if &l:filetype ==# 'ddu-ff'
@@ -187,6 +200,9 @@ endfunction
 
 autocmd FileType ddu-ff call s:ddu_my_settings()
 function! s:ddu_my_settings() abort
+  setlocal signcolumn=yes
+  autocmd CursorMoved <buffer> call s:update_cursor()
+
   nnoremap <buffer><silent> <CR>
         \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
   nnoremap <buffer><silent> <Space>
