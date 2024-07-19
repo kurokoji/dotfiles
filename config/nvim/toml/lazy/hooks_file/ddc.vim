@@ -18,6 +18,7 @@ call ddc#custom#patch_global(#{
       \     },
       \     cmdline: #{
       \       mark: '[CMD]',
+      \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
       \     },
       \     cmdline-history: #{
       \       mark: '[CMD-H]',
