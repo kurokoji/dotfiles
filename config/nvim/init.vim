@@ -245,3 +245,18 @@ augroup END
 " autocmd VimLeavePre * ++nested set guicursor=n-v-c:block-Cursor
 " set guicursor=n-v-c:block-Cursor
 set guicursor=n-v-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor
+
+function! CloseAllFloatingWindows()
+  " 現在表示されているすべてのウィンドウのリストを取得
+  let windows = nvim_list_wins()
+
+  " 各ウィンドウをチェックし、フローティングウィンドウであれば閉じる
+  for win in windows
+    let config = nvim_win_get_config(win)
+    if !empty(config.relative)
+      call nvim_win_close(win, v:true)
+    endif
+  endfor
+endfunction
+
+command! CloseAllFloatingWindows call CloseAllFloatingWindows()
