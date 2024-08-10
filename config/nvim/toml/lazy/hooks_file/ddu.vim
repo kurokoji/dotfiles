@@ -130,12 +130,15 @@ function s:resize_ddu_ff_window() abort
   let filterHeight = 3
   let space = 3
 
-  let height = float2nr(&lines * 0.8)
-  let row = float2nr(&lines * 0.1)
+  let height_per = 0.8
+  let width_per = 0.8
 
-  let full_width = float2nr(&columns * 0.8)
+  let height = float2nr(&lines * height_per)
+  let row = float2nr(&lines * (1 - height_per) / 2)
+
+  let full_width = float2nr(&columns * width_per)
   let width = float2nr(full_width / 2)
-  let col = float2nr(&columns * 0.1)
+  let col = float2nr(&columns * (1 - width_per) / 2)
 
   let previewWidth = float2nr(width / 2)
 
@@ -356,6 +359,31 @@ call ddu#custom#patch_local('filer', #{
     \     }
     \   },
     \ })
+
+function! s:resize_ddu_filer_window() abort
+  let height_per = 0.6
+  let width_per = 0.6
+
+  let height = float2nr(&lines * height_per)
+  let row = float2nr(&lines * (1 - height_per) / 2)
+
+  let width = float2nr(&columns * width_per)
+  let col = float2nr(&columns * (1 - width_per) / 2)
+
+  call ddu#custom#patch_global(#{
+        \ uiParams: #{
+        \   filer: #{
+        \     winHeight: height,
+        \     winRow: row,
+        \     winWidth: width,
+        \     winCol: col,
+        \   }
+        \ }
+        \ })
+endfunction
+
+autocmd VimEnter * ++once call s:resize_ddu_filer_window()
+autocmd VimResized * ++nested call s:resize_ddu_filer_window()
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
