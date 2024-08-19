@@ -1,19 +1,14 @@
 local wezterm = require("wezterm")
 
+--- @return string?
 local function get_home_path()
-	local home = ""
-
 	if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-		home = os.getenv("USERPROFILE")
+		return os.getenv("USERPROFILE")
 	else
-		home = os.getenv("HOME")
+		return os.getenv("HOME")
 	end
-
-	return home
 end
 
--- local colorscheme_name = "Material Lighter"
--- local colorscheme_name = "tokyonight_day"
 local colorscheme_name = "melange_light"
 
 local home = get_home_path()
@@ -122,7 +117,9 @@ wezterm.on("update-status", function(window, pane)
 	local green_foreground = scheme.ansi[2]
 
 	-- "Wed Mar 3 08:14"
-	local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ")
+	-- local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ")
+	-- http://www.c-lang.org/detail/function/strftime.html
+	local date = "  " .. wezterm.strftime("%Y-%m-%d(%a) %H:%M:%S ")
 
 	local battery_foreground = foreground
 	local bat = ""
