@@ -145,7 +145,7 @@ set signcolumn=yes
 set list
 " set ambiwidth=double
 " set listchars=tab:>-,eol:¬,nbsp:%,nbsp:⍽
-set listchars=tab:>-,eol:↵,nbsp:⍽,trail:·,extends:»,precedes:«
+set listchars=tab:⇥⇥,eol:↵,nbsp:⍽,trail:·,extends:»,precedes:«
 
 " 対応するカッコの表示
 set showmatch
