@@ -14,6 +14,7 @@ xnoremap < <gv
 " nnoremap sn gt
 " nnoremap sp gT
 nnoremap <Tab> gt
+nnoremap <S-Tab> gT
 nnoremap st <Cmd>tabnew<CR>
 
 nnoremap sh <C-w>h
