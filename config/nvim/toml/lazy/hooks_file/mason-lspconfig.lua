@@ -110,4 +110,16 @@ lspconfig["rubocop"].setup({
 lspconfig["sorbet"].setup({
 	cmd = { "bundle", "exec", "srb", "tc", "--lsp" }
 })
+
+lspconfig["serve_d"].setup({
+	-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
+	settings = {
+		d = {
+			compiler = "ldc2",
+		},
+		dfmt = {
+			braceStyle = "otbs",
+		},
+	},
+})
 -- }}}
