@@ -21,6 +21,7 @@ mason_lspconfig.setup_handlers({
 				settings = {
 					d = {
 						stdlibPath = { dmdPath .. "/phobos", dmdPath .. "/druntime", dmdPath .. "/dmd" },
+						-- compiler = "ldc2",
 					},
 					dfmt = {
 						braceStyle = "otbs",
@@ -64,7 +65,7 @@ mason_lspconfig.setup_handlers({
 			local node_root_dir = lspconfig.util.root_pattern("package.json")
 			local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
 
-			if server == "tsserver" then
+			if server == "ts_ls" then
 				if not is_node_repo then
 					return
 				end
@@ -75,6 +76,7 @@ mason_lspconfig.setup_handlers({
 				end
 				opts.root_dir = node_root_dir
 			elseif server == "denols" then
+				--[[
 				if is_node_repo then
 					return
 				end
@@ -94,6 +96,7 @@ mason_lspconfig.setup_handlers({
 						},
 					},
 				}
+				]]
 			end
 
 			opts.on_attach = function(_, bufnr) end
@@ -103,23 +106,46 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
-lspconfig["rubocop"].setup({
-	cmd = { "bundle", "exec", "rubocop", "--lsp" },
-})
+if vim.fn.executable("rubocop") then
+	lspconfig["rubocop"].setup({
+		cmd = { "bundle", "exec", "rubocop", "--lsp" },
+	})
+end
 
-lspconfig["sorbet"].setup({
-	cmd = { "bundle", "exec", "srb", "tc", "--lsp" }
-})
+if vim.fn.executable("sorbet") then
+	lspconfig["sorbet"].setup({
+		cmd = { "bundle", "exec", "srb", "tc", "--lsp" },
+	})
+end
 
-lspconfig["serve_d"].setup({
-	-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
-	settings = {
-		d = {
-			compiler = "ldc2",
-		},
-		dfmt = {
-			braceStyle = "otbs",
-		},
-	},
-})
+
+if vim.fn.executable("deno") then
+	local node_root_dir = lspconfig.util.root_pattern("package.json")
+	local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
+
+	if not is_node_repo then
+		local opts = {}
+
+		opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+		opts.single_file_support = true
+		opts.init_options = {
+			lint = true,
+			unstable = true,
+			suggest = {
+				imports = {
+					hosts = {
+						["https://deno.land"] = true,
+						["https://cdn.nest.land"] = true,
+						["https://crux.land"] = true,
+					},
+				},
+			},
+		}
+
+		opts.on_attach = function(_, bufnr) end
+
+		lspconfig["denols"].setup(opts)
+	end
+end
+
 -- }}}
