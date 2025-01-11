@@ -20,11 +20,12 @@ autoload -Uz _zinit
 setopt auto_cd
 setopt auto_list
 setopt auto_menu
+setopt no_beep
 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light denysdovhan/spaceship-prompt
+# zinit light denysdovhan/spaceship-prompt
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
@@ -43,10 +44,12 @@ case ${OSTYPE} in
     source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 esac
 
-export PATH=$PATH:$HOME/.cargo/bin
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
+export FZF_REVERSE_ISEARCH_OPTS="--reverse --height=100%"
 export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 
 # }}}
 # function {{{
@@ -59,23 +62,36 @@ pbc() {
   cat $1 | pbcopy
 }
 
-
-case ${OSTYPE} in
-  linux*)
-    if executable xclip ; then
-      alias pbcopy='xclip -selection c'
-      alias pbpaste='xclip -selection c -o'
-    fi
-esac
-
 # }}}
 # source {{{
 
 source $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # }}}
 # alias {{{
+
+case ${OSTYPE} in
+  darwin*)
+    alias rm='mv2trash'
+
+  ;;
+  linux*)
+    alias open='xdg-open'
+
+    if executable xclip ; then
+      alias pbcopy='xclip -selection c'
+      alias pbpaste='xclip -selection c -o'
+    fi
+
+    if executable xsel ; then
+      alias pbcopy='xsel -bi'
+      alias pbpaste='xsel -b'
+    fi
+  ;;
+esac
 
 if executable eza ; then
   alias ls='eza --icons'
@@ -100,11 +116,6 @@ alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
 
-
-case ${OSTYPE} in
-  darwin*)
-    alias rm='mv2trash'
-esac
 # }}}
 
 autoload -U compinit promptinit && compinit
