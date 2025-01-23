@@ -58,14 +58,17 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
 	table.insert(launch_menu, {
 		label = "Fish",
-		args = { "/opt/homebrew/bin/fish", "-l" },
+		-- args = { "/opt/homebrew/bin/fish", "-l" },
+		args = { "/opt/homebrew/bin/zsh", "-l" },
 	})
 
 	environment_variables = {
-		SHELL = "/opt/homebrew/bin/fish",
+		-- SHELL = "/opt/homebrew/bin/fish",
+		SHELL = "/opt/homebrew/bin/zsh",
 	}
 
-	default_prog = { "/opt/homebrew/bin/fish", "-l" }
+	-- default_prog = { "/opt/homebrew/bin/fish", "-l" }
+	default_prog = { "/opt/homebrew/bin/zsh", "-l" }
 
 	font_size = 12.0
 else

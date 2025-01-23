@@ -41,7 +41,7 @@ SAVEHIST=100000
 case ${OSTYPE} in
   darwin*)
     eval $(/opt/homebrew/bin/brew shellenv)
-    source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+    # source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 esac
 
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
@@ -68,7 +68,7 @@ pbc() {
 source $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source <(fzf --zsh)
 
 # }}}
 # alias {{{
