@@ -58,7 +58,7 @@ function rmrf($command) {
 }
 
 function scoop-update() {
-  scoop update * --skip
+  scoop update * --skip-hash-check
   scoop cache rm --all
   scoop cleanup *
 }

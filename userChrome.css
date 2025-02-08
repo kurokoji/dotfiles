@@ -1,5 +1,5 @@
-#main-window[titlepreface*="​"] #titlebar {
-  height: 2em !important;
+#main-window[titlepreface*="​"] #TabsToolbar {
+  max-height: 2em !important;
 }
 
 #main-window[titlepreface*="​"] #TabsToolbar > .toolbar-items {
@@ -7,9 +7,11 @@
   pointer-events: none;
 }
 
+/*
 #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
   visibility: collapse !important;
 }
+*/
 
 /**
  * Decrease size of the sidebar header
@@ -19,9 +21,11 @@
   padding: 2px 6px 2px 3px !important;
   background-color: var(--toolbar-bgcolor) !important;
 }
+
 #sidebar-header #sidebar-close {
   padding: 3px !important;
 }
+
 #sidebar-header #sidebar-close .toolbarbutton-icon {
   width: 14px !important;
   height: 14px !important;
