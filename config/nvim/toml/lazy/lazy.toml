@@ -104,6 +104,7 @@ require('scrollbar').setup({
   excluded_buftypes = { "terminal", "nofile" }
 })
 '''
+# }}}
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'

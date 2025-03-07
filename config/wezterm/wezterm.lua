@@ -57,9 +57,14 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	font_size = 10.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
 	table.insert(launch_menu, {
-		label = "Fish",
+		label = "Zsh",
 		-- args = { "/opt/homebrew/bin/fish", "-l" },
 		args = { "/opt/homebrew/bin/zsh", "-l" },
+	})
+
+	table.insert(launch_menu, {
+		label = "Bash",
+		args = { "/opt/homebrew/bin/bash", "-l" },
 	})
 
 	environment_variables = {

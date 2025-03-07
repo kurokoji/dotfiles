@@ -77,6 +77,10 @@ case ${OSTYPE} in
   darwin*)
     alias rm='mv2trash'
 
+    if executable gsed ; then
+      alias sed='gsed'
+    fi
+
   ;;
   linux*)
     alias open='xdg-open'

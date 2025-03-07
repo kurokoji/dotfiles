@@ -106,17 +106,25 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
-if vim.fn.executable("rubocop") then
-	lspconfig["rubocop"].setup({
-		cmd = { "bundle", "exec", "rubocop", "--lsp" },
-	})
-end
+-- if vim.fn.executable("rubocop") then
+-- 	lspconfig["rubocop"].setup({
+-- 		cmd = { "bundle", "exec", "rubocop", "--lsp" },
+-- 	})
+-- end
 
 if vim.fn.executable("sorbet") then
 	lspconfig["sorbet"].setup({
 		cmd = { "bundle", "exec", "srb", "tc", "--lsp" },
 	})
 end
+
+-- local now_dir = vim.fn.getcwd()
+-- if vim.fn.filereadable(now_dir .. "/rubocop-lsp.sh") then
+-- 	lspconfig["rubocop"].setup({
+-- 		cmd = { now_dir .. "/rubocop-lsp.sh" },
+-- 	})
+-- end
+
 
 
 if vim.fn.executable("deno") then

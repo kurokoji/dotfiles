@@ -121,7 +121,6 @@ call ddu#custom#patch_global(#{
     \       highlights: #{
     \       },
     \       ignoreEmpty: v:true,
-    \       inputFunc: 'cmdline#input'
     \     },
     \   },
     \ })
@@ -194,6 +193,7 @@ endfunction
 "       \ | endif
 
 " autocmd User Ddu:ui:ff:openFilterWindow call cmdline#enable()
+autocmd User Ddu:uiOpenFilterWindow call cmdline#enable()
 
 function! s:open_filter(input = v:null) abort
   " autocmd CmdlineEnter @ ++once call cmdline#enable()
