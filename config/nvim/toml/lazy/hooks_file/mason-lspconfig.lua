@@ -106,26 +106,20 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
+vim.api.nvim_exec_autocmds("User", { pattern = "MasonLspConfigLoaded" })
+
+-- print("project_name_to_container_name: " .. project_name_to_container_name())
 -- if vim.fn.executable("rubocop") then
 -- 	lspconfig["rubocop"].setup({
 -- 		cmd = { "bundle", "exec", "rubocop", "--lsp" },
 -- 	})
 -- end
 
-if vim.fn.executable("sorbet") then
-	lspconfig["sorbet"].setup({
-		cmd = { "bundle", "exec", "srb", "tc", "--lsp" },
-	})
-end
-
--- local now_dir = vim.fn.getcwd()
--- if vim.fn.filereadable(now_dir .. "/rubocop-lsp.sh") then
--- 	lspconfig["rubocop"].setup({
--- 		cmd = { now_dir .. "/rubocop-lsp.sh" },
+-- if vim.fn.executable("sorbet") then
+-- 	lspconfig["sorbet"].setup({
+-- 		cmd = { "bundle", "exec", "srb", "tc", "--lsp" },
 -- 	})
 -- end
-
-
 
 if vim.fn.executable("deno") then
 	local node_root_dir = lspconfig.util.root_pattern("package.json")

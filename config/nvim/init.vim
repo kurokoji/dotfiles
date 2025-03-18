@@ -1,5 +1,6 @@
 " mapping {{{
 tnoremap <ESC> <C-\><C-n>
+tnoremap <C-[> <C-\><C-n>
 nnoremap ; :
 nnoremap x "_x
 
@@ -110,6 +111,8 @@ set noshowmode
 " disable mouse
 set mouse=
 
+set exrc
+set secure
 set writebackup
 set infercase
 set autoread

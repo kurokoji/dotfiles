@@ -20,7 +20,7 @@ call ddc#custom#patch_global(#{
       \       mark: '[CMD]',
       \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
       \     },
-      \     cmdline-history: #{
+      \     cmdline_history: #{
       \       mark: '[CMD-H]',
       \     },
       \     input: #{
@@ -126,9 +126,9 @@ call ddc#custom#patch_global('autoCompleteEvents', [
     \ ])
 
 call ddc#custom#patch_global('cmdlineSources', {
-    \ ':': ['cmdline-history', 'cmdline', 'file', 'around'],
-    \ '@': ['cmdline-history', 'input', 'file', 'around'],
-    \ '>': ['cmdline-history', 'input', 'file', 'around'],
+    \ ':': ['cmdline_history', 'cmdline', 'file', 'around'],
+    \ '@': ['cmdline_history', 'input', 'file', 'around'],
+    \ '>': ['cmdline_history', 'input', 'file', 'around'],
     \ '/': ['around', 'line'],
     \ '?': ['around', 'line'],
     \ '-': ['around', 'line'],
