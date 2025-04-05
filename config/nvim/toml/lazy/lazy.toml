@@ -111,13 +111,3 @@ repo = 'itchyny/lightline.vim'
 if = '0'
 on_event = ['UiEnter']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/lightline.lua'
-
-[[plugins]]
-repo = 'klen/nvim-config-local'
-if = '0'
-on_event = ['VimEnter']
-# lua_source {{{
-lua_source = '''
-require('config-local').setup {}
-'''
-# }}}
