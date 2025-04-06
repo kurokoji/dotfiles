@@ -1,6 +1,3 @@
-[[plugins]]
-repo = 'wsdjeg/dein-ui.vim'
-
 # [[plugins]]
 # repo = 'Shougo/vimproc.vim'
 # build = 'make'
