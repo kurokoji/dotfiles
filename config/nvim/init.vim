@@ -39,60 +39,77 @@ cnoremap <C-g> <C-c>
 vnoremap <C-y> "+y
 " }}}
 
-" dein {{{
-let g:dein#enable_notification = v:true
-" let g:dein#install_progress_type = 'floating'
-let g:dein#install_process_timeout = 360
-let g:dein#install_max_processes = 8
+" dpp.vim {{{
 
 let $CACHE = expand('~/.cache')
 if !isdirectory($CACHE)
   call mkdir($CACHE, 'p')
 endif
 
-let s:dein_base_dir = expand('$CACHE/dein')
-let s:dein_dir = expand(s:dein_base_dir .. '/repos/github.com/Shougo/dein.vim')
+const s:dpp_base_dir = expand('$CACHE/dpp')
+const s:dpp_dir = expand(s:dpp_base_dir .. '/repos/github.com/Shougo/dpp.vim')
+const s:denops_dir = expand(s:dpp_base_dir .. '/repos/github.com/vim-denops/denops.vim')
 
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_dir)
-    echo 'install dein.vim'
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+const s:dpp_exts = ['Shougo/dpp-ext-installer', 'Shougo/dpp-ext-lazy', 'Shougo/dpp-ext-toml', 'Shougo/dpp-protocol-git']
+
+if &runtimepath !~# '/dpp.vim'
+  if !isdirectory(s:dpp_dir)
+    echo 'install dpp.vim'
+    execute '!git clone https://github.com/Shougo/dpp.vim' s:dpp_dir
   endif
 
-  execute 'set runtimepath^=' . substitute(fnamemodify(s:dein_dir, ':p'), '[/\\]$', '', '')
+  execute 'set runtimepath^=' . substitute(fnamemodify(s:dpp_dir, ':p'), '[/\\]$', '', '')
 endif
+
+for ext in s:dpp_exts
+  if !isdirectory(expand(s:dpp_base_dir .. '/repos/github.com/' .. ext))
+    echo 'install ' .. ext
+    execute '!git clone https://github.com/' .. ext expand(s:dpp_base_dir .. '/repos/github.com/' .. ext)
+  endif
+endfor
 
 let $BASE_DIR = fnamemodify(expand('<sfile>'), ':h')
 let $NORMAL_TOML_DIR = expand('$BASE_DIR/toml/normal')
 let $LAZY_TOML_DIR = expand('$BASE_DIR/toml/lazy')
+let $DPP_CONFIG = expand('$BASE_DIR/dpp.ts')
 
-let s:normal_toml_list = split(glob($NORMAL_TOML_DIR .. '/*.toml'), '\n')
-let s:lazy_toml_list = split(glob($LAZY_TOML_DIR .. '/*.toml'), '\n')
+if dpp#min#load_state(s:dpp_base_dir)
+  if &runtimepath !~# '/denops.vim'
+    if !isdirectory(s:denops_dir)
+      echo 'install denops.vim'
+      execute '!git clone https://github.com/vim-denops/denops.vim' s:denops_dir
+    endif
 
-if dein#min#load_state(s:dein_base_dir)
-  call dein#begin(s:dein_base_dir)
+    execute 'set runtimepath^=' . substitute(fnamemodify(s:denops_dir, ':p'), '[/\\]$', '', '')
+  endif
 
-  for toml in s:normal_toml_list
-    call dein#load_toml(toml, #{ lazy: v:false })
+  for ext in s:dpp_exts
+    execute 'set runtimepath^=' . expand(s:dpp_base_dir .. '/repos/github.com/' .. ext)
   endfor
 
-  for toml in s:lazy_toml_list
-    call dein#load_toml(toml, #{ lazy: v:true })
-  endfor
+  autocmd User DenopsReady
+    \ : echohl WarningMsg
+    \ | echomsg 'dpp load_state() is failed'
+    \ | echohl NONE
+    \ | call dpp#make_state(s:dpp_base_dir, $DPP_CONFIG)
+else
+  autocmd BufWritePost *.lua,*.vim,*.toml,*.ts,init.vim
+    \ call dpp#check_files()
 
-  call dein#end()
-  " デフォルトではnon lazyなプラグインではhook_source(lua_source)は呼び出されないので強制的にhook_sourceを呼び出している
-  " https://github.com/Shougo/dein.vim/blob/13e1fe4afcac7816d9b4d925eba656d15693fdba/doc/dein.txt#L1804
-  call dein#call_hook('source')
-
-  call dein#save_state()
+  autocmd BufWritePost *.toml
+    \ : if !dpp#sync_ext_action('installer', 'getNotInstalled')->empty()
+    \ |  call dpp#async_ext_action('installer', 'install')
+    \ | endif
 endif
 
-" call dein#remote_plugins()
+autocmd User Dpp:makeStatePost
+  \ : echohl WarningMs
+  \ | echomsg 'dpp make_state() is done'
+  \ | echohl NONE
 
-if has('vim_starting') && dein#check_install()
-  call dein#install()
-endif
+
+command DppInstall call dpp#async_ext_action('installer', 'install')
+command DppUpdate call dpp#async_ext_action('installer', 'update')
 
 " }}}
 

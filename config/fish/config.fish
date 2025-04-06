@@ -51,7 +51,8 @@ end
 
 # }}}
 # source {{{
-source $HOME/.asdf/asdf.fish
+# source $HOME/.asdf/asdf.fish
+source $HOME/.config/fish/scripts/asdf.fish
 
 # tabtab source for packages
 # uninstall by removing these lines
@@ -121,8 +122,8 @@ set -g theme_display_node yes
 
 
 # pnpm
-set -gx PNPM_HOME "/Users/s-kakiha/Library/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
+# set -gx PNPM_HOME "/Users/s-kakiha/Library/pnpm"
+# if not string match -q -- $PNPM_HOME $PATH
+#   set -gx PATH "$PNPM_HOME" $PATH
+# end
 # pnpm end
