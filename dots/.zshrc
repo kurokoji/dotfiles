@@ -50,6 +50,8 @@ export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+export ASDF_DATA_DIR=$HOME/.asdf
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # }}}
 # function {{{
@@ -65,7 +67,8 @@ pbc() {
 # }}}
 # source {{{
 
-source $HOME/.asdf/asdf.sh
+# source $HOME/.asdf/asdf.sh
+$(brew --prefix asdf)/libexec/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -122,5 +125,7 @@ alias lla='ls -la'
 
 # }}}
 
+
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 autoload -U compinit promptinit && compinit
 promptinit
