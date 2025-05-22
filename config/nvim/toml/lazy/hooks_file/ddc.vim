@@ -47,7 +47,7 @@ call ddc#custom#patch_global(#{
       \     },
       \     copilot: #{
       \       mark: '[AI]',
-      \       matchers: ['matcher_head'],
+      \       matchers: [],
       \       minAutoCompleteLength: 0,
       \     },
       \   },
