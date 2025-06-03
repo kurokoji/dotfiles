@@ -19,6 +19,7 @@ call ddc#custom#patch_global(#{
       \     cmdline: #{
       \       mark: '[CMD]',
       \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
+      \       minAutoCompleteLength: 0,
       \     },
       \     cmdline_history: #{
       \       mark: '[CMD-H]',
@@ -37,7 +38,8 @@ call ddc#custom#patch_global(#{
       \     file: #{
       \       mark: '[FILE]',
       \       isVolatile: v:true,
-      \       forceCompletionPattern: '\S/\S*'
+      \       forceCompletionPattern: '\S/\S*',
+      \       minAutoCompleteLength: 0,
       \     },
       \     neosnippet: #{
       \       mark: '[SNIP]',
