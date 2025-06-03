@@ -28,6 +28,7 @@ end
 # set -x fish_ambiguous_width 2
 
 set -x FZF_DEFAULT_OPTS "--height 40% --layout=reverse"
+set -x PATH $HOME/dotfiles/bin $PATH
 set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/.bin $PATH
 set -x PATH $HOME/.cargo/bin $PATH

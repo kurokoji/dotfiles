@@ -33,7 +33,7 @@ do
   ln -snfv ${path} ${HOME}/${file_basename}
 done
 
-ln -snfv ${DOT_DIRECTORY}/bin ${HOME}/.bin
+# ln -snfv ${DOT_DIRECTORY}/bin ${HOME}/.bin
 
 echo $(tput setaf 1)✔︎ Complete!!$(tput sgr0)
 # echo $(tput setaf 1)please set _proxy_address and _dns in ${HOME}/.env.fish$(tput sgr0)
