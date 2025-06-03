@@ -10,6 +10,7 @@ local manual_enable_servers = {
 	"ts_ls",
 	"eslint",
 	"denols",
+	"biome",
 }
 
 mason_lspconfig.setup {
@@ -94,12 +95,14 @@ for _, server in pairs(current_manual_enable_servers) do
 			if not is_node_repo then
 				return
 			end
-			opts.root_dir = node_root_dir
 		elseif server == "eslint" then
 			if not is_node_repo then
 				return
 			end
-			opts.root_dir = node_root_dir
+		elseif server == "biome" then
+			if not is_node_repo then
+				return
+			end
 		elseif server == "denols" then
 			if is_node_repo then
 				return
