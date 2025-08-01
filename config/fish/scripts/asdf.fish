@@ -5,7 +5,7 @@ else
   set _asdf_shims "$ASDF_DATA_DIR/shims"
 end
 
-set -x ASDF_DATA_DIR $HOME/.asdf
+# set -x ASDF_DATA_DIR $HOME/.asdf
 
 # Do not use fish_add_path (added in Fish 3.2) because it
 # potentially changes the order of items in PATH
