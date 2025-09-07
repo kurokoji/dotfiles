@@ -97,3 +97,11 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-source-line'
 on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-converter_kind_labels'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-sorter_lsp_kind'
+on_source = 'ddc.vim'

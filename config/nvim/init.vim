@@ -261,6 +261,7 @@ augroup MyFileType
   autocmd!
   autocmd BufNewFile,BufRead *.bigquery set filetype=sql
   autocmd BufNewFile,BufRead *.rbi,*.schema,Schemafile set filetype=ruby
+  autocmd BufNewFile,BufRead *.anm2,*obj2 set filetype=lua
 augroup END
 
 " autocmd VimLeavePre * ++nested set guicursor=n-v-c:block-Cursor

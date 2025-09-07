@@ -2,7 +2,7 @@
   max-height: 2em !important;
 }
 
-#main-window[titlepreface*="​"] #TabsToolbar > .toolbar-items {
+#main-window[titlepreface*="​"] #TabsToolbar>.toolbar-items {
   opacity: 0;
   pointer-events: none;
 }
@@ -30,4 +30,12 @@
   width: 14px !important;
   height: 14px !important;
   opacity: 0.6 !important;
+}
+
+#urlbar-background {
+  border-radius: 10px !important;
+}
+
+#nav-bar toolbarbutton {
+  padding: 0px !important;
 }

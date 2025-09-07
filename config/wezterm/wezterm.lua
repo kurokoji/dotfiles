@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 --- @return string?
 local function get_home_path()
@@ -275,9 +276,9 @@ return {
 	},
 	front_end = "WebGpu",
 	webgpu_power_preference = "HighPerformance",
-	--font = wezterm.font("PlemolJP Console NF"),
-	--font = wezterm.font("Cica"),
-	--font = wezterm.font("UDEV Gothic NF"),
+	-- font = wezterm.font("PlemolJP Console NF"),
+	-- font = wezterm.font("Cica"),
+	-- font = wezterm.font("UDEV Gothic NF"),
 	font = wezterm.font("Moralerspace Xenon NF"),
 	-- font = wezterm.font("Moralerspace Xenon HWNF"),
 	font_size = font_size,

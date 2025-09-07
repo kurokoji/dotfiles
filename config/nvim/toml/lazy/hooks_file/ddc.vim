@@ -31,7 +31,7 @@ call ddc#custom#patch_global(#{
       \     lsp: #{
       \       matchers: ['matcher_head'],
       \       converters: ['converter_kind_labels'],
-      \       sorters: ['sorter_lsp-kind'],
+      \       sorters: ['sorter_lsp_kind'],
       \       mark: '[LSP]',
       \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
       \     },
