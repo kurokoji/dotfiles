@@ -83,6 +83,7 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/lualine.lua'
 
 [[plugins]]
 repo = 'github/copilot.vim'
+if = '0'
 on_event = ['BufRead', 'BufNewFile']
 # hook_add {{{
 hook_add = '''
@@ -94,6 +95,11 @@ let g:copilot_filetypes = {
 let g:copilot_hide_during_completion = 0
 '''
 # }}}
+
+[[plugins]]
+repo = 'zbirenbaum/copilot.lua'
+on_event = ['BufRead', 'BufNewFile']
+hooks_file = '$LAZY_TOML_DIR/hooks_file/copilot.lua'
 
 [[plugins]]
 repo = 'petertriho/nvim-scrollbar'

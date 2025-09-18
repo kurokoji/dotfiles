@@ -48,9 +48,10 @@ call ddc#custom#patch_global(#{
       \       mark: '[BUF]',
       \     },
       \     copilot: #{
-      \       mark: '[AI]',
+      \       mark: '[Copilot]',
       \       matchers: [],
       \       minAutoCompleteLength: 0,
+      \       isVolatile: 1,
       \     },
       \   },
       \   sourceParams: #{
@@ -71,7 +72,10 @@ call ddc#custom#patch_global(#{
       \       enableAdditionalTextEdit: v:true,
       \       confirmBehavior: "replace",
       \       lspEngine: "nvim-lsp",
-      \     }
+      \     },
+      \     copilot: #{
+      \       copilot: 'lua',
+      \     },
       \   },
       \   filterParams: #{
       \     sorter_lsp-kind: #{

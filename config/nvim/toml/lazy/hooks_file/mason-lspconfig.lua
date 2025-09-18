@@ -26,6 +26,8 @@ local installed_servers = mason_lspconfig.get_installed_servers()
 -- 積集合とって、手動で有効化するサーバーを取得
 local current_manual_enable_servers = set.intersection(manual_enable_servers, installed_servers)
 
+vim.api.nvim_exec_autocmds("User", { pattern = "MasonLspConfigLoaded" })
+
 for _, server in pairs(current_manual_enable_servers) do
 	if server == "serve_d" then
 		-- local dmd_path = '~/scoop/apps/dmd/2.101.0/src'
@@ -132,7 +134,6 @@ for _, server in pairs(current_manual_enable_servers) do
 	end
 end
 
-vim.api.nvim_exec_autocmds("User", { pattern = "MasonLspConfigLoaded" })
 
 if vim.fn.executable("deno") then
 	local node_root_dir = lspconfig.util.root_pattern("package.json")
