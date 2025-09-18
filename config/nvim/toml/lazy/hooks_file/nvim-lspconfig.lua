@@ -14,14 +14,32 @@ end
 -- })
 
 -- vim.diagnostic.config({ virtual_text = false })
+local opts = {
+	silent = true,
+	buffer = true
+}
+
+vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
+vim.keymap.set("n", "<Leader>h", vim.lsp.buf.hover, opts)
+-- vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
+vim.keymap.set("n", "<Leader>f", vim.diagnostic.open_float, opts)
+-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+-- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+
+vim.keymap.set("n", "g]", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
+vim.keymap.set("n", "g[", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+
+vim.keymap.set("n", "F", function() vim.lsp.buf.format({ async = true }) end, opts)
 -- }}}
 
 -- lua_source {{{
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
--- :help dianostic-signs
 vim.diagnostic.config({
 	signs = {
+		-- :help dianostic-signs
 		text = {
 			[vim.diagnostic.severity.ERROR] = signs["Error"],
 			[vim.diagnostic.severity.WARN] = signs["Warn"],
@@ -31,6 +49,10 @@ vim.diagnostic.config({
 		numhl = {
 		},
 		linehl = {
+		},
+		float = {
+			border = "rounded",
+			severity_sort = true,
 		},
 	},
 })

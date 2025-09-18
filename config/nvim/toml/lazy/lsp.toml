@@ -4,7 +4,6 @@ on_source = 'mason-lspconfig.nvim'
 on_event = ['FileType']
 hooks_file = [
 	'$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.lua',
-	'$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.vim'
 ]
 
 [[plugins]]
