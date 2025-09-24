@@ -14,7 +14,8 @@ nnoremap <silent> <C-u><C-]>
       \   }]
       \ })<CR>
 " nnoremap <silent> <C-u><C-]> :call ddu#start(#{ name: 'cursor-grep' })<CR>
-nnoremap <silent> <C-u><C-m> <Cmd>call ddu#start(#{ name: 'filer' })<CR>
+nnoremap <silent> <C-u><C-m> <Cmd>call ddu#start(#{ name: 'filer', resume: v:true })<CR>
+" nnoremap <silent> <C-u><C-m> <Cmd>Ddu -name=filer -ui=filer -resume file<CR>
 
 nnoremap <silent> gd <Cmd>call ddu#start(#{ name: 'lsp:definition' })<CR>
 nnoremap <silent> gt <Cmd>call ddu#start(#{ name: 'lsp:type_definition' })<CR>
@@ -154,19 +155,34 @@ function s:resize_ddu_ff_window() abort
         \ })
 
   call ddu#custom#patch_global(#{
-    \   uiParams: #{
-    \     ff: #{
-    \       winHeight: height - filterHeight,
-    \       winRow: row + filterHeight,
-    \       winWidth: width - float2nr(space / 2),
-    \       winCol: col,
-    \       previewHeight: height,
-    \       previewRow: row,
-    \       previewWidth: width,
-    \       previewCol: col + width + float2nr(space / 2),
-    \     }
-    \   }
-    \ })
+        \   uiParams: #{
+        \     ff: #{
+        \       winHeight: height - filterHeight,
+        \       winRow: row + filterHeight,
+        \       winWidth: width - float2nr(space / 2),
+        \       winCol: col,
+        \       previewHeight: height,
+        \       previewRow: row,
+        \       previewWidth: width,
+        \       previewCol: col + width + float2nr(space / 2),
+        \     }
+        \   }
+        \ })
+
+  call ddu#custom#patch_global(#{
+        \   uiParams: #{
+        \     filer: #{
+        \       winHeight: height - filterHeight,
+        \       winRow: row + filterHeight,
+        \       winWidth: width - float2nr(space / 2),
+        \       winCol: col,
+        \       previewHeight: height,
+        \       previewRow: row,
+        \       previewWidth: width,
+        \       previewCol: col + width + float2nr(space / 2),
+        \     }
+        \   }
+        \ })
 
 endfunction
 
@@ -344,9 +360,17 @@ call ddu#custom#patch_local('filer', #{
     \       floatingTitlePos: 'center',
     \       previewFloatingBorder: 'rounded',
     \       previewSplit: 'vertical',
+    \       startAutoAction: v:true,
+    \       autoAction: #{
+    \         name: 'preview',
+    \       },
     \       highlights: #{
     \       }
     \     },
+    \   },
+    \   uiOptions: #{
+    \     persist: v:true,
+    \     toggle: v:true,
     \   },
     \   actionOptions: #{
     \     narrow: #{
@@ -360,42 +384,26 @@ call ddu#custom#patch_local('filer', #{
     \   },
     \ })
 
-function! s:resize_ddu_filer_window() abort
-  let height_per = 0.6
-  let width_per = 0.6
-
-  let height = float2nr(&lines * height_per)
-  let row = float2nr(&lines * (1 - height_per) / 2)
-
-  let width = float2nr(&columns * width_per)
-  let col = float2nr(&columns * (1 - width_per) / 2)
-
-  call ddu#custom#patch_global(#{
-        \ uiParams: #{
-        \   filer: #{
-        \     winHeight: height,
-        \     winRow: row,
-        \     winWidth: width,
-        \     winCol: col,
-        \   }
-        \ }
-        \ })
-endfunction
-
-autocmd VimEnter * ++once call s:resize_ddu_filer_window()
-autocmd VimResized * ++nested call s:resize_ddu_filer_window()
 
 autocmd FileType ddu-filer call s:ddu_filer_my_settings()
 function! s:ddu_filer_my_settings() abort
+  " nnoremap <buffer><expr> <CR>
+  "       \ ddu#ui#get_item()->get('isTree', v:false) ?
+  "       \ "<Cmd>call ddu#ui#do_action('itemAction', #{name: 'narrow'})<CR>" :
+  "       \ "<Cmd>call ddu#ui#do_action('itemAction', #{name: 'open'})<CR>"
+  nnoremap <buffer><silent> i
+        \ <Cmd>call <SID>open_filter()<CR>
+
   nnoremap <buffer><expr> <CR>
         \ ddu#ui#get_item()->get('isTree', v:false) ?
-        \ "<Cmd>call ddu#ui#do_action('itemAction', #{name: 'narrow'})<CR>" :
+        \ "<Cmd>call ddu#ui#do_action('expandItem', #{mode: 'toggle'})<CR>" :
         \ "<Cmd>call ddu#ui#do_action('itemAction', #{name: 'open'})<CR>"
-  nnoremap <buffer><silent> <ESC> <Cmd>quit<CR>
+  nnoremap <buffer><silent> <ESC>
+        \ <Cmd>call ddu#ui#do_action('quit')<CR>
   nnoremap <buffer><silent> v
         \ <Cmd>call ddu#ui#do_action('preview')<CR>
-  nnoremap <buffer><silent> <BS>
-        \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'narrow', params: #{path: '..'}})<CR>
+  " nnoremap <buffer><silent> <BS>
+  "       \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'narrow', params: #{path: '..'}})<CR>
   nnoremap <buffer><silent> nf
         \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'newFile'})<CR>
   nnoremap <buffer><silent> nd
