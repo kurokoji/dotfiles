@@ -31,29 +31,31 @@ vim.api.nvim_exec_autocmds("User", { pattern = "MasonLspConfigLoaded" })
 for _, server in pairs(current_manual_enable_servers) do
 	if server == "serve_d" then
 		-- local dmd_path = '~/scoop/apps/dmd/2.101.0/src'
-		local dmd_path = ""
-		if vim.fn.has("win32") == 1 then
-			dmd_path = vim.fn.expand("~/scoop/apps/dmd/current/src")
-		else
-			-- dmd_path = vim.fn.system("asdf where dmd")
-			local latest_version_dir = version.get_latest_version_dir("~/.asdf/installs/dmd")
-			dmd_path = vim.fn.expand(latest_version_dir .. "/dmd2/src")
-		end
 
-		vim.lsp.config(server, {
-			-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
-			settings = {
-				d = {
-					stdlibPath = { dmd_path .. "/phobos", dmd_path .. "/druntime", dmd_path .. "/dmd" },
-					-- compiler = "ldc2",
-				},
-				dfmt = {
-					braceStyle = "otbs",
-				},
-			},
-		})
+		-- local dmd_path = ""
+		-- if vim.fn.has("win32") == 1 then
+		-- 	dmd_path = vim.fn.expand("~/scoop/apps/dmd/current/src")
+		-- else
+		-- 	-- dmd_path = vim.fn.system("asdf where dmd")
+		-- 	local latest_version_dir = version.get_latest_version_dir("~/.asdf/installs/dmd")
+		-- 	dmd_path = vim.fn.expand(latest_version_dir .. "/dmd2/src")
+		-- 	print(dmd_path)
+		-- end
 
-		vim.lsp.enable(server)
+		-- vim.lsp.config(server, {
+		-- 	-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
+		-- 	settings = {
+		-- 		d = {
+		-- 			stdlibPath = { dmd_path .. "/phobos", dmd_path .. "/druntime", dmd_path .. "/dmd" },
+		-- 			-- compiler = "ldc2",
+		-- 		},
+		-- 		dfmt = {
+		-- 			braceStyle = "otbs",
+		-- 		},
+		-- 	},
+		-- })
+
+		-- vim.lsp.enable(server)
 	elseif server == "lua_ls" then
 		vim.lsp.config(server, {
 			on_init = function(client)
@@ -163,4 +165,29 @@ if vim.fn.executable("deno") then
 	end
 end
 
+if vim.fn.executable("serve-d") then
+	if vim.fn.has("win32") == 1 then
+		dmd_path = vim.fn.expand("~/scoop/apps/dmd/current/src")
+	else
+		-- dmd_path = vim.fn.system("asdf where dmd")
+		local latest_version_dir = version.get_latest_version_dir("~/.asdf/installs/dmd")
+		dmd_path = vim.fn.expand(latest_version_dir .. "/dmd2/src")
+		print(dmd_path)
+	end
+
+	vim.lsp.config("serve_d", {
+		-- https://github.com/Pure-D/serve-d/blob/master/views/ja.txt
+		settings = {
+			d = {
+				stdlibPath = { dmd_path .. "/phobos", dmd_path .. "/druntime", dmd_path .. "/dmd" },
+				-- compiler = "ldc2",
+			},
+			dfmt = {
+				braceStyle = "otbs",
+			},
+		},
+	})
+
+	vim.lsp.enable("serve_d")
+end
 -- }}}
