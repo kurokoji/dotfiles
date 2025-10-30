@@ -2,9 +2,6 @@
 repo = 'neovim/nvim-lspconfig'
 on_source = 'mason-lspconfig.nvim'
 on_event = ['FileType']
-hooks_file = [
-	'$LAZY_TOML_DIR/hooks_file/nvim-lspconfig.lua',
-]
 
 [[plugins]]
 repo = 'mason-org/mason.nvim'
@@ -29,11 +26,6 @@ on_source = 'none-ls.nvim'
 hooks_file = '$LAZY_TOML_DIR/hooks_file/mason-null-ls.lua'
 
 [[plugins]]
-repo = 'ErichDonGubler/lsp_lines.nvim'
-if = '0'
-on_source = 'nvim-lspconfig'
-# lua_source {{{
-lua_source = '''
-require('lsp_lines').setup {}
-'''
-# }}}
+repo = 'rachartier/tiny-inline-diagnostic.nvim'
+on_source = 'mason-lspconfig.nvim'
+hooks_file = '$LAZY_TOML_DIR/hooks_file/tiny-inline-diagnostic.lua'

@@ -54,6 +54,7 @@ end
 # source {{{
 # source $HOME/.asdf/asdf.fish
 source $HOME/.config/fish/scripts/asdf.fish
+source $HOME/.config/fish/scripts/fly.fish
 
 # tabtab source for packages
 # uninstall by removing these lines

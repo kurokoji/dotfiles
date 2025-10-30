@@ -402,8 +402,12 @@ function! s:ddu_filer_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('quit')<CR>
   nnoremap <buffer><silent> v
         \ <Cmd>call ddu#ui#do_action('preview')<CR>
-  " nnoremap <buffer><silent> <BS>
-  "       \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'narrow', params: #{path: '..'}})<CR>
+  nnoremap <buffer><silent> <BS>
+        \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'narrow', params: #{path: '..'}})<CR>
+  nnoremap <buffer><expr> o
+        \ ddu#ui#get_item()->get('isTree', v:false) ?
+        \ "<Cmd>call ddu#ui#do_action('itemAction', #{name: 'narrow'})<CR>" :
+        \ "<Cmd>call ddu#ui#do_action('itemAction', #{name: 'open'})<CR>"
   nnoremap <buffer><silent> nf
         \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'newFile'})<CR>
   nnoremap <buffer><silent> nd

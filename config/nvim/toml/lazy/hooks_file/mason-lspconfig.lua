@@ -172,7 +172,7 @@ if vim.fn.executable("serve-d") then
 		-- dmd_path = vim.fn.system("asdf where dmd")
 		local latest_version_dir = version.get_latest_version_dir("~/.asdf/installs/dmd")
 		dmd_path = vim.fn.expand(latest_version_dir .. "/dmd2/src")
-		print(dmd_path)
+		-- print(dmd_path)
 	end
 
 	vim.lsp.config("serve_d", {
