@@ -28,9 +28,11 @@ repo = 'simeji/winresizer'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
+if = '0'
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
+if = '0'
 depends = ['context_filetype.vim']
 # hook_add {{{
 hook_add = '''

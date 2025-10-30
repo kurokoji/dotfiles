@@ -12,7 +12,6 @@ end
 --   callback = on_cursor_hold
 -- })
 
-
 local function set_keymaps(buf)
 	-- vim.diagnostic.config({ virtual_text = false })
 	local opts = {
@@ -29,14 +28,20 @@ local function set_keymaps(buf)
 	-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 	-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
-	vim.keymap.set("n", "g]", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
-	vim.keymap.set("n", "g[", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+	vim.keymap.set("n", "g]", function()
+		vim.diagnostic.jump({ count = 1, float = true })
+	end, opts)
+	vim.keymap.set("n", "g[", function()
+		vim.diagnostic.jump({ count = -1, float = true })
+	end, opts)
 
-	vim.keymap.set("n", "F", function() vim.lsp.buf.format({ async = true }) end, opts)
+	vim.keymap.set("n", "F", function()
+		vim.lsp.buf.format({ async = true })
+	end, opts)
 end
 
 local function set_signs()
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+	local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 	vim.diagnostic.config({
 		signs = {
 			-- :help dianostic-signs
@@ -46,9 +51,9 @@ local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 				[vim.diagnostic.severity.INFO] = signs["Info"],
 				[vim.diagnostic.severity.HINT] = signs["Hint"],
 			},
-			numhl = {
+			n = {
 			},
-			linehl = {
+			li = {
 			},
 			float = {
 				border = "rounded",

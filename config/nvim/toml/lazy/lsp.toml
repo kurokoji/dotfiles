@@ -27,5 +27,5 @@ hooks_file = '$LAZY_TOML_DIR/hooks_file/mason-null-ls.lua'
 
 [[plugins]]
 repo = 'rachartier/tiny-inline-diagnostic.nvim'
-on_source = 'mason-lspconfig.nvim'
+on_event = ['FileType']
 hooks_file = '$LAZY_TOML_DIR/hooks_file/tiny-inline-diagnostic.lua'
