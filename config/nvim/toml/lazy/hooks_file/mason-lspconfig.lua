@@ -113,29 +113,28 @@ for _, server in pairs(current_manual_enable_servers) do
 			end
 
 			--[[
-				opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
-				opts.single_file_support = true
-				opts.init_options = {
-					lint = true,
-					unstable = true,
-					suggest = {
-						imports = {
-							hosts = {
-								["https://deno.land"] = true,
-								["https://cdn.nest.land"] = true,
-								["https://crux.land"] = true,
-							},
+			opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+			opts.single_file_support = true
+			opts.init_options = {
+				lint = true,
+				unstable = true,
+				suggest = {
+					imports = {
+						hosts = {
+							["https://deno.land"] = true,
+							["https://cdn.nest.land"] = true,
+							["https://crux.land"] = true,
 						},
 					},
-				}
-				]]
+				},
+			}
+			--]]
 		end
 
 		vim.lsp.config(server, opts)
 		vim.lsp.enable(server)
 	end
 end
-
 
 if vim.fn.executable("deno") then
 	local node_root_dir = lspconfig.util.root_pattern("package.json")
@@ -144,7 +143,7 @@ if vim.fn.executable("deno") then
 	if not is_node_repo then
 		local opts = {}
 
-		opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
+		-- opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", "import_map.json")
 		opts.single_file_support = true
 		opts.init_options = {
 			lint = true,

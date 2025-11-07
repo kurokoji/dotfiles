@@ -1,15 +1,14 @@
 // dpp
-import { ContextBuilder, Plugin } from "jsr:@shougo/dpp-vim@~4.2.0/types";
+import { Plugin } from "jsr:@shougo/dpp-vim@5.0.0/types";
 import {
   BaseConfig,
   ConfigArguments,
   ConfigReturn,
   MultipleHook,
-} from "jsr:@shougo/dpp-vim@~4.2.0/config";
+} from "jsr:@shougo/dpp-vim@5.0.0/config";
 
 // denops
-import { Denops } from "jsr:@denops/std@~7.5.0";
-import * as fn from "jsr:@denops/std@~7.5.0/function";
+import * as fn from "jsr:@denops/std@8.1.1/function";
 
 // std
 import { expandGlob } from "jsr:@std/fs";
@@ -51,7 +50,7 @@ export class Config extends BaseConfig {
     const recordPlugins: Record<string, Plugin> = {};
     const ftplugins: Record<string, string> = {};
     const hooksFiles: string[] = [];
-    const multipleHooks: MultipleHook[] = [];
+    const _multipleHooks: MultipleHook[] = [];
     const tomls: Toml[] = [];
 
     // Search for toml files

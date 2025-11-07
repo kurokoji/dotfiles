@@ -43,6 +43,7 @@ end
 local function set_signs()
 	local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 	vim.diagnostic.config({
+		severity_sort = true,
 		signs = {
 			-- :help dianostic-signs
 			text = {
