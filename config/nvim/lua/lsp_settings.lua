@@ -51,10 +51,8 @@ local function set_signs()
 				[vim.diagnostic.severity.INFO] = signs["Info"],
 				[vim.diagnostic.severity.HINT] = signs["Hint"],
 			},
-			n = {
-			},
-			li = {
-			},
+			n = {},
+			li = {},
 			float = {
 				border = "rounded",
 				severity_sort = true,
@@ -63,9 +61,13 @@ local function set_signs()
 	})
 end
 
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		set_keymaps(ev.buf)
 		set_signs()
-	end
+
+		vim.lsp.config("*", {
+			capabilities = require("ddc_source_lsp").make_client_capabilities(),
+		})
+	end,
 })
