@@ -21,6 +21,14 @@ sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
 git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 ```
 
+- `lssecret` でstoreしてるやつみれる
+
+``` sh
+git clone https://github.com/gileshuang/lssecret /tmp/lssecret
+cd /tmp/lssecret
+make && DESTDIR=/usr/local sudo make install
+```
+
 ## Windows
 
 ```sh
