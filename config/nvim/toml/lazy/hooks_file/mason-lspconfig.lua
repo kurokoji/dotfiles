@@ -13,11 +13,11 @@ local manual_enable_servers = {
 	"biome",
 }
 
-mason_lspconfig.setup {
+mason_lspconfig.setup({
 	automatic_enable = {
 		exclude = manual_enable_servers,
 	},
-}
+})
 
 local lspconfig = require("lspconfig")
 
