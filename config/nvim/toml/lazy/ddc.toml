@@ -105,3 +105,7 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-filter-sorter_lsp_kind'
 on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+on_source = 'ddc.vim'

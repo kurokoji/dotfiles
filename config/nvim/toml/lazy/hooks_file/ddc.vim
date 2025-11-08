@@ -5,7 +5,7 @@ call ddc#custom#patch_global(#{
       \   sourceOptions: #{
       \     _: #{
       \       matchers: ['matcher_head'],
-      \       sorters: ['sorter_rank']
+      \       sorters: ['sorter_rank'],
       \     },
       \     around: #{
       \       mark: '[A]',
@@ -17,6 +17,9 @@ call ddc#custom#patch_global(#{
       \       mark: '[NECO]',
       \     },
       \     cmdline: #{
+      \       matchers: ['matcher_head'],
+      \       sorters: ['sorter_rank'],
+      \       converters: [],
       \       mark: '[CMD]',
       \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
       \       minAutoCompleteLength: 0,
@@ -29,9 +32,10 @@ call ddc#custom#patch_global(#{
       \       isVolatile: v:true,
       \     },
       \     lsp: #{
+      \       isVolatile: v:true,
       \       matchers: ['matcher_head'],
       \       converters: ['converter_kind_labels'],
-      \       sorters: ['sorter_lsp_kind'],
+      \       sorters: ['sorter_lsp_kind', 'sorter_rank'],
       \       mark: '[LSP]',
       \       forceCompletionPattern: '\.\w*|:\w*|->\w*',
       \     },
