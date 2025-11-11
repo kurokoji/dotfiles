@@ -26,8 +26,6 @@ local installed_servers = mason_lspconfig.get_installed_servers()
 -- 積集合とって、手動で有効化するサーバーを取得
 local current_manual_enable_servers = set.intersection(manual_enable_servers, installed_servers)
 
-vim.api.nvim_exec_autocmds("User", { pattern = "MasonLspConfigLoaded" })
-
 for _, server in pairs(current_manual_enable_servers) do
 	if server == "serve_d" then
 		-- local dmd_path = '~/scoop/apps/dmd/2.101.0/src'
@@ -164,13 +162,19 @@ if vim.fn.executable("deno") then
 	end
 end
 
-if vim.fn.executable("serve-d") then
+if vim.fn.executable("serve-d") and vim.fn.executable("dmd") then
+	local dmd_path = ""
+
 	if vim.fn.has("win32") == 1 then
 		dmd_path = vim.fn.expand("~/scoop/apps/dmd/current/src")
 	else
 		-- dmd_path = vim.fn.system("asdf where dmd")
 		local latest_version_dir = version.get_latest_version_dir("~/.asdf/installs/dmd")
-		dmd_path = vim.fn.expand(latest_version_dir .. "/dmd2/src")
+
+		if latest_version_dir ~= nil then
+			dmd_path = vim.fn.expand(latest_version_dir .. "/dmd2/src")
+		end
+
 		-- print(dmd_path)
 	end
 
