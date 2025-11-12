@@ -424,6 +424,8 @@ function! s:ddu_filer_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'copy'})<CR>
   nnoremap <buffer><silent> p
         \ <Cmd>call ddu#ui#do_action('itemAction', #{name: 'paste'})<CR>
+  nnoremap <buffer><silent> <C-r>
+        \ <Cmd>call ddu#ui#do_action('redraw', #{method: 'refreshItems'})<CR>
 endfunction
 " }}}
 
