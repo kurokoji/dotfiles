@@ -1,6 +1,6 @@
 -- lua_source {{{
-local version = require("kurokoji_utils.version")
-local set = require("kurokoji_utils.set")
+local version = require("kurokoji-utils.version")
+local set = require("kurokoji-utils.set")
 
 local mason_lspconfig = require("mason-lspconfig")
 
