@@ -174,6 +174,16 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
+-- 自動でdpp.make_state
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = { "*.lua", "*.vim", "*.toml", "*.ts", "vimrc", ".vimrc" },
+	callback = function(_)
+		if dpp and not vim.tbl_isempty(dpp.check_files()) then
+			dpp.make_state()
+		end
+	end
+})
+
 -- Commands: DppInstall / DppUpdate
 vim.api.nvim_create_user_command("DppInstall", function()
 	vim.fn["dpp#async_ext_action"]("installer", "install")
