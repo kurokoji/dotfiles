@@ -16,10 +16,17 @@ require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", { "filename", path = 1 } },
-		lualine_c = { "diff", {
-			"diagnostics",
-			sources = { "nvim_diagnostic", "nvim_workspace_diagnostic" },
-		} },
+		lualine_c = {
+			"diff",
+			{
+				"diagnostics",
+				sources = { "nvim_diagnostic" },
+			},
+			{
+				"diagnostics",
+				sources = { "nvim_workspace_diagnostic" },
+			},
+		},
 		lualine_x = { "filetype", "encoding", "fileformat" },
 		lualine_y = { "location" },
 		lualine_z = { "progress" },
