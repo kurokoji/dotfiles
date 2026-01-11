@@ -154,8 +154,8 @@ function s:resize_ddu_ff_window() abort
         \   border: 'rounded',
         \   title: 'Filter',
         \   title_pos: 'center',
-        \   highlight_window: '',
-        \   highlight_border: ''
+        \   highlight_window: 'None',
+        \   highlight_border: 'None'
         \ })
 
   call ddu#custom#patch_global(#{
@@ -372,6 +372,8 @@ call ddu#custom#patch_local('filer', #{
     \       floatingBorder: 'rounded',
     \       floatingTitle: 'Filer',
     \       floatingTitlePos: 'center',
+    \       previewFloatingTitle: 'Preview',
+    \       previewFloatingTitlePos: 'center',
     \       previewFloatingBorder: 'rounded',
     \       previewSplit: 'vertical',
     \       startAutoAction: v:true,
@@ -381,7 +383,7 @@ call ddu#custom#patch_local('filer', #{
     \       highlights: #{
     \         floating: '',
     \         floatingBorder: '',
-    \       }
+    \       },
     \     },
     \   },
     \   uiOptions: #{
