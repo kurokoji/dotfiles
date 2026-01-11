@@ -77,7 +77,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 -- Colorscheme (ensure it's installed)
-pcall(vim.cmd, "colorscheme melange")
+vim.cmd.colorscheme "melange"
 
 local use_neovide = vim.g.neovide ~= nil
 local use_gui = use_neovide or vim.fn.has("gui_running") == 1

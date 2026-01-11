@@ -97,8 +97,8 @@ local keys = {
 	{ key = "t", mods = "META", action = wezterm.action.ShowTabNavigator },
 	{ key = "s", mods = "META", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "META", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "h", mods = "SHIFT|META", action = wezterm.action.MoveTabRelative(-1) },
-	{ key = "l", mods = "SHIFT|META", action = wezterm.action.MoveTabRelative(1) },
+	{ key = "h", mods = "SHIFT|" .. "META", action = wezterm.action.MoveTabRelative(-1) },
+	{ key = "l", mods = "SHIFT|" .. "META", action = wezterm.action.MoveTabRelative(1) },
 }
 
 for i = 1, 9 do

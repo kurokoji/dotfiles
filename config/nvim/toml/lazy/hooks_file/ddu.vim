@@ -120,6 +120,8 @@ call ddu#custom#patch_global(#{
     \       previewFloatingTitle: 'Preview',
     \       previewFloatingTitlePos: 'center',
     \       highlights: #{
+    \         floating: '',
+    \         floatingBorder: '',
     \       },
     \       ignoreEmpty: v:true,
     \     },
@@ -152,6 +154,8 @@ function s:resize_ddu_ff_window() abort
         \   border: 'rounded',
         \   title: 'Filter',
         \   title_pos: 'center',
+        \   highlight_window: '',
+        \   highlight_border: ''
         \ })
 
   call ddu#custom#patch_global(#{
@@ -335,6 +339,16 @@ call ddu#custom#patch_local('lsp:diagnostic', #{
     \       matchers: ['matcher_fzf'],
     \       converters: ['converter_lsp_diagnostic'],
     \     },
+    \   },
+    \   filterParams: #{
+    \     converter_lsp_diagnostic: #{
+    \       iconMap: #{
+    \         Error: " ",
+    \         Warning: " ",
+    \         Info: " ",
+    \         Hint: " ",
+    \       },
+    \     }
     \   }
     \ })
 
@@ -365,6 +379,8 @@ call ddu#custom#patch_local('filer', #{
     \         name: 'preview',
     \       },
     \       highlights: #{
+    \         floating: '',
+    \         floatingBorder: '',
     \       }
     \     },
     \   },
