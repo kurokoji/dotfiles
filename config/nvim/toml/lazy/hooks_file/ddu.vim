@@ -128,7 +128,7 @@ call ddu#custom#patch_global(#{
     \   },
     \ })
 
-function s:resize_ddu_ff_window() abort
+function s:resize_ddu_window() abort
   let filterHeight = 3
   let space = 3
 
@@ -190,8 +190,8 @@ function s:resize_ddu_ff_window() abort
 
 endfunction
 
-autocmd VimEnter * ++once call s:resize_ddu_ff_window()
-autocmd VimResized * ++nested call s:resize_ddu_ff_window()
+autocmd VimEnter * ++once call s:resize_ddu_window()
+autocmd VimResized * ++nested call s:resize_ddu_window()
 
 function s:update_cursor()
   call sign_unplace('*', #{
