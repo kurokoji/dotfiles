@@ -25,3 +25,7 @@ repo = 'folke/tokyonight.nvim'
 
 [[plugins]]
 repo = 'savq/melange-nvim'
+
+[[plugins]]
+repo = 'kurokoji/sakuracream.nvim'
+hooks_file = '$NORMAL_TOML_DIR/hooks_file/sakuracream.lua'
