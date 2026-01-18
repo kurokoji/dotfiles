@@ -1,0 +1,61 @@
+[colors]
+foreground = "#5d4654"
+background = "#fff6fb"
+cursor_bg = "#5d4654"
+cursor_border = "#5d4654"
+cursor_fg = "#fff6fb"
+selection_bg = "#f2d6e6"
+selection_fg = "#5d4654"
+split = "#e6c8d7"
+compose_cursor = "#5d4654"
+scrollbar_thumb = "#faedf5"
+
+ansi = [
+  "#f5dfe9",
+  "#c04a4a",
+  "#4f8a5a",
+  "#b2871d",
+  "#4f78a8",
+  "#7a5aa8",
+  "#3b8a83",
+  "#7b5f6f",
+]
+brights = [
+  "#9a7c8c",
+  "#c04a4a",
+  "#4f8a5a",
+  "#c7743b",
+  "#4f78a8",
+  "#c15886",
+  "#3b8a83",
+  "#5d4654",
+]
+
+[colors.tab_bar]
+background = "#fff6fb"
+inactive_tab_edge = "#e6c8d7"
+
+[colors.tab_bar.active_tab]
+fg_color = "#fff6fb"
+bg_color = "#c15886"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#7b5f6f"
+bg_color = "#faedf5"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#fff6fb"
+bg_color = "#a3436b"
+
+[colors.tab_bar.new_tab]
+fg_color = "#7b5f6f"
+bg_color = "#fff6fb"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#fff6fb"
+bg_color = "#a3436b"
+
+[metadata]
+aliases = []
+author = "kurokoji"
+name = "sakuracream"

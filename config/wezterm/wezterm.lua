@@ -10,7 +10,8 @@ local function get_home_path()
 	end
 end
 
-local colorscheme_name = "melange_light"
+-- local colorscheme_name = "melange_light"
+local colorscheme_name = "sakuracream"
 
 local home = get_home_path()
 local colorscheme_table = {}

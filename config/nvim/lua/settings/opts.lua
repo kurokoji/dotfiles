@@ -32,7 +32,7 @@ vim.opt.fileencodings = { "utf-8", "iso-2022-jp", "cp932", "sjis", "euc-jp" }
 
 -- Windows shell (PowerShell)
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
-	local shell = fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+	local shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
 	vim.o.shell = shell
 	vim.o.shellcmdflag =
 		"-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
