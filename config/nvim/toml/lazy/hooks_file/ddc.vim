@@ -136,7 +136,7 @@ call ddc#custom#patch_global('autoCompleteEvents', [
     \ ])
 
 call ddc#custom#patch_global('cmdlineSources', {
-    \ ':': ['cmdline_history', 'cmdline', 'file', 'around'],
+    \ ':': ['cmdline_history', 'necovim', 'file', 'around'],
     \ '@': ['cmdline_history', 'input', 'file', 'around'],
     \ '>': ['cmdline_history', 'input', 'file', 'around'],
     \ '/': ['around', 'line'],
