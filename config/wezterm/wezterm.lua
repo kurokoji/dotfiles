@@ -280,7 +280,7 @@ return {
 	-- font = wezterm.font("PlemolJP Console NF"),
 	-- font = wezterm.font("Cica"),
 	-- font = wezterm.font("UDEV Gothic NF"),
-	font = wezterm.font("Moralerspace Xenon NF"),
+	font = wezterm.font("Moralerspace Xenon"),
 	-- font = wezterm.font("Moralerspace Xenon HWNF"),
 	font_size = font_size,
 	color_scheme_dirs = { "~/.config/wezterm/colors" },
