@@ -10,7 +10,7 @@ call pum#set_option('border', ['╭', '─', '╮', '│', '╯', '─', '╰', 
 " call pum#set_option('border', ['┏', '━', '┓', '┃', '┛', '━', '┗', '┃'])
 " call pum#set_option('highlight_normal_menu', '')
 " call pum#set_option('scrollbar_char', '')
-call pum#set_option('max_height', '20')
+call pum#set_option('max_height', 20)
 " call pum#set_option('scrollbar_char', '┃')
 " call pum#set_option('scrollbar_char', '█')
 call pum#set_option('scrollbar_char', '▌')
