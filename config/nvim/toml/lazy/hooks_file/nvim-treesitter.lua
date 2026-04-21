@@ -1,31 +1,27 @@
 -- lua_source {{{
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"python",
-		"cpp",
-		"go",
-		"typescript",
-		"vim",
-		"toml",
-		"rust",
-		"html",
-		"bash",
-		"javascript",
-		"lua",
-		"tsx",
-		"haskell",
-		"markdown",
-		"ruby",
-		"embedded_template",
-	},
-	sync_install = false,
-	indent = {
-		enable = true,
-	},
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
+
+nvim_treesitter = require("nvim-treesitter")
+nvim_treesitter.setup({
+	install_dir = vim.fn.stdpath("data") .. "/site",
+})
+
+nvim_treesitter.install({
+	"python",
+	"cpp",
+	"go",
+	"typescript",
+	"vim",
+	"toml",
+	"rust",
+	"html",
+	"bash",
+	"javascript",
+	"lua",
+	"tsx",
+	"haskell",
+	"markdown",
+	"ruby",
+	"embedded_template",
 })
 
 -- require 'nvim-treesitter.install'.compilers = { "gcc", "zig" }
