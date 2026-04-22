@@ -42,9 +42,8 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 	vim.o.shellxquote = ""
 end
 
-if vim.fn.has("syntax") == 1 then
-	vim.cmd("syntax on")
-end
+vim.cmd("filetype plugin indent on")
+vim.cmd("syntax on")
 
 vim.opt.title = true
 vim.opt.number = true

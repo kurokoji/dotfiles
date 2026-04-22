@@ -1,6 +1,3 @@
--- Filetype plugins/indent
-vim.cmd("filetype plugin indent on")
-
 -------------------------------------------------------------
 -- FileTypeConfig augroup
 -------------------------------------------------------------
