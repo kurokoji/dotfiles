@@ -2,7 +2,7 @@
   max-height: 2em !important;
 }
 
-#main-window[titlepreface*="​"] #TabsToolbar>.toolbar-items {
+#main-window[titlepreface*="​"] #TabsToolbar > .toolbar-items {
   opacity: 0;
   pointer-events: none;
 }
@@ -17,9 +17,13 @@
  * Decrease size of the sidebar header
  */
 #sidebar-header {
+  /*
+   * header削除
+   */
+  display: none !important;
   font-size: 1.2em !important;
   padding: 2px 6px 2px 3px !important;
-  background-color: var(--toolbar-bgcolor) !important;
+  background-color: var(--toolbar-bgcolor, --toolbox-bgcolor) !important;
 }
 
 #sidebar-header #sidebar-close {
