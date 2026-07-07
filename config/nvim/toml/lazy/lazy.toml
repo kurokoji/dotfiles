@@ -21,18 +21,10 @@ repo = 'tpope/vim-surround'
 on_event = ['BufRead', 'BufNewFile']
 
 [[plugins]]
-repo = 'neovim-treesitter/nvim-treesitter'
-if = 'has("nvim") && !has("win32")'
+repo = 'romus204/tree-sitter-manager.nvim'
 on_event = ['BufRead', 'CursorHold']
-# on_event = ['FileType']
-on_ft = ['help']
 hook_post_update = 'TSUpdate'
-hooks_file = '$LAZY_TOML_DIR/hooks_file/nvim-treesitter.lua'
-
-[[plugins]]
-repo = 'neovim-treesitter/treesitter-parser-registry'
-if = 'has("nvim") && !has("win32")'
-on_source = 'nvim-treesitter'
+hooks_file = '$LAZY_TOML_DIR/hooks_file/tree-sitter-manager.lua'
 
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
@@ -51,7 +43,7 @@ require('ibl').setup()
 [[plugins]]
 repo = 'windwp/nvim-ts-autotag'
 if = 'has("nvim")'
-on_source = 'nvim-treesitter'
+on_source = 'tree-sitter-manager'
 hooks_file = '$LAZY_TOML_DIR/hooks_file/nvim-ts-autotag.lua'
 
 [[plugins]]
