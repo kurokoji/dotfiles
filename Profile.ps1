@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/wopian.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "wopian" | Invoke-Expression
 
 Set-Item env:Path "$env:UserProfile\.cargo\bin;$env:Path"
 Set-Item env:Path "$env:UserProfile\bin;$env:Path"

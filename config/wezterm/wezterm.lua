@@ -10,6 +10,22 @@ local function get_home_path()
 	end
 end
 
+--- @return string?
+local function executable_path(command)
+	local is_windows = wezterm.target_triple:find("windows") ~= nil
+	local finder = is_windows and "where" or "which"
+
+	local success, stdout, stderr = wezterm.run_child_process({ finder, command })
+
+	if not success then
+		wezterm.log_error(stderr)
+		return nil
+	end
+
+	local path = stdout:match("([^\r\n]+)")
+	return path
+end
+
 -- local colorscheme_name = "melange_light"
 local colorscheme_name = "sakuracream"
 
@@ -34,11 +50,6 @@ local font_size = 0
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	table.insert(launch_menu, {
-		label = "PowerShell 7",
-		args = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoProfileLoadTime" },
-	})
-
-	table.insert(launch_menu, {
 		label = "PowerShell",
 		args = { "powershell.exe", "-NoLogo" },
 	})
@@ -48,13 +59,22 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 		args = { "nyagos.exe" },
 	})
 
-	-- environment_variables = {
-	--   ComSpec = "C:/Program Files/PowerShell/7/pwsh.exe",
-	-- }
-	--
-	home = os.getenv("USERPROFILE")
+	pwsh_path = executable_path("pwsh")
 
-	default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoProfileLoadTime" }
+	if pwsh_path ~= nil then
+		table.insert(launch_menu, {
+			label = "PowerShell 7",
+			-- args = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoProfileLoadTime" },
+			args = { pwsh_path, "-NoProfileLoadTime" },
+		})
+
+		-- default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoProfileLoadTime" }
+		default_prog = { pwsh_path, "-NoProfileLoadTime" }
+	else
+		default_prog = { "powershell.exe", "-NoLogo" }
+	end
+
+	home = os.getenv("USERPROFILE")
 
 	font_size = 10.0
 elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
