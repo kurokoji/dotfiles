@@ -2,6 +2,7 @@ oh-my-posh init pwsh --config "wopian" | Invoke-Expression
 
 Set-Item env:Path "$env:UserProfile\.cargo\bin;$env:Path"
 Set-Item env:Path "$env:UserProfile\bin;$env:Path"
+Set-Item env:Path "$env:UserProfile\.local\bin;$env:Path"
 
 # Alias {{{
 
