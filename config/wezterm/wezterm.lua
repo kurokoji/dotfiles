@@ -144,7 +144,8 @@ wezterm.on("update-status", function(window, pane)
 	local edge_background = scheme.tab_bar.background
 	local edge_foreground = background
 	local red_foreground = scheme.ansi[2]
-	local green_foreground = scheme.ansi[3]
+	-- local green_foreground = scheme.ansi[3]
+	local green_foreground = scheme.tab_bar.active_tab.fg_color
 
 	-- "Wed Mar 3 08:14"
 	-- local date = "  " .. wezterm.strftime("%a %b %-d %H:%M ")
