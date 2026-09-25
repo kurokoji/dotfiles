@@ -83,3 +83,11 @@ Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 $env:FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
 
 (& volta completions powershell) | Out-String | Invoke-Expression
+
+#region conda initialize
+# !! Contents within this block are managed by 'conda init' !!
+If (Test-Path "C:\Users\nagato\scoop\apps\miniconda3\current\Scripts\conda.exe") {
+    (& "C:\Users\nagato\scoop\apps\miniconda3\current\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
+}
+#endregion
+
